@@ -1,14 +1,15 @@
-import Image from 'next/image'
+import Carousel from "@/components/section/HomePage/Carousel";
+import StatsSection from "@/components/section/HomePage/StatsSection";
+import ServicesSection from "@/components/section/HomePage/ServicesSection";
+import NewsSection from "@/components/section/HomePage/NewsSection";
 
-export default function Home() {
-  return (
-      <div className="flex w-[60%] justify-self-center">
-        <Image className="w-full"
-          src={"carousel/Carousel_1.svg"}
-          alt={"Carousel1"}
-          width={0}
-          height={0}
-          />
-      </div>
-  )
+export default function Page() {
+    return (
+        <main>
+            <Carousel />
+            <StatsSection />
+            <ServicesSection />
+            <NewsSection />
+        </main>
+    );
 }
