@@ -1,9 +1,28 @@
-export const MENU = [
-  { label: "About Aru Raharja", href: "/id/about" },
-  { label: "Service", href: "/id/service" },
-  { label: "Complaint", href: "/id/complaint" },
-  { label: "Governance", href: "/id/governance" },
-  { label: "Information", href: "/id/information" },
-  { label: "Appeal", href: "/id/appeal" },
-  { label: "Career", href: "/id/career" },
-];
+import type { Dictionary } from "@/i18n/getDictionary";
+
+export const NAV_ORDER = [
+  "about",
+  "service",
+  "complaint",
+  "governance",
+  "information",
+  "appeal",
+  "career",
+] as const;
+
+export type NavSegment = typeof NAV_ORDER[number];
+
+export const SEGMENT_TO_KEY: Record<NavSegment, keyof Dictionary["navbar"]> = {
+  about: "about",
+  service: "services",
+  complaint: "complaint",
+  governance: "governance",
+  information: "information",
+  appeal: "appeal",
+  career: "career",
+};
+
+export function getLabel(dict: Dictionary | undefined, segment: NavSegment): string {
+  const key = SEGMENT_TO_KEY[segment];
+  return dict?.navbar?.[key] ?? segment;
+}
