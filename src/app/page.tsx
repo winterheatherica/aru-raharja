@@ -1,15 +1,19 @@
-import Carousel from "@/components/section/HomePage/Carousel";
-import StatsSection from "@/components/section/HomePage/StatsSection";
-import ServicesSection from "@/components/section/HomePage/ServicesSection";
-import NewsSection from "@/components/section/HomePage/NewsSection";
+import { cookies, headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function Page() {
-    return (
-        <main>
-            <Carousel />
-            <StatsSection />
-            <ServicesSection />
-            <NewsSection />
-        </main>
-    );
+const LOCALES = new Set(["id", "en"]);
+const DEFAULT_LOCALE: "id" | "en" = "id";
+
+export default function RootRedirect() {
+  const cookieStore = cookies();
+  const c = cookieStore.get("NEXT_LOCALE")?.value;
+
+  let target = (c && LOCALES.has(c) ? (c as "id" | "en") : undefined) ?? undefined;
+
+  if (!target) {
+    const accept = headers().get("accept-language")?.toLowerCase() || "";
+    target = accept.startsWith("en") ? "en" : DEFAULT_LOCALE;
+  }
+
+  redirect(`/${target}`);
 }

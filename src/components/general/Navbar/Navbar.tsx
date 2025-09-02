@@ -7,18 +7,21 @@ import Burger from "./Burger";
 import DesktopNav from "./DesktopNav";
 import PhoneCta from "./PhoneCta";
 import PartnerLogo from "./PartnerLogo";
+import type { Locale, Dictionary } from "@/i18n/getDictionary";
 
-export default function Navbar() {
+type NavbarProps = {
+  locale: Locale;
+  dict?: Dictionary;
+};
+
+export default function Navbar({ locale, dict }: NavbarProps) {
   const [open, setOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const clusterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setOpen(false);
-    setMobileOpen(false);
   }, [pathname]);
-
-  const clusterRef = useRef<HTMLDivElement>(null);
 
   return (
     <header className="sticky top-0 z-20 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
@@ -28,14 +31,20 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <div className="relative hidden lg:flex" ref={clusterRef}>
             <Burger open={open} onToggle={() => setOpen((s) => !s)} />
-            <DesktopNav open={open} onRequestClose={() => setOpen(false)} attachTo={clusterRef} />
+            <DesktopNav
+              open={open}
+              onRequestClose={() => setOpen(false)}
+              attachTo={clusterRef}
+              locale={locale}
+              dict={dict}
+            />
           </div>
 
           <PhoneCta />
 
           <PartnerLogo />
 
-          {/* Mobile trigger coming soon*/}
+          {/* Mobile trigger coming soon */}
         </div>
       </nav>
     </header>
