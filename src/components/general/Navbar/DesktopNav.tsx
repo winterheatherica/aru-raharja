@@ -1,22 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { MENU } from "@/lib/nav";
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef } from "react";
+import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import { NAV_ORDER, getLabel } from "@/lib/nav";
 
 type Props = {
   open: boolean;
   onRequestClose: () => void;
   attachTo?: React.RefObject<HTMLDivElement>;
+  locale: Locale;
+  dict?: Dictionary;
 };
 
-export default function DesktopNav({ open, onRequestClose, attachTo }: Props) {
+export default function DesktopNav({ open, onRequestClose, attachTo, locale, dict }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!open) return;
+
     function onClickOutside(e: MouseEvent) {
-      if (!open) return;
       const t = e.target as Node;
       if (
         panelRef.current &&
@@ -26,6 +30,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo }: Props) {
         onRequestClose();
       }
     }
+
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, [open, onRequestClose, attachTo]);
@@ -34,11 +39,15 @@ export default function DesktopNav({ open, onRequestClose, attachTo }: Props) {
     <div
       id="desktop-nav-panel"
       ref={panelRef}
-      className={`pointer-events-none absolute right-0 top-0 z-0 flex h-[86px] w-[980px] items-center gap-3 rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
+      aria-hidden={!open}
+      {...(!open ? { inert: "" as any } : {})}
+      className={`pointer-events-none absolute right-0 top-0 z-0 flex h-[86px] w-[980px] items-center ${
+        locale === "id" ? "gap-3" : "gap-3"
+      } rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
         ${open ? "pointer-events-auto translate-x-0 opacity-100" : "translate-x-24"}`}
     >
       <Link
-        href="/id"
+        href={`/${locale}`}
         className="inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         aria-label="Home"
       >
@@ -48,25 +57,25 @@ export default function DesktopNav({ open, onRequestClose, attachTo }: Props) {
       </Link>
 
       <ul className="flex items-center space-x-1 whitespace-nowrap">
-        {MENU.map((m) => (
-          <li key={m.href}>
+        {NAV_ORDER.map((seg) => (
+          <li key={seg}>
             <Link
-              href={m.href}
+              href={`/${locale}/${seg}`}
               className="rounded-lg p-3 text-sm font-medium text-neutral-600 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             >
-              {m.label}
+              {getLabel(dict, seg)}
             </Link>
           </li>
         ))}
       </ul>
 
-      <LangSwitcher />
+      <LangSwitcher locale={locale} />
 
       <div className="ml-2 flex items-center">
         <button
           type="button"
           aria-label="User"
-          className="rounded-lg p-2 hover:bg-neutral-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          className="rounded-lg p-2 hover:bg-neutral-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring text-neutral-700"
         >
           <svg
             width="24"
@@ -77,7 +86,6 @@ export default function DesktopNav({ open, onRequestClose, attachTo }: Props) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-neutral-700"
             aria-hidden="true"
           >
             <path d="M18 20a6 6 0 0 0-12 0"></path>
