@@ -63,6 +63,11 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
     return () => window.removeEventListener("resize", compute);
   }, []);
 
+  const scaleVars = {
+    "--tw-scale-x": String(scale),
+    "--tw-scale-y": String(scale),
+  } as React.CSSProperties;
+
   return (
     <div
       id="desktop-nav-panel"
@@ -73,8 +78,8 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
         rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
         ${open ? "pointer-events-auto translate-x-0 opacity-100" : "translate-x-24"}`}
       style={{
+        ...scaleVars,
         transformOrigin: "right center",
-        transform: `scale(${scale})`,
       }}
     >
       <Link

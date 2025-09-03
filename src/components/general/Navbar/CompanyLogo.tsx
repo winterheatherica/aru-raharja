@@ -7,7 +7,7 @@ export default function CompanyLogo({ className }: Props) {
   return (
     <div className={`relative h-[56px] w-[65px] lg:h-[96px] lg:w-[105px] ${className ?? ""}`}>
       <Image
-        src="/navbar/AruLogo.svg"
+        src="/common/AruLogo.svg"
         alt="Aru Logo"
         fill
         className="object-contain"

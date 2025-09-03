@@ -1,30 +1,28 @@
-import Image from "next/image";
+"use client";
 
-export default function Footer() {
-    return (
-        <footer className="footer p-10 flex-col items-center bottom-0 bg-gray-300">
-            <div className="flex justify-center items-center w-full mb-8">
-                <Image
-                    src={"/footer/Desc.svg"}
-                    alt={"Desc"}
-                    width={400}
-                    height={0}
-                />
-            </div>
-            <div className="flex justify-center items-center gap-40 w-full">
-                <Image
-                    src={"/footer/Address.svg"}
-                    alt={"Desc"}
-                    width={240}
-                    height={0}
-                />
-                <Image
-                    src={"/footer/ContactUs.svg"}
-                    alt={"Desc"}
-                    width={150}
-                    height={0}
-                />
-            </div>
-        </footer>
-    )
+import { memo } from "react";
+import GridContent from "./GridContent";
+import Socials from "./Socials";
+import BottomBar from "./BottomBar";
+
+function FooterComponent() {
+  return (
+    <footer className="mt-6 text-lg lg:mt-16 bg-bumnslate-1 rounded-t-2xl">
+      <div
+        className="
+          relative mx-auto max-w-screen-1440
+          px-6 pt-10 pb-10
+          lg:px-12 lg:pt-14
+          /* kasih ruang ekstra di desktop agar BottomBar absolute tidak menimpa konten */
+          lg:pb-40
+        "
+      >
+        <GridContent />
+        <Socials />
+        <BottomBar />
+      </div>
+    </footer>
+  );
 }
+
+export default memo(FooterComponent);
