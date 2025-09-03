@@ -21,6 +21,8 @@ export function detectLocale(req: NextRequest): Locale {
   const fromCookie = req.cookies.get(COOKIE_NAME)?.value;
   if (isLocale(fromCookie)) return fromCookie;
 
-  const accept = (req.headers.get("Accept-Language") || "").toLowerCase();
-  return accept.startsWith("en") ? "en" : DEFAULT_LOCALE;
+  const accept = (req.headers.get("accept-language") || "").toLowerCase();
+  if (accept.startsWith("en")) return "en";
+
+  return DEFAULT_LOCALE;
 }
