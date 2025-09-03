@@ -6,7 +6,10 @@ import Brand from "./Brand";
 import Burger from "./Burger";
 import DesktopNav from "./DesktopNav";
 import PhoneCta from "./PhoneCta";
-import PartnerLogo from "./PartnerLogo";
+import CompanyLogo from "./CompanyLogo";
+import MobileNav from "./MobileNav";
+import Portal from "./Portal";
+
 import type { Locale, Dictionary } from "@/i18n/getDictionary";
 
 type NavbarProps = {
@@ -15,38 +18,51 @@ type NavbarProps = {
 };
 
 export default function Navbar({ locale, dict }: NavbarProps) {
-  const [open, setOpen] = useState(false);
+  const [openDesktop, setOpenDesktop] = useState(false);
+  const [openMobile, setOpenMobile] = useState(false);
   const pathname = usePathname();
   const clusterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setOpen(false);
+    setOpenDesktop(false);
+    setOpenMobile(false);
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-20 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
-      <nav className="mx-auto flex h-[104px] max-w-[1440px] items-center justify-between py-1 lg:px-10">
+    <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
+      <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
         <Brand />
 
-        <div className="flex items-center gap-2">
-          <div className="relative hidden lg:flex" ref={clusterRef}>
-            <Burger open={open} onToggle={() => setOpen((s) => !s)} />
+        <nav className="flex flex-row-reverse items-center gap-2 lg:flex-row">
+          <div className="relative hidden lg:flex flex-1 min-w-0" ref={clusterRef}>
+            <Burger open={openDesktop} onToggle={() => setOpenDesktop((s) => !s)} />
             <DesktopNav
-              open={open}
-              onRequestClose={() => setOpen(false)}
+              open={openDesktop}
+              onRequestClose={() => setOpenDesktop(false)}
               attachTo={clusterRef}
               locale={locale}
               dict={dict}
             />
           </div>
 
+          <div className="lg:hidden">
+            <Burger open={openMobile} onToggle={() => setOpenMobile((s) => !s)} />
+          </div>
+
           <PhoneCta />
 
-          <PartnerLogo />
+          <CompanyLogo className="me-4 lg:me-0" />
+        </nav>
+      </div>
 
-          {/* Mobile trigger coming soon */}
-        </div>
-      </nav>
+      <Portal>
+        <MobileNav
+          open={openMobile}
+          onRequestClose={() => setOpenMobile(false)}
+          locale={locale}
+          dict={dict}
+        />
+      </Portal>
     </header>
   );
 }

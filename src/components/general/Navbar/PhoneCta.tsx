@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function PhoneCta() {
   return (
-    <Link href="/id/complaint" className="hidden items-center lg:flex" aria-label="Pengaduan">
-      <div className="relative flex h-[45px] w-[45px] animate-pulse">
+    <Link href="/id/complaint" className="flex items-center" aria-label="Pengaduan">
+      <div className="relative flex h-[30px] w-[30px] lg:h-[45px] lg:w-[45px] animate-pulse">
         <Image
           src="/navbar/phone-icon.webp"
           alt="phone-icon"
