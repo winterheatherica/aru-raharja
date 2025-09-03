@@ -34,7 +34,7 @@ export default function LangSwitcher({ locale }: { locale: Locale }) {
     `/set-locale?value=${val}&redirect=${encodeURIComponent(redirect)}`;
 
   return (
-    <div className="ml-2 flex items-center pl-3 text-sm font-medium">
+    <div className="flex items-center pl-3 text-sm font-medium">
       <Link
         href={toSetLocale("id", targetID)}
         aria-current={isID ? "page" : undefined}
