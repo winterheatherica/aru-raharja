@@ -8,4 +8,12 @@ export default {
     appeal: "Himbauan",
     career: "Karier",
   },
+  hero: {
+    faqTitle: "Pertanyaan yang Sering Diajukan",
+    faqCta: "Buka FAQ",
+    serviceTitle: "Layanan Santunan",
+    serviceCta: "Lihat Layanan",
+    complaintTitle: "Layanan Pengaduan",
+    complaintCta: "Ajukan Pengaduan",
+  },
 } as const;

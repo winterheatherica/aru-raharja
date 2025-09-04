@@ -8,4 +8,12 @@ export default {
     appeal: "Appeal",
     career: "Career",
   },
+  hero: {
+    faqTitle: "Frequently Asked Questions",
+    faqCta: "Open FAQ",
+    serviceTitle: "Compensation Service",
+    serviceCta: "See Services",
+    complaintTitle: "Complaint Service",
+    complaintCta: "Submit a Complaint",
+  },
 } as const;
