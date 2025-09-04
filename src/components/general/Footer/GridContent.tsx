@@ -1,4 +1,4 @@
-import AboutBlock from "./Brand";
+import AboutBlock from "./CompanyLogo";
 import ContactBlock from "./ContactBlock";
 import QuickLinks from "./QuickLinks";
 import PartnerBadges from "./PartnerBadges";

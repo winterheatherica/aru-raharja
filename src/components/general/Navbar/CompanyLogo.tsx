@@ -9,10 +9,11 @@ export default function CompanyLogo({ className }: Props) {
       <Image
         src="/common/AruLogo.svg"
         alt="Aru Logo"
-        fill
-        className="object-contain"
-        sizes="(max-width:1024px) 65px, 105px"
+        width={105}
+        height={96}
         priority
+        sizes="(max-width:1024px) 65px, 105px"
+        className="h-full w-full object-contain"
       />
     </div>
   );
