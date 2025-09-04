@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Dictionary } from "@/i18n/getDictionary";
 
 function CompanyLogo() {
   return (
@@ -17,12 +18,14 @@ function CompanyLogo() {
   );
 }
 
-export default function AboutBlock() {
+export default function AboutBlock({ dict }: { dict: Dictionary }) {
+  const desc = dict.footer.about.description;
+
   return (
     <div className="space-y-6">
       <CompanyLogo />
-      <p className="font-normal text-[17px] leading-relaxed">
-        PT Aru Raharja didirikan pada tanggal 14 Desember 1988. Perusahaan ini bergerak di berbagai bidang seperti Digital IT,  Outsourcing, Rent a Car, Building Management, Office Space Provider, Jasa Contractor, dan Supplier.
+      <p className="font-normal text-[17px] leading-relaxed whitespace-pre-line">
+        {desc}
       </p>
     </div>
   );

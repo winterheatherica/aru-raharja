@@ -2,8 +2,9 @@ import AboutBlock from "./CompanyLogo";
 import ContactBlock from "./ContactBlock";
 import QuickLinks from "./QuickLinks";
 import PartnerBadges from "./PartnerBadges";
+import type { Dictionary, Locale } from "@/i18n/getDictionary";
 
-export default function GridContent() {
+export default function GridContent({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <div
       className="
@@ -13,10 +14,11 @@ export default function GridContent() {
         items-start justify-items-start
       "
     >
-      <AboutBlock />
-      <ContactBlock />
-      <QuickLinks />
+      <AboutBlock dict={dict} />
+      <ContactBlock dict={dict} />
+      <QuickLinks dict={dict} locale={locale} />
       <PartnerBadges />
     </div>
   );
 }
+

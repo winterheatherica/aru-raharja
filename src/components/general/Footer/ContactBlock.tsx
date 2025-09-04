@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Dictionary } from "@/i18n/getDictionary";
 
-export default function ContactBlock() {
+export default function ContactBlock({ dict }: { dict: Dictionary }) {
+  const t = dict.footer.contact;
+
   return (
     <div className="space-y-6 lg:justify-self-center">
       <div className="space-y-5">
@@ -9,19 +12,15 @@ export default function ContactBlock() {
           <span className="relative w-[20px] h-[20px]">
             <Image src="/footer/building.webp" alt="building" fill className="object-contain" />
           </span>
-          <h5 className="text-lg font-semibold">Head Office</h5>
+          <h5 className="text-lg font-semibold">{t.headOffice}</h5>
         </div>
 
-        <div className="ms-[28px] text-[17px] font-normal leading-relaxed">
-          Wisma Raharja, Jl. TB Simatupang No.Kav. 1 <br />
-          Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12430
+        <div className="ms-[28px] text-[17px] font-normal leading-relaxed whitespace-pre-line">
+          {t.address}
         </div>
 
         <div>
-          <Link
-            href="mailto:info@aruraharja.co.id"
-            className="flex items-center gap-2 underline text-[17px]"
-          >
+          <Link href="mailto:info@aruraharja.co.id" className="flex items-center gap-2 underline text-[17px]">
             <span className="relative w-[20px] h-[20px]">
               <Image src="/footer/mail.webp" alt="mail" fill className="object-contain" />
             </span>
@@ -47,3 +46,4 @@ export default function ContactBlock() {
     </div>
   );
 }
+

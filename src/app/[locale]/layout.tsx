@@ -15,7 +15,7 @@ export default async function LocaleLayout({
     <div className="flex min-h-screen flex-col">
       <Navbar dict={dict} locale={params.locale} />
       <main className="flex-grow">{children}</main>
-      <Footer />
+      <Footer dict={dict} locale={params.locale} />
     </div>
   );
 }
