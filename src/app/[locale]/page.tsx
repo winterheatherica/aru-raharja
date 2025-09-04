@@ -1,16 +1,17 @@
-import Carousel from "@/components/section/HomePage/Carousel";
-import StatsSection from "@/components/section/HomePage/StatsSection";
-import ServicesSection from "@/components/section/HomePage/ServicesSection";
-import NewsSection from "@/components/section/HomePage/NewsSection";
+import Hero from "@/components/section/HomePage/Hero/Hero";
+import { getDictionary, type Locale } from "@/i18n/getDictionary";
+// import DutiesPromo from "@/components/section/HomePage/DutiesPromo/DutiesPromo";
+// import FundingStrip from "@/components/section/HomePage/FundingStrip/FundingStrip";
+// import StatsCtaMap from "@/components/section/HomePage/StatsCtaMap/StatsCtaMap";
+// import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
+// import Videos from "@/components/section/HomePage/Videos/Videos";
 
-export default function Page() {
-    return (
-        <main>
-            <Carousel />
-            <StatsSection />
-            <ServicesSection />
-            <NewsSection />
-        </main>
-    );
+
+export default async function Page({ params: { locale } }: { params: { locale: Locale } }) {
+  const dict = await getDictionary(locale);
+  return (
+    <main className="relative px-2 py-2 mx-auto max-w-screen-1440">
+        <Hero dict={dict} locale={locale} />
+    </main>
+  );
 }
-

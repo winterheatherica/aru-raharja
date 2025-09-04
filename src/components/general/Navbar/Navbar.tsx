@@ -9,7 +9,6 @@ import PhoneCta from "./PhoneCta";
 import CompanyLogo from "./CompanyLogo";
 import MobileNav from "./MobileNav";
 import Portal from "./Portal";
-
 import type { Locale, Dictionary } from "@/i18n/getDictionary";
 
 type NavbarProps = {

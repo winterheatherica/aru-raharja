@@ -12,7 +12,7 @@ export default function PhoneCta() {
           alt="phone-icon"
           fill
           className="object-contain"
-          sizes="45px"
+          sizes="(max-width:1024px) 30px, 45px"
         />
       </div>
     </Link>

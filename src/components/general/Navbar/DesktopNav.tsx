@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import LangSwitcher from "./LangSwitcher";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { Locale, Dictionary } from "@/i18n/getDictionary";
 import { NAV_ORDER, getLabel } from "@/lib/nav";
 import HomeIcon from "./HomeIcon";
@@ -16,13 +16,8 @@ type Props = {
   dict?: Dictionary;
 };
 
-const BREAK_MAX = 1360;
-const BREAK_MIN = 1024;
-const MIN_SCALE = 0.84;
-
 export default function DesktopNav({ open, onRequestClose, attachTo, locale, dict }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
 
   useEffect(() => {
     if (!open) return;
@@ -42,45 +37,15 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, [open, onRequestClose, attachTo]);
 
-  useEffect(() => {
-    const compute = () => {
-      const vw = window.innerWidth;
-
-      if (vw >= BREAK_MAX) {
-        setScale(1);
-        return;
-      }
-
-      const clamped = Math.max(BREAK_MIN, Math.min(BREAK_MAX, vw));
-      const t = (clamped - BREAK_MIN) / (BREAK_MAX - BREAK_MIN);
-      const s = MIN_SCALE + (1 - MIN_SCALE) * t;
-
-      setScale(Math.max(MIN_SCALE, Math.min(1, s)));
-    };
-
-    compute();
-    window.addEventListener("resize", compute);
-    return () => window.removeEventListener("resize", compute);
-  }, []);
-
-  const scaleVars = {
-    "--tw-scale-x": String(scale),
-    "--tw-scale-y": String(scale),
-  } as React.CSSProperties;
-
   return (
     <div
       id="desktop-nav-panel"
       ref={panelRef}
       aria-hidden={!open}
       {...(!open ? { inert: "" as any } : {})}
-      className={`pointer-events-none absolute right-0 top-0 z-0 flex h-[86px] w-[980px] items-center gap-3
+      className={`pointer-events-none absolute -right-3 top-0 z-0 flex h-[86px] w-[980px] items-center gap-3
         rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
         ${open ? "pointer-events-auto translate-x-0 opacity-100" : "translate-x-24"}`}
-      style={{
-        ...scaleVars,
-        transformOrigin: "right center",
-      }}
     >
       <Link
         href={`/${locale}`}
