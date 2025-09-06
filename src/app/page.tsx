@@ -1,14 +1,19 @@
-import Image from 'next/image'
+import { cookies, headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return (
-      <div className="flex w-[60%] justify-self-center">
-        <Image className="w-full"
-          src={"carousel/Carousel_1.svg"}
-          alt={"Carousel1"}
-          width={0}
-          height={0}
-          />
-      </div>
-  )
+const LOCALES = new Set(["id", "en"]);
+const DEFAULT_LOCALE: "id" | "en" = "id";
+
+export default function RootRedirect() {
+  const cookieStore = cookies();
+  const c = cookieStore.get("NEXT_LOCALE")?.value;
+
+  let target = (c && LOCALES.has(c) ? (c as "id" | "en") : undefined) ?? undefined;
+
+  if (!target) {
+    const accept = headers().get("accept-language")?.toLowerCase() || "";
+    target = accept.startsWith("en") ? "en" : DEFAULT_LOCALE;
+  }
+
+  redirect(`/${target}`);
 }
