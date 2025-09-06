@@ -8,7 +8,7 @@ import type { Dictionary, Locale } from "@/i18n/getDictionary";
 
 function FooterComponent({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
-    <footer className="mt-6 text-lg lg:mt-16 bg-bumnslate-1 rounded-t-2xl">
+    <footer className="mt-6 text-lg lg:mt-16 rounded-t-2xl">
       <div
         className="
           relative mx-auto max-w-screen-1440

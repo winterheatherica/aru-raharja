@@ -13,7 +13,7 @@ const socials: SocialLink[] = [
 export default function Socials() {
   return (
     <div className="relative z-10 flex items-center gap-3 mt-10 mb-6 lg:mb-0">
-      <div className="text-[15px] font-semibold text-bumnslate-8">Follow Us</div>
+      <div className="text-[15px] font-semibold">Follow Us</div>
       <div className="flex items-center gap-2">
         {socials.map((s) => (
           <Link

@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import type { Locale } from "@/i18n/getDictionary";
 
-export default function PhoneCta() {
+type Props = { locale: Locale; className?: string };
+
+export default function PhoneCta({ locale, className }: Props) {
+  const href = `/${locale}/complaint`;
+  const label = locale === "id" ? "Pengaduan" : "Complaint";
+
   return (
-    <Link href="/id/complaint" className="flex items-center" aria-label="Pengaduan">
+    <Link href={href} className={`flex items-center ${className ?? ""}`} aria-label={label}>
       <div className="relative flex h-[30px] w-[30px] lg:h-[45px] lg:w-[45px] animate-pulse">
         <Image
           src="/navbar/phone-icon.webp"

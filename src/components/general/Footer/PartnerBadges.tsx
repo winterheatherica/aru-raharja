@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function PartnerBadges() {
   return (
     <div className="w-full">
-      <div className="flex flex-row lg:flex-col items-center lg:items-start justify-center lg:justify-start gap-6">
+      <div className="flex flex-row lg:flex-col items-center justify-center gap-6">
         <Link
           href="https://www.danantaraindonesia.com/"
           target="_blank"
@@ -20,7 +20,7 @@ export default function PartnerBadges() {
         </Link>
 
         <Link
-          href="https://www.ojk.go.id/id/Default.aspx"
+          href="https://www.ojk.go.id/"
           target="_blank"
           rel="noopener noreferrer"
           className="relative w-[190px] h-[72px]"

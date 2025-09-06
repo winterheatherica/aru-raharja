@@ -43,7 +43,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
       ref={panelRef}
       aria-hidden={!open}
       {...(!open ? { inert: "" as any } : {})}
-      className={`pointer-events-none absolute -right-3 top-0 z-0 flex h-[86px] w-[980px] items-center gap-3
+      className={`pointer-events-none absolute right-0 top-0 z-0 flex h-[86px] w-[980px] items-center gap-3
         rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
         ${open ? "pointer-events-auto translate-x-0 opacity-100" : "translate-x-24"}`}
     >
