@@ -23,8 +23,6 @@ type CarouselProps = {
   maskSrc?: string | null;
 };
 
-const NAV_OFFSET_PX = 124;
-
 export default function Carousel({
   slides,
   autoplayMs = 5000,
@@ -34,7 +32,6 @@ export default function Carousel({
 }: CarouselProps) {
   const [active, setActive] = useState(0);
   const len = Math.max(0, slides.length);
-
 
   const timerRef = useRef<number | null>(null);
   const hoveringRef = useRef(false);
@@ -94,20 +91,17 @@ export default function Carousel({
       onMouseLeave={onLeave}
     >
       <div
-        className="relative overflow-hidden h-full hero-viewport"
+        className="relative h-auto w-full overflow-hidden aspect-[1920/820]"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
         <HeroMask src={maskSrc ?? null} />
 
-
-        <div className="flex flex-col will-change-transform h-full" style={trackStyle}>
+        <div className="flex h-full w-full flex-col will-change-transform" style={trackStyle}>
           {slides.map((s, idx) => {
             const alt = s.alt || `slide-${idx + 1}`;
             const hasCta = s.ctaLabel && s.ctaHref;
-            const safeSrc =
-              typeof s.src === "string" && s.src.trim() !== "" ? s.src : "/images/hero/placeholder-hero.jpg";
 
             return (
               <div
@@ -119,11 +113,11 @@ export default function Carousel({
               >
                 <div className="relative w-full h-full bg-black">
                   <Image
-                    src={safeSrc}
+                    src={s.src}
                     alt={alt}
                     fill
-                    className="object-cover w-full h-full"
-                    sizes="100vw"
+                    className="object-cover w-full h-full object-center"
+                    sizes="(min-width: 1920px) 1920px, 100vw"
                     priority={idx === 0}
                   />
 
@@ -143,34 +137,22 @@ export default function Carousel({
             );
           })}
         </div>
+
         {len > 1 && (
           <div
             className="
-              absolute 
-              left-2 top-2 bottom-2 
-              sm:left-3 sm:top-6 sm:bottom-6 
-              md:left-4 md:top-8 md:bottom-8 
+              absolute
+              left-2 top-2 bottom-2
+              sm:left-3 sm:top-6 sm:bottom-6
+              md:left-4 md:top-8 md:bottom-8
               lg:left-6 lg:bottom-12 lg:top-auto
               flex h-auto
-            "
-          >
+              "
+            >
             <HeroIndicators count={len} activeIndex={active} onJump={setActive} />
           </div>
         )}
       </div>
-
-      <style jsx>{`
-
-        .hero-viewport {
-          height: calc(100vw * 900 / 1920);
-        }
-
-        @media (min-width: 1024px) and (min-aspect-ratio: 16/9) and (max-aspect-ratio: 1920/900) {
-          .hero-viewport {
-            height: calc(100vh - ${NAV_OFFSET_PX}px);
-          }
-        }
-      `}</style>
     </div>
   );
 }

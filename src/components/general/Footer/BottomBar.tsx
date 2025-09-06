@@ -8,7 +8,7 @@ export default function BottomBar({ dict, locale }: { dict: Dictionary; locale: 
   return (
     <div
       className="
-        w-full px-4 py-3 font-op text-bumnslate-8
+        w-full px-4 py-3 font-op
         relative
         lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-10
       "
