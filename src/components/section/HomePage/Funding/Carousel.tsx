@@ -46,7 +46,6 @@ export default function Carousel({ items }: { items: FundingItem[] }) {
         aria-roledescription="carousel"
         aria-label="Funding"
       >
-        {/* ujung kanan pakai padding, bukan spacer, supaya konsisten */}
         <div className="flex gap-4 pr-6 md:pr-8 lg:pr-8">
           {items.map((it) => (
             <div key={it.code} className="flex-none w-[355px]">

@@ -65,4 +65,23 @@ export default {
     ctaLabel: "Contact Us",
     rightHeadlineHtml: "Serving to the <br /> Farthest Corners",
   },
+  service: {
+    cards: {
+      services: {
+        title: "Services",
+        subtitle: "Compensation",
+        alt: "compensation",
+      },
+      complaint: {
+        title: "Services",
+        subtitle: "Complaint",
+        alt: "complaint",
+      },
+      appeal: {
+        title: "Appeal",
+        subtitle: "Aru Raharja",
+        alt: "appeal",
+      },
+    },
+  },
 } as const;

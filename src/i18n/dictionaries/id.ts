@@ -65,4 +65,23 @@ export default {
     ctaLabel: "Hubungi Kami",
     rightHeadlineHtml: "Melayani Hingga <br /> Pelosok Negeri",
   },
+  service: {
+    cards: {
+      services: {
+        title: "Layanan",
+        subtitle: "Santunan",
+        alt: "santunan",
+      },
+      complaint: {
+        title: "Layanan",
+        subtitle: "Pengaduan",
+        alt: "pengaduan",
+      },
+      appeal: {
+        title: "Himbauan",
+        subtitle: "Aru Raharja",
+        alt: "himbauan",
+      },
+    },
+  },
 } as const;
