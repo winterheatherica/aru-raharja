@@ -10,7 +10,7 @@ function News({ dict }: { dict: Dictionary }) {
   return (
     <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
       <div className="absolute inset-x-0 top-0">
-        <h2 className="mb-4 text-2xl font-semibold lg:text-4xl lg:font-bold text-bumnblack-1">
+        <h2 className="pl-4 mb-4 text-2xl font-semibold lg:text-4xl lg:font-bold text-black">
           {t.heading}
         </h2>
 

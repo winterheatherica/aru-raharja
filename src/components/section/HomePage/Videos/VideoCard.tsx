@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { NewsItem } from "./data";
+import type { VideoItem } from "./data";
 
-export default function NewsCard({
+export default function VideoCard({
   item,
-  readMoreLabel = "Read More",
+  readMoreLabel = "Watch",
 }: {
-  item: NewsItem;
+  item: VideoItem;
   readMoreLabel?: string;
 }) {
   return (

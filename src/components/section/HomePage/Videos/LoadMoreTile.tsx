@@ -10,7 +10,7 @@ export default function LoadMoreTile({
   locale: Locale;
   label?: string;
 }) {
-  const href = `/${locale}/news`;
+  const href = `/${locale}/videos`;
 
   return (
     <Link

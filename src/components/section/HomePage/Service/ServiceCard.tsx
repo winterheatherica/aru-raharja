@@ -48,7 +48,7 @@ export default function ServiceCard({
             stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
             className="
               -rotate-45 transition-colors duration-300
-              text-bumnblue-3 group-hover:text-white
+              text-black group-hover:text-white
             "
             aria-hidden="true"
           >

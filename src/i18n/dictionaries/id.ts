@@ -87,6 +87,11 @@ export default {
   news: {
     heading: "Berita Aru Raharja",
     readMoreLabel: "Baca Selengkapnya",
-    loadMoreLabel: "Muat Lebih Banyak",
+    loadMoreLabel: "Muat Lainnya",
+  },
+  videos: {
+    heading: "Video",
+    readMoreLabel: "Tonton",
+    loadMoreLabel: "Muat Lainnya",
   },
 } as const;

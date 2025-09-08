@@ -89,4 +89,9 @@ export default {
     readMoreLabel: "Read More",
     loadMoreLabel: "Load More",
   },
+  videos: {
+    heading: "Videos",
+    readMoreLabel: "Watch",
+    loadMoreLabel: "Load More",
+  },
 } as const;

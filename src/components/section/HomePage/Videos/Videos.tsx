@@ -1,7 +1,27 @@
-export default function Videos() {
-    return (
-        <section>
-            <h2>Videos Section</h2>
-        </section>
-    );
+"use client";
+
+import { memo } from "react";
+import type { Dictionary } from "@/i18n/getDictionary";
+import Carousel from "./Carousel";
+import { videoItems } from "./data";
+
+function Videos({ dict }: { dict: Dictionary }) {
+  const t = dict.videos;
+  return (
+    <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
+      <div className="absolute inset-x-0 top-0">
+        <h2 className="pl-4 mb-4 text-2xl font-semibold lg:text-4xl lg:font-bold text-black">
+          {t.heading}
+        </h2>
+
+        <Carousel
+          items={videoItems}
+          readMoreLabel={t.readMoreLabel}
+          loadMoreLabel={t.loadMoreLabel}
+        />
+      </div>
+    </section>
+  );
 }
+
+export default memo(Videos);
