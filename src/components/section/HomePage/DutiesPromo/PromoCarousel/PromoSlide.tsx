@@ -13,15 +13,15 @@ export default function PromoSlide({ title, src, alt }: Props) {
     <div
       role="group"
       aria-roledescription="slide"
-      className="min-w-0 shrink-0 grow-0 basis-full pl-4 w-full"
+      className="min-w-0 shrink-0 grow-0 basis-full pl-4 w-full h-full"
     >
-      <div className="block relative h-[340px] sm:h-[640px]">
+      <div className="block relative h-full">
         <Image
           src={src}
           alt={alt}
           fill
           priority={false}
-          className="object-cover w-full rounded-xl"
+          className="object-cover rounded-xl"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
         />
         <div className="absolute flex items-center space-x-2 bottom-5 left-8 lg:bottom-6 lg:left-8">

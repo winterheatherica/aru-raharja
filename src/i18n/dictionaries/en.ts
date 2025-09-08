@@ -39,4 +39,49 @@ export default {
       rights: "All Rights Reserved.",
     },
   },
+  dutiesPromo: {
+    heading: "Main Duties of Aru Raharja for the Public",
+    descPrefix:
+      "Aru Raharja as the first guarantor of traffic accident victims in accordance with",
+    laws: ["Law No. 33 of 1964", "Law No. 34 of 1964"],
+  },
+  funding: {
+    leftTitleHtml: `Funding Sources <br><b>Law No. 33 of 1964</b><br>and<br><b>Law No. 34 of 1964</b>`,
+    maskSrc: "/masking/masking-variant-1.3.png",
+    items: [
+      { code: "SWDKLJJ", description: "Mandatory Contribution for Road Traffic Accident Funds", iconSrc: "/funding/swdkljj-icon-2.png" },
+      { code: "IWKBU", description: "Mandatory Contribution for Public Motor Vehicles", iconSrc: "/funding/iwkbu-icon-2.png" },
+      { code: "IWPU",  description: "Mandatory Contribution for Aircraft", iconSrc: "/funding/iwpu-icon-2.png" },
+      { code: "IWKA",  description: "Mandatory Contribution for Railway", iconSrc: "/funding/iwka-icon-2.png" },
+      { code: "IWKL",  description: "Mandatory Contribution for Marine", iconSrc: "/funding/iwkl-icon-2.png" },
+    ],
+  },
+  statsCtaMap: {
+    metricLabels: {
+      regionalOffices: "Regional Offices",
+      branchOffices: "Branch Offices",
+      serviceOffices: "Service Offices",
+    },
+    ctaLabel: "Contact Us",
+    rightHeadlineHtml: "Serving to the <br /> Farthest Corners",
+  },
+  service: {
+    cards: {
+      services: {
+        title: "Services",
+        subtitle: "Compensation",
+        alt: "compensation",
+      },
+      complaint: {
+        title: "Services",
+        subtitle: "Complaint",
+        alt: "complaint",
+      },
+      appeal: {
+        title: "Appeal",
+        subtitle: "Aru Raharja",
+        alt: "appeal",
+      },
+    },
+  },
 } as const;

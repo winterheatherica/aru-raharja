@@ -1,40 +1,87 @@
 "use client";
 
+import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaOptionsType } from "embla-carousel";
+import { useCallback, useEffect, useRef } from "react";
 import ScrollerCard from "./ScrollerCard";
 
 type Card = { title: string; subtitle: string; iconSrc: string; alt?: string };
-
-type Props = {
-  cards: Card[];
-};
+type Props = { cards: Card[] };
 
 export default function BottomScroller({ cards }: Props) {
+  const options: EmblaOptionsType = {
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps",
+    direction: "ltr",
+  };
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const knobRef = useRef<HTMLDivElement | null>(null);
+
+  const updateKnob = useCallback(() => {
+    const api = emblaApi;
+    const rail = railRef.current;
+    const knob = knobRef.current;
+    if (!api || !rail || !knob) return;
+
+    const progress = Math.min(1, Math.max(0, api.scrollProgress()));
+    const railW = rail.clientWidth;
+    const knobW = knob.getBoundingClientRect().width || 0;
+    const travel = Math.max(0, railW - knobW);
+    const x = progress * travel;
+
+    knob.style.transform = `translateX(${x}px)`;
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    updateKnob();
+    emblaApi.on("scroll", updateKnob);
+    emblaApi.on("reInit", updateKnob);
+  }, [emblaApi, updateKnob]);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    const knob = knobRef.current;
+    if (!rail) return;
+
+    const ro = new ResizeObserver(() => updateKnob());
+    ro.observe(rail);
+    if (knob) ro.observe(knob);
+
+    return () => ro.disconnect();
+  }, [updateKnob]);
+
   return (
-    <div className="absolute w-[calc(100%-10px)] lg:w-[calc(100%-320px)] left-5 sm:left-10 bottom-[42%] sm:bottom-[58%] md:bottom-[59%] lg:bottom-10 xl:bottom-16">
-      <div className="relative w-full" role="region" aria-roledescription="carousel">
-        <div className="overflow-hidden">
-          <div className="flex -ml-4">
+    <div className="absolute inset-x-6 bottom-6 z-20">
+      <div className="relative">
+        <div
+          ref={emblaRef}
+          className="overflow-hidden select-none mask-fade-x-24"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Protections"
+        >
+          <div className="flex gap-4">
             {cards.map((c, i) => (
-              <div
-                key={i}
-                role="group"
-                aria-roledescription="slide"
-                className="min-w-0 pl-4 flex-shrink-0 flex-none w-[355px]"
-              >
+              <div key={i} className="flex-none w-[355px]">
                 <ScrollerCard {...c} />
               </div>
             ))}
-            <div
-              role="group"
-              aria-roledescription="slide"
-              className="min-w-0 pl-4 flex-shrink-0 flex-none w-[120px]"
-            />
+            <div className="flex-none w-6" />
           </div>
         </div>
 
-        <div className="absolute left-2 -bottom-6">
-          <div className="h-1 rounded bg-white/40 w-60">
-            <div className="h-1 rounded bg-white/80" style={{ width: "0%" }} />
+        <div className="mt-3">
+          <div ref={railRef} className="relative h-1 w-full rounded-full bg-white/25" role="presentation">
+            <div
+              ref={knobRef}
+              className="absolute top-0 left-0 h-1 w-40 rounded-full bg-white will-change-transform transition-transform duration-150 ease-out"
+              style={{ transform: "translateX(0px)" }}
+            />
           </div>
         </div>
       </div>
