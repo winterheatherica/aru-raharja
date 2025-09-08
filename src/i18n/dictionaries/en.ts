@@ -84,4 +84,32 @@ export default {
       },
     },
   },
+  news: {
+    heading: "Aru Raharja News",
+    readMoreLabel: "Read More",
+    loadMoreLabel: "Load More",
+  },
+  videos: {
+    heading: "Videos",
+    readMoreLabel: "Watch",
+    loadMoreLabel: "Load More",
+  },
+  quicklink: {
+    x: {
+      title: "Follow us on X",
+      button: "Join on X",
+    },
+    tiktok: {
+      title: "Follow us on TikTok",
+      button: "Join on TikTok",
+    },
+    instagram: {
+      title: "Follow us on Instagram",
+      button: "Join on Instagram",
+    },
+    facebook: {
+      title: "Follow us on Facebook",
+      button: "Join on Facebook",
+    },
+  },
 } as const;

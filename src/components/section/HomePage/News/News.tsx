@@ -3,10 +3,10 @@
 import { memo } from "react";
 import type { Dictionary } from "@/i18n/getDictionary";
 import Carousel from "./Carousel";
-import { videoItems } from "./data";
+import { newsItems } from "./data";
 
-function Videos({ dict }: { dict: Dictionary }) {
-  const t = dict.videos;
+function News({ dict }: { dict: Dictionary }) {
+  const t = dict.news;
   return (
     <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
       <div className="absolute inset-x-0 top-0">
@@ -15,7 +15,7 @@ function Videos({ dict }: { dict: Dictionary }) {
         </h2>
 
         <Carousel
-          items={videoItems}
+          items={newsItems}
           readMoreLabel={t.readMoreLabel}
           loadMoreLabel={t.loadMoreLabel}
         />
@@ -24,4 +24,4 @@ function Videos({ dict }: { dict: Dictionary }) {
   );
 }
 
-export default memo(Videos);
+export default memo(News);

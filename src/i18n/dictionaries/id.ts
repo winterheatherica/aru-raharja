@@ -84,4 +84,32 @@ export default {
       },
     },
   },
+  news: {
+    heading: "Berita Aru Raharja",
+    readMoreLabel: "Baca Selengkapnya",
+    loadMoreLabel: "Muat Lainnya",
+  },
+  videos: {
+    heading: "Video",
+    readMoreLabel: "Tonton",
+    loadMoreLabel: "Muat Lainnya",
+  },
+  quicklink: {
+    x: {
+      title: "Ikuti Kami di X",
+      button: "Gabung di X",
+    },
+    tiktok: {
+      title: "Ikuti Kami di TikTok",
+      button: "Gabung di TikTok",
+    },
+    instagram: {
+      title: "Ikuti Kami di Instagram",
+      button: "Gabung di Instagram",
+    },
+    facebook: {
+      title: "Ikuti Kami di Facebook",
+      button: "Gabung di Facebook",
+    },
+  },
 } as const;
