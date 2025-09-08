@@ -39,4 +39,10 @@ export default {
       rights: "Hak Cipta Dilindungi.",
     },
   },
+  dutiesPromo: {
+    heading: "Tugas Pokok Aru Raharja untuk masyarakat",
+    descPrefix:
+      "Aru Raharja sebagai penjamin pertama Korban kecelakaan Lalu Lintas sesuai",
+    laws: ["UU No. 33 Tahun 1964", "UU No. 34 Tahun 1964"],
+  },
 } as const;

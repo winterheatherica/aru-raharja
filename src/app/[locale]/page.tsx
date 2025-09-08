@@ -12,7 +12,7 @@ export default async function Page({ params: { locale } }: { params: { locale: L
   return (
     <main className="relative px-2 py-2 mx-auto max-w-screen-1440">
         <Hero dict={dict} locale={locale} />
-        <DutiesPromo/>
+        <DutiesPromo dict={dict} locale={locale} />
     </main>
   );
 }

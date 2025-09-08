@@ -39,4 +39,10 @@ export default {
       rights: "All Rights Reserved.",
     },
   },
+  dutiesPromo: {
+    heading: "Main Duties of Aru Raharja for the Public",
+    descPrefix:
+      "Aru Raharja as the first guarantor of traffic accident victims in accordance with",
+    laws: ["Law No. 33 of 1964", "Law No. 34 of 1964"],
+  },
 } as const;
