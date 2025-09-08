@@ -84,4 +84,9 @@ export default {
       },
     },
   },
+  news: {
+    heading: "Aru Raharja News",
+    readMoreLabel: "Read More",
+    loadMoreLabel: "Load More",
+  },
 } as const;

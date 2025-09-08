@@ -84,4 +84,9 @@ export default {
       },
     },
   },
+  news: {
+    heading: "Berita Aru Raharja",
+    readMoreLabel: "Baca Selengkapnya",
+    loadMoreLabel: "Muat Lebih Banyak",
+  },
 } as const;

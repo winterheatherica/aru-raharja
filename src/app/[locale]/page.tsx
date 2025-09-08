@@ -3,6 +3,7 @@ import DutiesPromo from "@/components/section/HomePage/DutiesPromo/DutiesPromo";
 import Funding from "@/components/section/HomePage/Funding/Funding";
 import StatsCtaMap from "@/components/section/HomePage/StatsCtaMap/StatsCtaMap";
 import Service from "@/components/section/HomePage/Service/Service";
+import News from "@/components/section/HomePage/News/News";
 // import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
 // import Videos from "@/components/section/HomePage/Videos/Videos";
 
@@ -17,6 +18,7 @@ export default async function Page({ params: { locale } }: { params: { locale: L
         <Funding dict={dict} />
         <StatsCtaMap dict={dict} locale={locale}  />
         <Service dict={dict} locale={locale}  />
+        <News dict={dict} />
     </main>
   );
 }
