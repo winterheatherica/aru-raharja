@@ -27,7 +27,7 @@ export default function BottomScroller({ cards }: Props) {
     const knob = knobRef.current;
     if (!api || !rail || !knob) return;
 
-    const progress = Math.min(1, Math.max(0, api.scrollProgress())); // 0..1
+    const progress = Math.min(1, Math.max(0, api.scrollProgress()));
     const railW = rail.clientWidth;
     const knobW = knob.getBoundingClientRect().width || 0;
     const travel = Math.max(0, railW - knobW);
@@ -38,7 +38,7 @@ export default function BottomScroller({ cards }: Props) {
 
   useEffect(() => {
     if (!emblaApi) return;
-    updateKnob(); // init
+    updateKnob();
     emblaApi.on("scroll", updateKnob);
     emblaApi.on("reInit", updateKnob);
   }, [emblaApi, updateKnob]);
@@ -56,7 +56,7 @@ export default function BottomScroller({ cards }: Props) {
   }, [updateKnob]);
 
   return (
-    <div className="absolute inset-x-6 bottom-6 z-10">
+    <div className="absolute inset-x-6 bottom-6 z-20">
       <div className="relative">
         <div
           ref={emblaRef}
