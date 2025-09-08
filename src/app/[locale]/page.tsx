@@ -5,7 +5,7 @@ import StatsCtaMap from "@/components/section/HomePage/StatsCtaMap/StatsCtaMap";
 import Service from "@/components/section/HomePage/Service/Service";
 import News from "@/components/section/HomePage/News/News";
 import Videos from "@/components/section/HomePage/Videos/Videos";
-// import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
+import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
 
 import { getDictionary, type Locale } from "@/i18n/getDictionary";
 
@@ -19,7 +19,8 @@ export default async function Page({ params: { locale } }: { params: { locale: L
         <StatsCtaMap dict={dict} locale={locale}  />
         <Service dict={dict} locale={locale}  />
         <News dict={dict} />
-        <Videos dict={dict}  />
+        <Videos dict={dict} />
+        <QuickLinks dict={dict}  />
     </main>
   );
 }
