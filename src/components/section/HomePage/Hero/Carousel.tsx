@@ -91,7 +91,7 @@ export default function Carousel({
       onMouseLeave={onLeave}
     >
       <div
-        className="relative h-auto w-full overflow-hidden aspect-[1920/820]"
+        className="relative h-auto w-full overflow-hidden aspect-[1920/900] md:aspect-[1920/820]"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}

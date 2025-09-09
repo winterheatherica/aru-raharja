@@ -30,7 +30,9 @@ export default function Navbar({ locale, dict }: NavbarProps) {
   return (
     <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
-        <Brand locale={locale} />
+        <div className="pl-10 md:pl-4">
+          <Brand locale={locale} />
+        </div>
 
         <nav className="flex flex-row-reverse items-center gap-2 lg:flex-row">
           <div className="relative hidden lg:flex flex-1 min-w-0" ref={clusterRef}>

@@ -52,7 +52,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
         className="inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         aria-label="Home"
       >
-        <HomeIcon aria-hidden="true" className="fill-blue-600" />
+        <HomeIcon aria-hidden="true" className="fill-[#00ccff]" />
       </Link>
 
       <ul className="flex items-center space-x-1 whitespace-nowrap">

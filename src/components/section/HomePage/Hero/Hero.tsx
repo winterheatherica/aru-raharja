@@ -10,7 +10,7 @@ const LazyCarousel = dynamic(() => import("./Carousel"), {
   loading: () => (
     <div
       aria-label="Hero placeholder"
-      className="relative mx-auto w-full max-w-screen-1920 overflow-hidden rounded-2xl bg-neutral-100 aspect-[1920/820]"
+      className="relative mx-auto w-full max-w-screen-1920 overflow-hidden rounded-2xl bg-neutral-100 aspect-[1920/900] md:aspect-[1920/820]"
     />
   ),
 });
@@ -81,7 +81,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
         {shouldRender ? (
           <LazyCarousel slides={slides} autoplayMs={5000} />
         ) : (
-          <div className="relative mx-auto w-full max-w-screen-1920 overflow-hidden rounded-2xl bg-neutral-100 aspect-[1920/820]" />
+          <div className="relative mx-auto w-full max-w-screen-1920 overflow-hidden rounded-2xl bg-neutral-100 aspect-[1920/900] md:aspect-[1920/820]" />
         )}
       </div>
     </section>
