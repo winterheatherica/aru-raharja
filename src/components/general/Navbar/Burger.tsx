@@ -17,17 +17,17 @@ export default function Burger({ open, onToggle, className }: Props) {
       className={`z-10 flex h-[86px] w-[86px] cursor-pointer flex-col items-center justify-center gap-[4.5px] bg-white rounded-2xl transition duration-500 ${className ?? ""}`}
     >
       <span
-        className={`h-1 w-[25px] origin-left rounded-sm bg-blue-500 transition duration-500 ${
+        className={`h-1 w-[25px] origin-left rounded-sm bg-[#00ccff] transition duration-500 ${
           open ? "rotate-45" : ""
         }`}
       />
       <span
-        className={`h-1 w-[25px] rounded-sm bg-blue-500 transition duration-500 ${
+        className={`h-1 w-[25px] rounded-sm bg-[#00ccff] transition duration-500 ${
           open ? "opacity-0" : ""
         }`}
       />
       <span
-        className={`h-1 w-[25px] origin-left rounded-sm bg-blue-500 transition duration-500 ${
+        className={`h-1 w-[25px] origin-left rounded-sm bg-[#00ccff] transition duration-500 ${
           open ? "-rotate-45" : ""
         }`}
       />

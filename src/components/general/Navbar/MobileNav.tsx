@@ -77,7 +77,7 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
             className="inline-flex h-9 w-9 items-center justify-center rounded-md"
             aria-label="Home"
           >
-            <HomeIcon className="fill-blue-600" />
+            <HomeIcon aria-hidden="true" className="fill-[#00ccff]" />
           </Link>
         </div>
 

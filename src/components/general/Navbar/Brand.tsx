@@ -10,10 +10,20 @@ export default function Brand({ locale }: { locale: Locale }) {
 
   return (
     <Link href={href} className="shrink-0" aria-label={label}>
-      <div className="relative h-[29px] w-[149px]">
+      <div className="relative h-[68px] w-[300px] hidden sm:block">
         <Image
-          src="/common/danantara.webp"
+          src="/common/logo-dpjr.webp"
           alt="Brand Logo"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
+
+      <div className="relative h-[56px] w-[56px] sm:hidden">
+        <Image
+          src="/common/logo-dpjr-mobile.webp"
+          alt="Brand Logo Mobile"
           fill
           className="object-contain"
           priority

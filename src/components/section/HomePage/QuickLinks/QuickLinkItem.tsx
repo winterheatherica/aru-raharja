@@ -29,7 +29,7 @@ export default function QuickLinkItem({
         <h2
           className="
             text-black font-semibold leading-tight text-balance
-            text-xl sm:text-2xl lg:text-3xl
+            text-lg sm:text-2xl lg:text-3xl
             sm:pr-[8rem] md:pr-[6rem] lg:pr-[10rem]
           "
         >
