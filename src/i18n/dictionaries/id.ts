@@ -47,7 +47,6 @@ export default {
   },
   funding: {
     leftTitleHtml: `Sumber Dana <br><b>UU No.33 Tahun 1964</b><br>dan<br><b>UU No.34 Tahun 1964</b>`,
-    maskSrc: "/masking/masking-variant-1.3.png",
     items: [
       { code: "SWDKLJJ", description: "Sumbangan Wajib Dana Kecelakaan Lalu Lintas Jalan", iconSrc: "/funding/swdkljj-icon-2.png" },
       { code: "IWKBU", description: "Iuran Wajib Kendaraan Bermotor Umum", iconSrc: "/funding/iwkbu-icon-2.png" },

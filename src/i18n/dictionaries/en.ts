@@ -47,7 +47,6 @@ export default {
   },
   funding: {
     leftTitleHtml: `Funding Sources <br><b>Law No. 33 of 1964</b><br>and<br><b>Law No. 34 of 1964</b>`,
-    maskSrc: "/masking/masking-variant-1.3.png",
     items: [
       { code: "SWDKLJJ", description: "Mandatory Contribution for Road Traffic Accident Funds", iconSrc: "/funding/swdkljj-icon-2.png" },
       { code: "IWKBU", description: "Mandatory Contribution for Public Motor Vehicles", iconSrc: "/funding/iwkbu-icon-2.png" },
