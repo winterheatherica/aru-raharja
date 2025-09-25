@@ -31,7 +31,7 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
 
   useEffect(() => {
     onRequestClose();
-  }, [pathname]);
+  }, [pathname, onRequestClose]);
 
   useEffect(() => {
     if (open) panelRef.current?.focus();

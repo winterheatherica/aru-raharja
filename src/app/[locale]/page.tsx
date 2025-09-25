@@ -6,6 +6,8 @@ import Service from "@/components/section/HomePage/Service/Service";
 import News from "@/components/section/HomePage/News/News";
 import Videos from "@/components/section/HomePage/Videos/Videos";
 import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
+import Partner from "@/components/section/HomePage/Partners/Partners";
+import PartnerScroller from "@/components/section/HomePage/PartnerScroller/PartnerScroller";
 
 import { getDictionary, type Locale } from "@/i18n/getDictionary";
 
@@ -20,6 +22,8 @@ export default async function Page({ params: { locale } }: { params: { locale: L
         <Service dict={dict} locale={locale}  />
         <News dict={dict} />
         <Videos dict={dict} />
+        <Partner dict={dict} />
+        <PartnerScroller />
         <QuickLinks dict={dict}  />
     </main>
   );
