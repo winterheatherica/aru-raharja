@@ -21,27 +21,27 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
   const slides: HeroSlide[] = [
     { src: "/carousel/hero-slide-1.webp", alt: "HUT RI ke-80" },
     { src: "/carousel/hero-slide-2.webp", alt: "Linktree Aru Raharja" },
-    {
-      src: "/carousel/hero-slide-3.webp",
-      alt: "FAQ",
-      title: hero.faqTitle,
-      ctaLabel: hero.faqCta,
-      ctaHref: `/${locale}/faq`,
-    },
-    {
-      src: "/carousel/hero-slide-4.webp",
-      alt: "Layanan Santunan",
-      title: hero.serviceTitle,
-      ctaLabel: hero.serviceCta,
-      ctaHref: `/${locale}/service`,
-    },
-    {
-      src: "/carousel/hero-slide-5.webp",
-      alt: "Layanan Pengaduan",
-      title: hero.complaintTitle,
-      ctaLabel: hero.complaintCta,
-      ctaHref: `/${locale}/complaint`,
-    },
+    // {
+    //   src: "/carousel/hero-slide-3.webp",
+    //   alt: "FAQ",
+    //   title: hero.faqTitle,
+    //   ctaLabel: hero.faqCta,
+    //   ctaHref: `/${locale}/faq`,
+    // },
+    // {
+    //   src: "/carousel/hero-slide-4.webp",
+    //   alt: "Layanan Santunan",
+    //   title: hero.serviceTitle,
+    //   ctaLabel: hero.serviceCta,
+    //   ctaHref: `/${locale}/service`,
+    // },
+    // {
+    //   src: "/carousel/hero-slide-5.webp",
+    //   alt: "Layanan Pengaduan",
+    //   title: hero.complaintTitle,
+    //   ctaLabel: hero.complaintCta,
+    //   ctaHref: `/${locale}/complaint`,
+    // },
   ];
 
   const [shouldRender, setShouldRender] = useState(false);
