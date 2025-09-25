@@ -111,4 +111,9 @@ export default {
       button: "Gabung di Facebook",
     },
   },
+  partners: {
+    heading: "Keanggotaan",
+    description:
+      "Layanan ARU Raharja telah dipercayai oleh berbagai perusahaan kelas dunia dari berbagai industri untuk membantu mereka berkembang.",
+  },
 } as const;

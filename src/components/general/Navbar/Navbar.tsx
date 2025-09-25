@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Brand from "./Brand";
 import Burger from "./Burger";
@@ -27,6 +27,9 @@ export default function Navbar({ locale, dict }: NavbarProps) {
     setOpenMobile(false);
   }, [pathname]);
 
+  const handleCloseDesktop = useCallback(() => setOpenDesktop(false), []);
+  const handleCloseMobile = useCallback(() => setOpenMobile(false), []);
+
   return (
     <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
@@ -39,7 +42,7 @@ export default function Navbar({ locale, dict }: NavbarProps) {
             <Burger open={openDesktop} onToggle={() => setOpenDesktop((s) => !s)} />
             <DesktopNav
               open={openDesktop}
-              onRequestClose={() => setOpenDesktop(false)}
+              onRequestClose={handleCloseDesktop}
               attachTo={clusterRef}
               locale={locale}
               dict={dict}
@@ -59,7 +62,7 @@ export default function Navbar({ locale, dict }: NavbarProps) {
       <Portal>
         <MobileNav
           open={openMobile}
-          onRequestClose={() => setOpenMobile(false)}
+          onRequestClose={handleCloseMobile}
           locale={locale}
           dict={dict}
         />

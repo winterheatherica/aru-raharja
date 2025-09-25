@@ -111,4 +111,9 @@ export default {
       button: "Join on Facebook",
     },
   },
+  partners: {
+    heading: "Partnerships",
+    description:
+      "Aru Raharja’s services have been trusted by world-class companies across industries to help them grow.",
+  },
 } as const;

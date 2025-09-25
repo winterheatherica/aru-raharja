@@ -5,7 +5,7 @@ export default function QuickLinks({ dict }: { dict: Dictionary }) {
   const links = dict.quicklink;
 
   return (
-    <div className="grid gap-4 mt-6 lg:grid-cols-2">
+    <div className="grid gap-4 pt-20 mt-6 lg:grid-cols-2">
       <QuickLinkItem
         title={links.x.title}
         buttonLabel={links.x.button}
