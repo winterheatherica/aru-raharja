@@ -46,6 +46,20 @@ export default function PartnerBadges() {
             className="object-contain"
           />
         </Link>
+
+        <Link
+          href="https://dapenjr.co.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative w-[170px] h-[62px]"
+        >
+          <Image
+            src="/common/logo-dpjr.webp"
+            alt="Danantara"
+            fill
+            className="object-contain"
+          />
+        </Link>
       </div>
     </div>
   );

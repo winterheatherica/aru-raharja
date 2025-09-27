@@ -1,0 +1,25 @@
+"use client";
+
+import { PropsWithChildren } from "react";
+
+type Props = PropsWithChildren<{
+  size: "desktop" | "mobile";
+}>;
+
+export default function PartnersCard({ size, children }: Props) {
+  const sizeClass =
+    size === "desktop"
+      ? "w-48 h-48"
+      : "w-[200px] h-[200px] mx-auto";
+
+  return (
+    <div
+      className={[
+        "rounded-2xl border shadow flex flex-col items-center justify-between text-center p-5 bg-primaryWhite",
+        sizeClass,
+      ].join(" ")}
+    >
+      {children}
+    </div>
+  );
+}
