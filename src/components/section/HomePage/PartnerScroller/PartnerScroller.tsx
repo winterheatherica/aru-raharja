@@ -4,37 +4,37 @@ import React from "react";
 
 export default function PartnerScroller() {
   const logosLeft = [
-    "partner/KlienKami/logo-1.png",
-    "partner/KlienKami/logo-2.png",
-    "partner/KlienKami/logo-3.png",
-    "partner/KlienKami/logo-4.png",
-    "partner/KlienKami/logo-5.png",
-    "partner/KlienKami/logo-6.png",
+    "/images/home/partner/KlienKami/logo-1.png",
+    "/images/home/partner/KlienKami/logo-2.png",
+    "/images/home/partner/KlienKami/logo-3.png",
+    "/images/home/partner/KlienKami/logo-4.png",
+    "/images/home/partner/KlienKami/logo-5.png",
+    "/images/home/partner/KlienKami/logo-6.png",
   ];
 
   const logosRight = [
-    "partner/MitraKerjaKami/6estates-1.png",
-    "partner/MitraKerjaKami/Alibaba-Cloud-Logo-dudi-irawan-1-300x47.png",
-    "partner/MitraKerjaKami/cyberark-1.jpg",
-    "partner/MitraKerjaKami/ersa455.jpg",
-    "partner/MitraKerjaKami/getwell-PhotoRoom.png-PhotoRoom.png",
-    "partner/MitraKerjaKami/huawei-logo.jpeg",
-    "partner/MitraKerjaKami/logo-10.png",
-    "partner/MitraKerjaKami/logo-11.png",
-    "partner/MitraKerjaKami/logo-12.png",
-    "partner/MitraKerjaKami/LOGO-HOLL-PhotoRoom.png-PhotoRoom-150x150.png",
-    "partner/MitraKerjaKami/Oracle-Logo.png",
-    "partner/MitraKerjaKami/Promise-logo-PhotoRoom.png-PhotoRoom.png",
-    "partner/MitraKerjaKami/Screenshot-5-PhotoRoom.png-PhotoRoom.png",
-    "partner/MitraKerjaKami/Security-scorecard.png",
-    "partner/MitraKerjaKami/Zoom-Logo.png",
+    "/images/home/partner/MitraKerjaKami/6estates-1.png",
+    "/images/home/partner/MitraKerjaKami/Alibaba-Cloud-Logo-dudi-irawan-1-300x47.png",
+    "/images/home/partner/MitraKerjaKami/cyberark-1.jpg",
+    "/images/home/partner/MitraKerjaKami/ersa455.jpg",
+    "/images/home/partner/MitraKerjaKami/getwell-PhotoRoom.png-PhotoRoom.png",
+    "/images/home/partner/MitraKerjaKami/huawei-logo.jpeg",
+    "/images/home/partner/MitraKerjaKami/logo-10.png",
+    "/images/home/partner/MitraKerjaKami/logo-11.png",
+    "/images/home/partner/MitraKerjaKami/logo-12.png",
+    "/images/home/partner/MitraKerjaKami/LOGO-HOLL-PhotoRoom.png-PhotoRoom-150x150.png",
+    "/images/home/partner/MitraKerjaKami/Oracle-Logo.png",
+    "/images/home/partner/MitraKerjaKami/Promise-logo-PhotoRoom.png-PhotoRoom.png",
+    "/images/home/partner/MitraKerjaKami/Screenshot-5-PhotoRoom.png-PhotoRoom.png",
+    "/images/home/partner/MitraKerjaKami/Security-scorecard.png",
+    "/images/home/partner/MitraKerjaKami/Zoom-Logo.png",
   ];
 
   const loopLeft = [...logosLeft, ...logosLeft, ...logosLeft, ...logosLeft];
   const loopRight = [...logosRight, ...logosRight, ...logosRight];
 
   return (
-    <div className="mt-16 space-y-20">
+    <section className="mt-16 space-y-20">
       <div className="marquee marquee-left">
         <div className="marquee__track">
           {loopLeft.map((src, i) => (
@@ -113,6 +113,6 @@ export default function PartnerScroller() {
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 }

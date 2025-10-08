@@ -24,7 +24,7 @@ export default function LoadMoreTile({
       <div
         className="
           w-[96px] h-[96px] rounded-full flex items-center justify-center
-          bg-bumn-3
+          bg-bumn-gradient-primary-11
           group-hover:bg-none
           transition-colors duration-300 ease-in-out
           shadow

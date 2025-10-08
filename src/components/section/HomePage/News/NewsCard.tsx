@@ -27,7 +27,7 @@ export default function NewsCard({
       <div className="w-full p-3 pb-0 lg:p-5 lg:pb-0">
         <div className="flex justify-between w-full gap-6">
           <div className="flex items-center space-x-4">
-            <span className="block w-3 h-3 rounded-full bg-bumn shrink-0" />
+            <span className="block w-3 h-3 rounded-full bg-bumn-gradient-primary-11 shrink-0" />
             <h3 className="text-lg font-bold lg:text-xl line-clamp-2 text-black">
               {item.title}
             </h3>

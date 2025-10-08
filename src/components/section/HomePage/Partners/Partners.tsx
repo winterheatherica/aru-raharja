@@ -19,11 +19,11 @@ function Partners({ dict }: { dict: Dictionary }) {
   };
 
   const PARTNERS: Partner[] = [
-    { title: "info@aruraharja.co.id", alt: "Aru Raharja", src: "/common/AruLogo.svg" },
-    { title: "GAPENSI", alt: "Gapensi", src: "/partner/Keanggotaan/LOGO-GAPENSI.png" },
-    { title: "ABUJAPI", alt: "Abujapi", src: "/partner/Keanggotaan/abujapi.png" },
-    { title: "Kadin Indonesia", alt: "Kadin Indonesia", src: "/partner/Keanggotaan/kadin-2.jpeg" },
-    { title: "APKLINDO", alt: "Apklindo", src: "/partner/Keanggotaan/apklindo.jpeg" },
+    { title: "info@aruraharja.co.id", alt: "Aru Raharja", src: "/images/general/logo/aru.svg" },
+    { title: "GAPENSI", alt: "Gapensi", src: "/images/home/partner/Keanggotaan/LOGO-GAPENSI.png" },
+    { title: "ABUJAPI", alt: "Abujapi", src: "/images/home/partner/Keanggotaan/abujapi.png" },
+    { title: "Kadin Indonesia", alt: "Kadin Indonesia", src: "/images/home/partner/Keanggotaan/kadin-2.jpeg" },
+    { title: "APKLINDO", alt: "Apklindo", src: "/images/home/partner/Keanggotaan/apklindo.jpeg" },
   ];
 
   return (

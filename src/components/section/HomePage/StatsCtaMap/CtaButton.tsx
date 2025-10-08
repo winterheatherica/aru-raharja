@@ -11,7 +11,7 @@ export default function CtaButton({ href, label }: { href: string; label: string
         transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
         disabled:pointer-events-none disabled:opacity-50
         [&_svg]:pointer-events-none [&_svg]:shrink-0
-        bg-bumn-2 text-white shadow hover:bg-primary/90
+        bg-bumn-gradient-primary-16 text-white shadow hover:bg-primary/90
         h-9 py-8 rounded-full mt-3 [&_svg]:size-[22px] px-10 w-full md:w-auto
       "
     >

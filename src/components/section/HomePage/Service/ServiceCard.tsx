@@ -26,7 +26,7 @@ export default function ServiceCard({
       className="
         group relative flex flex-col p-6 rounded-2xl h-[203px] lg:h-[203px]
         overflow-hidden transition-colors duration-300 ease-in-out
-        bg-bumn-2
+        bg-bumn-gradient-primary-12
       "
     >
       <div className="z-10 text-white transition-colors duration-300 group-hover:text-black">
@@ -39,7 +39,7 @@ export default function ServiceCard({
           className="
             inline-flex items-center justify-center w-[42px] h-[42px] rounded-full shrink-0
             bg-white transition-all duration-300
-            group-hover:bg-bumn-2
+            group-hover:bg-bumn-gradient-primary-12
           "
         >
           <svg

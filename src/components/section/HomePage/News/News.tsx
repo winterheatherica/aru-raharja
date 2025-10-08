@@ -6,7 +6,7 @@ import Carousel from "./Carousel";
 import { newsItems } from "./data";
 
 function News({ dict }: { dict: Dictionary }) {
-  const t = dict.news;
+  const t = dict.home.news;
   return (
     <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
       <div className="absolute inset-x-0 top-0">

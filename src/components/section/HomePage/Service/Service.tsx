@@ -5,11 +5,7 @@ import type { Dictionary, Locale } from "@/i18n/getDictionary";
 import ServiceCard from "./ServiceCard";
 
 function Service({ dict, locale }: { dict: Dictionary; locale: Locale }) {
-  const t = (dict as any).service?.cards ?? {
-    services: { title: "Layanan", subtitle: "Santunan", alt: "santunan" },
-    complaint: { title: "Layanan", subtitle: "Pengaduan", alt: "pengaduan" },
-    appeal: { title: "Himbauan", subtitle: "Aru Raharja", alt: "himbauan" },
-  };
+  const t = dict.home.service.cards;
 
   return (
     <section className="mt-12">
@@ -18,7 +14,7 @@ function Service({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           href={`/${locale}/service`}
           title={t.services.title}
           subtitle={t.services.subtitle}
-          imgSrc="/services/layanan-icon-2.png"
+          imgSrc="/images/home/services/layanan-icon-2.png"
           imgAlt={t.services.alt}
           imgClassName="w-[160px] lg:w-[180px] bottom-0"
         />
@@ -27,7 +23,7 @@ function Service({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           href={`/${locale}/complaint`}
           title={t.complaint.title}
           subtitle={t.complaint.subtitle}
-          imgSrc="/services/pengaduan-icon-2.png"
+          imgSrc="/images/home/services/pengaduan-icon-2.png"
           imgAlt={t.complaint.alt}
           imgClassName="w-[160px] lg:w-[140px] -bottom-2"
         />
@@ -36,7 +32,7 @@ function Service({ dict, locale }: { dict: Dictionary; locale: Locale }) {
           href={`/${locale}/appeal`}
           title={t.appeal.title}
           subtitle={t.appeal.subtitle}
-          imgSrc="/services/himbauan-icon-2.png"
+          imgSrc="/images/home/services/himbauan-icon-2.png"
           imgAlt={t.appeal.alt}
           imgClassName="w-[160px] lg:w-[180px] bottom-0"
         />

@@ -20,7 +20,7 @@ export default function QuickLinkItem({
   return (
     <div
       className="
-        relative bg-bumn-white rounded-2xl overflow-hidden
+        relative bg-bumn-gradient-white-2 rounded-2xl overflow-hidden
         p-6 lg:p-10
         min-h-[12rem] md:min-h-[10rem] lg:min-h-[15rem]
       "
@@ -42,7 +42,7 @@ export default function QuickLinkItem({
           rel="noopener noreferrer"
           aria-label={buttonLabel}
           className="
-            inline-flex items-center justify-center gap-2 rounded-full bg-bumn text-white font-medium z-20
+            inline-flex items-center justify-center gap-2 rounded-full bg-bumn-gradient-primary-11 text-white font-medium z-20
             w-fit
             px-4 py-2 text-sm
             md:px-6 md:py-3
@@ -71,7 +71,7 @@ export default function QuickLinkItem({
       <div
         aria-hidden
         className="
-          absolute z-0 pointer-events-none bg-bumn-white-2 rounded-full
+          absolute z-0 pointer-events-none bg-bumn-gradient-white-3 rounded-full
           top-1/2 -translate-y-1/2 right-6
           w-[70%] max-w-[8rem] aspect-square
           md:max-w-[11rem] lg:max-w-[14rem]

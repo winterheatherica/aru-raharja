@@ -12,7 +12,7 @@ export default function PartnerBadges() {
           className="relative w-[170px] h-[62px]"
         >
           <Image
-            src="/common/danantara.webp"
+            src="/images/general/logo/danantara.webp"
             alt="Danantara"
             fill
             className="object-contain"
@@ -26,7 +26,7 @@ export default function PartnerBadges() {
           className="relative w-[190px] h-[72px]"
         >
           <Image
-            src="/footer/ojk-logo-h.webp"
+            src="/images/general/footer/ojk-logo-h.webp"
             alt="OJK"
             fill
             className="object-contain"
@@ -40,7 +40,7 @@ export default function PartnerBadges() {
           className="relative w-[190px] h-[72px]"
         >
           <Image
-            src="/footer/ifg-logo-h.webp"
+            src="/images/general/footer/ifg-logo-h.webp"
             alt="IFG"
             fill
             className="object-contain"
@@ -54,7 +54,7 @@ export default function PartnerBadges() {
           className="relative w-[170px] h-[62px]"
         >
           <Image
-            src="/common/logo-dpjr.webp"
+            src="/images/general/logo/dpjr.webp"
             alt="Danantara"
             fill
             className="object-contain"
