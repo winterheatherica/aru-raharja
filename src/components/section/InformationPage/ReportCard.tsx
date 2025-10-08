@@ -10,7 +10,7 @@ type ReportCardProps = {
 
 export default function ReportCard({ date, title, image }: ReportCardProps) {
   return (
-    <div className="relative flex rounded-xl bg-bumn-white-3 card__data cursor-pointer">
+    <div className="relative flex rounded-xl bg-bumn-gradient-white-3 card__data cursor-pointer">
       <div className="w-full p-4 pt-6 space-y-4">
         <p className="font-sans text-gray-500 text-xs">{date}</p>
         <h3 className="font-bold text-black text-xl lg:text-xl line-clamp-2">
