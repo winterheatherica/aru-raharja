@@ -9,7 +9,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
     <div className="space-y-6 lg:justify-self-center">
       <Link href={`/${locale}/faq`} className="flex items-center gap-2 text-lg font-semibold">
         <span className="relative w-[20px] h-[20px]">
-          <Image src="/footer/faq.webp" alt="FAQ" fill className="object-contain" />
+          <Image src="/images/general/footer/faq.webp" alt="FAQ" fill className="object-contain" />
         </span>
         <h5 className="text-lg font-semibold">{t.faq}</h5>
       </Link>
@@ -18,7 +18,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
         <li>
           <Link href={`/${locale}/contact`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">
-              <Image src="/footer/contact.webp" alt="Contact" fill className="object-contain" />
+              <Image src="/images/general/footer/contact.webp" alt="Contact" fill className="object-contain" />
             </span>
             <span>{t.contactUs}</span>
           </Link>
@@ -26,7 +26,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
         <li>
           <Link href={`/${locale}/service`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">
-              <Image src="/footer/e-procurement.webp" alt="E-procurement" fill className="object-contain" />
+              <Image src="/images/general/footer/e-procurement.webp" alt="E-procurement" fill className="object-contain" />
             </span>
             <span>{t.eProcurement}</span>
           </Link>
@@ -34,7 +34,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
         <li>
           <Link href={`/${locale}/service`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">
-              <Image src="/footer/faq.webp" alt="WBS" fill className="object-contain" />
+              <Image src="/images/general/footer/faq.webp" alt="WBS" fill className="object-contain" />
             </span>
             <span>{t.wbs}</span>
           </Link>

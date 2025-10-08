@@ -14,7 +14,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Memperingati Hari Pelanggan Nasional, Aru Raharja dan Tim Pembina Samsat Berikan Apresiasi kepada Wajib Pajak",
     date: "04/09/2025",
-    imageSrc: "/news/news-1.jpeg",
+    imageSrc: "/images/home/news/news-1.jpeg",
     excerpt:
       "Aru Raharja kembali menegaskan komitmen pelayanan terbaik dengan program apresiasi bagi wajib pajak melalui kolaborasi UMKM di seluruh Indonesia.",
   },
@@ -24,7 +24,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Aru Raharja Berpartisipasi di EASTS 2025, Dukung Sosialisasi Program Keselamatan Nasional",
     date: "04/09/2025",
-    imageSrc: "/news/news-2.jpeg",
+    imageSrc: "/images/home/news/news-2.jpeg",
     excerpt:
       "Partisipasi pada FGD EASTS 2025 menegaskan peran Aru Raharja dalam edukasi keselamatan dan sinergi lintas sektor.",
   },
@@ -34,7 +34,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Aru Raharja Hadir di HEXIA 2025, Bahas Layanan Medis Udara untuk Kurangi Fatalitas",
     date: "25/08/2025",
-    imageSrc: "/news/news-3.jpeg",
+    imageSrc: "/images/home/news/news-3.jpeg",
     excerpt:
       "Diskusi ‘Saving Minutes, Saving Lives’ menyorot urgensi HEMS untuk efisiensi penanganan darurat di wilayah padat lalu lintas.",
   },
@@ -44,7 +44,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Dorong Tertib Berlalu Lintas lewat Retrospeksi Korban Kecelakaan Lalu Lintas",
     date: "24/08/2025",
-    imageSrc: "/news/news-4.jpg",
+    imageSrc: "/images/home/news/news-4.jpg",
     excerpt:
       "Momentum refleksi bersama Korlantas Polri untuk membangun budaya keselamatan di jalan raya.",
   },
@@ -54,7 +54,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Memperingati 80 Tahun Kemerdekaan RI, Dukung Asta Cita untuk Indonesia Sejahtera",
     date: "17/08/2025",
-    imageSrc: "/news/news-5.jpeg",
+    imageSrc: "/images/home/news/news-5.jpeg",
     excerpt:
       "Langkah strategis Aru Raharja selaras Asta Cita: perlindungan sosial, inovasi layanan, dan edukasi publik.",
   },
@@ -64,7 +64,7 @@ export const newsItems: NewsItem[] = [
     title:
       "Kolaborasi Nasional Jadi Kunci Tingkatkan Capaian SWDKLLJ & Iuran Wajib",
     date: "05/08/2025",
-    imageSrc: "/news/news-6.jpeg",
+    imageSrc: "/images/home/news/news-6.jpeg",
     excerpt:
       "Raker Task Force Operasional menegaskan transformasi aktif untuk optimalisasi penerimaan dan kepatuhan.",
   },

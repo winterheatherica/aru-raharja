@@ -5,10 +5,20 @@ import type { EmblaOptionsType } from "embla-carousel";
 import { useCallback, useEffect, useRef } from "react";
 import FundingCard from "./FundingCard";
 
-type FundingItem = { code: string; description: string; iconSrc: string; iconAlt?: string };
+export type FundingItem = {
+  code: string;
+  description: string;
+  iconSrc: string;
+  iconAlt?: string;
+};
 
 export default function Carousel({ items }: { items: FundingItem[] }) {
-  const options: EmblaOptionsType = { align: "start", dragFree: true, containScroll: "trimSnaps", direction: "ltr" };
+  const options: EmblaOptionsType = {
+    align: "start",
+    dragFree: true,
+    containScroll: "trimSnaps",
+    direction: "ltr",
+  };
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
   const railRef = useRef<HTMLDivElement | null>(null);
@@ -61,7 +71,11 @@ export default function Carousel({ items }: { items: FundingItem[] }) {
       </div>
 
       <div className="mt-3">
-        <div ref={railRef} className="relative h-1 w-full rounded-full bg-white/25" role="presentation">
+        <div
+          ref={railRef}
+          className="relative h-1 w-full rounded-full bg-white/25"
+          role="presentation"
+        >
           <div
             ref={knobRef}
             className="absolute top-0 left-0 h-1 w-40 rounded-full bg-white will-change-transform transition-transform duration-150 ease-out"

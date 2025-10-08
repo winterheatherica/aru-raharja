@@ -18,7 +18,7 @@ export default function LeftStatement({ title, descPrefix, laws, cards }: Props)
       className="
         lg:col-span-3 relative rounded-xl
         px-6 sm:px-12 pt-2 sm:pt-3 lg:pt-4
-        text-white bg-bumn
+        text-white bg-bumn-radial-1
         h-[600px] sm:h-[580px] md:h-[540px] lg:h-[680px] xl:h-[640px]
         overflow-hidden
       "

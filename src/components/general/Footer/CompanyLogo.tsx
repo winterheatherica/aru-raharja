@@ -6,7 +6,7 @@ function CompanyLogo() {
     <div className="flex items-center justify-center">
       <div className="relative w-[140px] h-[130px]">
         <Image
-          src="/common/AruLogo.svg"
+          src="/images/general/logo/aru.svg"
           alt="Aru Raharja Logo"
           width={140}
           height={130}

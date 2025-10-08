@@ -1,4 +1,3 @@
-// components/EnhancedRoomReservation.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -19,14 +18,11 @@ interface Room {
 
 const EnhancedRoomReservation = () => {
     const [rooms, setRooms] = useState<Room[]>([]);
-
-    // Load rooms from localStorage on component mount
     useEffect(() => {
         const savedRooms = localStorage.getItem('roomReservations');
         if (savedRooms) {
             setRooms(JSON.parse(savedRooms));
         } else {
-            // Initialize with default rooms
             const initialRooms: Room[] = Array.from({ length: 8 }, (_, i) => ({
                 id: i + 1,
                 name: `Ruang ${i + 1}`,
@@ -35,8 +31,6 @@ const EnhancedRoomReservation = () => {
             setRooms(initialRooms);
         }
     }, []);
-
-    // Save to localStorage whenever rooms change
     useEffect(() => {
         if (rooms.length > 0) {
             localStorage.setItem('roomReservations', JSON.stringify(rooms));
@@ -54,7 +48,6 @@ const EnhancedRoomReservation = () => {
     const handleRoomClick = (room: Room) => {
         setSelectedRoom(room);
         if (room.reserved) {
-            // Show reservation details instead of form
             alert(`Ruang ini telah disewa oleh ${room.reservation?.email} untuk: ${room.reservation?.purpose}`);
         } else {
             setIsDialogOpen(true);
@@ -116,7 +109,6 @@ const EnhancedRoomReservation = () => {
             <h2 className="text-2xl font-bold mb-2 text-center">Reservasi Ruang</h2>
             <p className="text-gray-600 text-center mb-6">________________</p>
 
-            {/* 4x2 Grid */}
             <div className="grid grid-cols-2 grid-rows-4 gap-4 mb-6">
                 {rooms.map(room => (
                     <div
@@ -139,7 +131,6 @@ const EnhancedRoomReservation = () => {
                 ))}
             </div>
 
-            {/* Clear All Button */}
             <div className="text-center">
                 <button
                     onClick={clearAllReservations}
@@ -149,7 +140,6 @@ const EnhancedRoomReservation = () => {
                 </button>
             </div>
 
-            {/* Reservation Dialog */}
             {isDialogOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                     <div className="bg-white rounded-lg p-6 w-full max-w-md">
