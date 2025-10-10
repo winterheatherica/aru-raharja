@@ -51,7 +51,11 @@ export default function LangSwitcher({ locale }: { locale: Locale }) {
       <Link
         href={toSetLocale("id", targetID)}
         aria-current={isID ? "page" : undefined}
-        className={`text-[#00ccff] ${isID ? "underline font-semibold" : "hover:underline"}`}
+        className={`${
+          isID
+            ? "text-bumnblue-8 underline font-semibold"
+            : "text-bumnslate-3 hover:underline"
+        }`}
       >
         ID
       </Link>
@@ -61,7 +65,11 @@ export default function LangSwitcher({ locale }: { locale: Locale }) {
       <Link
         href={toSetLocale("en", targetEN)}
         aria-current={isEN ? "page" : undefined}
-        className={`text-[#00ccff] ${isEN ? "underline font-semibold" : "hover:underline"}`}
+        className={`${
+          isEN
+            ? "text-bumnblue-8 underline font-semibold"
+            : "text-bumnslate-3 hover:underline"
+        }`}
       >
         EN
       </Link>

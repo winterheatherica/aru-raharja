@@ -1,26 +1,27 @@
 "use client";
 
 import HistoryTabs, { type HistoryItem } from "./HistoryTabs";
+import type { Dictionary } from "@/i18n/getDictionary";
 
 type HistoryDict = {
   title: string;
   intro: string;
-  items: Array<{
+  items: ReadonlyArray<{
     year: string | number;
-    content?: string[];
+    content?: ReadonlyArray<string>;
     table?: {
-      headers: string[];
-      rows: string[][];
+      headers: ReadonlyArray<string>;
+      rows: ReadonlyArray<ReadonlyArray<string>>;
     };
   }>;
 };
 
 type Props = {
-  dict?: { about?: { history?: HistoryDict } };
+  dict?: Dictionary;
 };
 
 export default function History({ dict }: Props) {
-  const t = dict?.about?.history;
+  const t = dict?.about?.history as HistoryDict | undefined;
   if (!t) return null;
 
   const items: HistoryItem[] = (t.items ?? []).map((it) => ({
