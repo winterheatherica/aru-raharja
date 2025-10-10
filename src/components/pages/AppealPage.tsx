@@ -1,7 +1,9 @@
-import type { Locale } from "@/i18n/getDictionary";
-import Appeal from "@/components/section/AppealPage/Appeal";
+import SmallHero from "@/components/general/BluePrint/SmallHero/SmallHero";
+
 import Videos from "@/components/section/HomePage/Videos/Videos";
 import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
+
+import type { Locale } from "@/i18n/getDictionary";
 
 export default function AppealPage({
   dict,
@@ -12,7 +14,7 @@ export default function AppealPage({
 }) {
   return (
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440">
-      <Appeal />
+      <SmallHero hero={dict.appeal?.hero} illustrationSrc="/images/services/service-bg.png" />
       <Videos dict={dict} />
       <QuickLinks dict={dict} />
     </main>

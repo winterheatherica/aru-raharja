@@ -7,6 +7,7 @@ type HeroIndicatorsProps = {
   activeIndex?: number;
   onJump?: (index: number) => void;
   thickness?: number | string;
+  thicknessSm?: number | string;
   inactiveLen?: number | string;
   activeLen?: number | string;
   inactiveLenSm?: number | string;
@@ -25,16 +26,17 @@ export default function HeroIndicators({
   activeIndex = 0,
   onJump,
   thickness = 5,
+  thicknessSm = 2,
   inactiveLen = 30,
   activeLen = 50,
   inactiveLenSm = 47,
   activeLenSm = 80,
   gap = 12,
-
   className,
-  }: HeroIndicatorsProps) {
+}: HeroIndicatorsProps) {
   const styleVars: CSSProperties = {
     ["--hi-thickness" as any]: toLen(thickness, "5px"),
+    ["--hi-thickness-sm" as any]: toLen(thicknessSm, "3px"),
     ["--hi-gap" as any]: toLen(gap, "12px"),
     ["--hi-inactive" as any]: toLen(inactiveLen, "30px"),
     ["--hi-active" as any]: toLen(activeLen, "50px"),
@@ -59,7 +61,7 @@ export default function HeroIndicators({
               type="button"
               className={[
                 "inline-flex items-center justify-center rounded-none p-0 transition-colors outline-none",
-                "w-[var(--hi-thickness)]",
+                "w-[var(--hi-thickness-sm)] sm:w-[var(--hi-thickness)]", // responsive thickness
                 isActive
                   ? "h-[var(--hi-active)] sm:h-[var(--hi-active-sm)]"
                   : "h-[var(--hi-inactive)] sm:h-[var(--hi-inactive-sm)]",

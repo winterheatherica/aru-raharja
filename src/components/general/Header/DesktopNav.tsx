@@ -60,8 +60,8 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
           aria-hidden="true"
           className={`size-6 ${
             pathname === `/${safe}/${homeSlug}`
-              ? "fill-bumncyan-2"
-              : "fill-bumnslate-3"
+              ? "fill-bumnblue-8"
+              : "fill-bumnslate-4"
           }`}
         />
       </Link>
@@ -77,7 +77,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
                 className={`rounded-lg p-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
                   ${
                     isActive
-                      ? "bg-bumncyan-2 text-white"
+                      ? "bg-bumn-gradient-primary-16 text-white"
                       : "text-bumnslate-3 hover:text-neutral-900"
                   }`}
               >
