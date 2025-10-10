@@ -1,10 +1,10 @@
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import { routeSlugByLocale } from "@/i18n/routes";
 
 export const NAV_ORDER = [
   "about",
   "service",
-  "complaint",
-  "governance",
+  "reservation",
   "information",
   "appeal",
   "career",
@@ -12,11 +12,12 @@ export const NAV_ORDER = [
 
 export type NavSegment = typeof NAV_ORDER[number];
 
-export const SEGMENT_TO_KEY: Record<NavSegment, keyof Dictionary["navbar"]> = {
+type NavbarDict = Dictionary["header"]["navbar"];
+
+export const SEGMENT_TO_KEY: Record<NavSegment, keyof NavbarDict> = {
   about: "about",
   service: "services",
-  complaint: "complaint",
-  governance: "governance",
+  reservation: "reservation",
   information: "information",
   appeal: "appeal",
   career: "career",
@@ -24,5 +25,9 @@ export const SEGMENT_TO_KEY: Record<NavSegment, keyof Dictionary["navbar"]> = {
 
 export function getLabel(dict: Dictionary | undefined, segment: NavSegment): string {
   const key = SEGMENT_TO_KEY[segment];
-  return dict?.navbar?.[key] ?? segment;
+  return dict?.header?.navbar?.[key] ?? segment;
+}
+
+export function navHref(locale: Locale, segment: NavSegment): string {
+  return `/${locale}/${routeSlugByLocale[locale][segment]}`;
 }
