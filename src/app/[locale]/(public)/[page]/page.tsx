@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import type { Locale } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/getDictionary";
 import { getDictionary } from "@/i18n/getDictionary";
 import {
   canonicalBySlug,
@@ -16,7 +16,14 @@ import InformationPage from "@/components/pages/InformationPage";
 import AppealPage from "@/components/pages/AppealPage";
 import CareerPage from "@/components/pages/CareerPage";
 
-const PageComponentByCanonical: Record<CanonicalPage, React.FC<any>> = {
+const BRAND = "PT Aru Raharja" as const;
+
+type PageComponentProps = {
+  dict: Dictionary;
+  locale: Locale;
+};
+
+const PageComponentByCanonical: Record<CanonicalPage, React.ComponentType<PageComponentProps>> = {
   home: HomePage,
   about: AboutPage,
   service: ServicePage,
@@ -24,6 +31,16 @@ const PageComponentByCanonical: Record<CanonicalPage, React.FC<any>> = {
   information: InformationPage,
   appeal: AppealPage,
   career: CareerPage,
+};
+
+const titleByCanonical: Record<CanonicalPage, Record<Locale, string>> = {
+  home: { en: `Home - ${BRAND}`, id: `Beranda - ${BRAND}` },
+  about: { en: `About - ${BRAND}`, id: `Tentang - ${BRAND}` },
+  service: { en: `Services - ${BRAND}`, id: `Layanan - ${BRAND}` },
+  reservation: { en: `Reservation - ${BRAND}`, id: `Reservasi - ${BRAND}` },
+  information: { en: `Information - ${BRAND}`, id: `Informasi - ${BRAND}` },
+  appeal: { en: `Appeal - ${BRAND}`, id: `Himbauan - ${BRAND}` },
+  career: { en: `Career - ${BRAND}`, id: `Karier - ${BRAND}` },
 };
 
 export default async function DynamicPage({
@@ -43,13 +60,9 @@ export default async function DynamicPage({
 }
 
 export async function generateStaticParams() {
-  const params: Array<{ locale: Locale; page: string }> = [];
-  for (const l of locales) {
-    for (const slug of Object.values(routeSlugByLocale[l])) {
-      params.push({ locale: l, page: slug });
-    }
-  }
-  return params;
+  return locales.flatMap((l) =>
+    Object.values(routeSlugByLocale[l]).map((slug) => ({ locale: l, page: slug }))
+  );
 }
 
 export async function generateMetadata({
@@ -60,24 +73,15 @@ export async function generateMetadata({
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return {};
 
-  const titleByCanonical: Record<CanonicalPage, Record<Locale, string>> = {
-    home: { en: "Home - Aru Raharja", id: "Beranda - Aru Raharja" },
-    about: { en: "About - Aru Raharja", id: "Tentang - Aru Raharja" },
-    service: { en: "Services - Aru Raharja", id: "Layanan - Aru Raharja" },
-    reservation: { en: "Reservation - Aru Raharja", id: "Reservasi - Aru Raharja" },
-    information: { en: "Information - Aru Raharja", id: "Informasi - Aru Raharja" },
-    appeal: { en: "Appeal - Aru Raharja", id: "Himbauan - Aru Raharja" },
-    career: { en: "Careers - Aru Raharja", id: "Karier - Aru Raharja" },
+  const title = titleByCanonical[canonical]?.[locale] ?? BRAND;
+
+  const languages: Record<string, string> = {
+    en: `/en/${routeSlugByLocale.en[canonical]}`,
+    id: `/id/${routeSlugByLocale.id[canonical]}`,
   };
 
-  const title = titleByCanonical[canonical]?.[locale] ?? "Page";
   return {
     title,
-    alternates: {
-      languages: {
-        en: `/${"en"}/${routeSlugByLocale.en[canonical]}`,
-        id: `/${"id"}/${routeSlugByLocale.id[canonical]}`,
-      },
-    },
+    alternates: { languages },
   };
 }

@@ -33,9 +33,7 @@ export default function Filters({ dict }: Props) {
         </div>
       </div>
 
-      {/* Combobox buttons */}
       <div className="flex flex-col items-center gap-4 md:flex-row">
-        {/* Posisi */}
         <button
           type="button"
           role="combobox"
@@ -57,7 +55,6 @@ export default function Filters({ dict }: Props) {
           </svg>
         </button>
 
-        {/* Jenis */}
         <button
           type="button"
           role="combobox"
@@ -79,7 +76,6 @@ export default function Filters({ dict }: Props) {
           </svg>
         </button>
 
-        {/* Lokasi */}
         <button
           className="inline-flex items-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 w-full lg:w-[223px] justify-between rounded-md whitespace-nowrap border border-input bg-transparent px-4 py-6 text-base font-sans text-bumngray-3 font-normal shadow-none ring-offset-background placeholder:text-bumngray-10 placeholder:italic overflow-hidden [&_svg]:size-6"
           role="combobox"

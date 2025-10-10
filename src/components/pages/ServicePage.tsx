@@ -1,7 +1,7 @@
 import SmallHero from "@/components/general/BluePrint/SmallHero/SmallHero";
 
-import Intro from "@/components/section/ServicesPage/Intro/Intro";
-import Solutions from "@/components/section/ServicesPage/Solutions/Solutions";
+import Intro from "@/components/section/ServicePage/Intro/Intro";
+import Solutions from "@/components/section/ServicePage/Solutions/Solutions";
 
 import type { Locale, Dictionary } from "@/i18n/getDictionary";
 

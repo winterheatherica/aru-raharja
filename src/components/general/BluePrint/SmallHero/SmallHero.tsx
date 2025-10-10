@@ -24,7 +24,6 @@ export default function SmallHero({ hero, illustrationSrc }: Props) {
       className="relative flex overflow-hidden text-white border rounded-2xl h-auto lg:h-[352px]
                  bg-bumn-gradient-primary-12 bg-cover bg-left-top lg:bg-top animate-fade-down"
     >
-      {/* Background masking */}
       <div className="absolute inset-y-0 left-0 w-full h-full flex items-center justify-start pointer-events-none z-0">
         <Image
           src="/images/general/masking/masking-variant-3.png"
@@ -35,7 +34,6 @@ export default function SmallHero({ hero, illustrationSrc }: Props) {
         />
       </div>
 
-      {/* Right-side illustration (dinamis via prop) */}
       {illustrationSrc ? (
         <div className="hidden md:block absolute inset-y-0 right-0 w-2/3 pointer-events-none z-10">
           <div className="relative h-full">
@@ -50,7 +48,6 @@ export default function SmallHero({ hero, illustrationSrc }: Props) {
         </div>
       ) : null}
 
-      {/* Copy */}
       <div className="relative z-20 flex w-full py-8 pl-8 pr-8 md:w-7/12 lg:pl-24 lg:py-14 lg:pr-0">
         <div className="max-w-[680px]">
           <h1

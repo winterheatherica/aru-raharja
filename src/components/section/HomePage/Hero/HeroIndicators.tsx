@@ -61,7 +61,7 @@ export default function HeroIndicators({
               type="button"
               className={[
                 "inline-flex items-center justify-center rounded-none p-0 transition-colors outline-none",
-                "w-[var(--hi-thickness-sm)] sm:w-[var(--hi-thickness)]", // responsive thickness
+                "w-[var(--hi-thickness-sm)] sm:w-[var(--hi-thickness)]",
                 isActive
                   ? "h-[var(--hi-active)] sm:h-[var(--hi-active-sm)]"
                   : "h-[var(--hi-inactive)] sm:h-[var(--hi-inactive-sm)]",

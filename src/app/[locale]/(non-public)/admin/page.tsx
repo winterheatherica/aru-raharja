@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/getDictionary";
 import { getDictionary } from "@/i18n/getDictionary";
-import AdminPage from "@/components/pages/AdminPage";
+import AdminPage from "@/components/pages/Non-Public/AdminPage";
 
 export default async function Page({ params: { locale } }: { params: { locale: Locale } }) {
   const dict = await getDictionary(locale);
