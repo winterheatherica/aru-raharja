@@ -17,13 +17,12 @@ type DictShape = {
 
 type Props = {
   dict: DictShape;
-  locale: string; // disimpan kalau nanti perlu logic locale
+  locale: string;
 };
 
 export default function Aruhealthcare({ dict }: Props) {
   const copy = dict?.service?.solutions?.arudigital;
 
-  // fallback aman kalau kamus belum diisi
   const titleHtml = copy?.titleHtml ?? "<b>ARU</b><i>digital</i>";
   const description =
     copy?.description ??
@@ -39,7 +38,6 @@ export default function Aruhealthcare({ dict }: Props) {
         />
         <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
 
-        {/* kalau mau CTA, siapkan field i18n juga */}
         {/* <div className="pt-2">
           <a className="inline-flex items-center px-4 py-2 rounded-xl bg-bumn-gradient-primary-18 text-bumngray-1 font-medium">
             {copy?.ctaLabel ?? "Learn more"}

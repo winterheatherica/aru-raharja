@@ -4,10 +4,10 @@ import InformationTabs from "@/components/section/InformationPage/InformationTab
 import ReportTabs from "@/components/section/InformationPage/ReportTabs";
 import ReportList from "@/components/section/InformationPage/ReportList";
 
-import type { Locale } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/getDictionary";
 
 type Props = {
-  dict: any;
+  dict: Dictionary;
   locale: Locale;
 };
 

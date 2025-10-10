@@ -1,6 +1,5 @@
-"use client";
-
 import SmallHero from "@/components/general/BluePrint/SmallHero/SmallHero";
+
 import Registration from "@/components/section/CareerPage/Registration/Registration";
 
 import type { Locale, Dictionary } from "@/i18n/getDictionary";
