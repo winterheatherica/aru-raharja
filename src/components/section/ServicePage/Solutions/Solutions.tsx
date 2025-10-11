@@ -3,6 +3,7 @@
 import * as React from "react";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
+import PhoneCTA from "./PhoneCTA/PhoneCTA";
 
 type NavItem = { id: string; label: string };
 
@@ -29,7 +30,6 @@ type Props = {
 export default function Solutions({ dict, locale, value, onValueChange }: Props) {
   const items = (dict?.service?.solutions?.nav as NavItem[] | undefined) ?? [];
   const initial = value ?? items[0]?.id ?? "";
-
   const [active, setActive] = React.useState(initial);
 
   React.useEffect(() => {
@@ -45,9 +45,10 @@ export default function Solutions({ dict, locale, value, onValueChange }: Props)
 
   return (
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
-      <section aria-label="Solutions" className="w-full">
+      <section aria-label="Solutions" className="w-full space-y-8">
         <Navigation dict={dict} value={active} onChange={handleChange} />
         <Content activeId={active} dict={dict} locale={locale} />
+        <PhoneCTA />
       </section>
     </div>
   );

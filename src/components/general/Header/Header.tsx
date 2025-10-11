@@ -31,7 +31,7 @@ export default function Header({ locale, dict }: HeaderProps) {
   const handleCloseMobile = useCallback(() => setOpenMobile(false), []);
 
   return (
-    <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/60 overflow-hidden">
+    <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/85 overflow-hidden">
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
         <div className="pl-10 md:pl-4">
           <Brand locale={locale} />

@@ -14,7 +14,7 @@ export default function Burger({ open, onToggle, className }: Props) {
       aria-expanded={open}
       aria-controls="desktop-nav-panel"
       onClick={onToggle}
-      className={`z-10 flex h-[86px] w-[86px] cursor-pointer flex-col items-center justify-center gap-[4.5px] bg-white rounded-2xl transition duration-500 ${className ?? ""}`}
+      className={`z-10 flex h-[86px] w-[86px] cursor-pointer flex-col items-center justify-center gap-[4.5px] rounded-2xl transition duration-500 ${className ?? ""}`}
     >
       <span
         className={`h-1 w-[25px] origin-left rounded-sm bg-bumncyan-2 transition duration-500 ${
