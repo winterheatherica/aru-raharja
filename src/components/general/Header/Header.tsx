@@ -33,7 +33,7 @@ export default function Header({ locale, dict }: HeaderProps) {
   return (
     <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/85 overflow-hidden">
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
-        <div className="pl-8 sm:pl-0">
+        <div className="pl-4 sm:pl-0">
           <Brand locale={locale} />
         </div>
 
