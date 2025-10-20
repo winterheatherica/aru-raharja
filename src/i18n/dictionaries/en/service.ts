@@ -2,13 +2,13 @@ const service = {
   hero: {
     titleHtml: 'Our Excellent <br class="hidden lg:block"> Service',
     description:
-      "Jasa Raharja is committed to always prioritizing customer satisfaction, by providing the best services that are always accessible to customers.",
+      "Aru Raharja is committed to always prioritizing customer satisfaction, by providing the best services that are always accessible to customers.",
     altMask: "Decorative background",
     altIllustration: "Service Illustration",
   },
   intro: {
     paragraph:
-      "The presence of PT Jasa Raharja provides basic protection to the community through 2 (two) coverage programs, namely Public Transport Equipment Passenger Accident Insurance implemented under Law No. 33 of 1964 concerning Mandatory Passenger Accident Insurance Fund and Legal Liability Insurance for Third Parties implemented under Law No. 34 of 1964 concerning Road Traffic Accident Fund.",
+      "The presence of PT Aru Raharja provides basic protection to the community through 2 (two) coverage programs, namely Public Transport Equipment Passenger Accident Insurance implemented under Law No. 33 of 1964 concerning Mandatory Passenger Accident Insurance Fund and Legal Liability Insurance for Third Parties implemented under Law No. 34 of 1964 concerning Road Traffic Accident Fund.",
   },
   solutions: {
     nav: [

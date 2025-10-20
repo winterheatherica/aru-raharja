@@ -10,17 +10,17 @@ import Arulog from "./Arulog/Arulog";
 import Arutrans from "./Arutrans/Arutrans";
 import Aruspace from "./Aruspace/Aruspace";
 
-type DictShape = {
-  service?: {
-    solutions?: {
-      arudigital?: {
-        titleHtml?: string;
-        description?: string;
-        altIllustration?: string;
-      };
-    };
-  };
-};
+// type DictShape = {
+//   service?: {
+//     solutions?: {
+//       arudigital?: {
+//         titleHtml?: string;
+//         description?: string;
+//         altIllustration?: string;
+//       };
+//     };
+//   };
+// };
 
 type Props = {
   activeId: string;

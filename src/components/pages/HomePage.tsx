@@ -19,7 +19,7 @@ type Props = {
 
 export default function HomePage({ dict, locale }: Props) {
   return (
-    <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440">
+    <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <Masking position="fixed" />
       <Hero dict={dict} locale={locale} />
       <DutiesPromo dict={dict} locale={locale} />

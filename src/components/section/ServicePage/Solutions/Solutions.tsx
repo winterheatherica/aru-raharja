@@ -47,8 +47,10 @@ export default function Solutions({ dict, locale, value, onValueChange }: Props)
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
       <section aria-label="Solutions" className="w-full space-y-8">
         <Navigation dict={dict} value={active} onChange={handleChange} />
-        <Content activeId={active} dict={dict} locale={locale} />
-        <PhoneCTA />
+        <div className="w-[90%] mx-auto">
+          <Content activeId={active} dict={dict} locale={locale} />
+          <PhoneCTA />
+        </div>
       </section>
     </div>
   );

@@ -21,7 +21,7 @@ function StatsCtaMap({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
   return (
     <section className="mt-6">
-      <div className="rounded-xl border text-card-foreground w-full mt-6 bg-repeat border-none shadow-none bg-white">
+      <div className="rounded-xl border text-card-foreground w-full mt-6 bg-repeat border-none shadow-none bg-white/60">
         <div className="relative flex flex-col w-full px-4 pt-4 pb-4 md:flex-row md:px-8 md:pt-16 md:pb-10">
           <div className="z-10 space-y-8">
             <Metrics items={metrics} />

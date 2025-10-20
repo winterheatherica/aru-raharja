@@ -15,7 +15,7 @@ export default function PartnersCard({ size, children }: Props) {
   return (
     <div
       className={[
-        "rounded-2xl border shadow flex flex-col items-center justify-between text-center p-5 bg-primaryWhite",
+        "rounded-2xl border flex flex-col items-center justify-between text-center p-5 shadow-bumn-2 bg-bumn-gradient-white-4",
         sizeClass,
       ].join(" ")}
     >

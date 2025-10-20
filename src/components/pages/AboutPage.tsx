@@ -16,7 +16,7 @@ type Props = {
 
 export default function AboutPage({ dict, locale }: Props) {
   return (
-    <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
+    <main className="relative px-10 lg:px-4 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <Masking position="absolute" />
       <Hero dict={dict} />
       <div className="max-w-[1014px] mx-auto">

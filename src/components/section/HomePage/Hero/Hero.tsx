@@ -76,7 +76,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
   }, []);
 
   return (
-    <section aria-label="Hero Carousel" className="relative mx-auto w-full max-w-screen-1920 overflow-hidden">
+    <section aria-label="Hero Carousel" className="relative mx-auto w-full max-w-screen-1920 overflow-hidden animate-fade-down">
       <div ref={holderRef}>
         {shouldRender ? (
           <LazyCarousel slides={slides} autoplayMs={5000} />

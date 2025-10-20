@@ -21,7 +21,7 @@ export default function DutiesPromo({ dict }: Props) {
   const t = dict.home.dutiesPromo;
 
   return (
-    <section className="relative">
+    <section className="relative animate-fade-down">
       <div className="relative grid gap-6 mt-6 lg:grid-cols-5">
         <LeftStatement title={t.heading} descPrefix={t.descPrefix} laws={t.laws} cards={cards} />
         <PromoCarousel slides={slides} autoplayMs={5000} />

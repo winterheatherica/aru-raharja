@@ -6,7 +6,6 @@ import LeftStatement from "./LeftStatement";
 import MaskOverlay from "./MaskOverlay";
 import type { Dictionary } from "@/i18n/getDictionary";
 
-// static codes + icons
 const STATIC_ITEMS: Pick<FundingItem, "code" | "iconSrc">[] = [
   { code: "SWDKLJJ", iconSrc: "/images/home/funding/swdkljj-icon-2.png" },
   { code: "IWKBU",   iconSrc: "/images/home/funding/iwkbu-icon-2.png" },
@@ -18,7 +17,6 @@ const STATIC_ITEMS: Pick<FundingItem, "code" | "iconSrc">[] = [
 function FundingComponent({ dict }: { dict: Dictionary }) {
   const t = dict.home.funding;
 
-  // merge i18n descriptions with static code+icon
   const items: FundingItem[] = STATIC_ITEMS.map((it, idx) => ({
     code: it.code,
     iconSrc: it.iconSrc,

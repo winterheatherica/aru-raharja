@@ -2,7 +2,7 @@ const career = {
   hero: {
     titleHtml: "Career",
     description:
-      "Join us and become an important part of Jasa Raharja's progress",
+      "Join us and become an important part of Aru Raharja's progress",
     altMask: "Decorative background",
     altIllustration: "Career Illustration",
   },

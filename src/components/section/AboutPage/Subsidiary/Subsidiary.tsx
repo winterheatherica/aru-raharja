@@ -29,7 +29,7 @@ export default function Subsidiary({ dict }: Props) {
               alt=""
               fill
               priority={false}
-              className="absolute inset-0 object-cover opacity-30 pointer-events-none select-none"
+              className="absolute inset-0 object-cover opacity-30 pointer-events-none select-none drop-shadow-[0_0_0px_rgba(255,255,255,1)]"
             />
 
             <div className="relative z-10 flex items-start gap-6 sm:gap-8">

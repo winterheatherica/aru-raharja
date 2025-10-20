@@ -8,17 +8,19 @@ import { videoItems } from "./data";
 function Videos({ dict }: { dict: Dictionary }) {
   const t = dict.home.videos;
   return (
-    <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
-      <div className="absolute inset-x-0 top-0">
+    <section className="relative h-auto mt-12">
+      <div className="relative">
         <h2 className="pl-4 mb-4 text-2xl font-semibold lg:text-4xl lg:font-bold text-black">
           {t.heading}
         </h2>
 
-        <Carousel
-          items={videoItems}
-          readMoreLabel={t.readMoreLabel}
-          loadMoreLabel={t.loadMoreLabel}
-        />
+        <div className="h-[460px] md:h-[480px] lg:h-[520px]">
+          <Carousel
+            items={videoItems}
+            readMoreLabel={t.readMoreLabel}
+            loadMoreLabel={t.loadMoreLabel}
+          />
+        </div>
       </div>
     </section>
   );

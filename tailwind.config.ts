@@ -79,7 +79,9 @@ const config: Config = {
         'bumn-gradient-white-2':
           'linear-gradient(to right, #ffffff 0%, #f8f8f8 40%, #f0f0f0 70%, #e5e5e5 100%)',
         'bumn-gradient-white-3':
-          'linear-gradient(180deg, #e5e5e5 30%, #ffffff 100%)', 
+          'linear-gradient(180deg, #e5e5e5 30%, #ffffff 100%)',
+        'bumn-gradient-white-4':
+          'linear-gradient(180deg, #FFFFFF 0%, #F8F8F8 60%, #EDEDED 100%)',
         'bumn-gradient-primary-1':
           'linear-gradient(291.21deg, #0F5CE5 57.89%, #53CAFD 200.26%)',
         'bumn-gradient-primary-2':

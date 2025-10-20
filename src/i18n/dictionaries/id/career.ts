@@ -2,7 +2,7 @@ const career = {
   hero: {
     titleHtml: "Karier",
     description:
-      "Marilah Bergabung bersama kami dan menjadi bagian penting dalam kemajuan Jasa Raharja",
+      "Marilah Bergabung bersama kami dan menjadi bagian penting dalam kemajuan Aru Raharja",
     altMask: "Hiasan latar belakang",
     altIllustration: "Ilustrasi Karier",
   },

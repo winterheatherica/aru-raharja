@@ -32,7 +32,7 @@ export default function Hero({ dict }: Props) {
         />
       </div>
 
-      <div className="max-w-[1014px] mx-auto font-semibold text-[18px] leading-[30px] font-lato mt-8 lg:mt-14">
+      <div className="max-w-[1014px] mx-auto font-semibold text-[18px] leading-[30px] font-lato mt-8 lg:mt-14 animate-fade-right animate-delay-700">
         <p>{t.intro}</p>
         <ul className="ml-12 list-disc">
           {t.list.items.map((item, i) => (

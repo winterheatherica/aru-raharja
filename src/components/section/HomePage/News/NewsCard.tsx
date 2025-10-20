@@ -12,7 +12,7 @@ export default function NewsCard({
   readMoreLabel?: string;
 }) {
   return (
-    <div className="flex flex-col items-center flex-1 h-full p-2 rounded-lg shadow">
+    <div className="flex flex-col items-center flex-1 h-full p-2 rounded-lg shadow-bumn-2 bg-bumn-gradient-white-4">
       <Link href={item.href} className="relative flex items-center w-full h-[230px] sm:h-[250px] lg:h-[290px]">
         <Image
           src={item.imageSrc}
