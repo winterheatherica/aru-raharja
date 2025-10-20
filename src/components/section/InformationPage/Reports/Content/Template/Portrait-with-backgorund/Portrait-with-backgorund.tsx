@@ -25,17 +25,13 @@ export default function PortraitWithBackground({
 
   return (
     <article
-      className="rounded-xl border bg-card text-card-foreground shadow border-none shadow-bumn-5 overflow-hidden"
+      className="rounded-xl border bg-card text-card-foreground border-none shadow-bumn-5 overflow-hidden"
       role="link"
       aria-label={item.title}
       onClick={() => {
         if (item.href) window.open(item.href, "_blank", "noopener");
       }}
     >
-      {/* 
-        WOOD BACKGROUND WRAPPER 
-        Rounded + overflow-hidden supaya kayu & image di dalamnya ikut radius 
-      */}
       <div
         className="rounded-xl overflow-hidden flex flex-col space-y-1.5 p-2"
         style={{
