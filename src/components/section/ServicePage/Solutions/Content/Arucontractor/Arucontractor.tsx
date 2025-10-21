@@ -35,30 +35,23 @@ export default function Arucontractor({ dict }: Props) {
     {
       id: "g1",
       kind: "image" as const,
-      src: "/projects/office-before.jpg",
+      src: "/images/services/ARUcontractor.png",
       alt: "Kantor - Sebelum",
-      caption: "Office fit-out — sebelum pengerjaan",
+      caption: "Contoh Gambar",
     },
     {
       id: "g2",
       kind: "image" as const,
-      src: "/projects/office-after.jpg",
+      src: "/images/services/ARUcontractor.png",
       alt: "Kantor - Sesudah",
-      caption: "Office fit-out — setelah handover",
+      caption: "Contoh Gambar",
     },
     {
       id: "g3",
-      kind: "image" as const,
-      src: "/projects/warehouse-struct.jpg",
-      alt: "Gudang — struktur",
-      caption: "Gudang: pekerjaan struktur & roofing",
-    },
-    {
-      id: "g4",
       kind: "video" as const,
-      src: "/projects/sitewalk.mp4",
-      poster: "/projects/sitewalk-poster.jpg",
-      caption: "Site-walk (cuplikan video progress)",
+      src: "https://youtu.be/q5WeTMUTiak?si=2FUalR7r-wbP1VsJ",
+      poster: "",
+      caption: "Contoh Video",
     },
   ];
 
@@ -143,35 +136,35 @@ export default function Arucontractor({ dict }: Props) {
   const markers = [
     {
       id: "m1",
-      title: "Proyek A — Jakarta",
+      title: "Proyek A — Jakarta Selatan",
       subtitle: "Office fit-out 1200 m²",
       address: "Kuningan, Jakarta",
       category: "Office",
-      xy: { xPct: 54, yPct: 69 },
+      xy: { xPct: 43, yPct: 63 },
       placeUrl: "https://maps.google.com",
     },
     {
       id: "m2",
-      title: "Proyek B — Bandung",
+      title: "Proyek B — Jakarta Timur",
       subtitle: "Gudang 2.500 m²",
       address: "Rancaekek, Bandung",
       category: "Warehouse",
-      xy: { xPct: 48, yPct: 76 },
+      xy: { xPct: 80, yPct: 38 },
       placeUrl: "https://maps.google.com",
     },
     {
       id: "m3",
-      title: "Proyek C — Surabaya",
+      title: "Proyek C — Jakarta Pusat",
       subtitle: "Kantor cabang",
       address: "Rungkut, Surabaya",
       category: "Office",
-      xy: { xPct: 68, yPct: 78 },
+      xy: { xPct: 50, yPct: 33 },
       placeUrl: "https://maps.google.com",
     },
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
@@ -181,7 +174,7 @@ export default function Arucontractor({ dict }: Props) {
         <div className="flex flex-wrap gap-2 pt-1">
           <a
             href="/contact?topic=survey"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
           >
             Survey Lokasi
           </a>
@@ -233,27 +226,13 @@ export default function Arucontractor({ dict }: Props) {
         title="Sebaran Proyek"
         description="Beberapa lokasi proyek yang pernah kami kerjakan."
         mode="image"
-        image={{ src: "/maps/indonesia-map.jpg", alt: "Peta Indonesia", aspectRatio: "aspect-[16/9]" }}
+        image={{ src: "/images/services/peta.jpg", alt: "Peta Indonesia", aspectRatio: "aspect-[1/1]" }}
         markers={markers}
         enableSearch
         enableCategoryFilter
         defaultActiveId="m1"
       />
 
-      <div className="flex flex-wrap gap-2">
-        <a
-          href="/contact?topic=survey"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Survey Lokasi
-        </a>
-        <a
-          href="/contact?topic=consult"
-          className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Konsultasi Gratis
-        </a>
-      </div>
     </div>
   );
 }

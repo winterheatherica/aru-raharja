@@ -195,7 +195,7 @@ export default function Catalog({
                 onClick={() => toggleCompare(it.id)}
                 className={`absolute right-3 top-3 inline-flex items-center justify-center rounded-md border px-2 py-1 text-xs transition ${
                   compare.includes(it.id)
-                    ? "border-bumnblue-5 bg-bumn-gradient-primary-10 text-white"
+                    ? "border-bumnblue-5 bg-bumn-gradient-primary-7 text-white"
                     : "border-bumnslate-10 bg-white text-bumnslate-6 hover:border-bumnblue-5"
                 }`}
                 aria-pressed={compare.includes(it.id)}
@@ -254,7 +254,7 @@ export default function Catalog({
               <button
                 type="button"
                 onClick={() => onRFQ?.(it)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-18 px-4 py-2 text-sm font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
               >
                 Minta Penawaran
               </button>
@@ -299,7 +299,7 @@ export default function Catalog({
               onClick={() => {
                 onCompare?.(selectedItems);
               }}
-              className="inline-flex items-center justify-center rounded-lg bg-bumn-gradient-primary-10 px-3 py-2 text-sm font-semibold text-white"
+              className="inline-flex items-center justify-center rounded-lg bg-bumn-gradient-primary-7 px-3 py-2 text-sm font-semibold text-white"
             >
               Bandingkan
             </button>

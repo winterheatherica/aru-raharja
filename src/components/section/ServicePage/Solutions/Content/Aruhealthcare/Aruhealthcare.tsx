@@ -127,7 +127,7 @@ export default function Aruhealthcare({ dict }: Props) {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
@@ -191,14 +191,6 @@ export default function Aruhealthcare({ dict }: Props) {
         defaultOpenAll={false}
       />
 
-      <div className="text-center">
-        <a
-          href="/contact?topic=healthcare"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Minta Proposal HR
-        </a>
-      </div>
     </div>
   );
 }

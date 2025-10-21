@@ -39,9 +39,9 @@ export default function Arudigital({ dict }: Props) {
     "Digital solutions to streamline operations and deliver better customer experiences.";
   const demo = copy?.demo ?? {
     kind: "video" as const,
-    src: "/media/arudigital-demo.mp4",
-    poster: "/media/arudigital-demo-poster.jpg",
-    caption: "Login → Dashboard overview (sample demo)",
+    src: "https://youtu.be/q5WeTMUTiak?si=ABcqf-rde_Y84twa",
+    poster: "",
+    caption: "Contoh Demo ARUdigital",
   };
 
   const pricing = {
@@ -89,12 +89,12 @@ export default function Arudigital({ dict }: Props) {
   ];
 
   const integrations = [
-    { id: "google", title: "Google", logoUrl: "/logos/google.svg" },
-    { id: "microsoft", title: "Microsoft", logoUrl: "/logos/microsoft.svg" },
-    { id: "sap", title: "SAP", logoUrl: "/logos/sap.svg", darkInvert: true },
-    { id: "slack", title: "Slack", logoUrl: "/logos/slack.svg" },
-    { id: "okta", title: "Okta", logoUrl: "/logos/okta.svg" },
-    { id: "gsheets", title: "Google Sheets", logoUrl: "/logos/gsheets.svg" },
+    { id: "google", title: "Google", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "microsoft", title: "Microsoft", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "sap", title: "SAP", logoUrl: "/images/general/logo/aru.svg"},
+    { id: "slack", title: "Slack", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "okta", title: "Okta", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "gsheets", title: "Google Sheets", logoUrl: "/images/general/logo/aru.svg"},
   ];
 
   const securityBadges = [
@@ -108,28 +108,37 @@ export default function Arudigital({ dict }: Props) {
     {
       id: "cs-1",
       kind: "image" as const,
-      src: "/case/retail-before-after.png",
+      src: "/images/services/ARUdigital.png",
       alt: "Retail: sebelum & sesudah",
       caption: "Retail: cut manual process 60% — deploy 3 minggu",
     },
     {
       id: "cs-2",
       kind: "image" as const,
-      src: "/case/manufacture-dashboard.png",
+      src: "/images/services/ARUdigital.png",
       alt: "Manufacture dashboard",
       caption: "Manufacture: real-time inventory & traceability",
     },
     {
       id: "cs-3",
       kind: "video" as const,
-      src: "/case/finance-automation.mp4",
-      poster: "/case/finance-automation-poster.jpg",
+      src: "https://youtu.be/q5WeTMUTiak?si=ABcqf-rde_Y84twa",
+      poster: "",
       caption: "Finance automation: from invoice to reconciliation",
     },
   ];
 
+  // demo item for Gallery
+  const demoItem = {
+    id: "demo",
+    kind: demo.kind,
+    src: demo.src,
+    poster: demo.poster,
+    caption: demo.caption,
+  };
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="grid gap-6 lg:grid-cols-2 lg:items-center">
         <div className="space-y-4">
           <h2
@@ -137,44 +146,18 @@ export default function Arudigital({ dict }: Props) {
             dangerouslySetInnerHTML={{ __html: titleHtml }}
           />
           <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
-
-          <div className="flex flex-wrap gap-2 pt-1">
-            <a
-              href="/sandbox"
-              className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-            >
-              Coba Sandbox
-            </a>
-            <a
-              href="/roadmap"
-              className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-            >
-              Lihat Roadmap
-            </a>
-          </div>
         </div>
 
+        {/* DEMO: menggunakan Gallery (single grid item) */}
         <div className="rounded-2xl border border-bumnslate-10 bg-bumnblack-1/90 shadow-bumn-2 overflow-hidden">
-          {demo.kind === "video" ? (
-            <video
-              className="w-full max-h-[420px] object-contain bg-black"
-              src={demo.src}
-              poster={demo.poster}
-              controls
-              preload="metadata"
-            />
-          ) : (
-            <img
-              className="w-full max-h-[420px] object-contain bg-black"
-              src={demo.src}
-              alt={demo.caption || "Demo"}
-            />
-          )}
-          {demo.caption && (
-            <div className="border-t border-bumnslate-10 p-2 text-center text-xs text-bumnslate-6">
-              {demo.caption}
-            </div>
-          )}
+          <Gallery
+            items={[demoItem]}
+            layout="grid"
+            gridCols={{ base: 1 }}
+            showThumbnails={false}
+            autoplay={false}
+            className="p-0"
+          />
         </div>
       </section>
 
@@ -217,27 +200,6 @@ export default function Arudigital({ dict }: Props) {
         autoplay
         autoplayIntervalMs={6000}
       />
-
-      <div className="flex flex-wrap gap-2">
-        <a
-          href="/sandbox"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Coba Sandbox
-        </a>
-        <a
-          href="/roadmap"
-          className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Lihat Roadmap
-        </a>
-        <a
-          href="/contact?topic=arudigital"
-          className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Request Demo
-        </a>
-      </div>
     </div>
   );
 }

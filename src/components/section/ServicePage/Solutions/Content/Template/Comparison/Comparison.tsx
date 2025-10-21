@@ -59,6 +59,8 @@ export default function Comparison({
       .filter((sec) => sec.rows.length > 0);
   }, [sections, onlyDiff, items]);
 
+  const headerGridTemplate = `repeat(${Math.max(1, items.length)}, minmax(220px, 1fr))`;
+
   return (
     <section className={`w-full ${className}`}>
       {(title || description) && (
@@ -72,20 +74,23 @@ export default function Comparison({
         </header>
       )}
 
-      <div className="relative overflow-x-auto">
-        <div className="min-w-[720px]">
-          <div className="grid grid-cols-[240px_repeat(var(--cols),minmax(220px,1fr))]" style={{ ["--cols" as any]: items.length }}>
-            <div />
-
+      <div className="relative overflow-x-auto pt-6">
+        <div className="min-w-[720px] flex justify-center">
+          <div
+            className="grid gap-3 w-full"
+            style={{ gridTemplateColumns: headerGridTemplate } as React.CSSProperties}
+          >
             {items.map((it) => (
               <div key={it.id} className="px-3">
                 <article className="relative rounded-2xl border border-bumnslate-10 bg-white p-4 text-bumnslate-6 shadow-bumn-2">
                   {it.badge && (
-                    <span className="absolute -top-3 right-4 rounded-full bg-bumn-gradient-primary-5 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
+                    <span className="absolute top-0 -translate-y-1/2 right-4 rounded-full bg-bumn-gradient-primary-7 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5 transform">
                       {it.badge}
                     </span>
                   )}
-                  <h4 className="text-base font-semibold text-bumnblue-2">{it.title}</h4>
+                  <h4 className="text-base font-semibold text-bumnblue-2">
+                    {it.title}
+                  </h4>
                   {it.subtitle && (
                     <div className="text-xs text-bumnslate-6">{it.subtitle}</div>
                   )}
@@ -105,7 +110,7 @@ export default function Comparison({
                     <div className="mt-3">
                       <a
                         href={it.ctaHref}
-                        className="inline-flex w-full items-center justify-center rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
+                        className="inline-flex w-full items-center justify-center rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
                       >
                         {it.ctaLabel || "Pilih Paket"}
                       </a>
@@ -127,7 +132,7 @@ export default function Comparison({
               checked={onlyDiff}
               onChange={(e) => setOnlyDiff(e.target.checked)}
             />
-            Hanya yang berbeda
+            Only show differences
           </label>
         </div>
       )}
@@ -181,7 +186,7 @@ function SectionGroup({
 }) {
   return (
     <>
-      <tr className="bg-bumnwhite-3/70">
+      <tr className="bg-bumnwhite-3">
         <th
           colSpan={1 + items.length}
           className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wide text-bumnslate-6"
@@ -192,7 +197,7 @@ function SectionGroup({
 
       {section.rows.map((row, idx) => {
         const same = isAllEqual(items, row);
-        const zebra = (zebraStart ? idx % 2 === 0 : idx % 2 !== 0) ? "bg-white" : "bg-bumnwhite-3/50";
+        const zebra = (zebraStart ? idx % 2 === 0 : idx % 2 !== 0) ? "bg-white" : "bg-bumnwhite-3";
         return (
           <tr key={row.key} className={`${zebra}`}>
             <th

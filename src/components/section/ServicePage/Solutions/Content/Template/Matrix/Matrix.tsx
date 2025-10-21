@@ -82,7 +82,7 @@ export default function Matrix({
                       </span>
                     )}
                     {col.popular && (
-                      <span className="ml-1 rounded-full bg-bumn-gradient-primary-5 px-2 py-0.5 text-[10px] font-semibold text-white">
+                      <span className="ml-1 rounded-full bg-bumn-gradient-primary-7 px-2 py-0.5 text-[10px] font-semibold text-white">
                         Populer
                       </span>
                     )}

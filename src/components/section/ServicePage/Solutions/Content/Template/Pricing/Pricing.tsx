@@ -49,7 +49,7 @@ export default function Pricing({
               type="button"
               onClick={() => setPeriod("monthly")}
               className={`px-4 py-2 text-sm rounded-lg transition
-               ${period === "monthly" ? "bg-bumn-gradient-primary-10 text-white shadow-bumn-2" : "text-bumnslate-6"}`}
+               ${period === "monthly" ? "bg-bumn-gradient-primary-7 text-white shadow-bumn-2" : "text-bumnslate-6"}`}
               aria-pressed={period === "monthly"}
             >
               Bulanan
@@ -58,7 +58,7 @@ export default function Pricing({
               type="button"
               onClick={() => setPeriod("yearly")}
               className={`px-4 py-2 text-sm rounded-lg transition
-               ${period === "yearly" ? "bg-bumn-gradient-primary-10 text-white shadow-bumn-2" : "text-bumnslate-6"}`}
+               ${period === "yearly" ? "bg-bumn-gradient-primary-7 text-white shadow-bumn-2" : "text-bumnslate-6"}`}
               aria-pressed={period === "yearly"}
             >
               Tahunan
@@ -79,7 +79,7 @@ export default function Pricing({
               }`}
             >
               {t.popular && (
-                <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-5 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
+                <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-7 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
                   Paling Populer
                 </div>
               )}
@@ -108,7 +108,7 @@ export default function Pricing({
               <div className="mt-auto pt-1">
                 <a
                   href={t.ctaHref || "#"}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-18 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
                 >
                   {t.ctaLabel || "Mulai Sekarang"}
                 </a>

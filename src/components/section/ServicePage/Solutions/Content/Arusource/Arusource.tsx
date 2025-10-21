@@ -35,7 +35,7 @@ export default function Arusource({ dict }: Props) {
       name: "Alya Putri",
       role: "Frontend Engineer",
       seniority: "Senior (5+ thn)",
-      avatar: "/talents/alya.jpg",
+      avatar: "/images/services/aru-source.png",
       skills: ["React", "Next.js", "Tailwind", "Testing"],
       available: true,
       location: "Jakarta",
@@ -45,7 +45,7 @@ export default function Arusource({ dict }: Props) {
       name: "Bima Pratama",
       role: "Data Analyst",
       seniority: "Mid (3 thn)",
-      avatar: "/talents/bima.jpg",
+      avatar: "/images/services/aru-source.png",
       skills: ["SQL", "Python", "Power BI"],
       available: true,
       location: "Bandung",
@@ -55,7 +55,7 @@ export default function Arusource({ dict }: Props) {
       name: "Citra W.",
       role: "HR Generalist",
       seniority: "Senior (7 thn)",
-      avatar: "/talents/citra.jpg",
+      avatar: "/images/services/aru-source.png",
       skills: ["Recruitment", "Payroll", "Compliance"],
       available: false,
       location: "Surabaya",
@@ -65,7 +65,7 @@ export default function Arusource({ dict }: Props) {
       name: "Dimas A.",
       role: "Project Coordinator",
       seniority: "Mid (4 thn)",
-      avatar: "/talents/dimas.jpg",
+      avatar: "/images/services/aru-source.png",
       skills: ["Scheduling", "Reporting", "Vendor mgmt"],
       available: true,
       location: "Remote",
@@ -106,12 +106,12 @@ export default function Arusource({ dict }: Props) {
   ];
 
   const industries = [
-    { id: "retail", title: "Retail", logoUrl: "/industries/retail.svg" },
-    { id: "fmcg", title: "FMCG", logoUrl: "/industries/fmcg.svg" },
-    { id: "bank", title: "Banking", logoUrl: "/industries/bank.svg" },
-    { id: "log", title: "Logistics", logoUrl: "/industries/logistics.svg" },
-    { id: "tech", title: "Tech", logoUrl: "/industries/tech.svg" },
-    { id: "mfg", title: "Manufacturing", logoUrl: "/industries/mfg.svg" },
+    { id: "retail", title: "Retail", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "fmcg", title: "FMCG", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "bank", title: "Banking", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "log", title: "Logistics", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "tech", title: "Tech", logoUrl: "/images/general/logo/aru.svg" },
+    { id: "mfg", title: "Manufacturing", logoUrl: "/images/general/logo/aru.svg" },
   ];
 
   const cmpItems = [
@@ -149,28 +149,13 @@ export default function Arusource({ dict }: Props) {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
           dangerouslySetInnerHTML={{ __html: titleHtml }}
         />
         <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          <a
-            href="/contact?topic=talent"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Submit Job Spec
-          </a>
-          <a
-            href="/contact?topic=talent&action=brief"
-            className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Jadwalkan Brief
-          </a>
-        </div>
       </section>
 
       <TalentGrid title="Contoh Talent Tersedia" items={talents} />
@@ -200,14 +185,6 @@ export default function Arusource({ dict }: Props) {
         showDiffToggle
       />
 
-      <div className="text-center">
-        <a
-          href="/contact?topic=talent"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Submit Job Spec
-        </a>
-      </div>
     </div>
   );
 }

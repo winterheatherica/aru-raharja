@@ -131,7 +131,7 @@ function KPICards({ items, gridCols }: { items: KPIItem[]; gridCols: GridCols })
             key={it.id}
             className={`rounded-2xl border p-4 shadow-bumn-2 transition ${
               isHi
-                ? "border-bumnblue-5 bg-bumn-gradient-primary-10 text-white"
+                ? "border-bumnblue-5 bg-bumn-gradient-primary-7 text-white"
                 : "border-bumnslate-10 bg-white hover:shadow-lg"
             }`}
           >
@@ -168,7 +168,7 @@ function FeatureCards({ items, gridCols }: { items: FeatureItem[]; gridCols: Gri
         const content = (
           <article className="group relative rounded-2xl border border-bumnslate-10 bg-white p-4 shadow-bumn-2 transition hover:shadow-lg">
             {it.badge && (
-              <span className="absolute -top-3 right-4 rounded-full bg-bumn-gradient-primary-5 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
+              <span className="absolute -top-3 right-4 rounded-full bg-bumn-gradient-primary-7 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
                 {it.badge}
               </span>
             )}

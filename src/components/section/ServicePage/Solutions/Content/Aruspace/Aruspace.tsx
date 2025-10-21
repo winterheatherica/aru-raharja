@@ -62,14 +62,14 @@ const pricingData = {
     {
       id: "fl1",
       kind: "image" as const,
-      src: "/spaces/floorplan1.jpg",
+      src: "/images/general/gedung-2.png",
       alt: "Floor Plan Lt.1",
       caption: "Lantai 1 — Lobby, VO, Meeting Room",
     },
     {
       id: "fl2",
       kind: "image" as const,
-      src: "/spaces/floorplan2.jpg",
+      src: "/images/general/gedung-2.png",
       alt: "Floor Plan Lt.2",
       caption: "Lantai 2 — Dedicated Desk, Event Space",
     },
@@ -92,7 +92,7 @@ const pricingData = {
       subtitle: "Jl. Sudirman Kav. 52-53, Jakarta",
       address: "SCBD, Jakarta",
       category: "Headquarter",
-      xy: { xPct: 54, yPct: 70 },
+      xy: { xPct: 42, yPct: 50 },
       placeUrl: "https://maps.google.com?q=SCBD+Jakarta",
     },
   ];
@@ -109,28 +109,13 @@ const pricingData = {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
           dangerouslySetInnerHTML={{ __html: titleHtml }}
         />
         <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
-
-        <div className="flex flex-wrap gap-2 pt-1">
-          <a
-            href="#aruspace-booking"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Book Tour
-          </a>
-          <a
-            href="/contact?topic=space-trial"
-            className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Coba Gratis 1 Hari
-          </a>
-        </div>
       </section>
 
       <Pricing
@@ -169,9 +154,9 @@ const pricingData = {
         description="Strategis di pusat bisnis Jakarta."
         mode="image"
         image={{
-          src: "/maps/jakarta-map.jpg",
+          src: "/images/services/peta.jpg",
           alt: "Peta Jakarta",
-          aspectRatio: "aspect-[16/9]",
+          aspectRatio: "aspect-[1/1]",
         }}
         markers={markers}
         defaultActiveId="loc1"
@@ -184,14 +169,6 @@ const pricingData = {
         items={amenities}
       />
 
-      <div className="text-center">
-        <a
-          href="#aruspace-booking"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Book Tour / Coba Gratis 1 Hari
-        </a>
-      </div>
     </div>
   );
 }

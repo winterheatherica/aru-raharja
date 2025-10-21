@@ -250,7 +250,7 @@ export default function Calculator({
               key={r.id}
               className={`rounded-2xl border p-4 shadow-bumn-2 ${
                 r.highlight
-                  ? "border-bumnblue-5 bg-bumn-gradient-primary-10 text-white"
+                  ? "border-bumnblue-5 bg-bumn-gradient-primary-7 text-white"
                   : "border-bumnslate-10 bg-white"
               }`}
             >

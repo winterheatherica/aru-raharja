@@ -15,7 +15,7 @@ export default function PhoneCTA() {
       <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
         <a
           href="tel:+622112345678"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
         >
           <PhoneIcon className="h-4 w-4" aria-hidden />
           Hubungi Kami: (021) 123-45678

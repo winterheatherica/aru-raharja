@@ -26,7 +26,7 @@ export default function Arutrans({ dict }: Props) {
       name: "Avanza / Xenia",
       sku: "MPV-5",
       category: "MPV",
-      image: "/vehicles/avanza.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 450000,
       currency: "IDR",
       moq: 1,
@@ -40,7 +40,7 @@ export default function Arutrans({ dict }: Props) {
       name: "Innova Reborn",
       sku: "MPV-7",
       category: "MPV",
-      image: "/vehicles/innova.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 750000,
       currency: "IDR",
       moq: 1,
@@ -54,7 +54,7 @@ export default function Arutrans({ dict }: Props) {
       name: "Hiace Commuter",
       sku: "BUS-14",
       category: "Minibus",
-      image: "/vehicles/hiace.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 1500000,
       currency: "IDR",
       moq: 1,
@@ -68,7 +68,7 @@ export default function Arutrans({ dict }: Props) {
       name: "Double Cabin 4x4",
       sku: "PU-2DC",
       category: "Pickup",
-      image: "/vehicles/doublecab.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 1200000,
       currency: "IDR",
       moq: 1,
@@ -172,7 +172,7 @@ export default function Arutrans({ dict }: Props) {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
@@ -180,20 +180,6 @@ export default function Arutrans({ dict }: Props) {
         />
         <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
 
-        <div className="flex flex-wrap gap-2 pt-1">
-          <a
-            href="#arutrans-booking"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Cek Ketersediaan
-          </a>
-          <a
-            href="/contact?topic=transport-brief"
-            className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Minta Penawaran
-          </a>
-        </div>
       </section>
 
       <Cards
@@ -243,14 +229,6 @@ export default function Arutrans({ dict }: Props) {
         allowMultipleOpen
       />
 
-      <div className="text-center">
-        <a
-          href="#arutrans-booking"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Cek Ketersediaan
-        </a>
-      </div>
     </div>
   );
 }

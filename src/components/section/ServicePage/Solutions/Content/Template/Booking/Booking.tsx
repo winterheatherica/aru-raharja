@@ -343,7 +343,7 @@ export default function Booking({
               <button
                 type="button"
                 onClick={submit}
-                className="rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+                className="rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
               >
                 Ajukan Booking
               </button>

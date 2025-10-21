@@ -196,17 +196,22 @@ function Carousel({
       </div>
 
       {showThumbnails && total > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto">
+        <div className="mt-3 flex gap-2 overflow-x-auto" role="list">
           {items.map((it, idx) => (
             <button
               key={it.id}
               onClick={() => setActive(idx)}
-              className={`relative h-16 w-28 overflow-hidden rounded-lg border ${
-                idx === active ? "border-bumnblue-5" : "border-bumnslate-10"
-              }`}
+              className={`relative overflow-hidden rounded-lg border flex-shrink-0`}
+              style={{
+                width: 112,
+                height: 64,
+                border: idx === active ? "2px solid var(--bumnblue-5)" : "1px solid var(--bumnslate-10)",
+              }}
               aria-label={`Pilih item ${idx + 1}`}
+              role="listitem"
             >
-              <Media item={it} className="h-full w-full object-cover" />
+              <Thumbnail item={it} width={112} height={64} />
+
               {idx === active && (
                 <span className="absolute inset-0 ring-1 ring-bumnblue-5" aria-hidden />
               )}
@@ -268,6 +273,24 @@ function Grid({
   );
 }
 
+function getYouTubeId(url: string): string | null {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes("youtu.be")) {
+      return u.pathname.slice(1);
+    }
+    if (u.hostname.includes("youtube.com") || u.hostname.includes("www.youtube.com")) {
+      if (u.searchParams.get("v")) return u.searchParams.get("v");
+      const parts = u.pathname.split("/").filter(Boolean);
+      const embedIndex = parts.indexOf("embed");
+      if (embedIndex >= 0 && parts[embedIndex + 1]) return parts[embedIndex + 1];
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 function Media({
   item,
   className,
@@ -280,19 +303,122 @@ function Media({
   controls?: boolean;
 }) {
   const kind = item.kind || "image";
+  const imgProps = {
+    loading: "lazy" as const,
+    decoding: "async" as const,
+    style: { display: "block", width: "100%", height: "100%", objectFit: "cover" as const },
+  };
+
   if (kind === "video") {
+    const ytId = getYouTubeId(item.src);
+
+    if (ytId) {
+      const embedUrl = `https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1`;
+      const isThumbnailLike = /h-|w-|h-1|h-16|w-28|h-44|object-cover/.test(className || "");
+      if (isThumbnailLike && !controls) {
+        const thumb = item.poster || `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+        return (
+          <img
+            {...imgProps}
+            className={`${className || ""} ${heightClass || ""}`}
+            src={thumb}
+            alt={item.alt || "video thumbnail"}
+            onError={(e) => {
+              const t = e.currentTarget as HTMLImageElement;
+              if (t.src !== `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`) {
+                t.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+              } else {
+                t.style.display = "none";
+              }
+            }}
+          />
+        );
+      }
+      return (
+        <div style={{ position: "relative", paddingTop: "56.25%" }} className={`${className || ""} ${heightClass || ""}`}>
+          <iframe
+            src={embedUrl}
+            title={item.caption || "YouTube video"}
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+      );
+    }
+    try {
+      const u = new URL(item.src);
+      const ext = u.pathname.split(".").pop()?.toLowerCase() || "";
+      if (["mp4", "webm", "ogg"].includes(ext)) {
+        return (
+          <video
+            className={`${className || ""} ${heightClass || ""}`}
+            src={item.src}
+            poster={item.poster}
+            controls={controls}
+            preload="metadata"
+            style={{ display: "block", width: "100%", height: "100%", objectFit: "contain" }}
+          />
+        );
+      }
+    } catch {
+
+    }
+
+    if (item.poster) {
+      return <img {...imgProps} className={`${className || ""} ${heightClass || ""}`} src={item.poster} alt={item.alt || "video poster"} />;
+    }
+
     return (
-      <video
-        className={`${className || ""} ${heightClass || ""}`}
-        src={item.src}
-        poster={item.poster}
-        controls={controls}
-        preload="metadata"
-      />
+      <div className={`${className || ""} ${heightClass || ""} flex items-center justify-center`} style={{ minHeight: 40 }}>
+        <span className="text-xs">Video</span>
+      </div>
     );
   }
-  return <img className={`${className || ""} ${heightClass || ""}`} src={item.src} alt={item.alt || ""} />;
+  return <img {...imgProps} className={`${className || ""} ${heightClass || ""}`} src={item.src} alt={item.alt || ""} />;
 }
+
+function Thumbnail({ item, width = 112, height = 64 }: { item: GalleryItem; width?: number; height?: number }) {
+  const yt = getYouTubeId(item.src);
+  const thumbSrc = (() => {
+    if (item.kind === "video") {
+      if (item.poster) return item.poster;
+      if (yt) return `https://img.youtube.com/vi/${yt}/hqdefault.jpg`;
+      return item.src;
+    }
+    return item.src;
+  })();
+
+  const style: React.CSSProperties = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    display: "block",
+    minHeight: 1,
+  };
+
+  return (
+    <img
+      src={thumbSrc}
+      alt={item.alt || ""}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+      style={style}
+      onError={(e) => {
+        const el = e.currentTarget as HTMLImageElement;
+        if (yt && !el.src.includes("img.youtube.com")) {
+          el.src = `https://img.youtube.com/vi/${yt}/hqdefault.jpg`;
+          return;
+        }
+        el.style.display = "none";
+      }}
+    />
+  );
+}
+
 
 function ChevronLeftIcon(props: React.SVGProps<SVGSVGElement>) {
   return (

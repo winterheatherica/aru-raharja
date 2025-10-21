@@ -62,7 +62,7 @@ export default function Timeline({
         <div className="mb-4">
           <div className="h-2 w-full overflow-hidden rounded-full bg-bumnslate-10">
             <div
-              className="h-full bg-bumn-gradient-primary-10 transition-all"
+              className="h-full bg-bumn-gradient-primary-7 transition-all"
               style={{ width: `${Math.min(100, Math.max(0, progressRatio * 100))}%` }}
               aria-label="Progress"
               role="progressbar"
@@ -99,7 +99,7 @@ export default function Timeline({
             status === "done"
               ? "bg-bumnblue-5 text-white"
               : status === "current"
-              ? "bg-bumn-gradient-primary-10 text-white"
+              ? "bg-bumn-gradient-primary-7 text-white"
               : "bg-white text-bumnslate-6";
 
           const ring =
@@ -216,7 +216,7 @@ function StatusBadge({ status }: { status: "done" | "current" | "upcoming" }) {
   }
   if (status === "current") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-bumn-gradient-primary-10 px-2 py-1 text-[11px] font-semibold text-white">
+      <span className="inline-flex items-center gap-1 rounded-full bg-bumn-gradient-primary-7 px-2 py-1 text-[11px] font-semibold text-white">
         <PulseIcon className="h-3.5 w-3.5" /> Berjalan
       </span>
     );

@@ -152,7 +152,7 @@ export default function Arusolution({ dict }: Props) {
   ];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
@@ -160,20 +160,6 @@ export default function Arusolution({ dict }: Props) {
         />
         <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
 
-        <div className="flex flex-wrap gap-2 pt-1">
-          <a
-            href="/contact?topic=discovery-call"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Jadwalkan Discovery Call
-          </a>
-          <a
-            href="/contact?topic=scope"
-            className="inline-flex items-center gap-2 rounded-xl border border-bumnslate-10 bg-white px-4 py-2 text-sm font-semibold text-bumnblue-2 hover:border-bumnblue-5 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-          >
-            Kirim Scope Singkat
-          </a>
-        </div>
       </section>
 
       <Cards
@@ -215,14 +201,6 @@ export default function Arusolution({ dict }: Props) {
         allowMultipleOpen
       />
 
-      <div className="text-center">
-        <a
-          href="/contact?topic=discovery-call"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Jadwalkan Discovery Call
-        </a>
-      </div>
     </div>
   );
 }

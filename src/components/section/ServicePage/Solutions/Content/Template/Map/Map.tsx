@@ -120,7 +120,7 @@ export default function Map({
                   onClick={() => setActive(m.id)}
                   className={`w-full rounded-xl border p-3 text-left transition ${
                     active
-                      ? "border-bumnblue-5 bg-bumn-gradient-primary-10 text-white"
+                      ? "border-bumnblue-5 bg-bumn-gradient-primary-7 text-white"
                       : "border-bumnslate-10 bg-white hover:border-bumnblue-5"
                   }`}
                 >
@@ -215,36 +215,41 @@ function ImageMap({
             type="button"
             onClick={() => setActive(m.id)}
             style={{ left: `${m.xy.xPct}%`, top: `${m.xy.yPct}%` }}
-            className="absolute z-10 -translate-x-1/2 -translate-y-full focus:outline-none"
+            className="absolute z-10 -translate-x-1/2 -translate-y-1/2 focus:outline-none"
             aria-label={`Pin ${m.title}`}
+            aria-expanded={m.id === activeId}
           >
-            <span
-              className={`flex items-center justify-center rounded-full p-2 shadow-bumn-2 ${
-                active ? "bg-bumn-gradient-primary-10 text-white" : "bg-white text-bumnblue-2"
-              } ring-2 ${active ? "ring-bumnblue-5" : "ring-bumnslate-10"}`}
-            >
-              <PinIcon className="h-4 w-4" />
-            </span>
+            <span className="relative block w-10 h-10">
+              <span
+                className={`absolute inset-0 flex items-center justify-center rounded-full shadow-bumn-2 ${
+                  activeId === m.id
+                    ? "bg-bumn-gradient-primary-7 text-white ring-2 ring-bumnblue-5"
+                    : "bg-white text-bumnblue-2 ring-2 ring-bumnslate-10"
+                }`}
+              >
+                <PinIcon className="h-4 w-4" />
+              </span>
 
-            <div
-              className={`mt-2 w-56 rounded-xl border p-3 text-left ${
-                active ? "border-bumnblue-5 bg-white" : "border-bumnslate-10 bg-white"
-              }`}
-            >
-              <div className="text-sm font-semibold text-bumnblue-2">{m.title}</div>
-              {m.subtitle && <div className="text-xs text-bumnslate-6">{m.subtitle}</div>}
-              {m.address && <div className="mt-1 text-xs text-bumnslate-6">{m.address}</div>}
-              {m.placeUrl && (
-                <a
-                  href={m.placeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-bumnblue-2 underline underline-offset-2"
-                >
-                  Buka di Maps <ExternalIcon className="h-3.5 w-3.5" />
-                </a>
-              )}
-            </div>
+              <div
+                className={`absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2 rounded-xl border p-3 text-left shadow-lg ${
+                  activeId === m.id ? "border-bumnblue-5 bg-white" : "border-bumnslate-10 bg-white hidden"
+                }`}
+              >
+                <div className="text-sm font-semibold text-bumnblue-2">{m.title}</div>
+                {m.subtitle && <div className="text-xs text-bumnslate-6">{m.subtitle}</div>}
+                {m.address && <div className="mt-1 text-xs text-bumnslate-6">{m.address}</div>}
+                {m.placeUrl && (
+                  <a
+                    href={m.placeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-bumnblue-2 underline underline-offset-2"
+                  >
+                    Buka di Maps <ExternalIcon className="h-3.5 w-3.5" />
+                  </a>
+                )}
+              </div>
+            </span>
           </button>
         );
       })}

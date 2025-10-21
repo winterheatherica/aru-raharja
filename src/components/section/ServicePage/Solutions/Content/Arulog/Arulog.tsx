@@ -35,7 +35,7 @@ export default function Arulog({ dict }: Props) {
       name: "Kertas A4 80gsm",
       sku: "STN-A4-80",
       category: "Stationery",
-      image: "/catalog/a4-80.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 56000,
       currency: "IDR",
       moq: 5,
@@ -49,7 +49,7 @@ export default function Arulog({ dict }: Props) {
       name: "Mouse Wireless",
       sku: "ELC-MSE-WL",
       category: "Electronics",
-      image: "/catalog/mouse.jpg",
+      image: "/images/information/report/secure/secure2.webp",
       price: 135000,
       currency: "IDR",
       moq: 1,
@@ -63,7 +63,7 @@ export default function Arulog({ dict }: Props) {
       name: "Kursi Ergonomis",
       sku: "FUR-CHR-ERGO",
       category: "Furniture",
-      image: "/catalog/chair.jpg",
+      image: "/images/information/report/secure/secure3.webp",
       price: 1250000,
       currency: "IDR",
       moq: 2,
@@ -77,7 +77,7 @@ export default function Arulog({ dict }: Props) {
       name: "Masker Medis (50pcs)",
       sku: "MED-MSK-50",
       category: "Medical",
-      image: "/catalog/mask.jpg",
+      image: "/images/information/report/secure/secure1.webp",
       price: 27000,
       currency: "IDR",
       moq: 10,
@@ -91,7 +91,7 @@ export default function Arulog({ dict }: Props) {
       name: "Hand Sanitizer 500ml",
       sku: "MED-HS-500",
       category: "Medical",
-      image: "/catalog/hs500.jpg",
+      image: "/images/information/report/secure/secure2.webp",
       price: 38000,
       currency: "IDR",
       moq: 12,
@@ -153,7 +153,7 @@ export default function Arulog({ dict }: Props) {
   };
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 pb-10">
       <section className="space-y-3">
         <h2
           className="text-2xl lg:text-4xl font-semibold leading-snug"
@@ -164,7 +164,7 @@ export default function Arulog({ dict }: Props) {
         <div className="flex flex-wrap gap-2 pt-1">
           <a
             href="/contact?topic=rfq"
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
           >
             Minta Penawaran / RFQ
           </a>
@@ -177,10 +177,11 @@ export default function Arulog({ dict }: Props) {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-[minmax(260px,360px)_1fr] items-center">
+      <section className="grid gap-4 grid-cols-1">
         <Cards variant="kpi" items={kpis as any} gridCols={{ base: 1, md: 2, xl: 4 }} />
         <Cards variant="badges" items={badges} />
       </section>
+
 
       <Timeline
         title="Procurement Flow"
@@ -206,14 +207,6 @@ export default function Arulog({ dict }: Props) {
         <CompareModal items={compareItems} onClose={() => setCompareOpen(false)} />
       )}
 
-      <div className="text-center">
-        <a
-          href="/contact?topic=rfq"
-          className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-6 py-3 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-        >
-          Kirim RFQ Sekarang
-        </a>
-      </div>
     </div>
   );
 }
@@ -278,7 +271,7 @@ function CompareModal({
         <div className="flex items-center justify-end gap-2 border-t border-bumnslate-10 px-4 py-3">
           <a
             href={`/contact?topic=rfq${items[0] ? `&sku=${encodeURIComponent(items.map(i => i.sku).join(","))}` : ""}`}
-            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-10 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+            className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 text-sm font-semibold text-white hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
           >
             Ajukan RFQ untuk Item Ini
           </a>
