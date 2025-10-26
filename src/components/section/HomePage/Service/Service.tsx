@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import type { Dictionary, Locale } from "@/i18n/getDictionary";
+import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 import ServiceCard from "./ServiceCard";
 
 function Service({ dict, locale }: { dict: Dictionary; locale: Locale }) {

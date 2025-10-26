@@ -10,7 +10,7 @@ import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
 import Partner from "@/components/section/HomePage/Partners/Partners";
 import PartnerScroller from "@/components/section/HomePage/PartnerScroller/PartnerScroller";
 
-import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 
 type Props = {
   dict: Dictionary;

@@ -12,14 +12,14 @@ const service = {
   },
   solutions: {
     nav: [
-        { id: "arudigital", label: "<b>ARU</b><i>digital</i>" },
-        { id: "aruhealthcare", label: "<b>ARU</b><i>healthcare</i>" },
-        { id: "arucontractor", label: "<b>ARU</b><i>contractor</i>" },
-        { id: "arusource", label: "<b>ARU</b><i>source</i>" },
-        { id: "arusolution", label: "<b>ARU</b><i>solution</i>" },
-        { id: "arulog", label: "<b>ARU</b><i>log</i>" },
-        { id: "arutrans", label: "<b>ARU</b><i>trans</i>" },
-        { id: "aruspace", label: "<b>ARU</b><i>space</i>" },
+      { id: "arudigital", label: "<strong>ARU</strong><em>digital</em>" },
+      { id: "aruhealthcare", label: "<strong>ARU</strong><em>healthcare</em>" },
+      { id: "arucontractor", label: "<strong>ARU</strong><em>contractor</em>" },
+      { id: "arusource", label: "<strong>ARU</strong><em>source</em>" },
+      { id: "arusolution", label: "<strong>ARU</strong><em>solution</em>" },
+      { id: "arulog", label: "<strong>ARU</strong><em>log</em>" },
+      { id: "arutrans", label: "<strong>ARU</strong><em>trans</em>" },
+      { id: "aruspace", label: "<strong>ARU</strong><em>space</em>" },
     ] as const,
   },
 } as const;

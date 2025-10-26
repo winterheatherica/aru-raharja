@@ -3,7 +3,7 @@ import SmallHero from "@/components/general/BluePrint/SmallHero/SmallHero";
 import Intro from "@/components/section/ServicePage/Intro/Intro";
 import Solutions from "@/components/section/ServicePage/Solutions/Solutions";
 
-import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 
 type Props = {
   dict: Dictionary;

@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 import Carousel from "./Carousel";
 import { videoItems } from "./data";
 

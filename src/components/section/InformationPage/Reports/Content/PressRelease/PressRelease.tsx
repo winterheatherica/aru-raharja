@@ -43,14 +43,14 @@ export default function PressRelease({
     },
     {
       id: "pr-4",
-      title: "Hari Anak Nasional 2024 Jasa Raharja",
+      title: "Hari Anak Nasional 2024 Aru Raharja",
       date: "26 July 2024",
       imageUrl: "/images/information/report/press-release/report4.jpeg",
       href: "#",
     },
     {
       id: "pr-5",
-      title: "Jasa Raharja dukung Polantas Menyapa",
+      title: "Asu Raharja dukung Polantas Menyapa",
       date: "24 July 2024",
       imageUrl: "/images/information/report/press-release/report5.jpeg",
       href: "#",

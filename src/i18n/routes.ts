@@ -6,6 +6,8 @@ export type CanonicalPage =
   | "information"
   | "appeal"
   | "career"
+  | "login"
+  | "admin"
 
 export const locales = ["en", "id"] as const;
 export type Locale = (typeof locales)[number];
@@ -28,6 +30,8 @@ export const routeSlugByLocale = {
     information: "information",
     appeal: "appeal",
     career: "career",
+    login: "login",
+    admin: "admin",
   },
   id: {
     home: "beranda",
@@ -37,6 +41,8 @@ export const routeSlugByLocale = {
     information: "informasi",
     appeal: "himbauan",
     career: "karier",
+    login: "login",
+    admin: "admin",
   },
 } as const;
 

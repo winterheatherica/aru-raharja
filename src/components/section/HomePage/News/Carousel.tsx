@@ -4,7 +4,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import type { EmblaOptionsType } from "embla-carousel";
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import type { Locale } from "@/i18n/getDictionary";
+import type { Locale } from "@/i18n/get_dictionary";
 import NewsCard from "./NewsCard";
 import LoadMoreTile from "./LoadMoreTile";
 import type { NewsItem } from "./data";

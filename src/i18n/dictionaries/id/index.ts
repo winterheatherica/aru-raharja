@@ -6,6 +6,8 @@ import service from "./service";
 import information from "./information";
 import appeal from "./appeal";
 import career from "./career";
+import reservation from "./reservation";
+import article from "./article";
 
 const id = {
   header,
@@ -15,7 +17,9 @@ const id = {
   service,
   information,
   appeal,
-  career
+  career,
+  reservation,
+  article,
 } as const;
 
 export default id;

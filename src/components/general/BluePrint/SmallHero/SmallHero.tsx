@@ -71,16 +71,15 @@ export default function SmallHero({ hero, illustrationSrc }: Props) {
         <div className="max-w-[680px]">
           <h1
             className="text-2xl lg:text-5xl lg:leading-[58px] font-bold font-inter 
-                       animate-fade-right animate-delay-300"
+                      animate-fade-right animate-delay-300"
             dangerouslySetInnerHTML={{ __html: hero.titleHtml ?? "" }}
           />
           {hero.description ? (
             <p
               className="mt-4 text-lg lg:mt-6 font-lato 
                           animate-fade-left animate-delay-[600ms]"
-            >
-              {hero.description}
-            </p>
+              dangerouslySetInnerHTML={{ __html: hero.description }}
+            />
           ) : null}
         </div>
       </div>

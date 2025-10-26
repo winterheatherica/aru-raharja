@@ -3,7 +3,7 @@
 import * as React from "react";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
-import PhoneCTA from "./PhoneCTA/PhoneCTA";
+import PhoneCTA from "@/components/general/BluePrint/PhoneCTA/PhoneCTA";
 
 type NavItem = { id: string; label: string };
 

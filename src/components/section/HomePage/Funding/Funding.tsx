@@ -4,7 +4,7 @@ import { memo } from "react";
 import Carousel, { FundingItem } from "./Carousel";
 import LeftStatement from "./LeftStatement";
 import MaskOverlay from "./MaskOverlay";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 
 const STATIC_ITEMS: Pick<FundingItem, "code" | "iconSrc">[] = [
   { code: "SWDKLJJ", iconSrc: "/images/home/funding/swdkljj-icon-2.png" },

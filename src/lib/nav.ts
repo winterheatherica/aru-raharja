@@ -1,4 +1,4 @@
-import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { routeSlugByLocale } from "@/i18n/routes";
 
 export const NAV_ORDER = [

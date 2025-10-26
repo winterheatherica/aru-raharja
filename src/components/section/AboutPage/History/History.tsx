@@ -1,7 +1,7 @@
 "use client";
 
 import HistoryTabs, { type HistoryItem } from "./HistoryTabs";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 
 type HistoryDict = {
   title: string;

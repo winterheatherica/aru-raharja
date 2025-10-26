@@ -1,5 +1,5 @@
 import QuickLinkItem from "./QuickLinkItem";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 
 type Props = { dict: Dictionary };
 

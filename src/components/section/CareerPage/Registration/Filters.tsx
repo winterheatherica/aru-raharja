@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 
 type Props = {
   dict: Dictionary;

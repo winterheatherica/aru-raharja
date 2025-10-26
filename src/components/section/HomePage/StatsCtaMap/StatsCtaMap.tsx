@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import type { Dictionary, Locale } from "@/i18n/getDictionary";
+import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 import Metrics from "./Metrics";
 import CtaButton from "./CtaButton";
 import RightHeadline from "./RightHeadline";

@@ -6,6 +6,9 @@ import service from "./service";
 import information from "./information";
 import appeal from "./appeal";
 import career from "./career";
+import reservation from "./reservation";
+import article from "./article";
+import room from "./room";
 
 const en = {
   header,
@@ -16,6 +19,9 @@ const en = {
   information,
   appeal,
   career,
+  reservation,
+  article,
+  room,
 } as const;
 
 export default en;

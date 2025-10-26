@@ -7,7 +7,7 @@ import Culture from "@/components/section/AboutPage/Culture/Culture";
 import Subsidiary from "@/components/section/AboutPage/Subsidiary/Subsidiary";
 import Awards from "@/components/section/AboutPage/Awards/Awards";
 
-import type { Locale, Dictionary } from "@/i18n/getDictionary";
+import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 
 type Props = {
   dict: Dictionary;

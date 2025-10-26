@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { Locale } from "@/i18n/getDictionary";
+import type { Locale } from "@/i18n/get_dictionary";
 
 export default function LoadMoreTile({
   locale,

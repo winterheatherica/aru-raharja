@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import type { Dictionary, Locale } from "@/i18n/getDictionary";
+import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 import type { HeroSlide } from "./Carousel";
 
 const LazyCarousel = dynamic(() => import("./Carousel"), {

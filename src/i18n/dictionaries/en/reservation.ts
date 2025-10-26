@@ -1,0 +1,83 @@
+const reservation = {
+  hero: {
+    titleHtml: "Reservation",
+    description:
+      'Aru Raharja provides <strong>ARU</strong><em>space</em> — modern work and meeting spaces that can be booked to suit your needs.',
+    altMask: "Background decoration",
+    altIllustration: "Reservation illustration",
+  },
+  desc: {
+    paragraph:
+      "Choose the room that best fits your needs and adjust your booking schedule. Click the button below to view detailed time availability.",
+    ctaLabel: "View Booking Schedule",
+  },
+  roomlist: {
+    title: "Available Rooms",
+    subtitle: "Select a room to view details and booking schedule",
+    priceLabel: "Price per hour",
+    capacityLabel: "Capacity",
+    availableLabel: "Available",
+    unavailableLabel: "Fully booked",
+    ctaLabel: "View & Book",
+    ctaUnavailable: "Unavailable",
+    amenitiesTitle: "Facilities",
+    ratingLabel: "Rating",
+
+    list: [
+        {
+        id: "r1",
+        title: "Meeting Room R1",
+        subtitle: "Perfect for small team discussions",
+        capacity: 8,
+        floor: "3rd Floor",
+        pricePerHour: 50,
+        img: "/images/general/gedung-2.png",
+        rating: 4.8,
+        tags: ["#Hot deal", "#Popular"],
+        amenities: ["Projector", "Whiteboard", "HDMI", "Air Conditioner"],
+        available: true,
+        },
+        {
+        id: "r2",
+        title: "Focus Room R2",
+        subtitle: "Private focus room — ideal for 1:1 sessions",
+        capacity: 2,
+        floor: "2nd Floor",
+        pricePerHour: 20,
+        img: "/images/general/gedung-2.png",
+        rating: 4.5,
+        tags: ["#Quiet"],
+        amenities: ["Desk", "Power Outlet", "AC"],
+        available: true,
+        },
+        {
+        id: "r3",
+        title: "Conference Hall R3",
+        subtitle: "Spacious hall for larger meetings or workshops",
+        capacity: 20,
+        floor: "1st Floor",
+        pricePerHour: 120,
+        img: "/images/general/gedung-2.png",
+        rating: 4.9,
+        tags: ["#Large", "#Hybrid-ready"],
+        amenities: ["Stage", "PA System", "Video Conference"],
+        available: false,
+        },
+        {
+        id: "r4",
+        title: "Small Meeting R4",
+        subtitle: "Compact space for short discussions",
+        capacity: 4,
+        floor: "4th Floor",
+        pricePerHour: 30,
+        img: "/images/general/gedung-2.png",
+        rating: 4.3,
+        tags: [],
+        amenities: ["Monitor", "Whiteboard"],
+        available: true,
+        },
+    ],
+    },
+} as const;
+
+export default reservation;

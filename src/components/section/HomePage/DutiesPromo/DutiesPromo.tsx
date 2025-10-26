@@ -2,7 +2,7 @@
 
 import LeftStatement from "./BottomScroller/LeftStatement";
 import PromoCarousel from "./PromoCarousel/PromoCarousel";
-import type { Dictionary, Locale } from "@/i18n/getDictionary";
+import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 
 const slides = [
   { title: "Twibbon #HUTAruRaharja", src: "/images/home/duties-promo/hut-aru-raharja.png", alt: "Twibbon #HUTAruRaharja" },

@@ -2,7 +2,7 @@
 
 import { memo } from "react";
 import Image from "next/image";
-import type { Dictionary } from "@/i18n/getDictionary";
+import type { Dictionary } from "@/i18n/get_dictionary";
 import PartnersGrid from "./PartnersGrid";
 import PartnersCarousel from "./PartnersCarousel";
 

@@ -4,7 +4,6 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "img.youtube.com" },
       { protocol: "https", hostname: "i.ytimg.com" },
-      { protocol: "https", hostname: "webjr-api.jasaraharja.co.id" },
     ],
     unoptimized: false,
   },
