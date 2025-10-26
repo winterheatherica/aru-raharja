@@ -30,6 +30,15 @@ export default function News({
   const [selectedYear, setSelectedYear] = React.useState<string>(defaultYear);
   const demoItems: NewsItem[] = [
     {
+      id: "news-0",
+      title: "Digital IT Penopang Kehidupan Manusia",
+      date: "2025-10-10",
+      excerpt:
+        "Dalam kehidupan manusia kebutuhan akan informasi merupakan suatu hal yang sangat penting.",
+      imageUrl: "/images/article/article-1.png",
+      href: "/id/artikel/digital-it-penopang-kehidupan-manusia",
+    },
+    {
       id: "news-1",
       title: "ARU Raharja Sukses Menggelar Program Digitalisasi Pelayanan",
       date: "2025-10-10",

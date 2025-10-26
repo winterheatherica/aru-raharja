@@ -1,4 +1,3 @@
-// src/i18n/dynamic_routes.ts
 import { normalizeLocale, routeSlugByLocale, type Locale } from "./routes";
 
 export const dynamicSegmentByLocale = {

@@ -15,7 +15,6 @@ export default function RoomList({ dict, locale }: Props) {
 
   return (
     <section className="py-8">
-      {/* Header */}
       <div className="flex items-center justify-between mb-6 px-2 md:px-16 lg:px-24">
         <h3 className="text-xl lg:text-2xl font-semibold text-bumnblue-2">
           {roomlist.title}
@@ -23,7 +22,6 @@ export default function RoomList({ dict, locale }: Props) {
         <div className="text-sm text-bumngray-6">{roomlist.subtitle}</div>
       </div>
 
-      {/* Room Cards */}
       <div className="px-2 md:px-16 lg:px-24">
         <div className="grid grid-cols-1 gap-6">
           {rooms.map((r: any) => (
@@ -31,7 +29,6 @@ export default function RoomList({ dict, locale }: Props) {
               key={r.id}
               className="flex flex-col sm:flex-row items-stretch gap-4 bg-white border border-bumngray-8 rounded-xl p-4 shadow-bumn-2 hover:shadow-lg transition-shadow"
             >
-              {/* Left: Image (full width on mobile, fixed on sm+) */}
               <div className="w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
                 <img
                   src={r.img}
@@ -44,7 +41,6 @@ export default function RoomList({ dict, locale }: Props) {
                 />
               </div>
 
-              {/* Middle: Info */}
               <div className="flex-1 flex flex-col justify-between">
                 <div>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
@@ -55,7 +51,6 @@ export default function RoomList({ dict, locale }: Props) {
                       <p className="text-sm text-bumngray-6">{r.subtitle}</p>
                     </div>
 
-                    {/* Rating + floor */}
                     <div className="hidden sm:flex flex-col items-end">
                       <div className="text-sm text-bumngray-6">
                         <span className="font-semibold text-bumnblue-2">{r.rating}</span>
@@ -65,7 +60,6 @@ export default function RoomList({ dict, locale }: Props) {
                     </div>
                   </div>
 
-                  {/* Meta info */}
                   <div className="mt-3 flex flex-wrap items-center gap-2">
                     <div className="text-sm text-bumngray-6 mr-3">
                       <span className="font-medium text-bumnblue-2">{r.capacity}</span>{" "}
@@ -94,9 +88,7 @@ export default function RoomList({ dict, locale }: Props) {
                   </div>
                 </div>
 
-                {/* Bottom row: responsive */}
                 <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-3">
-                  {/* left: availability */}
                   <div className="flex items-center gap-2 text-sm text-bumngray-6">
                     {r.available ? (
                       <span className="inline-flex items-center gap-2">
@@ -111,17 +103,15 @@ export default function RoomList({ dict, locale }: Props) {
                     )}
                   </div>
 
-                  {/* price */}
                   <div className="flex items-center gap-4 justify-between sm:justify-start">
                     <div className="text-lg font-semibold text-bumnblue-2">
                       ${r.pricePerHour}
                     </div>
                   </div>
 
-                  {/* CTA: full width on mobile, normal on sm+ */}
                   <div className="mt-0 sm:ml-auto sm:mt-0 w-full sm:w-auto">
                     <Link
-                      href={roomHref(locale, r.id)} // ✅ pakai helper lokalized
+                      href={roomHref(locale, r.id)}
                       className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
                         r.available
                           ? "bg-bumnblue-2 text-white hover:bg-bumnblue-3"

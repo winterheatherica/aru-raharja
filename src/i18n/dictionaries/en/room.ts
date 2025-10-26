@@ -1,5 +1,4 @@
 const room = {
-  /** Meta data for the page */
   meta: {
     id: "r1",
     title: "Meeting Room R1",
@@ -11,7 +10,6 @@ const room = {
     heroImage: "/images/rooms/room-1.jpg",
   },
 
-  /** Description section */
   description: {
     heading: "A productive space for collaboration",
     paragraph: `
@@ -31,7 +29,6 @@ const room = {
     `,
   },
 
-  /** Image gallery section */
   gallery: {
     title: "Gallery",
     images: [
@@ -58,7 +55,6 @@ const room = {
     ],
   },
 
-  /** Facilities section */
   facilities: {
     title: "Facilities & Equipment",
     list: [
@@ -75,7 +71,6 @@ const room = {
     ],
   },
 
-  /** Booking information */
   booking: {
     title: "Booking Information",
     details: [
@@ -99,7 +94,6 @@ const room = {
     ctaLabel: "Book This Room",
   },
 
-  /** Map / Location section */
   location: {
     title: "Location",
     address: "3rd Floor, Aru Raharja Building, Jl. Teknologi No. 5, Jakarta",
@@ -111,7 +105,6 @@ const room = {
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5416367567214!2d106.8227!3d-6.2005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e3eec!2sJakarta!5e0!3m2!1sen!2sid!4v1683729912345",
   },
 
-  /** Related rooms */
   related: {
     title: "Other Rooms",
     rooms: [

@@ -53,7 +53,6 @@ export default function PortraitWithBackground({
         </div>
       </div>
 
-      {/* BODY */}
       <div className="p-6 pt-4 pb-4">
         <div className="flex justify-between w-full gap-6 lg:items-start">
           <div className="flex items-center space-x-4">

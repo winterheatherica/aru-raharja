@@ -128,7 +128,6 @@ export default function Arudigital({ dict }: Props) {
     },
   ];
 
-  // demo item for Gallery
   const demoItem = {
     id: "demo",
     kind: demo.kind,
@@ -147,8 +146,6 @@ export default function Arudigital({ dict }: Props) {
           />
           <p className="text-bumnslate-5 text-base lg:text-lg">{description}</p>
         </div>
-
-        {/* DEMO: menggunakan Gallery (single grid item) */}
         <div className="rounded-2xl border border-bumnslate-10 bg-bumnblack-1/90 shadow-bumn-2 overflow-hidden">
           <Gallery
             items={[demoItem]}

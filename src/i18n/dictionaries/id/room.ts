@@ -1,6 +1,4 @@
-// src/i18n/dictionaries/id/room.ts
 const room = {
-  /** Meta data untuk halaman */
   meta: {
     id: "r1",
     title: "Ruang Rapat R1",
@@ -12,7 +10,6 @@ const room = {
     heroImage: "/images/rooms/room-1.jpg",
   },
 
-  /** Deskripsi */
   description: {
     heading: "Ruang yang mendukung kolaborasi produktif",
     paragraph: `
@@ -32,7 +29,6 @@ const room = {
     `,
   },
 
-  /** Galeri gambar */
   gallery: {
     title: "Galeri",
     images: [
@@ -59,7 +55,6 @@ const room = {
     ],
   },
 
-  /** Fasilitas */
   facilities: {
     title: "Fasilitas & Peralatan",
     list: [
@@ -76,7 +71,6 @@ const room = {
     ],
   },
 
-  /** Informasi pemesanan */
   booking: {
     title: "Informasi Pemesanan",
     details: [
@@ -100,7 +94,6 @@ const room = {
     ctaLabel: "Pesan Ruangan Ini",
   },
 
-  /** Lokasi / Peta */
   location: {
     title: "Lokasi",
     address: "Lantai 3, Gedung Aru Raharja, Jl. Teknologi No. 5, Jakarta",
@@ -112,7 +105,6 @@ const room = {
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5416367567214!2d106.8227!3d-6.2005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e3eec!2sJakarta!5e0!3m2!1sen!2sid!4v1683729912345",
   },
 
-  /** Ruang terkait */
   related: {
     title: "Ruangan Lain",
     rooms: [

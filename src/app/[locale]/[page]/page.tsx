@@ -67,13 +67,11 @@ export default async function DynamicPage({
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return notFound();
 
-  // handle admin / login specially via dynamic imports
   if (canonical === "login") {
-    // render login (client bundle only when navigated)
     return <LoginPage dict={dict} locale={locale} />;
   }
+  
   if (canonical === "admin") {
-    // recommend middleware to protect admin; here we just render lazy admin component
     return <AdminPage dict={dict} locale={locale} />;
   }
 

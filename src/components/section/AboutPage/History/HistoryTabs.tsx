@@ -22,7 +22,6 @@ export default function HistoryTabs({
 
   return (
     <div className="mt-8 lg:mt-12 grid grid-cols-12 gap-4">
-      {/* Sidebar years */}
       <div className="col-span-12 lg:col-span-3">
         <div className="mb-6 text-lg font-medium text-bumngreen-1">
           Track Record
@@ -54,7 +53,6 @@ export default function HistoryTabs({
         </div>
       </div>
 
-      {/* Panel */}
       <div className="col-span-12 lg:col-span-9">
         {items.map(
           (it) =>
