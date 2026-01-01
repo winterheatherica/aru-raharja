@@ -5,7 +5,7 @@ export default function PartnerBadges() {
   return (
     <div className="w-full">
       <div className="flex flex-row lg:flex-col items-center justify-center gap-6">
-        <Link
+        {/* <Link
           href="https://www.danantaraindonesia.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -59,7 +59,7 @@ export default function PartnerBadges() {
             fill
             className="object-contain"
           />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ export const NAV_ORDER = [
   "service",
   "reservation",
   "information",
-  "appeal",
+  // "appeal",
   "career",
 ] as const;
 
@@ -19,7 +19,7 @@ export const SEGMENT_TO_KEY: Record<NavSegment, keyof NavbarDict> = {
   service: "services",
   reservation: "reservation",
   information: "information",
-  appeal: "appeal",
+  // appeal: "appeal",
   career: "career",
 };
 

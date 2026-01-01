@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 type HeroSlideOverlayProps = {
-  title?: string;
+  title: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
@@ -26,17 +26,15 @@ export default function HeroSlideOverlay({
         paddingInline: "clamp(8px, 1.5vw, 16px)",
       }}
     >
-      {title ? (
-        <p
-          className="font-bold"
-          style={{
-            fontSize: "clamp(14px, 2.2vw, 40px)",
-            marginBottom: "clamp(6px, 1.6vw, 20px)",
-          }}
-        >
-          {title}
-        </p>
-      ) : null}
+      <h2
+        className="font-bold"
+        style={{
+          fontSize: "clamp(14px, 2.2vw, 40px)",
+          marginBottom: "clamp(6px, 1.6vw, 20px)",
+        }}
+      >
+        {title}
+      </h2>
 
       {ctaLabel && ctaHref ? (
         <Link

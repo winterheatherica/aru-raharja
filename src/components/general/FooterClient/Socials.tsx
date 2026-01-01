@@ -4,10 +4,10 @@ import Link from "next/link";
 type SocialLink = { href: string; iconSrc: string; label: string };
 
 const socials: SocialLink[] = [
-  { href: "https://www.instagram.com/", iconSrc: "/images/general/logo/Instagram.webp", label: "Instagram" },
-  { href: "https://x.com/", iconSrc: "/images/general/logo/Twitter.webp", label: "X / Twitter" },
-  { href: "https://www.facebook.com/", iconSrc: "/images/general/logo/Facebook.webp", label: "Facebook" },
-  { href: "https://www.linkedin.com/", iconSrc: "/images/general/logo/Linkedin.webp", label: "LinkedIn" },
+  { href: "https://www.instagram.com/aruraharja/", iconSrc: "/images/general/logo/Instagram.webp", label: "Instagram" },
+  // { href: "https://x.com/", iconSrc: "/images/general/logo/Twitter.webp", label: "X / Twitter" },
+  { href: "https://www.facebook.com/p/Aru-Raharja-100086789693911/", iconSrc: "/images/general/logo/Facebook.webp", label: "Facebook" },
+  { href: "https://www.linkedin.com/company/pt-aru-raharja/", iconSrc: "/images/general/logo/Linkedin.webp", label: "LinkedIn" },
 ];
 
 export default function Socials() {

@@ -22,7 +22,7 @@ export default function QuickLinkItem({
       className="
         relative bg-bumn-gradient-white-2 rounded-2xl overflow-hidden
         p-6 lg:p-10
-        min-h-[12rem] md:min-h-[10rem] lg:min-h-[15rem]
+        min-h-[12rem] md:min-h-[10rem] lg:min-h-[12rem]
       "
     >
       <div className="relative z-20 h-full flex flex-col justify-center">

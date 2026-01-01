@@ -11,26 +11,37 @@ import Partner from "@/components/section/HomePage/Partners/Partners";
 import PartnerScroller from "@/components/section/HomePage/PartnerScroller/PartnerScroller";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
+import type { HeroSlideAPI } from "@/types/hero";
 
 type Props = {
   dict: Dictionary;
   locale: Locale;
+  site: {
+    home?: {
+      hero?: unknown[];
+      [key: string]: unknown;
+    };
+    [key: string]: unknown;
+  };
 };
 
-export default function HomePage({ dict, locale }: Props) {
+export default function HomePage({ dict, locale, site }: Props) {
+  const heroSlides = (site.home?.hero ?? []) as HeroSlideAPI[];
+
   return (
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
-      <Masking position="fixed" />
-      <Hero dict={dict} locale={locale} />
+      {/* <Masking position="fixed" /> */}
+      <Hero slides={heroSlides} locale={locale} />
       <DutiesPromo dict={dict} locale={locale} />
       <Funding dict={dict} />
       <StatsCtaMap dict={dict} locale={locale} />
       <Service dict={dict} locale={locale} />
       <News dict={dict} />
-      <Videos dict={dict} />
-      <Partner dict={dict} />
+      {/* <Videos dict={dict} /> */}
+      {/* <Partner dict={dict} /> */}
       <PartnerScroller />
       <QuickLinks dict={dict} />
     </main>
   );
 }
+  

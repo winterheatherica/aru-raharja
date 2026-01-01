@@ -5,6 +5,7 @@ import History from "@/components/section/AboutPage/History/History";
 import Business from "@/components/section/AboutPage/Business/Business";
 import Culture from "@/components/section/AboutPage/Culture/Culture";
 import Subsidiary from "@/components/section/AboutPage/Subsidiary/Subsidiary";
+import Partner from "@/components/section/HomePage/Partners/Partners";
 import Awards from "@/components/section/AboutPage/Awards/Awards";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
@@ -24,7 +25,8 @@ export default function AboutPage({ dict, locale }: Props) {
         <History dict={dict} />
         <Business dict={dict} />
         <Culture dict={dict} />
-        <Subsidiary dict={dict} />
+        {/* <Subsidiary dict={dict} /> */}
+        <Partner dict={dict} />
         <Awards dict={dict} />
       </div>
     </main>

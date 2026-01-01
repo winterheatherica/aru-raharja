@@ -10,9 +10,9 @@ export default function Brand({ locale }: { locale: Locale }) {
 
   return (
     <Link href={href} className="shrink-0" aria-label={label}>
-      <div className="relative h-[80px] w-[260px] hidden sm:block">
+      <div className="relative h-[50px] w-[260px] hidden sm:block">
         <Image
-          src="/images/general/logo/bumn.png"
+          src="/images/general/logo/aru-text.png"
           alt="Brand Logo"
           fill
           className="object-contain"
@@ -22,7 +22,7 @@ export default function Brand({ locale }: { locale: Locale }) {
 
       <div className="relative h-[60px] w-[56px] sm:hidden">
         <Image
-          src="/images/general/logo/bumn-mobile.png"
+          src="/images/general/logo/aru-text.png"
           alt="Brand Logo Mobile"
           fill
           className="object-contain"

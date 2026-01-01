@@ -8,13 +8,13 @@ const home = {
     complaintCta: "Submit a Complaint",
   },
   dutiesPromo: {
-    heading: "Main Duties of Aru Raharja for the Public",
+    heading: "ARUdigital Core Products",
     descPrefix:
-      "Aru Raharja as the first guarantor of traffic accident victims in accordance with",
-    laws: ["Law No. 33 of 1964", "Law No. 34 of 1964"],
+      "Integrated digital products from ARU to support efficiency, productivity, and the growth of your business.",
+    laws: [""],
   },
   funding: {
-    leftTitleHtml: `Funding Sources <br><b>Law No. 33 of 1964</b><br>and<br><b>Law No. 34 of 1964</b>`,
+    leftTitleHtml: `<br><b>Keahlian<br>Kami</b>`,
     items: [
       { description: "Mandatory Contribution for Road Traffic Accident Funds" },
       { description: "Mandatory Contribution for Public Motor Vehicles" },

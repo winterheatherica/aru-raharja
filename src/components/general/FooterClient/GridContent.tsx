@@ -9,7 +9,7 @@ export default function GridContent({ dict, locale }: { dict: Dictionary; locale
     <div
       className="
         z-20 grid
-        grid-cols-1 lg:grid-cols-4
+        grid-cols-1 lg:grid-cols-3
         gap-y-12 gap-x-16
         items-start justify-items-start
       "
@@ -17,7 +17,7 @@ export default function GridContent({ dict, locale }: { dict: Dictionary; locale
       <AboutBlock dict={dict} />
       <ContactBlock dict={dict} />
       <QuickLinks dict={dict} locale={locale} />
-      <PartnerBadges />
+      {/* <PartnerBadges /> */}
     </div>
   );
 }

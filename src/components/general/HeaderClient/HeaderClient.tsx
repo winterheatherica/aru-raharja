@@ -34,7 +34,8 @@ export default function HeaderClient({ locale, dict }: HeaderClientProps) {
     <header className="sticky top-0 z-30 bg-white backdrop-blur supports-[backdrop-filter]:bg-white/85 overflow-hidden">
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
         <div className="pl-4 sm:pl-0">
-          <Brand locale={locale} />
+          {/* <Brand locale={locale} /> */}
+          <CompanyLogo className="me-4 lg:me-0" />
         </div>
 
         <nav className="flex flex-row-reverse items-center gap-2 lg:flex-row">
@@ -53,9 +54,9 @@ export default function HeaderClient({ locale, dict }: HeaderClientProps) {
             <Burger open={openMobile} onToggle={() => setOpenMobile((s) => !s)} />
           </div>
 
-          <PhoneCta locale={locale} />
+          {/* <PhoneCta locale={locale} /> */}
 
-          <CompanyLogo className="me-4 lg:me-0" />
+          {/* <CompanyLogo className="me-4 lg:me-0" /> */}
         </nav>
       </div>
 

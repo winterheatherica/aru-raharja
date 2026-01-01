@@ -23,7 +23,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
             <span>{t.contactUs}</span>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href={`/${locale}/service`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">
               <Image src="/images/general/footer/e-procurement.webp" alt="E-procurement" fill className="object-contain" />
@@ -38,7 +38,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
             </span>
             <span>{t.wbs}</span>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

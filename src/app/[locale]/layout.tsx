@@ -1,5 +1,7 @@
 import Header from "@/components/general/Header/Header";
 import Footer from "@/components/general/Footer/Footer";
+import Whatsapp from "@/components/general/Whatsapp/Whatsapp";
+import Background from "@/components/general/Background/Background";
 import { getDictionary, type Locale } from "@/i18n/get_dictionary";
 
 export default async function LocaleLayout({
@@ -13,9 +15,12 @@ export default async function LocaleLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header dict={dict} locale={params.locale} />
-        <div className="flex-grow">{children}</div>
-      <Footer dict={dict} locale={params.locale} />
+      <Background>
+        <Header dict={dict} locale={params.locale} />
+          <div className="flex-grow">{children}</div>
+        <Whatsapp />
+        <Footer dict={dict} locale={params.locale} />
+      </Background>
     </div>
   );
 }

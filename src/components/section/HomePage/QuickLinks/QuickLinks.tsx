@@ -8,7 +8,7 @@ export default function QuickLinks({ dict }: Props) {
 
   return (
     <section className="grid gap-4 pt-20 mt-6 lg:grid-cols-2">
-      <QuickLinkItem
+      {/* <QuickLinkItem
         title={links.x.title}
         buttonLabel={links.x.button}
         href="https://x.com/pt_jasaraharja"
@@ -21,7 +21,7 @@ export default function QuickLinks({ dict }: Props) {
         href="https://www.tiktok.com/@jasaraharja.official"
         logoSrc="/images/general/logo/tiktok.svg"
         logoAlt="TikTok logo"
-      />
+      /> */}
       <QuickLinkItem
         title={links.instagram.title}
         buttonLabel={links.instagram.button}

@@ -26,7 +26,7 @@ export default function SmallHero({ hero, illustrationSrc }: Props) {
     >
       <div className="hidden md:block absolute inset-y-0 left-0 w-full h-full items-center justify-start pointer-events-none z-0">
         <Image
-          src="/images/general/masking/masking-variant-3.png"
+          src="/images/general/masking/aru-mask-4-white.png"
           alt={hero.altMask ?? ""}
           fill
           className="object-cover object-left invert brightness-0 rotate-180 drop-shadow-[0_0_0px_rgba(255,255,255,1)]"

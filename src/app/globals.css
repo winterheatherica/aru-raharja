@@ -32,3 +32,18 @@
 .animate-infinite-scroll-right {
   animation: infinite-scroll-right 30s linear infinite;
 }
+
+@layer base {
+  .app-background {
+    position: relative;
+    min-height: 100vh;
+    background:
+      #ffffff;
+    overflow: hidden;
+  }
+
+  .app-background-content {
+    position: relative;
+    z-index: 10;
+  }
+}

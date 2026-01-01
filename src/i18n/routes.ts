@@ -4,7 +4,7 @@ export type CanonicalPage =
   | "service"
   | "reservation"
   | "information"
-  | "appeal"
+  // | "appeal"
   | "career"
   | "login"
   | "admin"
@@ -28,7 +28,7 @@ export const routeSlugByLocale = {
     service: "service",
     reservation: "reservation",
     information: "information",
-    appeal: "appeal",
+    // appeal: "appeal",
     career: "career",
     login: "login",
     admin: "admin",
@@ -39,7 +39,7 @@ export const routeSlugByLocale = {
     service: "layanan",
     reservation: "reservasi",
     information: "informasi",
-    appeal: "himbauan",
+    // appeal: "himbauan",
     career: "karier",
     login: "login",
     admin: "admin",

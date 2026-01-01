@@ -8,29 +8,29 @@ const home = {
     complaintCta: "Ajukan Pengaduan",
   },
   dutiesPromo: {
-    heading: "Tugas Pokok Aru Raharja untuk masyarakat",
+    heading: "Layanan Kami: Produk Digital ARU",
     descPrefix:
-      "Aru Raharja sebagai penjamin pertama Korban kecelakaan Lalu Lintas sesuai",
-    laws: ["UU No. 33 Tahun 1964", "UU No. 34 Tahun 1964"],
+      "Produk dan layanan digital ARU dirancang sebagai solusi terintegrasi untuk mendukung efisiensi, produktivitas, dan pengembangan bisnis perusahaan.",
+    laws: [],
   },
   funding: {
-    leftTitleHtml: `Sumber Dana <br><b>UU No.33 Tahun 1964</b><br>dan<br><b>UU No.34 Tahun 1964</b>`,
+    leftTitleHtml: `<br><b>Keahlian<br>Kami</b>`,
     items: [
-      { description: "Sumbangan Wajib Dana Kecelakaan Lalu Lintas Jalan" },
-      { description: "Iuran Wajib Kendaraan Bermotor Umum" },
-      { description: "Iuran Wajib Pesawat Udara" },
-      { description: "Iuran Wajib Kereta Api" },
+      { description: "Web Dev" },
+      { description: "Mobile Apps" },
+      { description: "Ai" },
+      { description: "CLoud" },
       { description: "Iuran Wajib Kapal Laut" },
     ],
   },
   statsCtaMap: {
     metricLabels: {
-      regionalOffices: "Kantor Wilayah",
-      branchOffices: "Kantor Cabang",
-      serviceOffices: "Kantor Pelayanan",
+      regionalOffices: "Proyek Selesai",
+      branchOffices: "Pengalaman",
+      serviceOffices: "Support",
     },
     ctaLabel: "Hubungi Kami",
-    rightHeadlineHtml: "Melayani Hingga <br /> Pelosok Negeri",
+    rightHeadlineHtml: "Market <br /> Share",
   },
   service: {
     cards: {

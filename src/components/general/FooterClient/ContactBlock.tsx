@@ -33,13 +33,13 @@ export default function ContactBlock({ dict }: { dict: Dictionary }) {
             <span className="relative w-[20px] h-[20px]">
               <Image src="/images/general/footer/whatsapp.webp" alt="whatsapp" fill className="object-contain" />
             </span>
-            <span>021 7818 124</span>
+            <span>0812 2700 8100</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">
               <Image src="/images/general/footer/comment.webp" alt="comment" fill className="object-contain" />
             </span>
-            <span>021 7884 5104</span>
+            <span>021 7818 124</span>
           </div>
         </div>
       </div>

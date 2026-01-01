@@ -46,7 +46,7 @@ export default function Reports({ dict, locale, value, onValueChange }: Props) {
   return (
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
       <section aria-label="Solutions" className="w-full space-y-8">
-        <Navigation dict={dict} value={active} onChange={handleChange} />
+        {/* <Navigation dict={dict} value={active} onChange={handleChange} /> */}
         <Content activeId={active} dict={dict} locale={locale} />
         <PhoneCTA />
       </section>

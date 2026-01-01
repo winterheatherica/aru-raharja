@@ -3,11 +3,11 @@
 import * as React from "react";
 
 import News from "./News/News";
-import AnnualReport from "./AnnualReport/AnnualReport";
-import SustainabilityReport from "./SustainabilityReport/SustainabilityReport";
-import MonthlyReport from "./MonthlyReport/MonthlyReport";
-import PressRelease from "./PressRelease/PressRelease";
-import Secure from "./Secure/Secure";
+// import AnnualReport from "./AnnualReport/AnnualReport";
+// import SustainabilityReport from "./SustainabilityReport/SustainabilityReport";
+// import MonthlyReport from "./MonthlyReport/MonthlyReport";
+// import PressRelease from "./PressRelease/PressRelease";
+// import Secure from "./Secure/Secure";
 
 import SectionTitle from "./Template/SectionTitle/SectionTitle";
 
@@ -30,23 +30,23 @@ export default function Content({ activeId, dict, locale }: Props) {
     case "news":
       content = <News dict={dict} locale={locale} />;
       break;
-    case "annualreport":
-      content = <AnnualReport dict={dict} locale={locale} />;
-      break;
-    case "sustainabilityreport":
-      content = <SustainabilityReport dict={dict} locale={locale} />;
-      break;
-    case "monthlyreport":
-      content = <MonthlyReport dict={dict} locale={locale} />;
-      break;
-    case "pressrelease":
-      content = <PressRelease dict={dict} locale={locale} />;
-      break;
-    case "secure":
-      content = <Secure dict={dict} locale={locale} />;
-      break;
-    default:
-      return null;
+    // case "annualreport":
+    //   content = <AnnualReport dict={dict} locale={locale} />;
+    //   break;
+    // case "sustainabilityreport":
+    //   content = <SustainabilityReport dict={dict} locale={locale} />;
+    //   break;
+    // case "monthlyreport":
+    //   content = <MonthlyReport dict={dict} locale={locale} />;
+    //   break;
+    // case "pressrelease":
+    //   content = <PressRelease dict={dict} locale={locale} />;
+    //   break;
+    // case "secure":
+    //   content = <Secure dict={dict} locale={locale} />;
+    //   break;
+    // default:
+    //   return null;
   }
 
   return (

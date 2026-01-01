@@ -10,9 +10,10 @@ import HeroMask from "./HeroMask";
 export type HeroSlide = {
   src: string;
   alt: string;
-  title?: string | null;
+  title: string;
   ctaLabel?: string | null;
   ctaHref?: string | null;
+  banner: string;
 };
 
 type CarouselProps = {
@@ -31,17 +32,21 @@ export default function Carousel({
   maskSrc = null,
 }: CarouselProps) {
   const [active, setActive] = useState(0);
-  const len = Math.max(0, slides.length);
+  const len = slides.length;
 
   const timerRef = useRef<number | null>(null);
   const hoveringRef = useRef(false);
+
   useEffect(() => {
     if (!len) return;
+
     const tick = () => {
       if (hoveringRef.current && pauseOnHover) return;
       setActive((i) => (i + 1) % len);
     };
+
     timerRef.current = window.setInterval(tick, autoplayMs);
+
     return () => {
       if (timerRef.current) window.clearInterval(timerRef.current);
       timerRef.current = null;
@@ -53,19 +58,24 @@ export default function Carousel({
 
   const startY = useRef<number | null>(null);
   const deltaY = useRef(0);
+
   const onTouchStart: React.TouchEventHandler<HTMLDivElement> = (e) => {
     startY.current = e.touches[0].clientY;
     deltaY.current = 0;
   };
+
   const onTouchMove: React.TouchEventHandler<HTMLDivElement> = (e) => {
     if (startY.current == null) return;
     deltaY.current = e.touches[0].clientY - startY.current;
   };
+
   const onTouchEnd: React.TouchEventHandler<HTMLDivElement> = () => {
     if (startY.current == null) return;
     const threshold = 60;
+
     if (deltaY.current > threshold) setActive((i) => (i - 1 + len) % len);
     else if (deltaY.current < -threshold) setActive((i) => (i + 1) % len);
+
     startY.current = null;
     deltaY.current = 0;
   };
@@ -102,15 +112,21 @@ export default function Carousel({
           {slides.map((s, idx) => {
             const alt = s.alt || `slide-${idx + 1}`;
             const hasCta = s.ctaLabel && s.ctaHref;
+            const showOverlay = Boolean(s.title) && s.banner !== "POLISH";
 
             return (
               <div
                 key={idx}
                 role="group"
                 aria-roledescription="slide"
+                aria-label={`Slide ${idx + 1}: ${s.title ?? alt}`}
                 className="shrink-0 grow-0"
                 style={{ height: `${100 / len}%` }}
               >
+                {idx === 0 && s.title && (
+                  <h1 className="sr-only">{s.title}</h1>
+                )}
+
                 <div className="relative w-full h-full bg-black">
                   <Image
                     src={s.src}
@@ -121,16 +137,20 @@ export default function Carousel({
                     priority={idx === 0}
                   />
 
-                  {(s.title || hasCta) && (
+                  {showOverlay && (
                     <HeroSlideOverlay
-                      title={s.title ?? undefined}
+                      title={s.title}
                       ctaLabel={s.ctaLabel ?? undefined}
                       ctaHref={s.ctaHref ?? undefined}
                     />
                   )}
 
                   {!s.title && hasCta ? (
-                    <Link aria-label={`Open ${s.ctaLabel}`} href={s.ctaHref!} className="absolute inset-0" />
+                    <Link
+                      aria-label={`Open ${s.ctaLabel}`}
+                      href={s.ctaHref!}
+                      className="absolute inset-0"
+                    />
                   ) : null}
                 </div>
               </div>
@@ -147,8 +167,8 @@ export default function Carousel({
               md:left-4 md:top-8 md:bottom-8
               lg:left-6 lg:bottom-12 lg:top-auto
               flex h-auto
-              "
-            >
+            "
+          >
             <HeroIndicators count={len} activeIndex={active} onJump={setActive} />
           </div>
         )}

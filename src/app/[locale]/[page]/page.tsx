@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
+
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -21,6 +22,7 @@ const LoginPage = dynamic(() => import("@/components/pages/LoginPage"), {
   ssr: false,
   loading: () => <div>Loading…</div>,
 });
+
 const AdminPage = dynamic(() => import("@/components/pages/AdminPage"), {
   ssr: false,
   loading: () => <div>Loading admin…</div>,
@@ -28,18 +30,30 @@ const AdminPage = dynamic(() => import("@/components/pages/AdminPage"), {
 
 const BRAND = "PT Aru Raharja" as const;
 
+type SiteContent = {
+  home?: {
+    hero?: unknown[];
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+};
+
 type PageComponentProps = {
   dict: Dictionary;
   locale: Locale;
+  site: SiteContent;
 };
 
-const PageComponentByCanonical: Record<CanonicalPage, React.ComponentType<PageComponentProps> | null> = {
+const PageComponentByCanonical: Record<
+  CanonicalPage,
+  React.ComponentType<PageComponentProps> | null
+> = {
   home: HomePage,
   about: AboutPage,
   service: ServicePage,
   reservation: ReservationPage,
   information: InformationPage,
-  appeal: AppealPage,
+  // appeal: AppealPage,
   career: CareerPage,
   login: null,
   admin: null,
@@ -51,11 +65,28 @@ const titleByCanonical: Record<CanonicalPage, Record<Locale, string>> = {
   service: { en: `Services - ${BRAND}`, id: `Layanan - ${BRAND}` },
   reservation: { en: `Reservation - ${BRAND}`, id: `Reservasi - ${BRAND}` },
   information: { en: `Information - ${BRAND}`, id: `Informasi - ${BRAND}` },
-  appeal: { en: `Appeal - ${BRAND}`, id: `Himbauan - ${BRAND}` },
+  // appeal: { en: `Appeal - ${BRAND}`, id: `Himbauan - ${BRAND}` },
   career: { en: `Career - ${BRAND}`, id: `Karier - ${BRAND}` },
   login: { en: `Login - ${BRAND}`, id: `Masuk - ${BRAND}` },
   admin: { en: `Admin - ${BRAND}`, id: `Admin - ${BRAND}` },
 };
+
+async function fetchSite(locale: Locale): Promise<SiteContent> {
+  const lang = locale.toUpperCase();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/site?lang=${lang}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch site API");
+  }
+
+  return res.json();
+}
 
 export default async function DynamicPage({
   params: { locale, page },
@@ -70,7 +101,7 @@ export default async function DynamicPage({
   if (canonical === "login") {
     return <LoginPage dict={dict} locale={locale} />;
   }
-  
+
   if (canonical === "admin") {
     return <AdminPage dict={dict} locale={locale} />;
   }
@@ -78,12 +109,16 @@ export default async function DynamicPage({
   const Component = PageComponentByCanonical[canonical];
   if (!Component) return notFound();
 
-  return <Component dict={dict} locale={locale} />;
+  const site = await fetchSite(locale);
+
+  return <Component dict={dict} locale={locale} site={site} />;
 }
 
 export async function generateStaticParams() {
   return locales.flatMap((l) =>
-    Object.values(routeSlugByLocale[l as keyof typeof routeSlugByLocale]).map((slug) => ({ locale: l, page: slug }))
+    Object.values(
+      routeSlugByLocale[l as keyof typeof routeSlugByLocale]
+    ).map((slug) => ({ locale: l, page: slug }))
   );
 }
 
@@ -98,8 +133,16 @@ export async function generateMetadata({
   const title = titleByCanonical[canonical]?.[locale] ?? BRAND;
 
   const languages: Record<string, string> = {
-    en: `/en/${routeSlugByLocale.en[canonical as keyof typeof routeSlugByLocale.en]}`,
-    id: `/id/${routeSlugByLocale.id[canonical as keyof typeof routeSlugByLocale.id]}`,
+    en: `/en/${
+      routeSlugByLocale.en[
+        canonical as keyof typeof routeSlugByLocale.en
+      ]
+    }`,
+    id: `/id/${
+      routeSlugByLocale.id[
+        canonical as keyof typeof routeSlugByLocale.id
+      ]
+    }`,
   };
 
   return {

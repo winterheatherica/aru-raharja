@@ -11,9 +11,9 @@ function StatsCtaMap({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const s = dict.home.statsCtaMap;
 
   const metrics = [
-    { value: 29, label: s.metricLabels.regionalOffices },
-    { value: 64, label: s.metricLabels.branchOffices },
-    { value: 32, label: s.metricLabels.serviceOffices },
+    { value: '200+', label: s.metricLabels.regionalOffices },
+    { value: '>37', label: s.metricLabels.branchOffices },
+    { value: '24/7', label: s.metricLabels.serviceOffices },
   ];
 
   const ctaHref = `/${locale}/complaint`;
@@ -21,11 +21,11 @@ function StatsCtaMap({ dict, locale }: { dict: Dictionary; locale: Locale }) {
 
   return (
     <section className="mt-6">
-      <div className="rounded-xl border text-card-foreground w-full mt-6 bg-repeat border-none shadow-none bg-white/60">
+      <div className="rounded-xl border text-card-foreground w-full mt-6 border-none shadow-none">
         <div className="relative flex flex-col w-full px-4 pt-4 pb-4 md:flex-row md:px-8 md:pt-16 md:pb-10">
           <div className="z-10 space-y-8">
             <Metrics items={metrics} />
-            <CtaButton href={ctaHref} label={s.ctaLabel} />
+            {/* <CtaButton href={ctaHref} label={s.ctaLabel} /> */}
           </div>
 
           <div className="z-10 hidden mb-20 ml-auto lg:block">
