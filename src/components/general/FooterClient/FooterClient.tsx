@@ -18,7 +18,7 @@ function FooterClient({ dict, locale }: { dict: Dictionary; locale: Locale }) {
         "
       >
         <GridContent dict={dict} locale={locale} />
-        <Socials />
+        {/* <Socials /> */}
         <BottomBar dict={dict} locale={locale} />
       </div>
     </footer>

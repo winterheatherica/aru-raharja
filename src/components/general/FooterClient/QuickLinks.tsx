@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Socials from "./Socials";
 import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 
 export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale: Locale }) {
@@ -23,6 +24,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
             <span>{t.contactUs}</span>
           </Link>
         </li>
+        <Socials />
         {/* <li>
           <Link href={`/${locale}/service`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">

@@ -14,7 +14,7 @@ export default function BottomBar({ dict, locale }: { dict: Dictionary; locale: 
       "
     >
       <div className="flex flex-col items-center gap-4">
-        <ul className="inline-flex items-center space-x-6 text-[15px]">
+        {/* <ul className="inline-flex items-center space-x-6 text-[15px]">
           <li>
             <Link href={`/${locale}/legal`} className="underline">
               {t.legalTerms}
@@ -30,7 +30,7 @@ export default function BottomBar({ dict, locale }: { dict: Dictionary; locale: 
               {t.accessibility}
             </Link>
           </li>
-        </ul>
+        </ul> */}
         <p className="text-[15px] font-semibold">
           © {year} – Aru Raharja. {t.rights}
         </p>

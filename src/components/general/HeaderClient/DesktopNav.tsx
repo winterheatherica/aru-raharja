@@ -90,9 +90,9 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
 
       <LangSwitcher locale={safe as any} />
 
-      <div className="ml-2 flex items-center">
+      {/* <div className="ml-2 flex items-center">
         <UserIcon />
-      </div>
+      </div> */}
     </div>
   );
 }
