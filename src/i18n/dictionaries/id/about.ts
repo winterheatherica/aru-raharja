@@ -67,6 +67,8 @@ const about = {
   },
   culture: {
     title: "Budaya Perusahaan",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, ante ac pulvinar aliquam, lectus sapien tempor turpis, vel vehicula lacus est vel purus. Donec mollis posuere enim, in auctor nisi commodo vitae. Praesent posuere sollicitudin interdum. Pellentesque eu tempus enim, tincidunt convallis nunc. Quisque ex risus, convallis sed ante a, maximus auctor nunc. Vestibulum lobortis dapibus erat, in lobortis diam mattis vel. Vivamus odio mauris, rhoncus ac purus ut, rutrum tincidunt sem. Nam gravida, ex at ultrices pharetra, tortor lorem efficitur ante, id facilisis ipsum mi sed nulla. Phasellus sit amet imperdiet magna. Fusce sagittis, orci vitae lacinia porta, tellus enim vehicula purus, sit amet fermentum sem nunc ut nulla. Curabitur congue auctor tellus et convallis.",
   },
   subsidiary: {
     title: "Anak Perusahaan",

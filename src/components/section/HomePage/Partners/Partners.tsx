@@ -30,11 +30,11 @@ function Partners({ dict }: { dict: Dictionary }) {
   return (
     <section className="relative flex flex-col items-center justify-center gap-6 px-4 py-8 lg:gap-8 lg:px-24 lg:py-16 bg-bumn-radial-1 rounded-2xl shadow-sm overflow-hidden">
       <Image
-        src="/images/general/masking/masking-variant-1.2.png"
+        src="/images/general/masking/aru-mask-1-white.png"
         alt=""
         fill
         priority
-        className="hidden md:block object-cover opacity-75 object-bottom pointer-events-none select-none"
+        className="hidden md:block object-cover object-bottom opacity-75 pointer-events-none select-none"
       />
       <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize font-inter lg:leading-[54px] text-center text-white relative z-10">
         {t.heading}

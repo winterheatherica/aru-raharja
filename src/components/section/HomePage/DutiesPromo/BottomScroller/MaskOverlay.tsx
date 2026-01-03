@@ -1,11 +1,15 @@
 "use client";
+import Image from "next/image";
 
 export default function MaskOverlay() {
   return (
-    <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-      <div
-        className="absolute w-full h-full bg-no-repeat bg-cover"
-        style={{ backgroundImage: "url('/images/general/masking/aru-mask-1-white.png')" }}
+    <div className="absolute inset-0 pointer-events-none hidden md:block z-0">
+      <Image
+        src="/images/general/masking/aru-mask-1-white.png"
+        alt=""
+        fill
+        priority
+        className="object-cover object-bottom opacity-75 select-none"
       />
     </div>
   );
