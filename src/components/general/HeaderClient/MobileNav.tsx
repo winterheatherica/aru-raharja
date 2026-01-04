@@ -92,7 +92,10 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
         <ul className="mb-2 flex w-full flex-col space-y-2">
           {NAV_ORDER.map((seg) => {
             const href = navHref(locale, seg);
-            const isActive = pathname === href;
+            const isActive =
+              pathname === href ||
+              (seg === "service" &&
+                pathname.startsWith(href + "/"));
             return (
               <li key={seg}>
                 <Link

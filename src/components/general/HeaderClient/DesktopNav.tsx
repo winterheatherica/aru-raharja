@@ -69,7 +69,11 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
       <ul className="flex items-center space-x-1 whitespace-nowrap">
         {NAV_ORDER.map((seg) => {
           const href = navHref(safe, seg);
-          const isActive = pathname === href;
+
+          const isActive =
+            pathname === href ||
+            (seg === "service" && pathname.startsWith(href + "/"));
+
           return (
             <li key={seg}>
               <Link

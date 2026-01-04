@@ -4,10 +4,12 @@ export const dynamicSegmentByLocale = {
   en: {
     article: "article",
     room: "room",
+    service: "service",
   },
   id: {
     article: "artikel",
     room: "ruangan",
+    service: "layanan",
   },
 } as const;
 
@@ -47,6 +49,12 @@ export const reservationRoomHref = (l: string | Locale, roomId: string) => {
   return joinPath(locale, reservationBase, roomBase, roomId);
 };
 
+export const serviceHref = (l: string | Locale, solution: string) => {
+  const locale = loc(l);
+  const base = dynamicSegmentByLocale[locale].service;
+  return joinPath(locale, base, solution);
+};
+
 export const roomApiPath = (roomId: string) => joinPath("api", "rooms", roomId);
 
 export const canonicalUrl = (origin: string | undefined, path: string) => {
@@ -61,14 +69,19 @@ export const canonicalRoomUrl = (origin: string | undefined, l: string | Locale,
 export const canonicalArticleUrl = (origin: string | undefined, l: string | Locale, slug: string) =>
   canonicalUrl(origin, articleHref(l, slug));
 
+export const canonicalServiceUrl = (origin: string | undefined, l: string | Locale, solution: string) =>
+  canonicalUrl(origin, serviceHref(l, solution));
+
 export default {
   dynamicSegmentByLocale,
   reservationHref,
   articleHref,
   roomHref,
   reservationRoomHref,
+  serviceHref,
   roomApiPath,
   canonicalUrl,
   canonicalRoomUrl,
   canonicalArticleUrl,
+  canonicalServiceUrl,
 };

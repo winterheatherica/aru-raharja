@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
@@ -15,7 +16,6 @@ import AboutPage from "@/components/pages/AboutPage";
 import ServicePage from "@/components/pages/ServicePage";
 import ReservationPage from "@/components/pages/ReservationPage";
 import InformationPage from "@/components/pages/InformationPage";
-import AppealPage from "@/components/pages/AppealPage";
 import CareerPage from "@/components/pages/CareerPage";
 
 const LoginPage = dynamic(() => import("@/components/pages/LoginPage"), {
@@ -50,10 +50,9 @@ const PageComponentByCanonical: Record<
 > = {
   home: HomePage,
   about: AboutPage,
-  service: ServicePage,
+  service: ServicePage as any,
   reservation: ReservationPage,
   information: InformationPage,
-  // appeal: AppealPage,
   career: CareerPage,
   login: null,
   admin: null,
@@ -65,7 +64,6 @@ const titleByCanonical: Record<CanonicalPage, Record<Locale, string>> = {
   service: { en: `Services - ${BRAND}`, id: `Layanan - ${BRAND}` },
   reservation: { en: `Reservation - ${BRAND}`, id: `Reservasi - ${BRAND}` },
   information: { en: `Information - ${BRAND}`, id: `Informasi - ${BRAND}` },
-  // appeal: { en: `Appeal - ${BRAND}`, id: `Himbauan - ${BRAND}` },
   career: { en: `Career - ${BRAND}`, id: `Karier - ${BRAND}` },
   login: { en: `Login - ${BRAND}`, id: `Masuk - ${BRAND}` },
   admin: { en: `Admin - ${BRAND}`, id: `Admin - ${BRAND}` },
@@ -76,9 +74,7 @@ async function fetchSite(locale: Locale): Promise<SiteContent> {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/site?lang=${lang}`,
-    {
-      cache: "no-store",
-    }
+    { cache: "no-store" }
   );
 
   if (!res.ok) {
@@ -89,10 +85,11 @@ async function fetchSite(locale: Locale): Promise<SiteContent> {
 }
 
 export default async function DynamicPage({
-  params: { locale, page },
+  params,
 }: {
   params: { locale: Locale; page: string };
 }) {
+  const { locale, page } = params;
   const dict = await getDictionary(locale);
 
   const canonical = canonicalBySlug(locale)[page];
@@ -104,6 +101,13 @@ export default async function DynamicPage({
 
   if (canonical === "admin") {
     return <AdminPage dict={dict} locale={locale} />;
+  }
+
+  if (canonical === "service") {
+    const serviceBase =
+      dynamicSegmentByLocale[locale]?.service ??
+      dynamicSegmentByLocale["id"].service;
+    redirect(`/${locale}/${serviceBase}/arudigital`);
   }
 
   const Component = PageComponentByCanonical[canonical];
@@ -123,14 +127,16 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { locale, page },
+  params,
 }: {
   params: { locale: Locale; page: string };
 }) {
+  const { locale, page } = params;
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return {};
 
-  const title = titleByCanonical[canonical]?.[locale] ?? BRAND;
+  const title =
+    titleByCanonical[canonical]?.[locale] ?? BRAND;
 
   const languages: Record<string, string> = {
     en: `/en/${
