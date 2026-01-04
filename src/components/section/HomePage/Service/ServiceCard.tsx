@@ -5,7 +5,7 @@ import Image from "next/image";
 
 type Props = {
   href: string;
-  title: string;
+  title: string; // HTML string
   subtitle: string;
   imgSrc: string;
   imgAlt?: string;
@@ -24,13 +24,23 @@ export default function ServiceCard({
     <Link
       href={href}
       className="
-        group relative flex flex-col p-6 rounded-2xl h-[203px] lg:h-[203px]
+        group relative flex flex-col p-6 rounded-2xl
+        h-[240px] sm:h-[260px] lg:h-[300px]
         overflow-hidden transition-colors duration-300 ease-in-out
         bg-bumn-gradient-primary-12
       "
     >
-      <div className="z-10 text-white transition-colors duration-300 group-hover:text-black">
-        <h3 className="font-medium text-[32px] leading-[46px]">{title}</h3>
+      <div
+          className="
+            z-10 text-white transition-colors duration-300 group-hover:text-black
+            max-w-[70%] sm:max-w-[65%] lg:max-w-[65%]
+          "
+        >
+        <h3
+          className="font-medium text-[32px] leading-[46px]"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+
         <p className="text-2xl font-light">{subtitle}</p>
       </div>
 
@@ -44,8 +54,9 @@ export default function ServiceCard({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" strokeWidth="2"
+            strokeLinecap="round" strokeLinejoin="round"
             className="
               -rotate-45 transition-colors duration-300
               text-black group-hover:text-white

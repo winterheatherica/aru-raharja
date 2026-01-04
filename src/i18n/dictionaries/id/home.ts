@@ -102,20 +102,20 @@ const home = {
   },
   service: {
     cards: {
-      services: {
-        title: "Layanan",
-        subtitle: "Santunan",
-        alt: "santunan",
+      arudigital: {
+        title: "<b>ARU</b><i>digital</i>",
+        subtitle: "Solusi Digital Terintegrasi",
+        alt: "Layanan ARUdigital",
       },
-      complaint: {
-        title: "Layanan",
-        subtitle: "Pengaduan",
-        alt: "pengaduan",
+      aruhealthcare: {
+        title: "<b>ARU</b><i>healthcare</i>",
+        subtitle: "Solusi Kesehatan Korporat",
+        alt: "Layanan ARUhealthcare",
       },
-      appeal: {
-        title: "Himbauan",
-        subtitle: "Aru Raharja",
-        alt: "himbauan",
+      arusolution: {
+        title: "<b>ARU</b><i>solution</i>",
+        subtitle: "Solusi Teknologi Perusahaan",
+        alt: "Layanan ARUsolution",
       },
     },
   },

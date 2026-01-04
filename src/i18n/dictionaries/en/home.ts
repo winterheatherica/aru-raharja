@@ -100,20 +100,20 @@ const home = {
   },
   service: {
     cards: {
-      services: {
-        title: "Services",
-        subtitle: "Compensation",
-        alt: "compensation",
+      arudigital: {
+        title: "<b>ARU</b><i>digital</i>",
+        subtitle: "Integrated Digital Solutions",
+        alt: "ARUdigital service",
       },
-      complaint: {
-        title: "Services",
-        subtitle: "Complaint",
-        alt: "complaint",
+      aruhealthcare: {
+        title: "<b>ARU</b><i>healthcare</i>",
+        subtitle: "Corporate Healthcare Solutions",
+        alt: "ARUhealthcare service",
       },
-      appeal: {
-        title: "Appeal",
-        subtitle: "Aru Raharja",
-        alt: "appeal",
+      arusolution: {
+        title: "<b>ARU</b><i>solution</i>",
+        subtitle: "Enterprise Technology Solutions",
+        alt: "ARUsolution service",
       },
     },
   },
