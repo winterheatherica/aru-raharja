@@ -36,19 +36,59 @@ const home = {
     complaintCta: "Ajukan Pengaduan",
   },
   dutiesPromo: {
-    heading: "Layanan Kami: Produk Digital ARU",
+    heading: "Produk Inti <b>ARU</b><i>digital</i>",
     descPrefix:
-      "Produk dan layanan digital ARU dirancang sebagai solusi terintegrasi untuk mendukung efisiensi, produktivitas, dan pengembangan bisnis perusahaan.",
-    laws: [],
+      "Produk digital terintegrasi dari ARU untuk mendukung efisiensi, produktivitas, dan pertumbuhan bisnis perusahaan.",
+    laws: [""],
+
+    cards: [
+      {
+        title: "Manajemen Klaim",
+        subtitle:
+          "Pengelolaan proses klaim yang terstruktur, cepat, dan transparan untuk meningkatkan efisiensi layanan.",
+        alt: "Layanan manajemen klaim",
+      },
+      {
+        title: "Pusat Kontak",
+        subtitle:
+          "Layanan pusat kontak yang profesional dan responsif untuk menangani komunikasi pelanggan.",
+        alt: "Layanan pusat kontak",
+      },
+      {
+        title: "Help Desk Rumah Sakit",
+        subtitle:
+          "Layanan bantuan dan pendampingan terkait rumah sakit guna memastikan pelayanan kesehatan yang optimal.",
+        alt: "Layanan help desk rumah sakit",
+      },
+    ],
+
+    slides: [
+      {
+        title: "Twibbon #HUTAruRaharja",
+        alt: "Twibbon perayaan hari ulang tahun ARU Raharja",
+      },
+      {
+        title: "Himbauan Kami",
+        alt: "Pengumuman resmi dari ARU Raharja",
+      },
+    ],
   },
+
   funding: {
     leftTitleHtml: `<br><b>Keahlian<br>Kami</b>`,
     items: [
-      { description: "Web Dev" },
-      { description: "Mobile Apps" },
-      { description: "Ai" },
-      { description: "CLoud" },
-      { description: "Iuran Wajib Kapal Laut" },
+      { description: "Pengembangan website modern, responsif, dan scalable sesuai kebutuhan bisnis." },
+      { description: "Pembuatan aplikasi mobile native maupun cross-platform yang andal dan user-friendly." },
+      { description: "Perancangan UI/UX yang intuitif dan berfokus pada kenyamanan serta pengalaman pengguna." },
+
+      { description: "Sistem digital berbasis cloud untuk mendukung efisiensi dan transformasi bisnis." },
+      { description: "Solusi teknologi terintegrasi yang dapat disesuaikan dengan kebutuhan perusahaan." },
+      { description: "Layanan digital preventif untuk mendukung produktivitas dan kesehatan karyawan." },
+      { description: "Layanan pengadaan dan distribusi barang untuk mendukung operasional bisnis." },
+      { description: "Jasa konstruksi profesional dengan standar kualitas dan ketepatan waktu." },
+      { description: "Layanan transportasi dan sewa kendaraan yang fleksibel dan terpercaya." },
+      { description: "Penyediaan tenaga kerja profesional dan kompeten sesuai kebutuhan perusahaan." },
+      { description: "Penyediaan working space, virtual office, dan event space di lokasi strategis." },
     ],
   },
   statsCtaMap: {

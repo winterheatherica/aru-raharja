@@ -36,19 +36,57 @@ const home = {
     complaintCta: "Submit a Complaint",
   },
   dutiesPromo: {
-    heading: "ARUdigital Core Products",
+    heading: "<b>ARU</b><i>digital</i> Core Products",
     descPrefix:
-      "Integrated digital products from ARU to support efficiency, productivity, and the growth of your business.",
+      "Integrated digital products from ARU to support efficiency, productivity, and business growth.",
     laws: [""],
+
+    cards: [
+      {
+        title: "Claim Management",
+        subtitle:
+          "Structured, fast, and transparent claim management to improve service efficiency.",
+        alt: "Claim management service",
+      },
+      {
+        title: "Contact Centre",
+        subtitle:
+          "Professional and responsive contact center services for customer communication.",
+        alt: "Contact centre service",
+      },
+      {
+        title: "Help Desk Hospital",
+        subtitle:
+          "Hospital assistance and support services to ensure optimal healthcare delivery.",
+        alt: "Hospital help desk service",
+      },
+    ],
+
+    slides: [
+      {
+        title: "Twibbon #HUTAruRaharja",
+        alt: "Twibbon celebration of ARU Raharja anniversary",
+      },
+      {
+        title: "Our Announcement",
+        alt: "Official announcement from ARU Raharja",
+      },
+    ],
   },
   funding: {
-    leftTitleHtml: `<br><b>Keahlian<br>Kami</b>`,
+    leftTitleHtml: `<br><b>Our<br>Expertise</b>`,
     items: [
-      { description: "Mandatory Contribution for Road Traffic Accident Funds" },
-      { description: "Mandatory Contribution for Public Motor Vehicles" },
-      { description: "Mandatory Contribution for Aircraft" },
-      { description: "Mandatory Contribution for Railway" },
-      { description: "Mandatory Contribution for Marine" },
+      { description: "Development of modern, responsive, and scalable websites tailored to business needs." },
+      { description: "Development of reliable and user-friendly native and cross-platform mobile applications." },
+      { description: "Design of intuitive UI/UX focused on usability and user experience." },
+      { description: "Cloud-based digital systems to support business efficiency and digital transformation." },
+      { description: "Integrated technology solutions that can be customized to meet company requirements." },
+      { description: "Preventive digital services to support employee productivity and well-being." },
+      { description: "Procurement and distribution services to support business operations." },
+      { description: "Professional construction services with a strong commitment to quality and timeliness." },
+      { description: "Flexible and reliable transportation and vehicle rental services." },
+      { description: "Provision of professional and qualified workforce to support company operations." },
+      { description: "Provision of working space, virtual office, and event space in strategic locations." },
     ],
   },
   statsCtaMap: {

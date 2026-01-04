@@ -7,11 +7,18 @@ import MaskOverlay from "./MaskOverlay";
 import type { Dictionary } from "@/i18n/get_dictionary";
 
 const STATIC_ITEMS: Pick<FundingItem, "code" | "iconSrc">[] = [
-  { code: "SWDKLJJ", iconSrc: "/images/home/funding/swdkljj-icon-2.png" },
-  { code: "IWKBU",   iconSrc: "/images/home/funding/iwkbu-icon-2.png" },
-  { code: "IWPU",    iconSrc: "/images/home/funding/iwpu-icon-2.png" },
-  { code: "IWKA",    iconSrc: "/images/home/funding/iwka-icon-2.png" },
-  { code: "IWKL",    iconSrc: "/images/home/funding/iwkl-icon-2.png" },
+  { code: "Web Development", iconSrc: "/images/home/duties-promo/icon-1.png" },
+  { code: "Mobile Apps", iconSrc: "/images/home/duties-promo/icon-2.png" },
+  { code: "UI/UX Design", iconSrc: "/images/home/duties-promo/icon-3.png" },
+
+  { code: "ARUdigital", iconSrc: "/images/home/duties-promo/aru-digital.png" },
+  { code: "ARUsolution", iconSrc: "/images/home/duties-promo/aru-solution.png" },
+  { code: "ARUhealthcare", iconSrc: "/images/home/duties-promo/aru-healthcare.png" },
+  { code: "ARUlog", iconSrc: "/images/home/duties-promo/aru-log.png" },
+  { code: "ARUcontractor", iconSrc: "/images/home/duties-promo/aru-contractor.png" },
+  { code: "ARUtrans", iconSrc: "/images/home/duties-promo/aru-trans.png" },
+  { code: "ARUsource", iconSrc: "/images/home/duties-promo/aru-source.png" },
+  { code: "ARUspace", iconSrc: "/images/home/duties-promo/aru-space.png" },
 ];
 
 function FundingComponent({ dict }: { dict: Dictionary }) {

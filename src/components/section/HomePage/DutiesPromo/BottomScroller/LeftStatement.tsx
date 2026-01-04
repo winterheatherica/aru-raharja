@@ -32,9 +32,10 @@ export default function LeftStatement({ title, descPrefix, laws, cards }: Props)
           gap-2 sm:gap-3 lg:gap-4
         "
       >
-        <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize font-inter lg:leading-[54px]">
-          {title}
-        </h2>
+        <h2
+          className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold capitalize font-inter lg:leading-[54px]"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
         <p className="font-sans text-lg font-normal sm:text-xl lg:text-2xl lg:leading-9">
           {descPrefix}{" "}
           {laws.map((law, i) => (
