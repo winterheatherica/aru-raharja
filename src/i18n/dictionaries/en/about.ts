@@ -1,4 +1,9 @@
 const about = {
+  meta: {
+    title: "About Us – PT Aru Raharja",
+    description:
+      "Learn more about PT Aru Raharja, our vision, mission, and commitment to delivering trusted digital services and solutions.",
+  },
   hero: {
     smallTitle: "About Aru Raharja",
     headline:

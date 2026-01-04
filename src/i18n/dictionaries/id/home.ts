@@ -1,4 +1,9 @@
 const home = {
+  meta: {
+    title: "Beranda – PT Aru Raharja",
+    description:
+      "PT Aru Raharja menyediakan layanan dan produk digital terintegrasi untuk mendukung efisiensi, produktivitas, dan pengembangan bisnis perusahaan.",
+  },
   hero: {
     faqTitle: "Pertanyaan yang Sering Diajukan",
     faqCta: "Buka FAQ",

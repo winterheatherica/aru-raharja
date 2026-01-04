@@ -132,27 +132,26 @@ export async function generateMetadata({
   params: { locale: Locale; page: string };
 }) {
   const { locale, page } = params;
+  const dict = await getDictionary(locale);
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return {};
 
+  const pageDict = (dict as any)?.[canonical];
+  const meta = pageDict?.meta;
+
   const title =
-    titleByCanonical[canonical]?.[locale] ?? BRAND;
+    meta?.title ?? `PT Aru Raharja`;
+  const description =
+    meta?.description ?? undefined;
 
   const languages: Record<string, string> = {
-    en: `/en/${
-      routeSlugByLocale.en[
-        canonical as keyof typeof routeSlugByLocale.en
-      ]
-    }`,
-    id: `/id/${
-      routeSlugByLocale.id[
-        canonical as keyof typeof routeSlugByLocale.id
-      ]
-    }`,
+    en: `/en/${routeSlugByLocale.en[canonical]}`,
+    id: `/id/${routeSlugByLocale.id[canonical]}`,
   };
 
   return {
     title,
+    description,
     alternates: { languages },
   };
 }

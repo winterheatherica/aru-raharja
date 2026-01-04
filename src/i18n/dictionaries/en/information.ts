@@ -1,4 +1,9 @@
 const information = {
+  meta: {
+    title: "Information – PT Aru Raharja",
+    description:
+      "Latest information, announcements, and official updates from PT Aru Raharja.",
+  },
   hero: {
     titleHtml: "Information",
     description:

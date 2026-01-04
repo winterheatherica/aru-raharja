@@ -1,4 +1,9 @@
 const reservation = {
+  meta: {
+    title: "Reservasi – PT Aru Raharja",
+    description:
+      "Layanan reservasi PT Aru Raharja untuk mendukung kebutuhan operasional dan layanan perusahaan secara efisien.",
+  },
   hero: {
     titleHtml: "Reservasi",
     description:

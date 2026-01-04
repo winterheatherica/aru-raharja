@@ -1,4 +1,9 @@
 const career = {
+  meta: {
+    title: "Karier – PT Aru Raharja",
+    description:
+      "Bergabunglah bersama PT Aru Raharja dan kembangkan karier Anda di lingkungan profesional dan inovatif.",
+  },
   hero: {
     titleHtml: "Karier",
     description:

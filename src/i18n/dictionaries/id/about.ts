@@ -1,4 +1,9 @@
 const about = {
+  meta: {
+    title: "Tentang Kami – PT Aru Raharja",
+    description:
+      "Mengenal PT Aru Raharja, visi, misi, dan komitmen kami dalam menyediakan layanan dan solusi digital yang terpercaya.",
+  },
   hero: {
     smallTitle: "Tentang Aru Raharja",
     headline:

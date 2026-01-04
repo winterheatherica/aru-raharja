@@ -1,4 +1,9 @@
 const reservation = {
+  meta: {
+    title: "Reservation – PT Aru Raharja",
+    description:
+      "PT Aru Raharja reservation services designed to support operational and service needs efficiently.",
+  },
   hero: {
     titleHtml: "Reservation",
     description:

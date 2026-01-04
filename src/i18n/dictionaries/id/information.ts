@@ -1,4 +1,9 @@
 const information = {
+  meta: {
+    title: "Informasi – PT Aru Raharja",
+    description:
+      "Informasi terbaru, pengumuman, dan berita resmi dari PT Aru Raharja.",
+  },
   hero: {
     titleHtml: "Informasi",
     description:

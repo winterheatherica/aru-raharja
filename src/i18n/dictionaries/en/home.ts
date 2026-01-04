@@ -1,4 +1,9 @@
 const home = {
+  meta: {
+    title: "Home – PT Aru Raharja",
+    description:
+      "PT Aru Raharja provides integrated digital products and services to support efficiency, productivity, and business growth.",
+  },
   hero: {
     faqTitle: "Frequently Asked Questions",
     faqCta: "Open FAQ",
