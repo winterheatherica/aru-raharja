@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
@@ -130,28 +131,64 @@ export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale; page: string };
-}) {
+}): Promise<Metadata> {
   const { locale, page } = params;
   const dict = await getDictionary(locale);
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return {};
 
+  if (canonical === "home") {
+    const seo = (dict as any)?.home?.seo;
+    const og = (dict as any)?.home?.openGraph;
+    const twitter = (dict as any)?.home?.twitter;
+
+    return {
+      title: seo?.title,
+      description: seo?.description,
+      robots: seo?.robots,
+      alternates: {
+        canonical: seo?.canonical,
+        languages: {
+          en: "/en/home",
+          id: "/id/beranda",
+        },
+      },
+      openGraph: og
+        ? {
+            type: og.type,
+            locale: og.locale,
+            siteName: og.siteName,
+            title: og.title,
+            description: og.description,
+            url: og.url,
+            images: og.image
+              ? [
+                  {
+                    url: og.image.url,
+                    width: og.image.width,
+                    height: og.image.height,
+                    alt: og.image.alt,
+                    type: og.image.type,
+                  },
+                ]
+              : [],
+          }
+        : undefined,
+      twitter: twitter
+        ? {
+            card: twitter.card,
+            title: twitter.title,
+            description: twitter.description,
+            images: twitter.image ? [twitter.image] : [],
+          }
+        : undefined,
+    };
+  }
   const pageDict = (dict as any)?.[canonical];
   const meta = pageDict?.meta;
 
-  const title =
-    meta?.title ?? `PT Aru Raharja`;
-  const description =
-    meta?.description ?? undefined;
-
-  const languages: Record<string, string> = {
-    en: `/en/${routeSlugByLocale.en[canonical]}`,
-    id: `/id/${routeSlugByLocale.id[canonical]}`,
-  };
-
   return {
-    title,
-    description,
-    alternates: { languages },
+    title: meta?.title,
+    description: meta?.description,
   };
 }
