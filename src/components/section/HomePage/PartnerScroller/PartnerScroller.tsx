@@ -1,9 +1,14 @@
 "use client";
 
 import React from "react";
+import type { Locale } from "@/i18n/get_dictionary";
 
-export default function PartnerScroller() {
-  const logosLeft = [
+type Props = {
+  locale: Locale;
+};
+
+export default function PartnerScroller({ locale }: Props) {
+  const logosClients = [
     "/images/home/partner/KlienKami/logo-1.png",
     "/images/home/partner/KlienKami/logo-2.png",
     "/images/home/partner/KlienKami/logo-3.png",
@@ -12,7 +17,7 @@ export default function PartnerScroller() {
     "/images/home/partner/KlienKami/logo-6.png",
   ];
 
-  const logosRight = [
+  const logosPartners = [
     "/images/home/partner/MitraKerjaKami/6estates-1.png",
     "/images/home/partner/MitraKerjaKami/Alibaba-Cloud-Logo-dudi-irawan-1-300x47.png",
     "/images/home/partner/MitraKerjaKami/cyberark-1.jpg",
@@ -30,38 +35,64 @@ export default function PartnerScroller() {
     "/images/home/partner/MitraKerjaKami/Zoom-Logo.png",
   ];
 
-  const loopLeft = [...logosLeft, ...logosLeft, ...logosLeft, ...logosLeft];
-  const loopRight = [...logosRight, ...logosRight, ...logosRight];
+  const loopClients = [...logosClients, ...logosClients, ...logosClients];
+  const loopPartners = [...logosPartners, ...logosPartners];
+
+  const partnerTitle = locale === "id" ? "Partner Kami" : "Our Partners";
+  const clientTitle = locale === "id" ? "Klien Kami" : "Our Clients";
 
   return (
     <section className="mt-16 space-y-20">
-      <div className="marquee marquee-left">
-        <div className="marquee__track">
-          {loopLeft.map((src, i) => (
-            <div key={`left-${i}`} className="marquee__item">
-              <img
-                src={src}
-                alt={`Partner Logo Left ${i}`}
-                className="logo-img"
-                loading="lazy"
-              />
-            </div>
-          ))}
+      
+      <div className="space-y-8">
+        <h2
+          className="
+            text-center text-3xl sm:text-3xl md:text-4xl lg:text-5xl
+            font-bold font-inter lg:leading-[54px]
+          "
+        >
+          {clientTitle}
+        </h2>
+
+        <div className="marquee marquee-left">
+          <div className="marquee__track">
+            {loopClients.map((src, i) => (
+              <div key={`client-${i}`} className="marquee__item">
+                <img
+                  src={src}
+                  alt={`Client Logo ${i}`}
+                  className="logo-img"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="marquee marquee-right">
-        <div className="marquee__track">
-          {loopRight.map((src, i) => (
-            <div key={`right-${i}`} className="marquee__item">
-              <img
-                src={src}
-                alt={`Partner Logo Right ${i}`}
-                className="logo-img"
-                loading="lazy"
-              />
-            </div>
-          ))}
+      <div className="space-y-8">
+        <h2
+          className="
+            text-center text-3xl sm:text-3xl md:text-4xl lg:text-5xl
+            font-bold font-inter lg:leading-[54px]
+          "
+        >
+          {partnerTitle}
+        </h2>
+
+        <div className="marquee marquee-right">
+          <div className="marquee__track">
+            {loopPartners.map((src, i) => (
+              <div key={`partner-${i}`} className="marquee__item">
+                <img
+                  src={src}
+                  alt={`Partner Logo ${i}`}
+                  className="logo-img"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -82,7 +113,7 @@ export default function PartnerScroller() {
           align-items: center;
           justify-content: center;
         }
-
+          
         .logo-img {
           height: 60px;
           width: auto;

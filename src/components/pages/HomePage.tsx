@@ -39,7 +39,7 @@ export default function HomePage({ dict, locale, site }: Props) {
       <News dict={dict} />
       {/* <Videos dict={dict} /> */}
       {/* <Partner dict={dict} /> */}
-      <PartnerScroller />
+      <PartnerScroller locale={locale} />
       <QuickLinks dict={dict} />
     </main>
   );
