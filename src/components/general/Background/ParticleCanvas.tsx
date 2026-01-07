@@ -10,8 +10,8 @@ type Particle = {
   size: number;
 };
 
-const DOT_COLOR = "18,109,183";     // #126DB7 (bumnblue.2)
-const LINE_COLOR = "18,109,183";    // sama, tapi opacity beda
+const DOT_COLOR = "18,109,183";
+const LINE_COLOR = "18,109,183";
 
 export default function ParticleCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

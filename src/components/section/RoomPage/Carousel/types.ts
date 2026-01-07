@@ -3,7 +3,7 @@ export type Person = {
   name: string;
   title?: string;
   bio?: string;
-  img: string; // relative to /public
+  img: string;
 };
 
 export type Group = {

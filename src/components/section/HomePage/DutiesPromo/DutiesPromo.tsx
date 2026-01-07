@@ -18,7 +18,6 @@ type Props = {
   promo: PromoSlide[];
 };
 
-// icon tetap lokal (asset, bukan konten bahasa)
 const cardsMeta = [
   { iconSrc: "/images/home/duties-promo/icon-4.png" },
   { iconSrc: "/images/home/duties-promo/icon-5.png" },
@@ -28,7 +27,6 @@ const cardsMeta = [
 export default function DutiesPromo({ dict, promo }: Props) {
   const t = dict.home.dutiesPromo;
 
-  // === cards: icon dari meta, text dari dictionary ===
   const cards = cardsMeta.map((meta, idx) => ({
     iconSrc: meta.iconSrc,
     title: t.cards[idx]?.title ?? "",
@@ -36,7 +34,6 @@ export default function DutiesPromo({ dict, promo }: Props) {
     alt: t.cards[idx]?.alt ?? "",
   }));
 
-  // === slides dari API (promo) ===
   const slides = promo
     .slice()
     .sort((a, b) => a.order - b.order)

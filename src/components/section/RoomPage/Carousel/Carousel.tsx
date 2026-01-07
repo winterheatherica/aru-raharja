@@ -26,7 +26,6 @@ export default function Carousel() {
   const next = () => setActive((prev) => (prev + 1) % length);
   const prev = () => setActive((prev) => (prev - 1 + length) % length);
 
-  // Auto-play like Jasa Raharja
   useEffect(() => {
     intervalRef.current = setInterval(next, 4000);
     return () => {
@@ -35,7 +34,6 @@ export default function Carousel() {
   }, []);
 
   const getVisibleIndexes = () => {
-    // always show 5 (two before, one current, two after)
     return [-2, -1, 0, 1, 2].map((offset) => (active + offset + length) % length);
   };
 
@@ -55,7 +53,7 @@ export default function Carousel() {
         <div className={styles.carousel}>
           {visible.map((index, position) => {
             const person = people[index];
-            const offset = position - 2; // -2..+2 relative to center
+            const offset = position - 2;
             const isActive = offset === 0;
 
             return (

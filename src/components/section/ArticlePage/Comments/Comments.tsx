@@ -26,7 +26,7 @@ export default function Comments({ iframeSrc }: { iframeSrc?: string }) {
       content: content.trim(),
       createdAt: new Date().toLocaleString(),
     };
-    // in-memory only (no external calls)
+
     setTimeout(() => {
       setComments((s) => [newComment, ...s]);
       setName("");

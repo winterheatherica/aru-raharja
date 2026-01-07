@@ -5,7 +5,7 @@ import Image from "next/image";
 
 type Props = {
   href: string;
-  title: string; // HTML string
+  title: string;
   subtitle: string;
   imgSrc: string;
   imgAlt?: string;
