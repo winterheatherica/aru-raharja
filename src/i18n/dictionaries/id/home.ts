@@ -1,31 +1,11 @@
 const home = {
-  seo: {
+  meta: {
     title: "Beranda – PT Aru Raharja",
     description:
       "PT Aru Raharja menyediakan layanan dan produk digital terintegrasi untuk mendukung efisiensi, produktivitas, dan pengembangan bisnis perusahaan.",
-    canonical: "https://aruraharja.co.id/",
-    robots: "index, follow",
-  },
-  openGraph: {
-    type: "website",
-    locale: "id_ID",
-    siteName: "PT Aru Raharja",
-    title: "PT Aru Raharja",
-    description:
-      "Layanan dan solusi digital terintegrasi dari PT Aru Raharja untuk mendukung pertumbuhan dan efisiensi bisnis.",
-    url: "https://aruraharja.co.id/",
-    image: {
-      url: "https://aruraharja.co.id/images/general/logo/aru.png",
-      alt: "PT Aru Raharja",
-      type: "image/png",
-    },
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PT Aru Raharja",
-    description:
-      "Solusi dan layanan digital terintegrasi dari PT Aru Raharja.",
     image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords:
+      "PT Aru Raharja, solusi digital, layanan IT, transformasi digital",
   },
   hero: {
     faqTitle: "Pertanyaan yang Sering Diajukan",

@@ -29,20 +29,10 @@ const AdminPage = dynamic(() => import("@/components/pages/AdminPage"), {
   loading: () => <div>Loading admin…</div>,
 });
 
-const BRAND = "PT Aru Raharja" as const;
-
-type SiteContent = {
-  home?: {
-    hero?: unknown[];
-    [key: string]: unknown;
-  };
-  [key: string]: unknown;
-};
-
 type PageComponentProps = {
   dict: Dictionary;
   locale: Locale;
-  site: SiteContent;
+  site: any;
 };
 
 const PageComponentByCanonical: Record<
@@ -59,31 +49,42 @@ const PageComponentByCanonical: Record<
   admin: null,
 };
 
-const titleByCanonical: Record<CanonicalPage, Record<Locale, string>> = {
-  home: { en: `Home - ${BRAND}`, id: `Beranda - ${BRAND}` },
-  about: { en: `About - ${BRAND}`, id: `Tentang - ${BRAND}` },
-  service: { en: `Services - ${BRAND}`, id: `Layanan - ${BRAND}` },
-  reservation: { en: `Reservation - ${BRAND}`, id: `Reservasi - ${BRAND}` },
-  information: { en: `Information - ${BRAND}`, id: `Informasi - ${BRAND}` },
-  career: { en: `Career - ${BRAND}`, id: `Karier - ${BRAND}` },
-  login: { en: `Login - ${BRAND}`, id: `Masuk - ${BRAND}` },
-  admin: { en: `Admin - ${BRAND}`, id: `Admin - ${BRAND}` },
-};
-
-async function fetchSite(locale: Locale): Promise<SiteContent> {
+async function fetchFromAPI(endpoint: string, locale: Locale) {
   const lang = locale.toUpperCase();
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/site?lang=${lang}`,
+    `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
     { cache: "no-store" }
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch site API");
+    throw new Error(`Failed to fetch ${endpoint}`);
   }
 
   return res.json();
 }
+
+const fetchHome = (l: Locale) =>
+  fetchFromAPI("/api/home", l).then((data) => ({ home: data }));
+
+const fetchAbout = (l: Locale) => fetchFromAPI("/api/about", l);
+const fetchService = (l: Locale) => fetchFromAPI("/api/service", l);
+const fetchReservation = (l: Locale) =>
+  fetchFromAPI("/api/reservation", l);
+const fetchInformation = (l: Locale) =>
+  fetchFromAPI("/api/information", l);
+const fetchCareer = (l: Locale) => fetchFromAPI("/api/career", l);
+
+const fetcherByPage: Partial<
+  Record<CanonicalPage, (l: Locale) => Promise<any>>
+> = {
+  home: fetchHome,
+  about: fetchAbout,
+  service: fetchService,
+  reservation: fetchReservation,
+  information: fetchInformation,
+  career: fetchCareer,
+};
 
 export default async function DynamicPage({
   params,
@@ -91,6 +92,7 @@ export default async function DynamicPage({
   params: { locale: Locale; page: string };
 }) {
   const { locale, page } = params;
+
   const dict = await getDictionary(locale);
 
   const canonical = canonicalBySlug(locale)[page];
@@ -108,13 +110,15 @@ export default async function DynamicPage({
     const serviceBase =
       dynamicSegmentByLocale[locale]?.service ??
       dynamicSegmentByLocale["id"].service;
+
     redirect(`/${locale}/${serviceBase}/arudigital`);
   }
 
   const Component = PageComponentByCanonical[canonical];
   if (!Component) return notFound();
 
-  const site = await fetchSite(locale);
+  const fetcher = fetcherByPage[canonical];
+  const site = fetcher ? await fetcher(locale) : null;
 
   return <Component dict={dict} locale={locale} site={site} />;
 }
@@ -127,68 +131,58 @@ export async function generateStaticParams() {
   );
 }
 
+function buildSocialMeta(meta: {
+  title: string;
+  description?: string;
+  image?: string;
+  keywords?: string;
+}) {
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    robots: "index, follow",
+
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      siteName: "PT Aru Raharja",
+      type: "website",
+      images: meta.image
+        ? [
+            {
+              url: meta.image,
+              alt: meta.title,
+              type: "image/png",
+            },
+          ]
+        : [],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: meta.image ? [meta.image] : [],
+    },
+  };
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: { locale: Locale; page: string };
 }): Promise<Metadata> {
   const { locale, page } = params;
+
   const dict = await getDictionary(locale);
   const canonical = canonicalBySlug(locale)[page];
   if (!canonical) return {};
 
-  if (canonical === "home") {
-    const seo = (dict as any)?.home?.seo;
-    const og = (dict as any)?.home?.openGraph;
-    const twitter = (dict as any)?.home?.twitter;
-
-    return {
-      title: seo?.title,
-      description: seo?.description,
-      robots: seo?.robots,
-      alternates: {
-        canonical: seo?.canonical,
-        languages: {
-          en: "/en/home",
-          id: "/id/beranda",
-        },
-      },
-      openGraph: og
-        ? {
-            type: og.type,
-            locale: og.locale,
-            siteName: og.siteName,
-            title: og.title,
-            description: og.description,
-            url: og.url,
-            images: og.image
-              ? [
-                  {
-                    url: og.image.url,
-                    width: og.image.width,
-                    height: og.image.height,
-                    alt: og.image.alt,
-                    type: og.image.type,
-                  },
-                ]
-              : [],
-          }
-        : undefined,
-      twitter: twitter
-        ? {
-            card: twitter.card,
-            title: twitter.title,
-            description: twitter.description,
-            images: twitter.image ? [twitter.image] : [],
-          }
-        : undefined,
-    };
-  }
   const pageDict = (dict as any)?.[canonical];
   const meta = pageDict?.meta;
 
-  return {
-    title: meta?.title,
-    description: meta?.description,
-  };
+  if (!meta?.title) return {};
+
+  return buildSocialMeta(meta);
 }
