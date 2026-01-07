@@ -41,17 +41,6 @@ const home = {
         alt: "Layanan help desk rumah sakit",
       },
     ],
-
-    slides: [
-      {
-        title: "Twibbon #HUTAruRaharja",
-        alt: "Twibbon perayaan hari ulang tahun ARU Raharja",
-      },
-      {
-        title: "Himbauan Kami",
-        alt: "Pengumuman resmi dari ARU Raharja",
-      },
-    ],
   },
 
   funding: {
@@ -78,7 +67,7 @@ const home = {
       serviceOffices: "Support",
     },
     ctaLabel: "Hubungi Kami",
-    rightHeadlineHtml: "Market <br /> Share",
+    rightHeadlineHtml: "Pangsa <br /> Pasar",
   },
   service: {
     cards: {

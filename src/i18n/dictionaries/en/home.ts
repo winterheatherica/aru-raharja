@@ -91,12 +91,12 @@ const home = {
   },
   statsCtaMap: {
     metricLabels: {
-      regionalOffices: "Regional Offices",
-      branchOffices: "Branch Offices",
-      serviceOffices: "Service Offices",
+      regionalOffices: "Completed Projects",
+      branchOffices: "Experience",
+      serviceOffices: "Support",
     },
     ctaLabel: "Contact Us",
-    rightHeadlineHtml: "Serving to the <br /> Farthest Corners",
+    rightHeadlineHtml: "Market <br /> Share",
   },
   service: {
     cards: {
