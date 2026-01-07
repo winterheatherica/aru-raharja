@@ -1,17 +1,67 @@
 import Link from "next/link";
 
+type LayoutType = "POLISH" | "TEXT" | "OTHER";
+
 type HeroSlideOverlayProps = {
   title: string;
   ctaLabel?: string;
   ctaHref?: string;
+  layout: LayoutType;
 };
 
 export default function HeroSlideOverlay({
   title,
   ctaLabel,
   ctaHref,
+  layout,
 }: HeroSlideOverlayProps) {
   if (!title && !ctaLabel) return null;
+
+  if (layout === "TEXT") {
+    return (
+      <div className="absolute inset-0 z-10 flex items-center justify-start pl-[12%]">
+        <div
+          className="
+            max-w-[70%]
+            md:max-w-[55%]
+            pr-6
+          "
+        >
+          {title && (
+            <h2
+              className="
+                font-inter font-bold capitalize text-white
+                leading-tight
+                text-xl
+                md:text-3xl
+                lg:text-5xl
+                text-stroke-sm
+              "
+            >
+              {title}
+            </h2>
+          )}
+
+          {ctaLabel && (
+            <p
+              className="
+                hidden
+                sm:block
+                mt-2
+                font-sans text-white
+                leading-relaxed
+                md:text-xl
+                lg:text-3xl
+                text-stroke-sm
+              "
+            >
+              {ctaLabel}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -26,15 +76,17 @@ export default function HeroSlideOverlay({
         paddingInline: "clamp(8px, 1.5vw, 16px)",
       }}
     >
-      <h2
-        className="font-bold"
-        style={{
-          fontSize: "clamp(14px, 2.2vw, 40px)",
-          marginBottom: "clamp(6px, 1.6vw, 20px)",
-        }}
-      >
-        {title}
-      </h2>
+      {title && (
+        <h2
+          className="font-bold"
+          style={{
+            fontSize: "clamp(14px, 2.2vw, 40px)",
+            marginBottom: "clamp(6px, 1.6vw, 20px)",
+          }}
+        >
+          {title}
+        </h2>
+      )}
 
       {ctaLabel && ctaHref ? (
         <Link

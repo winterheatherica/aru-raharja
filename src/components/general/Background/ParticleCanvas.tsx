@@ -53,13 +53,11 @@ export default function ParticleCanvas() {
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
 
-        /* ===== DOT ===== */
         ctx.fillStyle = `rgba(${DOT_COLOR}, 0.35)`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
 
-        /* ===== LINE ===== */
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
           const dx = p.x - q.x;
@@ -68,7 +66,7 @@ export default function ParticleCanvas() {
 
           if (dist < 130) {
             ctx.strokeStyle = `rgba(${LINE_COLOR}, ${
-              0.12 * (1 - dist / 130)
+              0.5 * (1 - dist / 130)
             })`;
             ctx.lineWidth = 1;
             ctx.beginPath();

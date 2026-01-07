@@ -4,6 +4,6 @@ export type HeroSlideAPI = {
   alt: string;
   title: string;
   ctaLabel?: string | null;
-  banner: "POLISH" | "FAQ" | "SERVICE" | "COMPLAINT" | "NEWS";
+  banner: "POLISH" | "TEXT" | "FAQ" | "SERVICE" | "COMPLAINT" | "NEWS";
   order: number;
 };

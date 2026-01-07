@@ -111,8 +111,15 @@ export default function Carousel({
         <div className="flex h-full w-full flex-col will-change-transform" style={trackStyle}>
           {slides.map((s, idx) => {
             const alt = s.alt || `slide-${idx + 1}`;
-            const hasCta = s.ctaLabel && s.ctaHref;
-            const showOverlay = Boolean(s.title) && s.banner !== "POLISH";
+            const hasCta = Boolean(s.ctaLabel && s.ctaHref);
+            const layout =
+              s.banner === "POLISH"
+                ? "POLISH"
+                : s.banner === "TEXT"
+                ? "TEXT"
+                : "OTHER";
+
+            const showOverlay = Boolean(s.title) && layout !== "POLISH";
 
             return (
               <div
@@ -139,6 +146,7 @@ export default function Carousel({
 
                   {showOverlay && (
                     <HeroSlideOverlay
+                      layout={layout}
                       title={s.title}
                       ctaLabel={s.ctaLabel ?? undefined}
                       ctaHref={s.ctaHref ?? undefined}
