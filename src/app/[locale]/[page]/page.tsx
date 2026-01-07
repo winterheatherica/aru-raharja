@@ -64,15 +64,11 @@ async function fetchFromAPI(endpoint: string, locale: Locale) {
   return res.json();
 }
 
-const fetchHome = (l: Locale) =>
-  fetchFromAPI("/api/home", l).then((data) => ({ home: data }));
-
+const fetchHome = (l: Locale) => fetchFromAPI("/api/home", l).then((data) => ({ home: data }));
 const fetchAbout = (l: Locale) => fetchFromAPI("/api/about", l);
 const fetchService = (l: Locale) => fetchFromAPI("/api/service", l);
-const fetchReservation = (l: Locale) =>
-  fetchFromAPI("/api/reservation", l);
-const fetchInformation = (l: Locale) =>
-  fetchFromAPI("/api/information", l);
+const fetchReservation = (l: Locale) => fetchFromAPI("/api/reservation", l);
+const fetchInformation = (l: Locale) => fetchFromAPI("/api/information", l);
 const fetchCareer = (l: Locale) => fetchFromAPI("/api/career", l);
 
 const fetcherByPage: Partial<
