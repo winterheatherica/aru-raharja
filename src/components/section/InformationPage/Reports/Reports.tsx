@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
 import PhoneCTA from "@/components/general/BluePrint/PhoneCTA/PhoneCTA";
 
@@ -23,11 +22,15 @@ type DictShape = {
 type Props = {
   dict: DictShape;
   locale: string;
+  site?: {
+    news_cards?: any[];
+    news_years?: number[];
+  };
   value?: string;
   onValueChange?: (id: string) => void;
 };
 
-export default function Reports({ dict, locale, value, onValueChange }: Props) {
+export default function Reports({ dict, locale, site, value, onValueChange }: Props) {
   const items = (dict?.information?.reports?.nav as NavItem[] | undefined) ?? [];
   const initial = value ?? items[0]?.id ?? "";
   const [active, setActive] = React.useState(initial);
@@ -46,8 +49,7 @@ export default function Reports({ dict, locale, value, onValueChange }: Props) {
   return (
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
       <section aria-label="Solutions" className="w-full space-y-8">
-        {/* <Navigation dict={dict} value={active} onChange={handleChange} /> */}
-        <Content activeId={active} dict={dict} locale={locale} />
+        <Content activeId={active} dict={dict} locale={locale} site={site} />
         <PhoneCTA />
       </section>
     </div>
