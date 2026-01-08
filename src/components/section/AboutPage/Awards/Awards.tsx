@@ -3,48 +3,37 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 
+type Award = {
+  id: string;
+  year: number;
+  src: string;
+  alt: string;
+  title: string;
+  label: string;
+  description: string;
+  order: number;
+};
+
 type Props = {
   dict?: any;
+  awards?: Award[];
 };
 
-type Award = {
-  year: "2025";
-  img: string;
-  alt: string;
-  cta: string;
-};
-
-export default function Awards({ dict }: Props) {
+export default function Awards({ dict, awards = [] }: Props) {
   const t = dict?.about?.awards ?? {};
-  const years = ["2025"] as const;
 
-  const [active, setActive] = useState<"all" | (typeof years)[number]>("all");
+  const years = useMemo(() => {
+    const set = new Set<number>();
+    awards.forEach((a) => set.add(a.year));
+    return Array.from(set).sort((a, b) => b - a);
+  }, [awards]);
 
-  const allAwards: Award[] = [
-    {
-      year: "2025",
-      img: "/images/about/award1.jpeg",
-      alt: "award-1",
-      cta: t?.cta ?? "Certificate of Excellence",
-    },
-    {
-      year: "2025",
-      img: "/images/about/award2.jpeg",
-      alt: "award-2",
-      cta: t?.cta ?? "Certificate of Excellence",
-    },
-    {
-      year: "2025",
-      img: "/images/about/award3.jpeg",
-      alt: "award-3",
-      cta: t?.cta ?? "Certificate of Excellence",
-    },
-  ];
+  const [active, setActive] = useState<"all" | number>("all");
 
   const filtered = useMemo(() => {
-    if (active === "all") return allAwards;
-    return allAwards.filter((a) => a.year === active);
-  }, [active]);
+    if (active === "all") return awards;
+    return awards.filter((a) => a.year === active);
+  }, [active, awards]);
 
   return (
     <section className="mt-8 lg:mt-14">
@@ -66,25 +55,31 @@ export default function Awards({ dict }: Props) {
                     <button
                       aria-current={active === "all" ? "page" : undefined}
                       onClick={() => setActive("all")}
-                      className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-base font-normal ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 w-full ${
-                        active === "all"
-                          ? "bg-bumn-gradient-primary-18 text-bumngray-1 shadow"
-                          : ""
-                      }`}
+                      className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-base font-normal transition-all w-full
+                        ${
+                          active === "all"
+                            ? "bg-bumn-gradient-primary-18 text-bumngray-1 shadow"
+                            : ""
+                        }`}
                     >
                       {t?.yearAll ?? "All years"}
                     </button>
 
-                    {/* <button
-                      onClick={() => setActive("2025")}
-                      className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-base font-normal ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 w-full ${
-                        active === "2025"
-                          ? "bg-bumn-gradient-primary-18 text-bumngray-1 shadow"
-                          : ""
-                      }`}
-                    >
-                      {t?.year2025 ?? "2025"}
-                    </button> */}
+                    {years.map((y) => (
+                      <button
+                        key={y}
+                        onClick={() => setActive(y)}
+                        aria-current={active === y ? "page" : undefined}
+                        className={`inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-base font-normal transition-all w-full
+                          ${
+                            active === y
+                              ? "bg-bumn-gradient-primary-18 text-bumngray-1 shadow"
+                              : ""
+                          }`}
+                      >
+                        {y}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -93,9 +88,9 @@ export default function Awards({ dict }: Props) {
 
           <div className="col-span-12 lg:col-span-9">
             <div className="grid gap-x-6 gap-y-8 lg:grid-cols-3">
-              {filtered.map((a, idx) => (
+              {filtered.map((a) => (
                 <div
-                  key={idx}
+                  key={a.id}
                   className="relative p-4 overflow-hidden border rounded-lg bg-bumnwhite-3"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-white/10 card-blur" />
@@ -103,21 +98,28 @@ export default function Awards({ dict }: Props) {
                   <div className="relative">
                     <div className="relative aspect-[4/3] mb-4">
                       <Image
-                        src={a.img}
+                        src={a.src}
                         alt={a.alt}
                         fill
                         className="object-contain w-full"
                         sizes="100vw"
-                        priority={false}
                       />
                     </div>
 
-                    <div>
+                    <div className="space-y-2 text-center">
+                      <div className="text-sm font-semibold text-bumnslate-6">
+                        {a.title}
+                      </div>
+                      <div className="text-xs text-bumnslate-4">
+                        {a.year}
+                      </div>
+
                       <button
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50
-                                   bg-bumn-gradient-primary-16 text-white shadow w-full h-6 px-6 py-3 text-xs font-semibold rounded-lg lg:h-10 lg:text-sm"
+                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors
+                                   bg-bumn-gradient-primary-16 text-white shadow w-full h-6 px-6 py-3 text-xs font-semibold rounded-lg
+                                   lg:h-10 lg:text-sm"
                       >
-                        {a.cta}
+                        {t?.cta ?? "View Certificate"}
                       </button>
                     </div>
                   </div>

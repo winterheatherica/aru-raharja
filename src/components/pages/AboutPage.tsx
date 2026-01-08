@@ -34,7 +34,7 @@ export default function AboutPage({ dict, locale, site }: Props) {
         <Business dict={dict} />
         <Culture dict={dict} />
         <Partner dict={dict} />
-        <Awards dict={dict} />
+        <Awards dict={dict} awards={awards} />
       </div>
     </main>
   );
