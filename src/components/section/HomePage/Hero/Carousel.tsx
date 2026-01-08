@@ -173,7 +173,7 @@ export default function Carousel({
               left-2 top-2 bottom-2
               sm:left-3 sm:top-6 sm:bottom-6
               md:left-4 md:top-8 md:bottom-8
-              lg:left-6 lg:bottom-12 lg:top-auto
+              lg:left-6 lg:top-12 lg:bottom-12
               flex h-auto
             "
           >

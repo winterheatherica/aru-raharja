@@ -3,51 +3,57 @@
 import HistoryTabs, { type HistoryItem } from "./HistoryTabs";
 import type { Dictionary } from "@/i18n/get_dictionary";
 
+type ApiHistory = {
+  year: number;
+  title?: string;
+  description?: string;
+  table_headers?: string[];
+  table_rows?: string[][];
+};
+
 type HistoryDict = {
   title: string;
   intro: string;
-  items: ReadonlyArray<{
-    year: string | number;
-    content?: ReadonlyArray<string>;
-    table?: {
-      headers: ReadonlyArray<string>;
-      rows: ReadonlyArray<ReadonlyArray<string>>;
-    };
-  }>;
 };
 
 type Props = {
   dict?: Dictionary;
+  histories?: ApiHistory[];
 };
 
-export default function History({ dict }: Props) {
+export default function History({ dict, histories }: Props) {
   const t = dict?.about?.history as HistoryDict | undefined;
-  if (!t) return null;
+  if (!t || !histories?.length) return null;
 
-  const items: HistoryItem[] = (t.items ?? []).map((it) => ({
-    year: String(it.year),
+  const items: HistoryItem[] = histories.map((h) => ({
+    year: String(h.year),
     content: (
       <>
-        {(it.content ?? []).map((p, idx) => (
-          <p key={idx}>{p}</p>
-        ))}
+        {h.title && <h4 className="text-xl font-semibold">{h.title}</h4>}
+        {h.description && <p>{h.description}</p>}
 
-        {it.table && (
-          <table className="text-bumnslate-6 w-full">
+        {h.table_headers && h.table_rows && (
+          <table className="w-full mt-4 text-bumnslate-6 border-collapse">
             <thead className="text-sm font-bold text-left bg-bumngray-2/20">
               <tr>
-                {it.table.headers.map((h, hIdx) => (
-                  <th key={hIdx} className="p-3 border border-bumngray-2">
-                    {h}
+                {h.table_headers.map((head, i) => (
+                  <th
+                    key={i}
+                    className="p-3 border border-bumngray-2"
+                  >
+                    {head}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody className="text-base font-lato">
-              {it.table.rows.map((row, rIdx) => (
+              {h.table_rows.map((row, rIdx) => (
                 <tr key={rIdx}>
                   {row.map((cell, cIdx) => (
-                    <td key={cIdx} className="p-3 border border-bumngray-2 align-top">
+                    <td
+                      key={cIdx}
+                      className="p-3 border border-bumngray-2 align-top"
+                    >
                       {cell}
                     </td>
                   ))}

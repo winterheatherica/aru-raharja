@@ -4,28 +4,35 @@ import VisionMission from "@/components/section/AboutPage/VisionMission/VisionMi
 import History from "@/components/section/AboutPage/History/History";
 import Business from "@/components/section/AboutPage/Business/Business";
 import Culture from "@/components/section/AboutPage/Culture/Culture";
-import Subsidiary from "@/components/section/AboutPage/Subsidiary/Subsidiary";
 import Partner from "@/components/section/HomePage/Partners/Partners";
 import Awards from "@/components/section/AboutPage/Awards/Awards";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 
+type AboutSiteData = {
+  histories?: any[];
+  awards?: any[];
+};
+
 type Props = {
   dict: Dictionary;
   locale: Locale;
+  site: AboutSiteData;
 };
 
-export default function AboutPage({ dict, locale }: Props) {
+export default function AboutPage({ dict, locale, site }: Props) {
+  const histories = site?.histories ?? [];
+  const awards = site?.awards ?? [];
+
   return (
     <main className="relative px-10 lg:px-4 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <Masking position="absolute" />
       <Hero dict={dict} />
       <div className="max-w-[1014px] mx-auto">
         <VisionMission dict={dict} />
-        <History dict={dict} />
+        <History dict={dict} histories={histories} />
         <Business dict={dict} />
         <Culture dict={dict} />
-        {/* <Subsidiary dict={dict} /> */}
         <Partner dict={dict} />
         <Awards dict={dict} />
       </div>
