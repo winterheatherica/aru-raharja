@@ -23,29 +23,7 @@ const career = {
     },
     results: {
       emptyText: "Belum ada lowongan tersedia",
-      vacancies: [
-        {
-            id: "1",
-            title: "Backend Developer",
-            type: "Magang",
-            location: "Jakarta",
-            description: "Mengembangkan dan memelihara layanan backend.",
-        },
-        {
-            id: "2",
-            title: "Frontend Developer",
-            type: "Magang",
-            location: "Jakarta",
-            description: "Membangun dan mengoptimalkan antarmuka pengguna.",
-        },
-        {
-            id: "3",
-            title: "Staf IT Support",
-            type: "Penuh Waktu",
-            location: "Jakarta",
-            description: "Membantu operasional TI dan mendukung pengguna internal.",
-        },
-      ],
+      applyButton: "Kirim Lamaran",
     },
   },
 } as const;

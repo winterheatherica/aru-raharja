@@ -23,29 +23,7 @@ const career = {
     },
     results: {
       emptyText: "No vacancies available",
-      vacancies: [
-        {
-          id: "1",
-          title: "Backend Developer",
-          type: "Internship",
-          location: "Jakarta",
-          description: "Develop and maintain backend services.",
-        },
-        {
-          id: "2",
-          title: "Frontend Developer",
-          type: "Internship",
-          location: "Jakarta",
-          description: "Build and optimize user interfaces.",
-        },
-        {
-          id: "3",
-          title: "IT Support Staff",
-          type: "Full-time",
-          location: "Jakarta",
-          description: "Assist IT operations and support internal users.",
-        },
-      ],
+      applyButton: "Apply Now",
     },
   },
 } as const;
