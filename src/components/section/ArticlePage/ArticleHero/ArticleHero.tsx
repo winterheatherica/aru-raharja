@@ -5,7 +5,7 @@ export default function ArticleHero({ article, titleOverride }: any) {
   if (!article) return null;
 
   const title = titleOverride ?? article.title ?? article.slug ?? "Article";
-  const img = article.image_src ?? null;
+  const img = article.image_url ?? null;
 
   return (
     <div className="mb-8">
@@ -27,7 +27,9 @@ export default function ArticleHero({ article, titleOverride }: any) {
         </h1>
       </div>
       {article.excerpt && (
-        <p className="text-base text-bumnslate-6 mb-4">{article.excerpt}</p>
+        <p className="text-base text-bumnslate-6 mb-4">
+          {article.excerpt}
+        </p>
       )}
     </div>
   );

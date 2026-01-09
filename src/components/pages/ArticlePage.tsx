@@ -11,13 +11,13 @@ import ReadMore from "@/components/section/ArticlePage/ReadMore/ReadMore";
 import Comments from "@/components/section/ArticlePage/Comments/Comments";
 
 type Article = {
-  id?: number;
+  id?: string;
   title?: string;
   slug?: string;
   category?: string;
   created_at?: string;
   posted_by?: string;
-  image_src?: string;
+  image_url?: string;
   content?: string;
   excerpt?: string;
 };
@@ -25,21 +25,17 @@ type Article = {
 type Props = {
   dict: Dictionary;
   locale: Locale;
-  slug?: string;
-  title?: string;
   article?: Article;
 };
 
-export default function ArticlePage({ dict, locale, slug, title, article }: Props) {
-  const articles = (dict as any)?.article?.list ?? [];
-  const articleFromDict =
-    article ?? (slug && articles.find((a: any) => a.slug === slug)) ?? articles[0];
-
-  if (!articleFromDict) {
+export default function ArticlePage({ dict, locale, article }: Props) {
+  if (!article) {
     return (
       <main className="relative px-4 py-10 mx-auto max-w-screen-1440 text-bumnslate-6">
         <p className="text-sm">
-          {locale === "id" ? "Artikel tidak ditemukan." : "Article not found."}
+          {locale === "id"
+            ? "Artikel tidak ditemukan."
+            : "Article not found."}
         </p>
       </main>
     );
@@ -47,7 +43,7 @@ export default function ArticlePage({ dict, locale, slug, title, article }: Prop
 
   return (
     <main className="relative text-bumnslate-6">
-      <PageTopBanner category={articleFromDict.category} />
+      <PageTopBanner category={article.category} />
 
       <div className="-mt-20 px-4 mx-auto max-w-screen-1440 relative z-10">
         <div className="flex flex-col lg:flex-row gap-8">
@@ -55,27 +51,31 @@ export default function ArticlePage({ dict, locale, slug, title, article }: Prop
             <ClassicCaps
               crumbs={[
                 { label: "Home", href: `/${locale}` },
-                { label: articleFromDict.category ?? "Blog", href: `/${locale}/article` },
-                { label: articleFromDict.title ?? "" },
+                {
+                  label: article.category ?? "Blog",
+                  href: `/${locale}/article`,
+                },
+                { label: article.title ?? "" },
               ]}
             />
 
-            <ArticleHero article={articleFromDict} titleOverride={title} />
-            <AuthorHuman article={articleFromDict} />
-            <PostBody article={articleFromDict} />
+            <ArticleHero article={article} />
+            <AuthorHuman article={article} />
+            <PostBody article={article} />
             <RichBlock />
-            <Poet article={articleFromDict} />
+            <Poet article={article} />
+
             <ReadMore
               dict={dict}
               locale={locale}
-              currentSlug={articleFromDict.slug}
+              currentSlug={article.slug}
             />
 
             <Comments />
           </div>
 
           <aside className="w-full lg:w-96 shrink-0">
-            <Sidebar article={articleFromDict} locale={locale} />
+            <Sidebar article={article} locale={locale} />
           </aside>
         </div>
       </div>

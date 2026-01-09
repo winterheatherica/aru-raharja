@@ -25,6 +25,18 @@ const SERVICE_SOLUTIONS = [
   "aruspace",
 ] as const;
 
+async function fetchArticle(slug: string, locale: Locale) {
+  const lang = locale.toUpperCase();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/${slug}?lang=${lang}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) return null;
+  return res.json();
+}
+
 export default async function PageWithParam({
   params,
 }: {
@@ -40,12 +52,17 @@ export default async function PageWithParam({
   const articleBase = localeMap?.article;
   const roomBase = localeMap?.room;
   const serviceBase = localeMap?.service;
+
   if (page === articleBase) {
+    const article = await fetchArticle(param, locale);
+
+    if (!article) return notFound();
+
     return (
       <ArticlePage
         dict={dict}
         locale={locale}
-        slug={param}
+        article={article}
       />
     );
   }
@@ -94,6 +111,17 @@ export async function generateMetadata({
   const serviceBase = localeMap?.service;
 
   if (page === articleBase) {
+    try {
+      const article = await fetchArticle(param, locale);
+
+      if (article) {
+        return {
+          title: `${article.title ?? "Article"} - ${BRAND}`,
+          description: article.meta?.description ?? undefined,
+        };
+      }
+    } catch (_) {}
+
     const list = (dict as any)?.article?.list ?? [];
     const found = list.find((a: any) => a.slug === param);
 
