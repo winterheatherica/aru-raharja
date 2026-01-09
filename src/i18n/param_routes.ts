@@ -1,4 +1,4 @@
-import { normalizeLocale, routeSlugByLocale, type Locale } from "./routes";
+import { normalizeLocale, type Locale } from "./routes";
 
 export const dynamicSegmentByLocale = {
   en: {
@@ -13,8 +13,12 @@ export const dynamicSegmentByLocale = {
   },
 } as const;
 
-function loc(l: string | Locale): Locale {
-  return normalizeLocale(typeof l === "string" ? l : (l as string));
+type SupportedLocale = keyof typeof dynamicSegmentByLocale;
+
+function loc(l: string | Locale): SupportedLocale {
+  const n = normalizeLocale(typeof l === "string" ? l : String(l));
+  if (n.startsWith("id")) return "id";
+  return "en";
 }
 
 function joinPath(...parts: Array<string | undefined | null>) {
@@ -25,37 +29,28 @@ function joinPath(...parts: Array<string | undefined | null>) {
   return "/" + segs.join("/").replace(/\/+/g, "/").replace(/\/$/, "");
 }
 
-export const reservationHref = (l: string | Locale) => {
-  const locale = loc(l);
-  return joinPath(locale, routeSlugByLocale[locale].reservation);
-};
-
 export const articleHref = (l: string | Locale, slug: string) => {
   const locale = loc(l);
-  const base = dynamicSegmentByLocale[locale].article;
-  return joinPath(locale, base, slug);
+  return joinPath(locale, dynamicSegmentByLocale[locale].article, slug);
 };
 
 export const roomHref = (l: string | Locale, roomId: string) => {
   const locale = loc(l);
-  const base = dynamicSegmentByLocale[locale].room;
-  return joinPath(locale, base, roomId);
+  return joinPath(locale, dynamicSegmentByLocale[locale].room, roomId);
 };
 
 export const reservationRoomHref = (l: string | Locale, roomId: string) => {
   const locale = loc(l);
-  const reservationBase = routeSlugByLocale[locale].reservation;
-  const roomBase = dynamicSegmentByLocale[locale].room;
-  return joinPath(locale, reservationBase, roomBase, roomId);
+  return joinPath(locale, dynamicSegmentByLocale[locale].room, roomId);
 };
 
 export const serviceHref = (l: string | Locale, solution: string) => {
   const locale = loc(l);
-  const base = dynamicSegmentByLocale[locale].service;
-  return joinPath(locale, base, solution);
+  return joinPath(locale, dynamicSegmentByLocale[locale].service, solution);
 };
 
-export const roomApiPath = (roomId: string) => joinPath("api", "rooms", roomId);
+export const roomApiPath = (roomId: string) =>
+  joinPath("api", "rooms", roomId);
 
 export const canonicalUrl = (origin: string | undefined, path: string) => {
   const safePath = path.startsWith("/") ? path : `/${path}`;
@@ -63,18 +58,26 @@ export const canonicalUrl = (origin: string | undefined, path: string) => {
   return `${origin.replace(/\/$/, "")}${safePath}`;
 };
 
-export const canonicalRoomUrl = (origin: string | undefined, l: string | Locale, roomId: string) =>
-  canonicalUrl(origin, roomHref(l, roomId));
+export const canonicalRoomUrl = (
+  origin: string | undefined,
+  l: string | Locale,
+  roomId: string
+) => canonicalUrl(origin, roomHref(l, roomId));
 
-export const canonicalArticleUrl = (origin: string | undefined, l: string | Locale, slug: string) =>
-  canonicalUrl(origin, articleHref(l, slug));
+export const canonicalArticleUrl = (
+  origin: string | undefined,
+  l: string | Locale,
+  slug: string
+) => canonicalUrl(origin, articleHref(l, slug));
 
-export const canonicalServiceUrl = (origin: string | undefined, l: string | Locale, solution: string) =>
-  canonicalUrl(origin, serviceHref(l, solution));
+export const canonicalServiceUrl = (
+  origin: string | undefined,
+  l: string | Locale,
+  solution: string
+) => canonicalUrl(origin, serviceHref(l, solution));
 
 export default {
   dynamicSegmentByLocale,
-  reservationHref,
   articleHref,
   roomHref,
   reservationRoomHref,

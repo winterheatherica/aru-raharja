@@ -3,6 +3,8 @@
 import * as React from "react";
 import Landscape3 from "../Template/Landscape-3/Landscape-3";
 import YearSelector from "../Template/YearSelector/YearSelector";
+import { articleHref } from "@/i18n/param_routes";
+
 
 type ApiNewsCard = {
   id: string;
@@ -46,7 +48,7 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
         date: it.published_at,
         excerpt: it.summary,
         imageUrl: it.image_path,
-        href: `/${locale}/article/${it.slug}`,
+        href: articleHref(locale ?? "en", it.slug),
       })),
     [items, locale]
   );
