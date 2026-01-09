@@ -11,11 +11,11 @@ type Person = {
 };
 
 const people: Person[] = [
-  { id: 1, name: "Hendro Sugiatno", title: "Komisaris Utama", img: "/images/information/report/secure/secure1.webp" },
-  { id: 2, name: "M. Khoerur Roziqin", title: "Komisaris", img: "/images/information/report/secure/secure2.webp" },
-  { id: 3, name: "Eko Suwardi", title: "Komisaris", img: "/images/information/report/secure/secure3.webp" },
-  { id: 4, name: "Iwan Faidi", title: "Komisaris", img: "/images/information/report/secure/secure2.webp" },
-  { id: 5, name: "Rimawan Pradiptyo", title: "Komisaris", img: "/images/information/report/secure/secure3.webp" },
+  { id: 1, name: "", title: "", img: "/images/information/report/secure/secure1.webp" },
+  { id: 2, name: "", title: "", img: "/images/information/report/secure/secure2.webp" },
+  { id: 3, name: "", title: "", img: "/images/information/report/secure/secure3.webp" },
+  { id: 4, name: "", title: "", img: "/images/information/report/secure/secure2.webp" },
+  { id: 5, name: "", title: "", img: "/images/information/report/secure/secure3.webp" },
 ];
 
 export default function Carousel() {
