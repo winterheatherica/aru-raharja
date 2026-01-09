@@ -11,7 +11,7 @@ export default function VisionMission({ dict }: Props) {
 
   return (
     <section className="mt-8 lg:mt-14">
-      <div className="relative h-[126px] lg:h-[352px]">
+      {/* <div className="relative h-[126px] lg:h-[352px]">
         <Image
           src="/images/about/aru-raharja-visi.png"
           alt={t?.visionMission?.bannerAlt ?? "aru-raharja-visi"}
@@ -20,7 +20,7 @@ export default function VisionMission({ dict }: Props) {
           sizes="100vw"
           priority={false}
         />
-      </div>
+      </div> */}
 
       <div className="mt-8 space-y-6 font-semibold text-[18px] leading-[30px] lg:mt-10 font-lato">
         <h3 className="text-2xl font-bold font-helvetica text-bumngreen-1">

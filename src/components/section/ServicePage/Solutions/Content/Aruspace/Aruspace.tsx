@@ -92,7 +92,7 @@ const pricingData = {
       subtitle: "Jl. Sudirman Kav. 52-53, Jakarta",
       address: "SCBD, Jakarta",
       category: "Headquarter",
-      xy: { xPct: 42, yPct: 50 },
+      xy: { xPct: 53.85, yPct: 43.5 },
       placeUrl: "https://maps.google.com?q=SCBD+Jakarta",
     },
   ];
@@ -154,7 +154,7 @@ const pricingData = {
         description="Strategis di pusat bisnis Jakarta."
         mode="image"
         image={{
-          src: "/images/services/peta.jpg",
+          src: "/images/services/peta.png",
           alt: "Peta Jakarta",
           aspectRatio: "aspect-[1/1]",
         }}

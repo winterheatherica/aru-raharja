@@ -12,13 +12,12 @@ const about = {
     buildingAlt: "Aru Raharja building",
   },
   intro:
-    "PT Aru Raharja is a State-Owned Enterprise specializing in social insurance, providing basic protection to the public through two (2) coverage programs:",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, ante ac pulvinar aliquam, lectus sapien tempor turpis, vel vehicula lacus est vel purus. Donec mollis posuere enim, in auctor nisi commodo vitae.",
   list: {
     items: [
-      "Passenger Accident Insurance for Public Transportation, based on Law No. 33 of 1964 concerning Mandatory Passenger Accident Insurance Fund.",
-      "Legal Liability Insurance for Third Parties, based on Law No. 34 of 1964 concerning Road Traffic Accident Fund.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, ante ac pulvinar aliquam, lectus sapien tempor turpis, vel vehicula lacus est vel purus. Donec mollis posuere enim, in auctor nisi commodo vitae.",
     ],
-  },
+  },  
   visionMission: {
     bannerAlt: "Aru Raharja vision banner",
     title: "Vision & Mission",
@@ -85,6 +84,11 @@ const about = {
     year2025: "2025",
     cta: "Certificate of Excellence",
     empty: "No awards found for this year.",
+  },
+  partners: {
+    heading: "Partnerships",
+    description:
+      "Aru Raharja’s services have been trusted by world-class companies across industries to help them grow.",
   },
 } as const;
 

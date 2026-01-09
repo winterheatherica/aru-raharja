@@ -33,7 +33,9 @@ export default function AboutPage({ dict, locale, site }: Props) {
         <History dict={dict} histories={histories} />
         <Business dict={dict} />
         <Culture dict={dict} />
-        <Partner dict={dict} />
+      </div>
+      <Partner dict={dict} />
+      <div className="max-w-[1014px] mx-auto">
         <Awards dict={dict} awards={awards} />
       </div>
     </main>

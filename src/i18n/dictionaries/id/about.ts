@@ -12,11 +12,10 @@ const about = {
     buildingAlt: "Gedung Aru Raharja",
   },
   intro:
-    "PT Aru Raharja adalah Badan Usaha Milik Negara yang bergerak di bidang asuransi sosial, memberikan perlindungan dasar kepada masyarakat melalui dua (2) program pertanggungan:",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, ante ac pulvinar aliquam, lectus sapien tempor turpis, vel vehicula lacus est vel purus. Donec mollis posuere enim, in auctor nisi commodo vitae.",
   list: {
     items: [
-      "Asuransi Kecelakaan Penumpang Angkutan Umum, berdasarkan UU No. 33 Tahun 1964 tentang Dana Pertanggungan Wajib Kecelakaan Penumpang.",
-      "Tanggung Jawab Hukum terhadap Pihak Ketiga, berdasarkan UU No. 34 Tahun 1964 tentang Dana Kecelakaan Lalu Lintas Jalan.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fermentum, ante ac pulvinar aliquam, lectus sapien tempor turpis, vel vehicula lacus est vel purus. Donec mollis posuere enim, in auctor nisi commodo vitae.",
     ],
   },
   visionMission: {
@@ -86,6 +85,11 @@ const about = {
     year2025: "2025",
     cta: "Sertifikat Penghargaan",
     empty: "Belum ada penghargaan untuk tahun ini.",
+  },
+  partners: {
+    heading: "Keanggotaan",
+    description:
+      "Layanan ARU Raharja telah dipercayai oleh berbagai perusahaan kelas dunia dari berbagai industri untuk membantu mereka berkembang.",
   },
 } as const;
 

@@ -140,27 +140,27 @@ export default function Arucontractor({ dict }: Props) {
       subtitle: "Office fit-out 1200 m²",
       address: "Kuningan, Jakarta",
       category: "Office",
-      xy: { xPct: 43, yPct: 63 },
+      xy: { xPct: 53.85, yPct: 43.5 },
       placeUrl: "https://maps.google.com",
     },
-    {
-      id: "m2",
-      title: "Proyek B — Jakarta Timur",
-      subtitle: "Gudang 2.500 m²",
-      address: "Rancaekek, Bandung",
-      category: "Warehouse",
-      xy: { xPct: 80, yPct: 38 },
-      placeUrl: "https://maps.google.com",
-    },
-    {
-      id: "m3",
-      title: "Proyek C — Jakarta Pusat",
-      subtitle: "Kantor cabang",
-      address: "Rungkut, Surabaya",
-      category: "Office",
-      xy: { xPct: 50, yPct: 33 },
-      placeUrl: "https://maps.google.com",
-    },
+    // {
+    //   id: "m2",
+    //   title: "Proyek B — Jakarta Timur",
+    //   subtitle: "Gudang 2.500 m²",
+    //   address: "Rancaekek, Bandung",
+    //   category: "Warehouse",
+    //   xy: { xPct: 80, yPct: 38 },
+    //   placeUrl: "https://maps.google.com",
+    // },
+    // {
+    //   id: "m3",
+    //   title: "Proyek C — Jakarta Pusat",
+    //   subtitle: "Kantor cabang",
+    //   address: "Rungkut, Surabaya",
+    //   category: "Office",
+    //   xy: { xPct: 50, yPct: 33 },
+    //   placeUrl: "https://maps.google.com",
+    // },
   ];
 
   return (
@@ -226,7 +226,7 @@ export default function Arucontractor({ dict }: Props) {
         title="Sebaran Proyek"
         description="Beberapa lokasi proyek yang pernah kami kerjakan."
         mode="image"
-        image={{ src: "/images/services/peta.jpg", alt: "Peta Indonesia", aspectRatio: "aspect-[1/1]" }}
+        image={{ src: "/images/services/peta.png", alt: "Peta Indonesia", aspectRatio: "aspect-[1/1]" }}
         markers={markers}
         enableSearch
         enableCategoryFilter
