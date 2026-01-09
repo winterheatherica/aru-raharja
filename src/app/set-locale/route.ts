@@ -18,9 +18,7 @@ export async function GET(req: Request) {
     nextPath = `/${value}/${routeSlugByLocale[value].home}`;
   }
 
-  const target = new URL(nextPath, url.origin);
-
-  const res = NextResponse.redirect(target);
+  const res = NextResponse.redirect(nextPath);
   res.cookies.set(COOKIE_NAME, value, cookieOpts);
   return res;
 }
