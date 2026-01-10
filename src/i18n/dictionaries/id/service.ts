@@ -60,6 +60,18 @@ const service = {
       },
     },
   },
+  pricing: {
+    toggle: {
+      monthly: "Bulanan",
+      yearly: "Tahunan",
+    },
+    popularBadge: "Paling Populer",
+    cta: "Pilih Paket",
+    period: {
+      monthly: "bln",
+      yearly: "thn",
+    },
+  },
 } as const;
 
 export default service;

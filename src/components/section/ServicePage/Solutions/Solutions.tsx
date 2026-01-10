@@ -20,9 +20,10 @@ type Props = {
   dict: DictShape;
   locale: string;
   value: string;
+  site?: any;
 };
 
-export default function Solutions({ dict, locale, value }: Props) {
+export default function Solutions({ dict, locale, value, site }: Props) {
   const router = useRouter();
 
   const items =
@@ -57,7 +58,7 @@ export default function Solutions({ dict, locale, value }: Props) {
         />
 
         <div className="w-[90%] mx-auto">
-          <Content activeId={active} dict={dict} />
+          <Content activeId={active} dict={dict} site={site} />
         </div>
       </section>
     </div>

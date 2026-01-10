@@ -82,11 +82,25 @@ export default async function PageWithParam({
       return notFound();
     }
 
+    const lang = locale.toUpperCase();
+
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}/api/service?lang=${lang}`,
+      { cache: "no-store" }
+    );
+
+    if (!res.ok) {
+      return notFound();
+    }
+
+    const site = await res.json();
+
     return (
       <ServicePage
         dict={dict}
         locale={locale}
         activeSolution={param}
+        site={site}
       />
     );
   }

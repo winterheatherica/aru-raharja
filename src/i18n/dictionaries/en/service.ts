@@ -60,6 +60,18 @@ const service = {
       },
     },
   },
+  pricing: {
+    toggle: {
+      monthly: "Monthly",
+      yearly: "Yearly",
+    },
+    popularBadge: "Most Popular",
+    cta: "Choose Plan",
+    period: {
+      monthly: "mo",
+      yearly: "yr",
+    },
+  },
 } as const;
 
 export default service;
