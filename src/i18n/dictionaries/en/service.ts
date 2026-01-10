@@ -6,10 +6,6 @@ const service = {
     altMask: "Decorative background",
     altIllustration: "Service Illustration",
   },
-  intro: {
-    paragraph:
-      "The presence of PT Aru Raharja provides basic protection to the community through 2 (two) coverage programs, namely Public Transport Equipment Passenger Accident Insurance implemented under Law No. 33 of 1964 concerning Mandatory Passenger Accident Insurance Fund and Legal Liability Insurance for Third Parties implemented under Law No. 34 of 1964 concerning Road Traffic Accident Fund.",
-  },
   solutions: {
     nav: [
       { id: "arudigital", label: "<strong>ARU</strong><em>digital</em>" },
@@ -21,6 +17,48 @@ const service = {
       { id: "arutrans", label: "<strong>ARU</strong><em>trans</em>" },
       { id: "aruspace", label: "<strong>ARU</strong><em>space</em>" },
     ] as const,
+    descriptions: {
+      arudigital: {
+        title: "ARUdigital — Cloud business platform",
+        description:
+          "Scalable digital solutions to streamline operations, boost efficiency, and deliver better customer experiences.",
+      },
+      aruhealthcare: {
+        title: "ARUhealthcare — Preventive & productive",
+        description:
+          "Employee preventive care programs designed to improve productivity while reducing long-term healthcare costs.",
+      },
+      arucontractor: {
+        title: "ARUcontractor — Professional & on-time construction",
+        description:
+          "Reliable construction services with strong project management, strict safety standards, and transparent documentation.",
+      },
+      arusource: {
+        title: "ARUsource — Ready-to-work talent",
+        description:
+          "Professional workforce supply with clear SLAs, fast onboarding, and flexible working models (on-site, hybrid, or remote).",
+      },
+      arusolution: {
+        title: "ARUsolution — Fast & best-fit implementation",
+        description:
+          "Ready-to-use solutions delivered with a 1–3 week implementation playbook, tailored to your business needs and culture.",
+      },
+      arulog: {
+        title: "ARUlog — Catalog & procurement supplier",
+        description:
+          "Curated catalogs with competitive pricing, clear lead times, and reliable delivery SLAs you can count on.",
+      },
+      arutrans: {
+        title: "ARUtrans — Flexible vehicle rental, drivers & insurance included",
+        description:
+          "Cars and minibuses for daily operations or project needs, with driver options, insurance coverage, and 24/7 support.",
+      },
+      aruspace: {
+        title: "ARUspace — Flexible & strategic workspaces",
+        description:
+          "Virtual Offices, Dedicated Desks, Meeting Rooms, and Event Spaces with complete facilities in strategic locations.",
+      },
+    },
   },
 } as const;
 

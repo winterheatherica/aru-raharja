@@ -6,10 +6,6 @@ const service = {
     altMask: "Hiasan latar belakang",
     altIllustration: "Ilustrasi Layanan",
   },
-  intro: {
-    paragraph:
-      "Kehadiran PT Aru Raharja memberikan perlindungan dasar kepada masyarakat melalui 2 (dua) program pertanggungan, yaitu Asuransi Kecelakaan Penumpang Alat Angkutan Umum yang dilaksanakan berdasarkan Undang-Undang No. 33 Tahun 1964 tentang Dana Pertanggungan Wajib Kecelakaan Penumpang, serta Asuransi Tanggung Jawab Hukum terhadap Pihak Ketiga yang dilaksanakan berdasarkan Undang-Undang No. 34 Tahun 1964 tentang Dana Kecelakaan Lalu Lintas Jalan.",
-  },
   solutions: {
     nav: [
       { id: "arudigital", label: "<strong>ARU</strong><em>digital</em>" },
@@ -21,6 +17,48 @@ const service = {
       { id: "arutrans", label: "<strong>ARU</strong><em>trans</em>" },
       { id: "aruspace", label: "<strong>ARU</strong><em>space</em>" },
     ] as const,
+    descriptions: {
+      arudigital: {
+        title: "ARUdigital — Platform bisnis berbasis cloud",
+        description:
+          "Solusi digital yang scalable untuk menyederhanakan operasional, meningkatkan efisiensi, dan menghadirkan pengalaman pelanggan yang lebih baik.",
+      },
+      aruhealthcare: {
+        title: "ARUhealthcare — Preventif & produktif",
+        description:
+          "Program perawatan preventif karyawan yang dirancang untuk meningkatkan produktivitas sekaligus menekan biaya kesehatan jangka panjang.",
+      },
+      arucontractor: {
+        title: "ARUcontractor — Konstruksi profesional & tepat waktu",
+        description:
+          "Layanan konstruksi andal dengan manajemen proyek yang solid, standar keselamatan ketat, serta dokumentasi yang transparan.",
+      },
+      arusource: {
+        title: "ARUsource — Tenaga kerja siap pakai",
+        description:
+          "Penyediaan tenaga kerja profesional dengan SLA yang jelas, proses onboarding cepat, dan model kerja fleksibel (on-site, hybrid, maupun remote).",
+      },
+      arusolution: {
+        title: "ARUsolution — Implementasi cepat & paling sesuai",
+        description:
+          "Solusi siap pakai dengan panduan implementasi 1–3 minggu, disesuaikan dengan kebutuhan bisnis dan budaya kerja perusahaan Anda.",
+      },
+      arulog: {
+        title: "ARUlog — Supplier katalog & pengadaan",
+        description:
+          "Katalog terkurasi dengan harga kompetitif, lead time yang jelas, serta SLA pengiriman yang dapat diandalkan.",
+      },
+      arutrans: {
+        title: "ARUtrans — Sewa kendaraan fleksibel, driver & asuransi siap",
+        description:
+          "Penyediaan mobil dan minibus untuk kebutuhan operasional harian maupun proyek, lengkap dengan opsi driver, asuransi, dan dukungan 24/7.",
+      },
+      aruspace: {
+        title: "ARUspace — Ruang kerja fleksibel & strategis",
+        description:
+          "Penyedia Virtual Office, Dedicated Desk, Meeting Room, dan Event Space dengan fasilitas lengkap di lokasi yang strategis.",
+      },
+    },
   },
 } as const;
 

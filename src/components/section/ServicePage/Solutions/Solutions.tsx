@@ -4,7 +4,6 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
-import PhoneCTA from "@/components/general/BluePrint/PhoneCTA/PhoneCTA";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 type NavItem = { id: string; label: string };
@@ -23,11 +22,7 @@ type Props = {
   value: string;
 };
 
-export default function Solutions({
-  dict,
-  locale,
-  value,
-}: Props) {
+export default function Solutions({ dict, locale, value }: Props) {
   const router = useRouter();
 
   const items =
@@ -53,23 +48,16 @@ export default function Solutions({
 
   return (
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
-      <section
-        aria-label="Solutions"
-        className="w-full space-y-8"
-      >
+      <section aria-label="Solutions" className="w-full space-y-8">
         <Navigation
           dict={dict}
           value={active}
           onChange={handleChange}
+          orientation="horizontal"
         />
 
         <div className="w-[90%] mx-auto">
-          <Content
-            activeId={active}
-            dict={dict}
-            locale={locale}
-          />
-          <PhoneCTA />
+          <Content activeId={active} dict={dict} />
         </div>
       </section>
     </div>
