@@ -19,9 +19,9 @@ type Props = {
 };
 
 const cardsMeta = [
-  { iconSrc: "/images/home/duties-promo/icon-4.png" },
-  { iconSrc: "/images/home/duties-promo/icon-5.png" },
-  { iconSrc: "/images/home/duties-promo/icon-6.png" },
+  { iconSrc: "/images/home/duties-promo/icon-4.jpg" },
+  { iconSrc: "/images/home/duties-promo/icon-5.jpg" },
+  { iconSrc: "/images/home/duties-promo/icon-6.jpg" },
 ];
 
 export default function DutiesPromo({ dict, promo }: Props) {
