@@ -25,11 +25,25 @@ const SERVICE_SOLUTIONS = [
   "aruspace",
 ] as const;
 
-async function fetchArticle(slug: string, locale: Locale) {
+async function resolveArticleId(slug: string, locale: Locale) {
   const lang = locale.toUpperCase();
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/${slug}?lang=${lang}`,
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/resolve?slug=${slug}&lang=${lang}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) return null;
+
+  const data = await res.json();
+  return data?.id ?? null;
+}
+
+async function fetchArticleById(id: string, locale: Locale) {
+  const lang = locale.toUpperCase();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/${id}?lang=${lang}`,
     { cache: "no-store" }
   );
 
@@ -54,8 +68,13 @@ export default async function PageWithParam({
   const serviceBase = localeMap?.service;
 
   if (page === articleBase) {
-    const article = await fetchArticle(param, locale);
+    const articleId = await resolveArticleId(param, locale);
+    if (!articleId) return notFound();
 
+    const article = await fetchArticleById(
+      String(articleId),
+      locale
+    );
     if (!article) return notFound();
 
     return (
@@ -126,29 +145,27 @@ export async function generateMetadata({
 
   if (page === articleBase) {
     try {
-      const article = await fetchArticle(param, locale);
+      const articleId = await resolveArticleId(param, locale);
+      if (articleId) {
+        const article = await fetchArticleById(
+          String(articleId),
+          locale
+        );
 
-      if (article) {
-        return {
-          title: `${article.title ?? "Article"} - ${BRAND}`,
-          description: article.meta?.description ?? undefined,
-        };
+        if (article) {
+          return {
+            title: `${article.title ?? "Article"} - ${BRAND}`,
+            description:
+              article.meta?.description ?? undefined,
+          };
+        }
       }
     } catch (_) {}
-
-    const list = (dict as any)?.article?.list ?? [];
-    const found = list.find((a: any) => a.slug === param);
-
-    if (found) {
-      return {
-        title: `${found.title ?? "Article"} - ${BRAND}`,
-        description: found.excerpt ?? undefined,
-      };
-    }
 
     return {};
   }
 
+  // ===== ROOM & SERVICE tetap =====
   if (page === roomBase) {
     const detailed = (dict as any)?.room;
 
