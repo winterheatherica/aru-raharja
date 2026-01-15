@@ -21,6 +21,7 @@ export type PageComponentProps = {
   dict: any;
   locale: any;
   site: any;
+  activeSolution?: string;
 };
 
 export const PageComponentByCanonical: Record<
@@ -29,7 +30,7 @@ export const PageComponentByCanonical: Record<
 > = {
   home: HomePage,
   about: AboutPage,
-  service: ServicePage as any,
+  service: ServicePage,
   reservation: ReservationPage,
   information: InformationPage,
   career: CareerPage,

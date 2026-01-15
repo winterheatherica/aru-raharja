@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
-import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 import type { Locale } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -23,6 +22,7 @@ import {
   fetchReservation,
   fetchInformation,
   fetchCareer,
+  fetchService,
 } from "./_fetchers";
 
 import { buildSocialMeta } from "./_metadata";
@@ -33,6 +33,7 @@ const fetcherByPage: Partial<
 > = {
   home: fetchHome,
   about: fetchAbout,
+  service: fetchService,
   reservation: fetchReservation,
   information: fetchInformation,
   career: fetchCareer,
@@ -58,21 +59,13 @@ export default async function DynamicPage({
     return <AdminPage dict={dict} locale={locale} />;
   }
 
-  if (canonical === "service") {
-    const serviceBase =
-      dynamicSegmentByLocale[locale]?.service ??
-      dynamicSegmentByLocale["id"].service;
-
-    redirect(`/${locale}/${serviceBase}/arudigital`);
-  }
-
   const Component = PageComponentByCanonical[canonical];
   if (!Component) notFound();
 
   const fetcher = fetcherByPage[canonical];
   const site = fetcher ? await fetcher(locale) : null;
 
-  return <Component dict={dict} locale={locale} site={site} />;
+  return <Component dict={dict} locale={locale} activeSolution={undefined} site={site} />;
 }
 
 export async function generateStaticParams() {

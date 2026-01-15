@@ -10,14 +10,28 @@ import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import { SERVICE_SOLUTIONS } from "./_constants";
 import { resolveArticleId } from "./_resolvers";
-import { fetchArticleById, fetchServiceSite } from "./_fetchers";
+import { fetchArticleById } from "./_fetchers";
 import { generateParamMetadata } from "./_metadata";
+
+type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
 
 type Params = {
   locale: Locale;
   page: string;
   param: string;
 };
+
+async function fetchServiceSite(locale: Locale) {
+  const lang = locale.toUpperCase();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/service?lang=${lang}`,
+    { cache: "force-cache" }
+  );
+
+  if (!res.ok) return null;
+  return res.json();
+}
 
 export default async function PageWithParam({
   params,
@@ -65,7 +79,7 @@ export default async function PageWithParam({
   }
 
   if (page === serviceBase) {
-    if (!SERVICE_SOLUTIONS.includes(param as any)) {
+    if (!SERVICE_SOLUTIONS.includes(param as ServiceSolution)) {
       notFound();
     }
 
@@ -76,13 +90,25 @@ export default async function PageWithParam({
       <ServicePage
         dict={dict}
         locale={locale}
-        activeSolution={param}
         site={site}
+        activeSolution={param}
       />
     );
   }
 
   notFound();
+}
+
+export async function generateStaticParams() {
+  const locales: Locale[] = ["id", "en"];
+
+  return locales.flatMap((locale) =>
+    SERVICE_SOLUTIONS.map((solution) => ({
+      locale,
+      page: "service",
+      param: solution,
+    }))
+  );
 }
 
 export async function generateMetadata({
@@ -94,9 +120,4 @@ export async function generateMetadata({
   const dict: Dictionary = await getDictionary(locale);
 
   return generateParamMetadata(locale, page, param, dict);
-}
-
-/* ===== SSG ===== */
-export async function generateStaticParams() {
-  return [];
 }

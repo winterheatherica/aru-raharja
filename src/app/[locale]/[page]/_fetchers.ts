@@ -5,10 +5,10 @@ async function fetchFromAPI(endpoint: string, locale: Locale) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
-    { cache: "no-store" }
+    { cache: "force-cache" }
   );
 
-  if (!res.ok) {
+    if (!res.ok) {
     throw new Error(`Failed to fetch ${endpoint}`);
   }
 
@@ -29,3 +29,6 @@ export const fetchInformation = (l: Locale) =>
 
 export const fetchCareer = (l: Locale) =>
   fetchFromAPI("/api/career", l);
+
+export const fetchService = (l: Locale) =>
+  fetchFromAPI("/api/service", l);
