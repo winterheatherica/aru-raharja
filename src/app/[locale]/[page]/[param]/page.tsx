@@ -1,55 +1,23 @@
 import { notFound } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
+
 import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
 import ServicePage from "@/components/pages/ServicePage";
+
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
-const BRAND = "PT Aru Raharja" as const;
+import { SERVICE_SOLUTIONS } from "./_constants";
+import { resolveArticleId } from "./_resolvers";
+import { fetchArticleById, fetchServiceSite } from "./_fetchers";
+import { generateParamMetadata } from "./_metadata";
 
 type Params = {
   locale: Locale;
   page: string;
   param: string;
 };
-
-const SERVICE_SOLUTIONS = [
-  "arudigital",
-  "aruhealthcare",
-  "arucontractor",
-  "arusource",
-  "arusolution",
-  "arulog",
-  "arutrans",
-  "aruspace",
-] as const;
-
-async function resolveArticleId(slug: string, locale: Locale) {
-  const lang = locale.toUpperCase();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/resolve?slug=${slug}&lang=${lang}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) return null;
-
-  const data = await res.json();
-  return data?.id ?? null;
-}
-
-async function fetchArticleById(id: string, locale: Locale) {
-  const lang = locale.toUpperCase();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/${id}?lang=${lang}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) return null;
-  return res.json();
-}
 
 export default async function PageWithParam({
   params,
@@ -69,13 +37,13 @@ export default async function PageWithParam({
 
   if (page === articleBase) {
     const articleId = await resolveArticleId(param, locale);
-    if (!articleId) return notFound();
+    if (!articleId) notFound();
 
     const article = await fetchArticleById(
       String(articleId),
       locale
     );
-    if (!article) return notFound();
+    if (!article) notFound();
 
     return (
       <ArticlePage
@@ -98,21 +66,11 @@ export default async function PageWithParam({
 
   if (page === serviceBase) {
     if (!SERVICE_SOLUTIONS.includes(param as any)) {
-      return notFound();
+      notFound();
     }
 
-    const lang = locale.toUpperCase();
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE}/api/service?lang=${lang}`,
-      { cache: "no-store" }
-    );
-
-    if (!res.ok) {
-      return notFound();
-    }
-
-    const site = await res.json();
+    const site = await fetchServiceSite(locale);
+    if (!site) notFound();
 
     return (
       <ServicePage
@@ -124,7 +82,7 @@ export default async function PageWithParam({
     );
   }
 
-  return notFound();
+  notFound();
 }
 
 export async function generateMetadata({
@@ -135,87 +93,10 @@ export async function generateMetadata({
   const { locale, page, param } = params;
   const dict: Dictionary = await getDictionary(locale);
 
-  const localeMap =
-    (dynamicSegmentByLocale as any)[locale] ??
-    (dynamicSegmentByLocale as any)["id"];
-
-  const articleBase = localeMap?.article;
-  const roomBase = localeMap?.room;
-  const serviceBase = localeMap?.service;
-
-  if (page === articleBase) {
-    try {
-      const articleId = await resolveArticleId(param, locale);
-      if (articleId) {
-        const article = await fetchArticleById(
-          String(articleId),
-          locale
-        );
-
-        if (article) {
-          return {
-            title: `${article.title ?? "Article"} - ${BRAND}`,
-            description:
-              article.meta?.description ?? undefined,
-          };
-        }
-      }
-    } catch (_) {}
-
-    return {};
-  }
-
-  // ===== ROOM & SERVICE tetap =====
-  if (page === roomBase) {
-    const detailed = (dict as any)?.room;
-
-    if (detailed?.meta?.id === param) {
-      const title = detailed.meta?.title ?? `Room ${param}`;
-      const desc = detailed.meta?.subtitle ?? undefined;
-
-      return {
-        title: `${title} - ${BRAND}`,
-        description: desc,
-      };
-    }
-
-    const listRooms: any[] =
-      (dict as any)?.reservation?.roomlist?.list ?? [];
-
-    const found = listRooms.find(
-      (r) => String(r.id) === String(param)
-    );
-
-    if (found) {
-      return {
-        title: `${found.title ?? `Room ${param}`} - ${BRAND}`,
-        description: found.subtitle ?? undefined,
-      };
-    }
-
-    return {};
-  }
-
-  if (page === serviceBase) {
-    const nav =
-      (dict as any)?.service?.solutions?.nav ?? [];
-
-    const found = nav.find(
-      (s: any) => s.id === param
-    );
-
-    const title =
-      found?.label?.replace(/<[^>]+>/g, "") ??
-      `Service ${param}`;
-
-    return {
-      title: `${title} - ${BRAND}`,
-    };
-  }
-
-  return {};
+  return generateParamMetadata(locale, page, param, dict);
 }
 
+/* ===== SSG ===== */
 export async function generateStaticParams() {
   return [];
 }
