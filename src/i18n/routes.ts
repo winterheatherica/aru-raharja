@@ -4,10 +4,10 @@ export type CanonicalPage =
   | "service"
   | "reservation"
   | "information"
-  // | "appeal"
   | "career"
   | "login"
   | "admin"
+  | "article";
 
 export const locales = ["en", "id"] as const;
 export type Locale = (typeof locales)[number];
@@ -15,6 +15,7 @@ export type Locale = (typeof locales)[number];
 export function isLocale(x: string): x is Locale {
   return (locales as readonly string[]).includes(x);
 }
+
 export function normalizeLocale(x: string | undefined): Locale {
   if (!x) return "id";
   const lc = x.toLowerCase().trim();
@@ -28,10 +29,10 @@ export const routeSlugByLocale = {
     service: "service",
     reservation: "reservation",
     information: "information",
-    // appeal: "appeal",
     career: "career",
     login: "login",
     admin: "admin",
+    article: "article",
   },
   id: {
     home: "beranda",
@@ -39,10 +40,10 @@ export const routeSlugByLocale = {
     service: "layanan",
     reservation: "reservasi",
     information: "informasi",
-    // appeal: "himbauan",
     career: "karier",
     login: "login",
     admin: "admin",
+    article: "artikel",
   },
 } as const;
 

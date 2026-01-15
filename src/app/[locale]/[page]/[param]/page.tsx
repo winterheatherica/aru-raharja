@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 
@@ -59,6 +59,11 @@ export default async function PageWithParam({
     );
     if (!article) notFound();
 
+    if (article.slug && article.slug !== param) {
+      const redirectUrl = `/${locale}/${page}/${article.slug}`;
+      redirect(redirectUrl);
+    }
+
     return (
       <ArticlePage
         dict={dict}
@@ -67,6 +72,7 @@ export default async function PageWithParam({
       />
     );
   }
+
 
   if (page === roomBase) {
     return (
