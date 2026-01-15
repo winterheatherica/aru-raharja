@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
+import { redirect } from "next/navigation";
 import type { Locale } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -9,6 +9,7 @@ import {
   locales,
   type CanonicalPage,
 } from "@/i18n/routes";
+import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import {
   PageComponentByCanonical,
@@ -19,14 +20,13 @@ import {
 import {
   fetchHome,
   fetchAbout,
+  fetchService,
   fetchReservation,
   fetchInformation,
   fetchCareer,
-  fetchService,
 } from "./_fetchers";
 
 import { buildSocialMeta } from "./_metadata";
-
 
 const fetcherByPage: Partial<
   Record<CanonicalPage, (l: Locale) => Promise<any>>
@@ -57,6 +57,13 @@ export default async function DynamicPage({
 
   if (canonical === "admin") {
     return <AdminPage dict={dict} locale={locale} />;
+  }
+
+ if (canonical === "service") {
+    const serviceBase =
+      dynamicSegmentByLocale[locale]?.service ??
+      dynamicSegmentByLocale["id"].service;
+    redirect(`/${locale}/${serviceBase}/arudigital`);
   }
 
   const Component = PageComponentByCanonical[canonical];
