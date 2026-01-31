@@ -19,7 +19,7 @@ export async function generateParamMetadata(
 
   if (page === articleBase) {
     try {
-      const articleId = await resolveArticleId(param, locale);
+      const articleId = await resolveArticleId(param);
       if (!articleId) return {};
 
       const article = await fetchArticleById(

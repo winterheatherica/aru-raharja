@@ -50,7 +50,7 @@ export default async function PageWithParam({
   const serviceBase = localeMap?.service;
 
   if (page === articleBase) {
-    const articleId = await resolveArticleId(param, locale);
+    const articleId = await resolveArticleId(param);
     if (!articleId) notFound();
 
     const article = await fetchArticleById(

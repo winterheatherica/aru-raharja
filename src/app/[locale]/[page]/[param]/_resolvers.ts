@@ -1,10 +1,6 @@
-import type { Locale } from "@/i18n/get_dictionary";
-
-export async function resolveArticleId(slug: string, locale: Locale) {
-  const lang = locale.toUpperCase();
-
+export async function resolveArticleId(slug: string) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/resolve?slug=${slug}&lang=${lang}`,
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/article/resolve?slug=${slug}`,
     { cache: "no-store" }
   );
 

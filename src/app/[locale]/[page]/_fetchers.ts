@@ -5,7 +5,7 @@ async function fetchFromAPI(endpoint: string, locale: Locale) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
-    { cache: "force-cache" }
+    { cache: "no-store", }
   );
 
     if (!res.ok) {
