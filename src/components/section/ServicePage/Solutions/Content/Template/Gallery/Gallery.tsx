@@ -3,46 +3,74 @@
 import * as React from "react";
 import GalleryTrack from "./GalleryTrack";
 
-type GalleryItem = {
+type Item = {
   id: string;
   src: string;
-  alt?: string;
-  title?: string;
-  caption?: string;
 };
 
 type Props = {
-  items: GalleryItem[];
+  items: Item[];
 };
 
 export default function ServiceGallery({ items }: Props) {
-  const [active, setActive] = React.useState(0);
+  const [start, setStart] = React.useState(0);
+  const [phase, setPhase] = React.useState<"idle" | "anim">("idle");
+  const [direction, setDirection] =
+    React.useState<"prev" | "next" | null>(null);
+  const [offset, setOffset] = React.useState(0);
 
-  if (!items || !items.length) return null;
+  const total = items.length;
+  if (!total) return null;
 
-  const prev = () => {
-    setActive((p) => (p === 0 ? items.length - 1 : p - 1));
-  };
+  const VISIBLE_COUNT = 7;
+  const CENTER = 3;
 
-  const next = () => {
-    setActive((p) => (p === items.length - 1 ? 0 : p + 1));
+  const visible = React.useMemo(
+    () =>
+      Array.from({ length: VISIBLE_COUNT }, (_, i) => {
+        const relative = i - CENTER;
+        const index = (start + relative + total) % total;
+        return items[index];
+      }),
+    [start, items, total]
+  );
+
+  const SHIFT = 195;
+
+  const run = (dir: "prev" | "next") => {
+    if (phase !== "idle") return;
+
+    setDirection(dir);
+    setPhase("anim");
+    setOffset(dir === "next" ? -SHIFT : SHIFT);
+
+    setTimeout(() => {
+      setStart((s) =>
+        dir === "next"
+          ? (s + 1) % total
+          : (s - 1 + total) % total
+      );
+
+      setOffset(0);
+      setPhase("idle");
+      setDirection(null);
+    }, 300);
   };
 
   return (
-    <div
-      className="relative w-full"
-      role="region"
-      aria-roledescription="carousel"
-    >
+    <div className="relative w-full">
       <div className="overflow-hidden">
-        <GalleryTrack items={items} activeIndex={active} />
+        <GalleryTrack
+          items={visible}
+          phase={phase}
+          direction={direction}
+          offset={offset}
+        />
       </div>
 
-      {/* controls */}
-      <div className="absolute right-[3rem] -top-[2.1rem] lg:-top-[2.3rem]">
+      <div className="absolute right-[3rem] -top-[2.1rem] lg:-top-[2.3rem] z-30">
         <button
-          onClick={prev}
-          aria-label="Previous slide"
+          onClick={() => run("prev")}
           className="absolute -left-12 top-1/2 -translate-y-1/2
             bg-bumn-gradient-primary-7 text-white rounded-xl
             w-[42px] h-[42px] flex items-center justify-center"
@@ -51,8 +79,7 @@ export default function ServiceGallery({ items }: Props) {
         </button>
 
         <button
-          onClick={next}
-          aria-label="Next slide"
+          onClick={() => run("next")}
           className="absolute -right-12 top-1/2 -translate-y-1/2
             bg-bumn-gradient-primary-7 text-white rounded-xl
             w-[42px] h-[42px] flex items-center justify-center"

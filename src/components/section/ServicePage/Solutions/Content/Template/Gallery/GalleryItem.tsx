@@ -1,69 +1,55 @@
 "use client";
 
 import Image from "next/image";
-
-type Item = {
-  id: string;
-  src: string;
-  alt?: string;
-  title?: string;
-  caption?: string;
-};
+import clsx from "clsx";
 
 type Props = {
-  item: Item;
-  active: boolean;
+  item: any;
+  index: number;
+  phase: "idle" | "anim";
+  direction: "prev" | "next" | null;
 };
 
-export default function GalleryItem({ item, active }: Props) {
+export default function GalleryItem({
+  item,
+  index,
+  phase,
+  direction,
+}: Props) {
+  const CENTER = 3;
+  const PREV = 2;
+  const NEXT = 4;
+
+  const isCurrent = index === CENTER;
+  const isPrev = index === PREV;
+  const isNext = index === NEXT;
+
+  const grow =
+    phase === "anim" &&
+    ((direction === "next" && isNext) ||
+      (direction === "prev" && isPrev));
+
+  const shrink = phase === "anim" && isCurrent;
+
   return (
     <div
-      role="group"
-      aria-roledescription="slide"
-      className={[
+      className={clsx(
         "pl-4 relative flex-shrink-0 h-[430px]",
-        "transition-all duration-300",
-        active
-          ? "basis-[75%] lg:basis-[40%] expand-item"
-          : "basis-1/3 lg:basis-[15%] shrink-item",
-      ].join(" ")}
+        "transition-[flex-basis] duration-300 ease-in-out",
+        isCurrent && !shrink && "basis-[40%]",
+        shrink && "basis-[15%]",
+        grow && "basis-[40%]",
+        !isCurrent && !grow && "basis-[15%]"
+      )}
     >
-      <div className="h-full rounded-2xl overflow-hidden shadow border-none">
+      <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
         <div className="relative w-full h-full p-6">
           <Image
             src={item.src}
-            alt={item.alt || item.title || "Gallery"}
+            alt=""
             fill
-            className={[
-              "object-cover rounded-2xl transition-all",
-              active ? "grayscale-0" : "grayscale",
-            ].join(" ")}
+            className="object-cover rounded-2xl"
           />
-
-          {/* overlay */}
-          <div
-            className={[
-              "absolute inset-0 rounded-2xl transition-opacity duration-300",
-              "bg-gradient-to-tr from-bumnblue-2/40 to-transparent",
-              active ? "opacity-60" : "opacity-0",
-            ].join(" ")}
-          />
-
-          {/* caption */}
-          {active && (item.title || item.caption) && (
-            <div className="absolute bottom-4 left-4 right-4 text-white">
-              {item.title && (
-                <h4 className="text-lg font-semibold">
-                  {item.title}
-                </h4>
-              )}
-              {item.caption && (
-                <p className="text-sm opacity-90">
-                  {item.caption}
-                </p>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>

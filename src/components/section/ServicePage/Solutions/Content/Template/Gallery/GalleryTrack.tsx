@@ -2,37 +2,37 @@
 
 import GalleryItem from "./GalleryItem";
 
-type Item = {
-  id: string;
-  src: string;
-  alt?: string;
-  title?: string;
-  caption?: string;
+type Props = {
+  items: any[];
+  phase: "idle" | "anim";
+  direction: "prev" | "next" | null;
+  offset: number;
 };
 
-type Props = {
-  items: Item[];
-  activeIndex: number;
-};
+const ITEM_SHIFT = 195;
 
 export default function GalleryTrack({
   items,
-  activeIndex,
+  phase,
+  direction,
+  offset,
 }: Props) {
+  const BASE_OFFSET = -ITEM_SHIFT;
+
   return (
     <div
-      className="flex -ml-4 transition-transform duration-300"
+      className="flex transition-transform duration-300 ease-in-out"
       style={{
-        transform: `translate3d(-${
-          activeIndex * 180
-        }px, 0, 0)`,
+        transform: `translate3d(${BASE_OFFSET + offset}px,0,0)`,
       }}
     >
-      {items.map((it, i) => (
+      {items.map((item, i) => (
         <GalleryItem
-          key={it.id}
-          item={it}
-          active={i === activeIndex}
+          key={`${item.id}-${i}`}
+          item={item}
+          index={i}
+          phase={phase}
+          direction={direction}
         />
       ))}
     </div>
