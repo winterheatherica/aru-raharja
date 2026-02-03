@@ -26,7 +26,7 @@ async function fetchServiceSite(locale: Locale) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/service?lang=${lang}`,
-    { cache: "force-cache" }
+    { cache: "no-store" }
   );
 
   if (!res.ok) return null;
