@@ -72,6 +72,17 @@ const service = {
       yearly: "thn",
     },
   },
+  map: {
+    title: "Lokasi Operasional Kami",
+    description:
+      "Seluruh layanan ARU dikoordinasikan dari satu pusat operasional untuk memastikan konsistensi, tata kelola, dan kualitas layanan di seluruh unit bisnis.",
+    locationTitle: "Wisma Raharja",
+    paragraphs: [
+      "Lokasi ini berfungsi sebagai pusat koordinasi utama operasional ARU. Perencanaan strategis, sinkronisasi lintas sektor, serta pengawasan operasional dilakukan dari sini untuk memastikan setiap layanan ARU berjalan dengan standar dan akuntabilitas yang jelas.",
+      "Dengan satu basis operasional terpusat, ARU mampu menjaga kualitas layanan yang konsisten sekaligus tetap adaptif terhadap kebutuhan klien dari berbagai industri.",
+    ],
+    badge: "Operasional Terpusat",
+  },
 } as const;
 
 export default service;

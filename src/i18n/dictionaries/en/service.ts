@@ -72,6 +72,17 @@ const service = {
       yearly: "yr",
     },
   },
+  map: {
+    title: "Our Operational Location",
+    description:
+      "Our services are coordinated from a centralized operational hub to ensure consistency, governance, and service quality across all ARU business units.",
+    locationTitle: "Wisma Raharja",
+    paragraphs: [
+      "This location functions as the central coordination hub for ARU’s operations. Strategic planning, cross-sector alignment, and operational oversight are managed from here to ensure every ARU service runs with clear standards and accountability.",
+      "By maintaining a single operational base, ARU is able to deliver consistent service quality while remaining agile and responsive to the evolving needs of clients across industries.",
+    ],
+    badge: "Centralized Operations",
+  },
 } as const;
 
 export default service;

@@ -1,6 +1,6 @@
 "use client";
 
-import ServiceDescription from "./Template/Description/Description";
+import Description from "./Template/Description/Description";
 import Pricing from "./Template/Pricing/Pricing";
 import Gallery from "./Template/Gallery/Gallery";
 import Matrix from "./Template/Matrix/Matrix";
@@ -37,12 +37,12 @@ export default function Content({ activeId, dict, site }: Props) {
 
   return (
     <div className="space-y-10 pb-10">
-      <ServiceDescription title={desc.title} description={desc.description} />
+      <Description title={desc.title} description={desc.description} />
       <Pricing items={pricing} texts={pricingTexts} />
       {gallery.length > 0 && <Gallery items={gallery} /> }
       {matrix && <Matrix data={matrix} />}
       {certifications.length > 0 && <Certifications items={certifications} />}
-      <Map />
+      <Map dict={dict} />
     </div>
   );
 }
