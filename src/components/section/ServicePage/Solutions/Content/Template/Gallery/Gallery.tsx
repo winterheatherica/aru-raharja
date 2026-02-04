@@ -24,6 +24,7 @@ export default function ServiceGallery({ items }: Props) {
 
   const VISIBLE_COUNT = 7;
   const CENTER = 3;
+  const SHIFT = 195;
 
   const visible = React.useMemo(
     () =>
@@ -34,8 +35,6 @@ export default function ServiceGallery({ items }: Props) {
       }),
     [start, items, total]
   );
-
-  const SHIFT = 195;
 
   const run = (dir: "prev" | "next") => {
     if (phase !== "idle") return;
@@ -50,7 +49,6 @@ export default function ServiceGallery({ items }: Props) {
           ? (s + 1) % total
           : (s - 1 + total) % total
       );
-
       setOffset(0);
       setPhase("idle");
       setDirection(null);
@@ -58,7 +56,27 @@ export default function ServiceGallery({ items }: Props) {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="w-full flex flex-col gap-4">
+      <div className="flex justify-end gap-3 pr-6">
+        <button
+          onClick={() => run("prev")}
+          className="bg-bumn-gradient-primary-7 text-white
+                     w-[42px] h-[42px] rounded-xl
+                     flex items-center justify-center"
+        >
+          ‹
+        </button>
+
+        <button
+          onClick={() => run("next")}
+          className="bg-bumn-gradient-primary-7 text-white
+                     w-[42px] h-[42px] rounded-xl
+                     flex items-center justify-center"
+        >
+          ›
+        </button>
+      </div>
+
       <div className="overflow-hidden">
         <GalleryTrack
           items={visible}
@@ -66,26 +84,6 @@ export default function ServiceGallery({ items }: Props) {
           direction={direction}
           offset={offset}
         />
-      </div>
-
-      <div className="absolute right-[3rem] -top-[2.1rem] lg:-top-[2.3rem] z-30">
-        <button
-          onClick={() => run("prev")}
-          className="absolute -left-12 top-1/2 -translate-y-1/2
-            bg-bumn-gradient-primary-7 text-white rounded-xl
-            w-[42px] h-[42px] flex items-center justify-center"
-        >
-          ‹
-        </button>
-
-        <button
-          onClick={() => run("next")}
-          className="absolute -right-12 top-1/2 -translate-y-1/2
-            bg-bumn-gradient-primary-7 text-white rounded-xl
-            w-[42px] h-[42px] flex items-center justify-center"
-        >
-          ›
-        </button>
       </div>
     </div>
   );
