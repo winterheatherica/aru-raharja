@@ -4,6 +4,7 @@ import ServiceDescription from "./Template/Description/Description";
 import Pricing from "./Template/Pricing/Pricing";
 import Gallery from "./Template/Gallery/Gallery";
 import Matrix from "./Template/Matrix/Matrix";
+import Certifications from "./Template/Certifications/Certifications";
 
 type Props = {
   activeId: string;
@@ -16,9 +17,11 @@ export default function Content({ activeId, dict, site }: Props) {
   const apiData = site?.service ?? site;
   const serviceCode = activeId.toUpperCase();
   const serviceData = apiData?.[serviceCode];
+
   const pricing = serviceData?.pricing ?? [];
   const gallery = serviceData?.gallery ?? [];
   const matrix = serviceData?.matrix ?? [];
+  const certifications = serviceData?.certifications ?? [];
 
   if (!desc) return null;
 
@@ -35,8 +38,9 @@ export default function Content({ activeId, dict, site }: Props) {
     <div className="space-y-10 pb-10">
       <ServiceDescription title={desc.title} description={desc.description} />
       <Pricing items={pricing} texts={pricingTexts} />
-      {gallery.length > 0 && ( <Gallery items={gallery} /> )}
+      {gallery.length > 0 && <Gallery items={gallery} /> }
       {matrix && <Matrix data={matrix} />}
+      {certifications.length > 0 && <Certifications items={certifications} />}
     </div>
   );
 }
