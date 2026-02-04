@@ -5,6 +5,7 @@ import Pricing from "./Template/Pricing/Pricing";
 import Gallery from "./Template/Gallery/Gallery";
 import Matrix from "./Template/Matrix/Matrix";
 import Certifications from "./Template/Certifications/Certifications";
+import Map from "./Template/Map/Map";
 
 type Props = {
   activeId: string;
@@ -41,6 +42,7 @@ export default function Content({ activeId, dict, site }: Props) {
       {gallery.length > 0 && <Gallery items={gallery} /> }
       {matrix && <Matrix data={matrix} />}
       {certifications.length > 0 && <Certifications items={certifications} />}
+      <Map />
     </div>
   );
 }
