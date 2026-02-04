@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import GalleryTrack from "./GalleryTrack";
+import { useBreakpoint } from "./useBreakpoint";
 
 type Item = {
   id: string;
@@ -12,7 +13,12 @@ type Props = {
   items: Item[];
 };
 
-export default function ServiceGallery({ items }: Props) {
+export default function Gallery({ items }: Props) {
+  const { isMobile, isTablet, isDesktop } = useBreakpoint();
+  const isTabletSmall = isTablet && typeof window !== "undefined" && window.innerWidth < 1024;
+
+  const mode = isMobile ? "mobile" : isTablet ? "tablet" : "desktop";
+
   const [start, setStart] = React.useState(0);
   const [phase, setPhase] = React.useState<"idle" | "anim">("idle");
   const [direction, setDirection] =
@@ -22,37 +28,55 @@ export default function ServiceGallery({ items }: Props) {
   const total = items.length;
   if (!total) return null;
 
-  const VISIBLE_COUNT = 7;
-  const CENTER = 3;
   const SHIFT = 195;
 
-  const visible = React.useMemo(
-    () =>
-      Array.from({ length: VISIBLE_COUNT }, (_, i) => {
-        const relative = i - CENTER;
-        const index = (start + relative + total) % total;
-        return items[index];
-      }),
-    [start, items, total]
-  );
+  const visible = React.useMemo(() => {
+  if (isMobile) {
+    return [items[start]];
+  }
+
+  if (isTablet) {
+    const count = isTabletSmall ? 2 : 3;
+
+    return Array.from({ length: count }, (_, i) => {
+      return items[(start + i) % total];
+    });
+  }
+
+  return Array.from({ length: 7 }, (_, i) => {
+    const relative = i - 3;
+    const index = (start + relative + total) % total;
+    return items[index];
+  });
+}, [start, items, total, isMobile, isTablet, isTabletSmall]);
 
   const run = (dir: "prev" | "next") => {
-    if (phase !== "idle") return;
+    if (isDesktop) {
+      if (phase !== "idle") return;
 
-    setDirection(dir);
-    setPhase("anim");
-    setOffset(dir === "next" ? -SHIFT : SHIFT);
+      setDirection(dir);
+      setPhase("anim");
+      setOffset(dir === "next" ? -SHIFT : SHIFT);
 
-    setTimeout(() => {
-      setStart((s) =>
-        dir === "next"
-          ? (s + 1) % total
-          : (s - 1 + total) % total
-      );
-      setOffset(0);
-      setPhase("idle");
-      setDirection(null);
-    }, 300);
+      setTimeout(() => {
+        setStart((s) =>
+          dir === "next"
+            ? (s + 1) % total
+            : (s - 1 + total) % total
+        );
+        setOffset(0);
+        setPhase("idle");
+        setDirection(null);
+      }, 300);
+
+      return;
+    }
+
+    setStart((s) =>
+      dir === "next"
+        ? (s + 1) % total
+        : (s - 1 + total) % total
+    );
   };
 
   return (
@@ -83,6 +107,7 @@ export default function ServiceGallery({ items }: Props) {
           phase={phase}
           direction={direction}
           offset={offset}
+          mode={mode}
         />
       </div>
     </div>
