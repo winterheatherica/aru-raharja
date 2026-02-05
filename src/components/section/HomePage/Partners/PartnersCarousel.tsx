@@ -42,19 +42,19 @@ export default function PartnersCarousel({ items }: { items: Partner[] }) {
     <div className="md:hidden">
       <div
         ref={scrollRef}
-        className="snap snap-x snap-mandatory flex h-56 w-[90vw] gap-5 overflow-x-scroll scrollbar-hide"
+        className="snap snap-x snap-mandatory flex h-56 w-[90vw] gap-5 overflow-x-scroll scrollbar-hide px-8"
       >
         {items.map((it) => (
-          <div key={it.title} className="snap-center snap-always">
+          <div key={it.id} className="snap-center snap-always">
             <PartnerItem data={it} variant="mobile" />
           </div>
         ))}
       </div>
 
-      <div className="mt-3 px-3">
+      <div className="mt-3 px-3 flex justify-center">
         <div
           ref={railRef}
-          className="relative h-1 w-full rounded-full bg-white/25"
+          className="relative h-1 w-5/6 rounded-full bg-white/25"
         >
           <div
             ref={knobRef}

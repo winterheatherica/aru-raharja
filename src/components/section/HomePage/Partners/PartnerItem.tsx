@@ -34,7 +34,9 @@ export default function PartnerItem({
         />
       </span>
 
-      <p className={titleClass}>{data.title}</p>
+      <p className={`${titleClass} mt-4`}>
+        {data.title}
+      </p>
     </PartnersCard>
   );
 }

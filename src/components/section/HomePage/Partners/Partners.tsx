@@ -7,25 +7,26 @@ import PartnersGrid from "./PartnersGrid";
 import PartnersCarousel from "./PartnersCarousel";
 
 export type Partner = {
+  id: string;
   title: string;
   alt: string;
   src: string;
+  order?: number;
 };
 
-function Partners({ dict }: { dict: Dictionary }) {
-  const t = (dict as any).partners ?? {
-    heading: "Keanggotaan",
-    description:
-      "Layanan ARU Raharja telah dipercayai oleh berbagai perusahaan kelas dunia dari berbagai industri untuk membantu mereka berkembang.",
-  };
+type Props = {
+  dict: Dictionary;
+  partners: Partner[];
+};
 
-  const PARTNERS: Partner[] = [
-    { title: "ARU", alt: "Aru Raharja", src: "/images/general/logo/aru.svg" },
-    { title: "GAPENSI", alt: "Gapensi", src: "/images/home/partner/Keanggotaan/LOGO-GAPENSI.png" },
-    { title: "ABUJAPI", alt: "Abujapi", src: "/images/home/partner/Keanggotaan/abujapi.png" },
-    { title: "Kadin Indonesia", alt: "Kadin Indonesia", src: "/images/home/partner/Keanggotaan/kadin-2.jpeg" },
-    { title: "APKLINDO", alt: "Apklindo", src: "/images/home/partner/Keanggotaan/apklindo.jpeg" },
-  ];
+function Partners({ dict, partners }: Props) {
+  const t = (dict as any).about.partners;
+
+  const items = [...partners].sort(
+    (a, b) => (a.order ?? 0) - (b.order ?? 0)
+  );
+
+  if (!items.length) return null;
 
   return (
     <section className="relative flex flex-col items-center justify-center gap-6 px-4 py-8 lg:gap-8 lg:px-24 lg:py-16 bg-bumn-radial-1 rounded-2xl shadow-sm overflow-hidden">
@@ -45,8 +46,8 @@ function Partners({ dict }: { dict: Dictionary }) {
       </p>
 
       <div className="relative z-10">
-        <PartnersGrid items={PARTNERS} />
-        <PartnersCarousel items={PARTNERS} />
+        <PartnersGrid items={items} />
+        <PartnersCarousel items={items} />
       </div>
     </section>
   );

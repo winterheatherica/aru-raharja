@@ -11,6 +11,7 @@ import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 
 type AboutSiteData = {
   histories?: any[];
+  partner_grid?: any[];
   awards?: any[];
 };
 
@@ -22,6 +23,7 @@ type Props = {
 
 export default function AboutPage({ dict, locale, site }: Props) {
   const histories = site?.histories ?? [];
+  const partners = site?.partner_grid ?? [];
   const awards = site?.awards ?? [];
 
   return (
@@ -34,7 +36,7 @@ export default function AboutPage({ dict, locale, site }: Props) {
         <Business dict={dict} />
         <Culture dict={dict} />
       </div>
-      <Partner dict={dict} />
+      <Partner dict={dict} partners={partners} />
       <div className="max-w-[1014px] mx-auto">
         <Awards dict={dict} awards={awards} />
       </div>

@@ -7,7 +7,7 @@ export default function PartnersGrid({ items }: { items: Partner[] }) {
   return (
     <div className="hidden md:flex flex-wrap items-center justify-center gap-5">
       {items.map((it) => (
-        <PartnerItem key={it.title} data={it} variant="desktop" />
+        <PartnerItem key={it.id} data={it} variant="desktop" />
       ))}
     </div>
   );
