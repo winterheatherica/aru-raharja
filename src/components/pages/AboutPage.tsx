@@ -4,7 +4,7 @@ import VisionMission from "@/components/section/AboutPage/VisionMission/VisionMi
 import History from "@/components/section/AboutPage/History/History";
 import Business from "@/components/section/AboutPage/Business/Business";
 import Culture from "@/components/section/AboutPage/Culture/Culture";
-import Partner from "@/components/section/HomePage/Partners/Partners";
+import Partner from "@/components/section/AboutPage/Partners/Partners";
 import Awards from "@/components/section/AboutPage/Awards/Awards";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
