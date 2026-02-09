@@ -98,7 +98,7 @@ const home = {
       serviceOffices: "Support",
     },
     ctaLabel: "Contact Us",
-    rightHeadlineHtml: "Market <br /> Share",
+    rightHeadlineHtml: "Market Share <br /> Nationwide",
   },
   service: {
     cards: {

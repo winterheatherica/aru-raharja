@@ -50,7 +50,7 @@ export default function Reports({ dict, locale, site, value, onValueChange }: Pr
     <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
       <section aria-label="Solutions" className="w-full space-y-8">
         <Content activeId={active} dict={dict} locale={locale} site={site} />
-        <PhoneCTA />
+        {/* <PhoneCTA /> */}
       </section>
     </div>
   );

@@ -68,7 +68,7 @@ const home = {
       serviceOffices: "Support",
     },
     ctaLabel: "Hubungi Kami",
-    rightHeadlineHtml: "Pangsa <br /> Pasar",
+    rightHeadlineHtml: "Pangsa Pasar <br /> Nasional",
   },
   service: {
     cards: {
