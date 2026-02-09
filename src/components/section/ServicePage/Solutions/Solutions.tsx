@@ -29,13 +29,13 @@ export default function Solutions({ dict, locale, value, site }: Props) {
   const items =
     (dict?.service?.solutions?.nav as NavItem[] | undefined) ?? [];
 
-  if (!items.length) return null;
-
   const [active, setActive] = React.useState(value);
 
   React.useEffect(() => {
     setActive(value);
   }, [value]);
+
+  if (!items.length) return null;
 
   const handleChange = (id: string) => {
     if (id === active) return;
