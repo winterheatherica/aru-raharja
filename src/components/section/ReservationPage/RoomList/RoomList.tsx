@@ -134,7 +134,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
 
                   <div className="mt-0 sm:ml-auto sm:mt-0 w-full sm:w-auto">
                     <Link
-                      href={roomHref(locale, r.id)}
+                      href={roomHref(locale, r.slug)}
                       className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
                         r.is_available
                           ? "bg-bumnblue-2 text-white hover:bg-bumnblue-3"

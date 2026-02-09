@@ -26,29 +26,30 @@ export default function Gallery({ items }: Props) {
   const [offset, setOffset] = React.useState(0);
 
   const total = items.length;
-  if (!total) return null;
-
   const SHIFT = 195;
 
   const visible = React.useMemo(() => {
-  if (isMobile) {
-    return [items[start]];
-  }
+    if (!total) return [];
 
-  if (isTablet) {
-    const count = isTabletSmall ? 2 : 3;
+    if (isMobile) {
+      return [items[start]];
+    }
 
-    return Array.from({ length: count }, (_, i) => {
-      return items[(start + i) % total];
+    if (isTablet) {
+      const count = isTabletSmall ? 2 : 3;
+      return Array.from({ length: count }, (_, i) => {
+        return items[(start + i) % total];
+      });
+    }
+
+    return Array.from({ length: 7 }, (_, i) => {
+      const relative = i - 3;
+      const index = (start + relative + total) % total;
+      return items[index];
     });
-  }
+  }, [start, items, total, isMobile, isTablet, isTabletSmall]);
 
-  return Array.from({ length: 7 }, (_, i) => {
-    const relative = i - 3;
-    const index = (start + relative + total) % total;
-    return items[index];
-  });
-}, [start, items, total, isMobile, isTablet, isTabletSmall]);
+  if (!total) return null;
 
   const run = (dir: "prev" | "next") => {
     if (isDesktop) {

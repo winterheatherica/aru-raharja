@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import type { Locale } from "@/i18n/get_dictionary";
 import NewsCard from "./NewsCard";
 import LoadMoreTile from "./LoadMoreTile";
-import type { NewsItem } from "./data";
+import type { NewsItem } from "./types";
 
 export default function Carousel({
   items,

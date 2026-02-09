@@ -1,9 +1,39 @@
 "use client";
 
-export default function LeftStatement({ html }: { html: string }) {
+type LeftStatementProps = {
+  htmlDesktop: string;
+  htmlMobile: string;
+};
+
+export default function LeftStatement({
+  htmlDesktop,
+  htmlMobile,
+}: LeftStatementProps) {
   return (
-    <span className="text-white font-sans text-lg font-normal sm:text-xl lg:text-2xl lg:leading-9 block w-[304px]">
-      <span dangerouslySetInnerHTML={{ __html: html }} />
+    <span
+      className="
+        text-white
+        font-sans
+        font-normal
+        block
+        md:max-w-[500px]
+        lg:max-w-[420px]
+        text-xl
+        sm:text-2xl
+        lg:text-3xl
+        leading-relaxed
+        lg:leading-[1.4]
+      "
+    >
+      <span
+        className="block md:hidden"
+        dangerouslySetInnerHTML={{ __html: htmlMobile }}
+      />
+
+      <span
+        className="hidden md:block"
+        dangerouslySetInnerHTML={{ __html: htmlDesktop }}
+      />
     </span>
   );
 }

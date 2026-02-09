@@ -44,7 +44,8 @@ const home = {
   },
 
   funding: {
-    leftTitleHtml: `<br><b>Keahlian<br>Kami</b>`,
+    leftTitleHtmlDesktop: `<br><b>Keunggulan<br>Solusi Digital<br>Terintegrasi untuk<br>Kebutuhan Bisnis Kami</b>`,
+    leftTitleHtmlMobile: `<b>Keunggulan Solusi Digital<br>Terintegrasi untuk Kebutuhan Bisnis Kami</b>`,
     items: [
       { description: "Pengembangan website modern, responsif, dan scalable sesuai kebutuhan bisnis." },
       { description: "Pembuatan aplikasi mobile native maupun cross-platform yang andal dan user-friendly." },

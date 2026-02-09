@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Locale } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -59,7 +58,7 @@ export default async function DynamicPage({
     return <AdminPage dict={dict} locale={locale} />;
   }
 
- if (canonical === "service") {
+  if (canonical === "service") {
     const serviceBase =
       dynamicSegmentByLocale[locale]?.service ??
       dynamicSegmentByLocale["id"].service;

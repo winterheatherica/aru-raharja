@@ -9,8 +9,8 @@ import ServicePage from "@/components/pages/ServicePage";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import { SERVICE_SOLUTIONS } from "./_constants";
-import { resolveArticleId } from "./_resolvers";
-import { fetchArticleById } from "./_fetchers";
+import { resolveArticleId, resolveRoomId } from "./_resolvers";
+import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
 type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
@@ -60,8 +60,7 @@ export default async function PageWithParam({
     if (!article) notFound();
 
     if (article.slug && article.slug !== param) {
-      const redirectUrl = `/${locale}/${page}/${article.slug}`;
-      redirect(redirectUrl);
+      redirect(`/${locale}/${articleBase}/${article.slug}`);
     }
 
     return (
@@ -73,13 +72,25 @@ export default async function PageWithParam({
     );
   }
 
-
   if (page === roomBase) {
+    const roomId = await resolveRoomId(param);
+    if (!roomId) notFound();
+
+    const room = await fetchRoomById(
+      String(roomId),
+      locale
+    );
+    if (!room) notFound();
+
+    if (room.slug && room.slug !== param) {
+      redirect(`/${locale}/${roomBase}/${room.slug}`);
+    }
+
     return (
       <RoomPage
         dict={dict}
         locale={locale}
-        id={param}
+        room={room}
       />
     );
   }

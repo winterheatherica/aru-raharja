@@ -74,11 +74,13 @@ const home = {
     ],
   },
   funding: {
-    leftTitleHtml: `<br><b>Our<br>Expertise</b>`,
+    leftTitleHtmlDesktop: `<br><b>Our<br>Digital Solutions<br>Integrated for<br>Business Needs</b>`,
+    leftTitleHtmlMobile: `<b>Our Digital Solutions<br>Integrated for Business Needs</b>`,
     items: [
       { description: "Development of modern, responsive, and scalable websites tailored to business needs." },
       { description: "Development of reliable and user-friendly native and cross-platform mobile applications." },
       { description: "Design of intuitive UI/UX focused on usability and user experience." },
+      
       { description: "Cloud-based digital systems to support business efficiency and digital transformation." },
       { description: "Integrated technology solutions that can be customized to meet company requirements." },
       { description: "Preventive digital services to support employee productivity and well-being." },

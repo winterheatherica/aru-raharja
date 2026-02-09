@@ -7,6 +7,7 @@ import ReservationPage from "@/components/pages/ReservationPage";
 import InformationPage from "@/components/pages/InformationPage";
 import CareerPage from "@/components/pages/CareerPage";
 import ArticlePage from "@/components/pages/ArticlePage";
+import RoomPage from "@/components/pages/RoomPage";
 
 export const LoginPage = dynamic(
   () => import("@/components/pages/LoginPage"),
@@ -36,6 +37,7 @@ export const PageComponentByCanonical: Record<
   information: InformationPage,
   career: CareerPage,
   article: ArticlePage,
+  room: RoomPage,
   login: null,
   admin: null,
 };

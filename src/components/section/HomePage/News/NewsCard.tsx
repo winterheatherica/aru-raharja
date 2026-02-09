@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { NewsItem } from "./data";
+import type { NewsItem } from "./types";
 
 export default function NewsCard({
   item,

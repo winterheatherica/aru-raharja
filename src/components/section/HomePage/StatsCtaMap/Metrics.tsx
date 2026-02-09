@@ -2,7 +2,7 @@
 
 import MetricItem from "./MetricItem";
 
-type Metric = { value: number; label: string };
+type Metric = { value: string; label: string };
 
 export default function Metrics({ items }: { items: Metric[] }) {
   return (

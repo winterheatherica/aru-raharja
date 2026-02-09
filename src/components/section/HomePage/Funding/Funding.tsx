@@ -40,7 +40,7 @@ function FundingComponent({ dict }: { dict: Dictionary }) {
           py-8 md:py-10 lg:py-12
         "
       >
-        <LeftStatement html={t.leftTitleHtml} />
+        <LeftStatement htmlDesktop={t.leftTitleHtmlDesktop} htmlMobile={t.leftTitleHtmlMobile} />
 
         <MaskOverlay />
 

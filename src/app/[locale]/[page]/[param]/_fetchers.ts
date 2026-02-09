@@ -11,3 +11,15 @@ export async function fetchArticleById(id: string, locale: Locale) {
   if (!res.ok) return null;
   return res.json();
 }
+
+export async function fetchRoomById(id: string, locale: Locale) {
+  const lang = locale.toUpperCase();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/room/${id}?lang=${lang}`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) return null;
+  return res.json();
+}

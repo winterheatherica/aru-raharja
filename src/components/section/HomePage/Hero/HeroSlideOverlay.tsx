@@ -1,4 +1,5 @@
 import Link from "next/link";
+import TwemojiText from "./TwemojiText";
 
 type LayoutType = "POLISH" | "TEXT" | "OTHER";
 
@@ -38,7 +39,7 @@ export default function HeroSlideOverlay({
                 text-stroke-sm
               "
             >
-              {title}
+              <TwemojiText text={title} />
             </h2>
           )}
 
@@ -55,7 +56,7 @@ export default function HeroSlideOverlay({
                 text-stroke-sm
               "
             >
-              {ctaLabel}
+            <TwemojiText text={ctaLabel} />
             </p>
           )}
         </div>
