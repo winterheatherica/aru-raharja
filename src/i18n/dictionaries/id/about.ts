@@ -7,7 +7,7 @@ const about = {
   hero: {
     smallTitle: "Tentang Aru Raharja",
     headline:
-      "Aru Raharja berupaya menjadi perusahaan tepercaya dalam memberikan perlindungan dasar atas risiko kecelakaan dengan layanan terbaik.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     maskingAlt: "latar masking",
     buildingAlt: "Gedung Aru Raharja",
   },

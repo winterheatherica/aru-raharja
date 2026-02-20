@@ -7,7 +7,7 @@ const about = {
   hero: {
     smallTitle: "About Aru Raharja",
     headline:
-      "Aru Raharja strives to be a trusted company in providing basic protection against accident risks with the best service.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     maskingAlt: "masking background",
     buildingAlt: "Aru Raharja building",
   },
