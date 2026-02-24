@@ -25,12 +25,15 @@ export default function GalleryTrack({
 
   return (
     <div
-      className="flex w-full"
+      className="flex w-full will-change-transform"
       style={
         mode === "desktop"
           ? {
               transform: `translate3d(${BASE_OFFSET + offset}px,0,0)`,
-              transition: "transform 300ms ease-in-out",
+              transition:
+                phase === "anim"
+                  ? "transform 300ms cubic-bezier(0.22, 1, 0.36, 1)"
+                  : "none",
             }
           : {}
       }

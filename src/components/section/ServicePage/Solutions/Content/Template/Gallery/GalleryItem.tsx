@@ -73,7 +73,7 @@ export default function GalleryItem({
     <div
       className={clsx(
         "pl-4 relative flex-shrink-0 h-[430px]",
-        "transition-[flex-basis] duration-300 ease-in-out",
+        "transition-[flex-basis] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]",
         isCurrent && !shrink && "basis-[40%]",
         shrink && "basis-[15%]",
         grow && "basis-[40%]",
@@ -93,3 +93,4 @@ export default function GalleryItem({
     </div>
   );
 }
+
