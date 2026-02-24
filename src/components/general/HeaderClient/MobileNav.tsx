@@ -4,7 +4,7 @@ import Link from "next/link";
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
-import { NAV_ORDER, getLabel, navHref } from "@/lib/nav";
+import { NAV_ORDER, getLabel, navHref } from "@/components/general/HeaderClient/nav";
 import HomeIcon from "./HomeIcon";
 import UserIcon from "./UserIcon";
 import { usePathname } from "next/navigation";

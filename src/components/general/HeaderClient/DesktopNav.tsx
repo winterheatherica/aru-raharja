@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef } from "react";
 import type { Dictionary } from "@/i18n/get_dictionary";
-import { NAV_ORDER, getLabel, navHref } from "@/lib/nav";
+import { NAV_ORDER, getLabel, navHref } from "@/components/general/HeaderClient/nav";
 import HomeIcon from "./HomeIcon";
 import UserIcon from "./UserIcon";
 import { getRouteMap, normalizeLocale } from "@/i18n/routes";
