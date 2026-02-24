@@ -12,6 +12,9 @@ import { resolveArticleId, resolveRoomId } from "./_resolvers";
 import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 600;
+
 type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
 
 type Params = {
@@ -91,18 +94,6 @@ export default async function PageWithParam({
   }
 
   notFound();
-}
-
-export async function generateStaticParams() {
-  const locales: Locale[] = ["id", "en"];
-
-  return locales.flatMap((locale) =>
-    SERVICE_SOLUTIONS.map((solution) => ({
-      locale,
-      page: "service",
-      param: solution,
-    }))
-  );
 }
 
 export async function generateMetadata({
