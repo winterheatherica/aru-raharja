@@ -51,7 +51,7 @@ export default function Awards({ dict, awards = [] }: Props) {
                     {t?.yearLabel ?? "Year"}
                   </div>
 
-                  <div className="flex flex-col items-center justify-start h-full p-1 space-y-2 bg-white rounded-lg text-bumnslate-3">
+                  <div className="flex flex-col items-center justify-start h-full p-1 space-y-2 bg-bumn-gradient-white-4 rounded-lg shadow-bumn-2 text-bumnslate-3">
                     <button
                       aria-current={active === "all" ? "page" : undefined}
                       onClick={() => setActive("all")}
@@ -91,7 +91,7 @@ export default function Awards({ dict, awards = [] }: Props) {
               {filtered.map((a) => (
                 <div
                   key={a.id}
-                  className="relative p-4 overflow-hidden border rounded-lg bg-bumnwhite-3"
+                  className="relative p-4 overflow-hidden border rounded-lg bg-bumn-gradient-white-4"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-white/10 card-blur" />
 
@@ -116,8 +116,7 @@ export default function Awards({ dict, awards = [] }: Props) {
 
                       <button
                         className="inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors
-                                   bg-bumn-gradient-primary-16 text-white shadow w-full h-6 px-6 py-3 text-xs font-semibold rounded-lg
-                                   lg:h-10 lg:text-sm"
+                                   bg-bumn-gradient-primary-7 text-white shadow-bumn-2 w-full h-8 px-6 py-3 text-xs font-semibold rounded-xl transition hover:opacity-95 lg:h-10 lg:text-sm"
                       >
                         {t?.cta ?? "View Certificate"}
                       </button>
@@ -138,3 +137,5 @@ export default function Awards({ dict, awards = [] }: Props) {
     </section>
   );
 }
+
+

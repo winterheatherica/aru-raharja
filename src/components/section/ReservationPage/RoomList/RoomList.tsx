@@ -53,7 +53,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
           {rooms.map((r) => (
             <article
               key={r.id}
-              className="flex flex-col sm:flex-row items-stretch gap-4 bg-white border border-bumngray-8 rounded-xl p-4 shadow-bumn-2 hover:shadow-lg transition-shadow"
+              className="flex flex-col sm:flex-row items-stretch gap-4 bg-bumn-gradient-white-4 border border-bumngray-8 rounded-xl p-4 shadow-bumn-2 transition-shadow"
             >
               <div className="w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
                 <img
@@ -137,7 +137,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                       href={roomHref(locale, r.slug)}
                       className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
                         r.is_available
-                          ? "bg-bumnblue-2 text-white hover:bg-bumnblue-3"
+                          ? "bg-bumn-gradient-primary-7 text-white hover:opacity-95 shadow-bumn-2"
                           : "bg-bumngray-3 text-bumngray-6 cursor-not-allowed"
                       }`}
                       aria-disabled={!r.is_available}
@@ -156,3 +156,5 @@ export default function RoomList({ dict, locale, rooms }: Props) {
     </section>
   );
 }
+
+

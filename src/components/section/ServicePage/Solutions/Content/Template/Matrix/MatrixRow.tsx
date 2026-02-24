@@ -7,7 +7,7 @@ type Props = {
 
 export default function MatrixRow({ row, columns }: Props) {
   return (
-    <tr className="bg-bumnwhite-1 rounded-xl shadow-bumn-2">
+    <tr className="bg-bumn-gradient-white-4 rounded-xl shadow-bumn-2">
       <td className="px-4 py-3 text-sm font-medium text-bumnslate-6 rounded-l-xl">
         {row.feature}
       </td>
@@ -29,3 +29,4 @@ export default function MatrixRow({ row, columns }: Props) {
     </tr>
   );
 }
+

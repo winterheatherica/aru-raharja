@@ -23,23 +23,16 @@ export default function Map({ dict }: Props) {
         </p>
       </div>
 
-      <div className="rounded-2xl overflow-hidden shadow-bumn-2">
+      <div className="max-w-4xl mx-auto aspect-[16/9] w-auto rounded-2xl overflow-hidden shadow-bumn-2">
         <img
           src={ARU_MAP_IMAGE_URL}
           alt={`${ARU_LOCATION.name} Map`}
-          className="
-            w-full
-            aspect-[16/9]
-            min-h-[320px]
-            md:min-h-[420px]
-            lg:min-h-[520px]
-            object-cover
-          "
+          className="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
 
-      <div className="max-w-4xl mx-auto bg-bumnwhite-1 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
+      <div className="max-w-4xl mx-auto bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
         <h4 className="text-sm font-semibold text-bumnblue-1">
           {t.locationTitle}
         </h4>

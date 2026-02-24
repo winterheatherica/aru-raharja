@@ -17,7 +17,7 @@ export default function RoomDetail({
 }: Props) {
   return (
     <section className="space-y-8">
-      <div className="bg-bumnwhite-1 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-6">
+      <div className="bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-6">
         <h3 className="text-lg font-semibold text-bumnblue-1">
           {title}
         </h3>
@@ -48,7 +48,7 @@ export default function RoomDetail({
       </div>
 
       {facilities.length > 0 && (
-        <div className="bg-bumnwhite-1 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
+        <div className="bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
           <h4 className="text-sm font-semibold text-bumnblue-1">
             Facilities
           </h4>
@@ -62,8 +62,7 @@ export default function RoomDetail({
                   text-xs font-medium
                   px-3 py-1
                   rounded-full
-                  bg-bumncyan-1
-                  text-bumnblue-2
+                  bg-bumncyan-1 text-bumnblue-2
                 "
               >
                 {item}
@@ -75,3 +74,5 @@ export default function RoomDetail({
     </section>
   );
 }
+
+

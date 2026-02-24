@@ -42,7 +42,7 @@ export default function Pricing({ items, texts }: Props) {
   return (
     <section className="w-full">
       <div className="mb-5 flex items-center justify-center">
-        <div className="inline-flex rounded-xl border border-bumnslate-10 bg-bumnwhite-3 p-1">
+        <div className="inline-flex rounded-xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-1">
           <button
             type="button"
             onClick={() => setMode("monthly")}
@@ -83,7 +83,7 @@ export default function Pricing({ items, texts }: Props) {
             <article
               key={plan.id}
               className={[
-                "relative flex h-full flex-col rounded-2xl border border-bumnslate-10 bg-white p-5 shadow-bumn-2",
+                "relative flex h-full flex-col rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2",
                 plan.popular
                   ? "ring-2 ring-bumnblue-5"
                   : "",
@@ -177,3 +177,4 @@ function CheckIcon() {
     </svg>
   );
 }
+

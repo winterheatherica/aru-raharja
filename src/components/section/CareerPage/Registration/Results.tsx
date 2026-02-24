@@ -66,13 +66,7 @@ export default function Results({ dict, vacancies }: Props) {
               className="
                 mt-4 inline-flex items-center justify-center
                 rounded-xl
-                bg-bumn-gradient-primary-22
-                px-4 py-2
-                text-white font-semibold
-                shadow-bumn-6
-                transition
-                hover:scale-[1.02]
-                active:scale-[0.98]
+                bg-bumn-gradient-primary-7 px-4 py-2 text-white font-semibold shadow-bumn-2 transition hover:opacity-95 active:scale-[0.98]
               "
             >
               {t?.applyButton}
@@ -83,3 +77,4 @@ export default function Results({ dict, vacancies }: Props) {
     </section>
   );
 }
+
