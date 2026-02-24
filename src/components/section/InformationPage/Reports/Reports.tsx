@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Content from "./Content/Content";
-import PhoneCTA from "@/components/general/BluePrint/PhoneCTA/PhoneCTA";
 
 type NavItem = { id: string; label: string };
 
@@ -47,10 +46,9 @@ export default function Reports({ dict, locale, site, value, onValueChange }: Pr
   if (!items.length) return null;
 
   return (
-    <div className="w-full mt-8 space-y-8 lg:mt-12 lg:space-y-12 font-inter">
+    <div className="w-full mt-8 lg:mt-12 font-inter">
       <section aria-label="Solutions" className="w-full space-y-8">
         <Content activeId={active} dict={dict} locale={locale} site={site} />
-        {/* <PhoneCTA /> */}
       </section>
     </div>
   );

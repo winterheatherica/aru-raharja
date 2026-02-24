@@ -5,12 +5,13 @@ import Image from "next/image";
 export default function AuthorHuman({ article }: any) {
   if (!article) return null;
 
-  const postedBy = article.posted_by ?? "Unknown";
+  const postedBy = article.published_by ?? "Unknown";
   const createdAt = article.created_at ?? "";
-  const imageSrc = "/images/services/aru-source.png";
+  const imageSrc =
+    article.published_by_avatar_url || "/images/services/aru-source.png";
 
   return (
-    <div className="human mb-6 flex items-center gap-4">
+    <div className="human mb-8 flex items-center gap-5">
       <div className="human-img w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
         <Image
           src={imageSrc}
@@ -21,7 +22,7 @@ export default function AuthorHuman({ article }: any) {
         />
       </div>
 
-      <div className="human-combine flex flex-col justify-center gap-1">
+      <div className="human-combine flex flex-col justify-center gap-2">
         <div className="human-name text-sm text-bumnslate-6 flex items-center flex-wrap gap-2">
           <svg
             fill="currentColor"
@@ -60,3 +61,4 @@ export default function AuthorHuman({ article }: any) {
     </div>
   );
 }
+
