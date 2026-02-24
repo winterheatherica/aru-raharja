@@ -8,7 +8,7 @@ import { NAV_ORDER, getLabel, navHref } from "@/components/general/HeaderClient/
 import HomeIcon from "./HomeIcon";
 import UserIcon from "./UserIcon";
 import { usePathname } from "next/navigation";
-import { useLockBody } from "@/hooks/useLockBody";
+import { useLockBody } from "@/components/general/HeaderClient/useLockBody";
 import { getRouteMap } from "@/i18n/routes";
 
 type Props = {

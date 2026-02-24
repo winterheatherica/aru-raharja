@@ -16,7 +16,7 @@ async function fetchFromAPI(endpoint: string, locale: Locale) {
 }
 
 export const fetchHome = (l: Locale) =>
-  fetchFromAPI("/api/home", l).then((data) => ({ home: data }));
+  fetchFromAPI("/api/home", l);
 
 export const fetchAbout = (l: Locale) =>
   fetchFromAPI("/api/about", l);

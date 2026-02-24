@@ -2,8 +2,7 @@
 
 import dynamic from "next/dynamic";
 import type { Locale } from "@/i18n/get_dictionary";
-import type { HeroSlideAPI } from "@/types/hero";
-import { mapHeroHref } from "@/utils/heroMapper";
+import type { HeroSlideAPI } from "@/components/section/HomePage/Hero/types";
 
 const LazyCarousel = dynamic(() => import("./Carousel"), {
   ssr: false,
@@ -17,17 +16,16 @@ const LazyCarousel = dynamic(() => import("./Carousel"), {
 
 export default function Hero({
   slides,
-  locale,
+  locale: _locale,
 }: {
   slides: HeroSlideAPI[];
   locale: Locale;
 }) {
-
   const mapped = slides.map((s) => ({
     ...s,
     title: s.title ?? undefined,
     ctaLabel: s.ctaLabel ?? undefined,
-    ctaHref: mapHeroHref(s.banner, locale),
+    ctaHref: undefined,
   }));
 
   return (

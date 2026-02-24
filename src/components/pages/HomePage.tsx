@@ -10,7 +10,7 @@ import QuickLinks from "@/components/section/HomePage/QuickLinks/QuickLinks";
 import PartnerScroller from "@/components/section/HomePage/PartnerScroller/PartnerScroller";
 
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
-import type { HeroSlideAPI } from "@/types/hero";
+import type { HeroSlideAPI } from "@/components/section/HomePage/Hero/types";
 
 type ScrollerItem = {
   id: string;
@@ -48,14 +48,11 @@ type HomeData = {
 type Props = {
   dict: Dictionary;
   locale: Locale;
-  site: {
-    home?: HomeData;
-    [key: string]: unknown;
-  };
+  site: HomeData;
 };
 
 export default function HomePage({ dict, locale, site }: Props) {
-  const home = site.home ?? {};
+  const home = site ?? {};
 
   const heroSlides = (home.hero ?? []) as HeroSlideAPI[];
   const promoSlides = home.promo ?? [];
