@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import type { Locale } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -8,7 +8,6 @@ import {
   locales,
   type CanonicalPage,
 } from "@/i18n/routes";
-import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import {
   PageComponentByCanonical,
@@ -26,6 +25,7 @@ import {
 } from "./_fetchers";
 
 import { buildSocialMeta } from "./_metadata";
+import { SERVICE_SOLUTIONS } from "./[param]/_constants";
 
 const fetcherByPage: Partial<
   Record<CanonicalPage, (l: Locale) => Promise<any>>
@@ -40,8 +40,10 @@ const fetcherByPage: Partial<
 
 export default async function DynamicPage({
   params,
+  searchParams,
 }: {
   params: { locale: Locale; page: string };
+  searchParams?: { solution?: string };
 }) {
   const { locale, page } = params;
 
@@ -58,20 +60,30 @@ export default async function DynamicPage({
     return <AdminPage dict={dict} locale={locale} />;
   }
 
-  if (canonical === "service") {
-    const serviceBase =
-      dynamicSegmentByLocale[locale]?.service ??
-      dynamicSegmentByLocale["id"].service;
-    redirect(`/${locale}/${serviceBase}/arudigital`);
-  }
-
   const Component = PageComponentByCanonical[canonical];
   if (!Component) notFound();
 
   const fetcher = fetcherByPage[canonical];
   const site = fetcher ? await fetcher(locale) : null;
 
-  return <Component dict={dict} locale={locale} activeSolution={undefined} site={site} />;
+  const requestedSolution = searchParams?.solution;
+  const activeSolution =
+    canonical === "service" &&
+    requestedSolution &&
+    SERVICE_SOLUTIONS.includes(requestedSolution as (typeof SERVICE_SOLUTIONS)[number])
+      ? requestedSolution
+      : canonical === "service"
+      ? "arudigital"
+      : undefined;
+
+  return (
+    <Component
+      dict={dict}
+      locale={locale}
+      activeSolution={activeSolution}
+      site={site}
+    />
+  );
 }
 
 export async function generateStaticParams() {

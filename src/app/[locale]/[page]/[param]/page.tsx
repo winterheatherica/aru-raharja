@@ -4,7 +4,6 @@ import { getDictionary } from "@/i18n/get_dictionary";
 
 import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
-import ServicePage from "@/components/pages/ServicePage";
 
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
@@ -20,18 +19,6 @@ type Params = {
   page: string;
   param: string;
 };
-
-async function fetchServiceSite(locale: Locale) {
-  const lang = locale.toUpperCase();
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/service?lang=${lang}`,
-    { cache: "no-store" }
-  );
-
-  if (!res.ok) return null;
-  return res.json();
-}
 
 export default async function PageWithParam({
   params,
@@ -100,17 +87,7 @@ export default async function PageWithParam({
       notFound();
     }
 
-    const site = await fetchServiceSite(locale);
-    if (!site) notFound();
-
-    return (
-      <ServicePage
-        dict={dict}
-        locale={locale}
-        site={site}
-        activeSolution={param}
-      />
-    );
+    redirect(`/${locale}/${serviceBase}?solution=${param}`);
   }
 
   notFound();

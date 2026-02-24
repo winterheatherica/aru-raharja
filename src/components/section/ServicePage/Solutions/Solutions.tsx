@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
@@ -24,8 +23,6 @@ type Props = {
 };
 
 export default function Solutions({ dict, locale, value, site }: Props) {
-  const router = useRouter();
-
   const items =
     (dict?.service?.solutions?.nav as NavItem[] | undefined) ?? [];
 
@@ -44,7 +41,9 @@ export default function Solutions({ dict, locale, value, site }: Props) {
       (dynamicSegmentByLocale as any)[locale]?.service ??
       (dynamicSegmentByLocale as any)["id"]?.service;
 
-    router.push(`/${locale}/${base}/${id}`, { scroll: false });
+    if (typeof window !== "undefined") {
+      window.history.replaceState({}, "", `/${locale}/${base}?solution=${id}`);
+    }
   };
 
   return (
