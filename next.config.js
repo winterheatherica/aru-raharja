@@ -7,12 +7,17 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "127.0.0.1",
+        port: "9000",
+        pathname: "/aru-assets/**",
       },
       {
         protocol: "http",
         hostname: "localhost",
+        port: "9000",
+        pathname: "/aru-assets/**",
       },
     ],
+    dangerouslyAllowLocalIP: true,
     unoptimized: false,
   },
 };

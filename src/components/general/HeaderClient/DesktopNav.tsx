@@ -7,7 +7,6 @@ import { useEffect, useRef } from "react";
 import type { Dictionary } from "@/i18n/get_dictionary";
 import { NAV_ORDER, getLabel, navHref } from "@/components/general/HeaderClient/nav";
 import HomeIcon from "./HomeIcon";
-import UserIcon from "./UserIcon";
 import { getRouteMap, normalizeLocale } from "@/i18n/routes";
 
 type Props = {
@@ -46,7 +45,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
       id="desktop-nav-panel"
       ref={panelRef}
       aria-hidden={!open}
-      {...(!open ? { inert: "" as any } : {})}
+      inert={!open}
       className={`pointer-events-none absolute right-0 top-0 z-0 flex h-[86px] w-[860px] items-center gap-3
         rounded-2xl bg-white px-6 opacity-0 transition-all duration-500 ease-in-out
         ${open ? "pointer-events-auto translate-x-0 opacity-100" : "translate-x-24"}`}
@@ -93,10 +92,6 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
       </ul>
 
       <LangSwitcher locale={safe as any} />
-
-      {/* <div className="ml-2 flex items-center">
-        <UserIcon />
-      </div> */}
     </div>
   );
 }

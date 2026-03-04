@@ -6,21 +6,35 @@ const LOCALES = new Set(["id", "en"] as const);
 type SupportedLocale = "id" | "en";
 const DEFAULT_LOCALE: SupportedLocale = "id";
 
-function detectLocale(): SupportedLocale {
-  const cookieStore = cookies();
-  const c = cookieStore.get("NEXT_LOCALE")?.value as SupportedLocale | undefined;
-  if (c && LOCALES.has(c)) return c;
+async function detectLocale(): Promise<SupportedLocale> {
 
-  const accept = headers().get("accept-language")?.toLowerCase() || "";
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get("NEXT_LOCALE")?.value as
+    | SupportedLocale
+    | undefined;
+
+  if (cookieLocale && LOCALES.has(cookieLocale)) {
+    return cookieLocale;
+  }
+
+  const headerStore = await headers();
+  const accept =
+    headerStore.get("accept-language")?.toLowerCase() || "";
+
   const first = accept.split(",")[0]?.trim();
   const lang2 = first?.slice(0, 2) as SupportedLocale | undefined;
 
-  if (lang2 && LOCALES.has(lang2)) return lang2;
+  if (lang2 && LOCALES.has(lang2)) {
+    return lang2;
+  }
+
   return DEFAULT_LOCALE;
 }
 
-export default function RootRedirect() {
-  const target = detectLocale();
-  const homeSlug = routeSlugByLocale[target].home;
-  redirect(`/${target}/${homeSlug}`);
+export default async function RootRedirect() {
+  const locale = await detectLocale();
+
+  const homeSlug = routeSlugByLocale[locale].home;
+
+  redirect(`/${locale}/${homeSlug}`);
 }

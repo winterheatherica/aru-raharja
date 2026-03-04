@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import type { CanonicalPage } from "@/i18n/routes";
 import HomePage from "@/components/pages/HomePage";
 import AboutPage from "@/components/pages/AboutPage";
@@ -9,15 +8,10 @@ import CareerPage from "@/components/pages/CareerPage";
 import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
 
-export const LoginPage = dynamic(
-  () => import("@/components/pages/LoginPage"),
-  { ssr: false, loading: () => <div>Loading…</div> }
-);
-
-export const AdminPage = dynamic(
-  () => import("@/components/pages/AdminPage"),
-  { ssr: false, loading: () => <div>Loading admin…</div> }
-);
+import {
+  LoginPage,
+  AdminPage,
+} from "./DynamicPages";
 
 export type PageComponentProps = {
   dict: any;
@@ -41,3 +35,5 @@ export const PageComponentByCanonical: Record<
   login: null,
   admin: null,
 };
+
+export { LoginPage, AdminPage };
