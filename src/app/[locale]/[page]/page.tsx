@@ -42,10 +42,11 @@ export default async function DynamicPage({
   params,
   searchParams,
 }: {
-  params: { locale: Locale; page: string };
-  searchParams?: { solution?: string };
+  params: Promise<{ locale: Locale; page: string }>;
+  searchParams?: Promise<{ solution?: string }>;
 }) {
-  const { locale, page } = params;
+  const { locale, page } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
 
   const dict = await getDictionary(locale);
   const canonical = canonicalBySlug(locale)[page];
@@ -66,7 +67,7 @@ export default async function DynamicPage({
   const fetcher = fetcherByPage[canonical];
   const site = fetcher ? await fetcher(locale) : null;
 
-  const requestedSolution = searchParams?.solution;
+  const requestedSolution = resolvedSearchParams?.solution;
   const activeSolution =
     canonical === "service" &&
     requestedSolution &&
@@ -98,9 +99,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: Locale; page: string };
+  params: Promise<{ locale: Locale; page: string }>;
 }): Promise<Metadata> {
-  const { locale, page } = params;
+  const { locale, page } = await params;
 
   const dict = await getDictionary(locale);
   const canonical = canonicalBySlug(locale)[page];

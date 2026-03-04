@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Header from "@/components/general/Header/Header";
 import Footer from "@/components/general/Footer/Footer";
 import Whatsapp from "@/components/general/Whatsapp/Whatsapp";
@@ -8,18 +9,20 @@ export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: { locale: Locale };
+  children: ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const dict = await getDictionary(params.locale);
+  const { locale } = await params;
+  const typedLocale = locale as Locale;
+  const dict = await getDictionary(typedLocale);
 
   return (
     <div className="flex min-h-screen flex-col">
       <Background>
-        <Header dict={dict} locale={params.locale} />
-          <div className="flex-grow">{children}</div>
+        <Header dict={dict} locale={typedLocale} />
+        <div className="flex-grow">{children}</div>
         <Whatsapp />
-        <Footer dict={dict} locale={params.locale} />
+        <Footer dict={dict} locale={typedLocale} />
       </Background>
     </div>
   );

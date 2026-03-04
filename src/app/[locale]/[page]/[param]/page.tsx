@@ -26,9 +26,9 @@ type Params = {
 export default async function PageWithParam({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }) {
-  const { locale, page, param } = params;
+  const { locale, page, param } = await params;
   const dict: Dictionary = await getDictionary(locale);
 
   const localeMap =
@@ -99,9 +99,9 @@ export default async function PageWithParam({
 export async function generateMetadata({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }) {
-  const { locale, page, param } = params;
+  const { locale, page, param } = await params;
   const dict: Dictionary = await getDictionary(locale);
 
   return generateParamMetadata(locale, page, param, dict);
