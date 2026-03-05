@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import Image from "next/image";
 import type { Locale } from "@/i18n/get_dictionary";
 
 type ScrollerItem = {
@@ -44,10 +44,12 @@ export default function PartnerScroller({
             <div className="marquee__track">
               {loopClients.map((item, i) => (
                 <div key={`client-${item.id}-${i}`} className="marquee__item">
-                  <img
+                  <Image
                     src={item.src}
                     alt={item.alt}
                     title={item.title}
+                    width={180}
+                    height={60}
                     className="logo-img"
                     loading="lazy"
                   />
@@ -68,10 +70,12 @@ export default function PartnerScroller({
             <div className="marquee__track">
               {loopPartners.map((item, i) => (
                 <div key={`partner-${item.id}-${i}`} className="marquee__item">
-                  <img
+                  <Image
                     src={item.src}
                     alt={item.alt}
                     title={item.title}
+                    width={180}
+                    height={60}
                     className="logo-img"
                     loading="lazy"
                   />
