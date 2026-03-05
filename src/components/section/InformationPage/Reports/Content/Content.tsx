@@ -36,7 +36,7 @@ export default function Content({ activeId, dict, locale, site }: Props) {
 
   return (
     <section className="py-4">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-0 md:px-4">
         <SectionTitle titleHtml={titleHtml} description={description} />
         {content}
       </div>

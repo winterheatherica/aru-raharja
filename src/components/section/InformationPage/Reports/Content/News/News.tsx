@@ -60,7 +60,7 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
 
   return (
     <section className="py-8 lg:py-14">
-      <div className="mx-auto max-w-screen-1440 px-4">
+      <div className="mx-auto max-w-screen-1440 px-0 md:px-4">
         <div className="grid grid-cols-12 gap-4">
           <aside className="col-span-12 lg:col-span-2">
             <YearSelector
@@ -73,8 +73,8 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
           <div className="col-span-12 lg:col-span-10">
             <div className="mx-auto w-full max-w-[1112px]">
               <div
-                className="grid gap-x-4 gap-y-8"
-                style={{ gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))" }}
+                className="grid justify-items-center gap-x-4 gap-y-8"
+                style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))" }}
               >
                 {displayItems.map((item) => (
                   <Landscape3 key={item.id} item={item} />
