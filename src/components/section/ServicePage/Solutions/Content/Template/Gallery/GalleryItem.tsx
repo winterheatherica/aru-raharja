@@ -22,7 +22,7 @@ export default function GalleryItem({
 }: Props) {
   if (mode === "mobile") {
     return (
-      <div className="w-full flex-shrink-0 h-[430px]">
+      <div className="w-full h-[430px]">
         <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
           <div className="relative w-full h-full p-6">
             <Image
@@ -39,7 +39,7 @@ export default function GalleryItem({
 
   if (mode === "tablet") {
     return (
-      <div className="w-1/2 lg:w-1/3 flex-shrink-0 h-[430px] pl-4">
+      <div className="w-full h-[430px]">
         <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
           <div className="relative w-full h-full p-6">
             <Image

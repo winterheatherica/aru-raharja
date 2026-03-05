@@ -10,7 +10,8 @@ export default function LoadMoreTile({
   locale: Locale;
   label?: string;
 }) {
-  const href = `/${locale}/news`;
+  const infoSlug = locale === "id" ? "informasi" : "information";
+  const href = `/${locale}/${infoSlug}`;
 
   return (
     <Link

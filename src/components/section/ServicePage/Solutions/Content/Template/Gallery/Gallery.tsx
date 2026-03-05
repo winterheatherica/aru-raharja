@@ -1,7 +1,10 @@
 "use client";
 
 import * as React from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import type { EmblaOptionsType } from "embla-carousel";
 import GalleryTrack from "./GalleryTrack";
+import GalleryItem from "./GalleryItem";
 import { useBreakpoint } from "./useBreakpoint";
 
 type Item = {
@@ -15,8 +18,6 @@ type Props = {
 
 export default function Gallery({ items }: Props) {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
-  const isTabletSmall =
-    isTablet && typeof window !== "undefined" && window.innerWidth < 1024;
 
   const mode = isMobile ? "mobile" : isTablet ? "tablet" : "desktop";
 
@@ -29,28 +30,40 @@ export default function Gallery({ items }: Props) {
   const total = items.length;
   const SHIFT = 195;
 
+  const emblaOptions: EmblaOptionsType = {
+    align: "start",
+    containScroll: "trimSnaps",
+    loop: false,
+  };
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions);
+  const [prevDisabled, setPrevDisabled] = React.useState(true);
+  const [nextDisabled, setNextDisabled] = React.useState(true);
+
   const visible = React.useMemo(() => {
-    if (!total) return [];
-
-    if (isMobile) {
-      return [items[start]];
-    }
-
-    if (isTablet) {
-      const count = isTabletSmall ? 2 : 3;
-      return Array.from({ length: count }, (_, i) => {
-        return items[(start + i) % total];
-      });
-    }
+    if (!total || !isDesktop) return [];
 
     return Array.from({ length: 7 }, (_, i) => {
       const relative = i - 3;
       const index = (start + relative + total) % total;
       return items[index];
     });
-  }, [start, items, total, isMobile, isTablet, isTabletSmall]);
+  }, [start, items, total, isDesktop]);
 
   if (!total) return null;
+
+  React.useEffect(() => {
+    if (isDesktop || !emblaApi) return;
+
+    const onSelect = () => {
+      setPrevDisabled(!emblaApi.canScrollPrev());
+      setNextDisabled(!emblaApi.canScrollNext());
+    };
+
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, isDesktop]);
 
   const run = (dir: "prev" | "next") => {
     if (isDesktop) {
@@ -72,7 +85,9 @@ export default function Gallery({ items }: Props) {
       return;
     }
 
-    setStart((s) => (dir === "next" ? (s + 1) % total : (s - 1 + total) % total));
+    if (!emblaApi) return;
+    if (dir === "next") emblaApi.scrollNext();
+    else emblaApi.scrollPrev();
   };
 
   return (
@@ -80,6 +95,7 @@ export default function Gallery({ items }: Props) {
       <div className="flex justify-end gap-3 pr-6">
         <button
           onClick={() => run("prev")}
+          disabled={!isDesktop && prevDisabled}
           className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-7 text-white disabled:opacity-50"
           aria-label="Previous slide"
         >
@@ -93,6 +109,7 @@ export default function Gallery({ items }: Props) {
 
         <button
           onClick={() => run("next")}
+          disabled={!isDesktop && nextDisabled}
           className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-7 text-white disabled:opacity-50"
           aria-label="Next slide"
         >
@@ -105,15 +122,36 @@ export default function Gallery({ items }: Props) {
         </button>
       </div>
 
-      <div className="overflow-hidden">
-        <GalleryTrack
-          items={visible}
-          phase={phase}
-          direction={direction}
-          offset={offset}
-          mode={mode}
-        />
-      </div>
+      {isDesktop ? (
+        <div className="overflow-hidden">
+          <GalleryTrack
+            items={visible}
+            phase={phase}
+            direction={direction}
+            offset={offset}
+            mode={mode}
+          />
+        </div>
+      ) : (
+        <div ref={emblaRef} className="overflow-hidden">
+          <div className="flex -ml-4 h-full">
+            {items.map((item, i) => (
+              <div
+                key={`${item.id}-${i}`}
+                className="min-w-0 shrink-0 grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3"
+              >
+                <GalleryItem
+                  item={item}
+                  index={i}
+                  phase="idle"
+                  direction={null}
+                  mode={mode}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
