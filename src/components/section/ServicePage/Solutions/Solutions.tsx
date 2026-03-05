@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
@@ -28,7 +27,6 @@ export default function Solutions({ dict, locale, value, site }: Props) {
     (dict?.service?.solutions?.nav as NavItem[] | undefined) ?? [];
 
   const [active, setActive] = React.useState(value);
-  const router = useRouter();
 
   React.useEffect(() => {
     setActive(value);
@@ -43,7 +41,6 @@ export default function Solutions({ dict, locale, value, site }: Props) {
   const handleChange = (id: string) => {
     if (id === active) return;
     setActive(id);
-    router.replace(`/${locale}/${base}/${id}`, { scroll: false });
   };
 
   return (

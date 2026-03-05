@@ -52,6 +52,7 @@ export default function Navigation({
           <Link
             key={tab.id}
             href={hrefFor ? hrefFor(tab.id) : "#"}
+            scroll={false}
             role="tab"
             aria-selected={isActive}
             aria-controls={`content-${tab.id}`}
@@ -61,7 +62,7 @@ export default function Navigation({
             data-orientation={orientation}
             data-radix-collection-item=""
             onClick={(e) => {
-              if (!hrefFor) e.preventDefault();
+              if (!hrefFor || isActive) e.preventDefault();
               onChange(tab.id);
             }}
             className={[
