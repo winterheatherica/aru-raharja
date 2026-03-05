@@ -87,15 +87,15 @@ export default function Awards({ dict, awards = [] }: Props) {
           </div>
 
           <div className="col-span-12 lg:col-span-9">
-            <div className="grid gap-x-6 gap-y-8 lg:grid-cols-3">
+            <div className="grid gap-x-6 gap-y-8 lg:grid-cols-3 items-stretch">
               {filtered.map((a) => (
                 <div
                   key={a.id}
-                  className="relative p-4 overflow-hidden border rounded-lg bg-bumn-gradient-white-4"
+                  className="relative p-4 overflow-hidden border rounded-lg bg-bumn-gradient-white-4 flex flex-col h-full"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-white/10 card-blur" />
 
-                  <div className="relative">
+                  <div className="relative flex flex-col h-full">
                     <div className="relative aspect-[4/3] mb-4">
                       <Image
                         src={a.src}
@@ -106,16 +106,16 @@ export default function Awards({ dict, awards = [] }: Props) {
                       />
                     </div>
 
-                    <div className="space-y-2 text-center">
-                      <div className="text-sm font-semibold text-bumnslate-6">
+                    <div className="text-center flex flex-col flex-1">
+                      <div className="min-h-[3.5rem] flex items-center justify-center text-sm font-semibold text-bumnslate-6">
                         {a.title}
                       </div>
-                      <div className="text-xs text-bumnslate-4">
+                      <div className="h-6 flex items-center justify-center text-xs text-bumnslate-4 pb-2">
                         {a.year}
                       </div>
 
                       <button
-                        className="inline-flex items-center justify-center gap-2 whitespace-nowrap transition-colors
+                        className="mt-auto inline-flex items-center justify-center gap-2 whitespace-nowrap hover:opacity-95
                                    bg-bumn-gradient-primary-11 text-white shadow-bumn-2 w-full h-8 px-6 py-3 text-xs font-semibold rounded-xl transition hover:opacity-95 lg:h-10 lg:text-sm"
                       >
                         {t?.cta ?? "View Certificate"}
@@ -137,5 +137,3 @@ export default function Awards({ dict, awards = [] }: Props) {
     </section>
   );
 }
-
-
