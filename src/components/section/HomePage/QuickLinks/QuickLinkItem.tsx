@@ -8,6 +8,7 @@ type Props = {
   href: string;
   logoSrc: string;
   logoAlt: string;
+  hoverColor: string;
 };
 
 export default function QuickLinkItem({
@@ -16,10 +17,12 @@ export default function QuickLinkItem({
   href,
   logoSrc,
   logoAlt,
+  hoverColor,
 }: Props) {
   return (
     <div
       className="
+        group
         relative bg-bumn-gradient-white-2 rounded-2xl overflow-hidden
         p-6 lg:p-10
         min-h-[12rem] md:min-h-[10rem] lg:min-h-[12rem]
@@ -42,7 +45,7 @@ export default function QuickLinkItem({
           rel="noopener noreferrer"
           aria-label={buttonLabel}
           className="
-            inline-flex items-center justify-center gap-2 rounded-full bg-bumn-gradient-primary-11 text-white font-medium z-20
+            inline-flex items-center justify-center gap-2 rounded-full bg-bumn-gradient-primary-11 hover:opacity-95 text-white font-medium z-20
             w-fit
             px-4 py-2 text-sm
             md:px-6 md:py-3
@@ -85,13 +88,27 @@ export default function QuickLinkItem({
           pr-6 md:pr-4 lg:pr-10
         "
       >
-        <img
-          src={logoSrc}
-          alt={logoAlt}
-          className="
+        <div
+          role="img"
+          aria-label={logoAlt}
+          className={`
             w-full h-full object-contain
-            max-w-[8rem] md:max-w-[12rem] lg:max-w-[16rem] lg:pl-16
-          "
+            max-w-[8rem] md:max-w-[12rem]
+            bg-black transition-colors duration-300
+            ${hoverColor}
+          `}
+          style={{
+            maskImage: `url(${logoSrc})`,
+            WebkitMaskImage: `url(${logoSrc})`,
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskPosition: "center",
+            maskSize: "contain",
+            WebkitMaskSize: "contain",
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+          }}
         />
       </div>
     </div>

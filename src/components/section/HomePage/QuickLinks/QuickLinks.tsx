@@ -8,33 +8,24 @@ export default function QuickLinks({ dict }: Props) {
 
   return (
     <section className="grid gap-4 pt-20 mt-6 lg:grid-cols-2">
-      {/* <QuickLinkItem
-        title={links.x.title}
-        buttonLabel={links.x.button}
-        href="https://x.com/pt_jasaraharja"
-        logoSrc="/images/general/logo/x.svg"
-        logoAlt="X logo"
-      />
-      <QuickLinkItem
-        title={links.tiktok.title}
-        buttonLabel={links.tiktok.button}
-        href="https://www.tiktok.com/@jasaraharja.official"
-        logoSrc="/images/general/logo/tiktok.svg"
-        logoAlt="TikTok logo"
-      /> */}
       <QuickLinkItem
         title={links.instagram.title}
         buttonLabel={links.instagram.button}
         href="https://www.instagram.com/aruraharja"
         logoSrc="/images/general/logo/instagram.svg"
         logoAlt="Instagram logo"
+        hoverColor="
+          group-hover:[background-image:linear-gradient(135deg,#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D,#F56040,#F77737,#FCAF45)]
+        "
       />
+
       <QuickLinkItem
         title={links.facebook.title}
         buttonLabel={links.facebook.button}
         href="https://www.facebook.com/profile.php?id=100086789693911"
         logoSrc="/images/general/logo/facebook.svg"
         logoAlt="Facebook logo"
+        hoverColor="group-hover:bg-bumn-gradient-primary-11"
       />
     </section>
   );
