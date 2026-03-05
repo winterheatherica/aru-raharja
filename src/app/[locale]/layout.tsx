@@ -18,12 +18,21 @@ export default async function LocaleLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Background>
+      <div className="md:hidden flex min-h-screen flex-col">
         <Header dict={dict} locale={typedLocale} />
         <div className="flex-grow">{children}</div>
         <Whatsapp />
         <Footer dict={dict} locale={typedLocale} />
-      </Background>
+      </div>
+
+      <div className="hidden md:block">
+        <Background>
+          <Header dict={dict} locale={typedLocale} />
+          <div className="flex-grow">{children}</div>
+          <Whatsapp />
+          <Footer dict={dict} locale={typedLocale} />
+        </Background>
+      </div>
     </div>
   );
 }
