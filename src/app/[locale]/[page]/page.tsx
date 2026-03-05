@@ -70,19 +70,22 @@ export default async function DynamicPage({
 
   const requestedSolution = resolvedSearchParams?.solution;
 
-  if (
-    canonical === "service" &&
-    requestedSolution &&
-    SERVICE_SOLUTIONS.includes(requestedSolution as (typeof SERVICE_SOLUTIONS)[number])
-  ) {
+  if (canonical === "service") {
     const serviceBase =
       (dynamicSegmentByLocale as any)[locale]?.service ??
       (dynamicSegmentByLocale as any)["id"]?.service;
 
-    redirect(`/${locale}/${serviceBase}/${requestedSolution}`);
+    if (
+      requestedSolution &&
+      SERVICE_SOLUTIONS.includes(requestedSolution as (typeof SERVICE_SOLUTIONS)[number])
+    ) {
+      redirect(`/${locale}/${serviceBase}/${requestedSolution}`);
+    }
+
+    redirect(`/${locale}/${serviceBase}/arudigital`);
   }
 
-  const activeSolution = canonical === "service" ? "arudigital" : undefined;
+  const activeSolution = undefined;
 
   return (
     <Component
