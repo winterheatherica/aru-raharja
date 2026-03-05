@@ -20,7 +20,7 @@ export default function FundingCard({ code, description, iconSrc, alt, className
         shadow-md ${className ?? ""}
       `}
     >
-      <div className="flex flex-col items-center justify-center p-4 space-y-4">
+      <div className="flex flex-col items-center justify-center p-4 space-y-4 border min-h-[238px] rounded-lg bg-white/10 border-white/10 backdrop-blur-[30.4px] shadow">
         <div className="relative w-[78px] h-[78px] flex items-center justify-center rounded-full bg-white/40">
           <Image src={iconSrc} alt={alt || "icon"} fill className="object-contain" sizes="78px" />
         </div>
