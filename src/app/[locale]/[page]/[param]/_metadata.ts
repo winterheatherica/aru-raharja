@@ -2,7 +2,7 @@ import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 import { resolveArticleId } from "./_resolvers";
 import { fetchArticleById } from "./_fetchers";
-const BRAND = "PT Aru Raharja";
+import { BRAND, SERVICE_SOLUTIONS } from "./_constants";
 
 export async function generateParamMetadata(
   locale: Locale,
@@ -16,6 +16,7 @@ export async function generateParamMetadata(
 
   const articleBase = localeMap?.article;
   const roomBase = localeMap?.room;
+  const serviceBase = localeMap?.service;
 
   if (page === articleBase) {
     try {
@@ -65,6 +66,18 @@ export async function generateParamMetadata(
     }
 
     return {};
+  }
+
+  if (
+    page === serviceBase &&
+    SERVICE_SOLUTIONS.includes(param as (typeof SERVICE_SOLUTIONS)[number])
+  ) {
+    const serviceMeta = (dict as any)?.service?.solutions?.descriptions?.[param];
+
+    return {
+      title: `${serviceMeta?.title ?? param} - ${BRAND}`,
+      description: serviceMeta?.description ?? undefined,
+    };
   }
 
   return {};

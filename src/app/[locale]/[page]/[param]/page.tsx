@@ -4,12 +4,15 @@ import { getDictionary } from "@/i18n/get_dictionary";
 
 import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
+import ServicePage from "@/components/pages/ServicePage";
 
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
+import { locales } from "@/i18n/routes";
 
 import { SERVICE_SOLUTIONS } from "./_constants";
 import { resolveArticleId, resolveRoomId } from "./_resolvers";
 import { fetchArticleById, fetchRoomById } from "./_fetchers";
+import { fetchService } from "../_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
 export const dynamic = "force-dynamic";
@@ -90,10 +93,33 @@ export default async function PageWithParam({
       notFound();
     }
 
-    redirect(`/${locale}/${serviceBase}?solution=${param}`);
+    const site = await fetchService(locale);
+
+    return (
+      <ServicePage
+        dict={dict}
+        locale={locale}
+        activeSolution={param}
+        site={site}
+      />
+    );
   }
 
   notFound();
+}
+
+export function generateStaticParams() {
+  return locales.flatMap((locale) => {
+    const serviceBase =
+      (dynamicSegmentByLocale as any)[locale]?.service ??
+      (dynamicSegmentByLocale as any)["id"]?.service;
+
+    return SERVICE_SOLUTIONS.map((solution) => ({
+      locale,
+      page: serviceBase,
+      param: solution,
+    }));
+  });
 }
 
 export async function generateMetadata({

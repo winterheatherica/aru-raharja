@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import Navigation from "./Navigation/Navigation";
 import Content from "./Content/Content";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
@@ -27,6 +28,7 @@ export default function Solutions({ dict, locale, value, site }: Props) {
     (dict?.service?.solutions?.nav as NavItem[] | undefined) ?? [];
 
   const [active, setActive] = React.useState(value);
+  const router = useRouter();
 
   React.useEffect(() => {
     setActive(value);
@@ -34,16 +36,14 @@ export default function Solutions({ dict, locale, value, site }: Props) {
 
   if (!items.length) return null;
 
+  const base =
+    (dynamicSegmentByLocale as any)[locale]?.service ??
+    (dynamicSegmentByLocale as any)["id"]?.service;
+
   const handleChange = (id: string) => {
     if (id === active) return;
     setActive(id);
-    const base =
-      (dynamicSegmentByLocale as any)[locale]?.service ??
-      (dynamicSegmentByLocale as any)["id"]?.service;
-
-    if (typeof window !== "undefined") {
-      window.history.replaceState({}, "", `/${locale}/${base}?solution=${id}`);
-    }
+    router.replace(`/${locale}/${base}/${id}`, { scroll: false });
   };
 
   return (
@@ -53,6 +53,7 @@ export default function Solutions({ dict, locale, value, site }: Props) {
           dict={dict}
           value={active}
           onChange={handleChange}
+          hrefFor={(id) => `/${locale}/${base}/${id}`}
           orientation="horizontal"
         />
 

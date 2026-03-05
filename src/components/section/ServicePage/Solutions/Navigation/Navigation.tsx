@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import * as React from "react";
 
 type NavItem = { id: string; label: string };
@@ -16,6 +17,7 @@ type Props = {
   dict: DictShape;
   value: string;
   onChange: (id: string) => void;
+  hrefFor?: (id: string) => string;
   className?: string;
   orientation?: "horizontal" | "vertical";
 };
@@ -24,6 +26,7 @@ export default function Navigation({
   dict,
   value,
   onChange,
+  hrefFor,
   className = "",
   orientation = "horizontal",
 }: Props) {
@@ -46,9 +49,9 @@ export default function Navigation({
       {items.map((tab) => {
         const isActive = value === tab.id;
         return (
-          <button
+          <Link
             key={tab.id}
-            type="button"
+            href={hrefFor ? hrefFor(tab.id) : "#"}
             role="tab"
             aria-selected={isActive}
             aria-controls={`content-${tab.id}`}
@@ -57,7 +60,10 @@ export default function Navigation({
             tabIndex={isActive ? 0 : -1}
             data-orientation={orientation}
             data-radix-collection-item=""
-            onClick={() => onChange(tab.id)}
+            onClick={(e) => {
+              if (!hrefFor) e.preventDefault();
+              onChange(tab.id);
+            }}
             className={[
               "items-center justify-center rounded-md px-3 py-2",
               "inline-flex w-full h-auto lg:h-[77px]",
@@ -74,7 +80,7 @@ export default function Navigation({
               className="leading-snug"
               dangerouslySetInnerHTML={{ __html: tab.label }}
             />
-          </button>
+          </Link>
         );
       })}
     </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Locale } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 import {
@@ -8,6 +8,7 @@ import {
   locales,
   type CanonicalPage,
 } from "@/i18n/routes";
+import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 
 import {
   PageComponentByCanonical,
@@ -68,14 +69,20 @@ export default async function DynamicPage({
   const site = fetcher ? await fetcher(locale) : null;
 
   const requestedSolution = resolvedSearchParams?.solution;
-  const activeSolution =
+
+  if (
     canonical === "service" &&
     requestedSolution &&
     SERVICE_SOLUTIONS.includes(requestedSolution as (typeof SERVICE_SOLUTIONS)[number])
-      ? requestedSolution
-      : canonical === "service"
-      ? "arudigital"
-      : undefined;
+  ) {
+    const serviceBase =
+      (dynamicSegmentByLocale as any)[locale]?.service ??
+      (dynamicSegmentByLocale as any)["id"]?.service;
+
+    redirect(`/${locale}/${serviceBase}/${requestedSolution}`);
+  }
+
+  const activeSolution = canonical === "service" ? "arudigital" : undefined;
 
   return (
     <Component
