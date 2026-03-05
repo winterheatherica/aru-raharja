@@ -15,7 +15,7 @@ export default function YearSelector({
 }: YearSelectorProps) {
   return (
     <div className="flex w-full p-2">
-      <div className="w-[7px] bg-bumn-gradient-primary-4 mt-14 rounded" />
+      <div className="w-[7px] bg-bumn-gradient-primary-11 mt-14 rounded" />
 
       <div className="flex flex-col w-full px-2">
         <div className="pb-3 mb-3 text-sm font-medium border-b font-inter text-bumngreen-1">

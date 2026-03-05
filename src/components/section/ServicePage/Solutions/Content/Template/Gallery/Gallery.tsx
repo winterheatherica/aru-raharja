@@ -96,7 +96,7 @@ export default function Gallery({ items }: Props) {
         <button
           onClick={() => run("prev")}
           disabled={!isDesktop && prevDisabled}
-          className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-7 text-white disabled:opacity-50"
+          className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-11 text-white disabled:opacity-50"
           aria-label="Previous slide"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="w-4 h-4">
@@ -110,7 +110,7 @@ export default function Gallery({ items }: Props) {
         <button
           onClick={() => run("next")}
           disabled={!isDesktop && nextDisabled}
-          className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-7 text-white disabled:opacity-50"
+          className="inline-flex items-center justify-center rounded-xl w-[42px] h-[42px] bg-bumn-gradient-primary-11 text-white disabled:opacity-50"
           aria-label="Next slide"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="w-4 h-4">

@@ -13,10 +13,10 @@ export default function Hero({ dict }: Props) {
   return (
     <section className="relative my-6">
       <div className="flex flex-col items-center justify-center mb-3 space-y-1">
-        <h2 className="text-xl font-bold text-transparent uppercase bg-bumn-gradient-primary-7 bg-clip-text animate-fade-down">
+        <h2 className="text-xl font-bold text-transparent uppercase bg-bumn-gradient-primary-11 bg-clip-text animate-fade-down">
           {t.hero.smallTitle}
         </h2>
-        <span className="block w-[20px] h-[2px] rounded bg-bumn-gradient-primary-7"></span>
+        <span className="block w-[20px] h-[2px] rounded bg-bumn-gradient-primary-11"></span>
       </div>
 
       <h1 className="font-bold text-2xl lg:text-5xl lg:leading-[58px] text-center text-bumnblack-1 font-inter max-w-[1130px] mx-auto animate-fade-right animate-delay-300">

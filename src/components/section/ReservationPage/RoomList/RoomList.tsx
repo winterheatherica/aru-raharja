@@ -137,7 +137,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                       href={roomHref(locale, r.slug)}
                       className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
                         r.is_available
-                          ? "bg-bumn-gradient-primary-7 text-white hover:opacity-95 shadow-bumn-2"
+                          ? "bg-bumn-gradient-primary-11 text-white hover:opacity-95 shadow-bumn-2"
                           : "bg-bumngray-3 text-bumngray-6 cursor-not-allowed"
                       }`}
                       aria-disabled={!r.is_available}

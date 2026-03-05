@@ -50,7 +50,7 @@ export default function Pricing({ items, texts }: Props) {
             className={[
               "px-4 py-2 text-sm rounded-lg transition",
               mode === "monthly"
-                ? "bg-bumn-gradient-primary-7 text-white shadow-bumn-2"
+                ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2"
                 : "text-bumnslate-6",
             ].join(" ")}
           >
@@ -63,7 +63,7 @@ export default function Pricing({ items, texts }: Props) {
             className={[
               "px-4 py-2 text-sm rounded-lg transition",
               mode === "yearly"
-                ? "bg-bumn-gradient-primary-7 text-white shadow-bumn-2"
+                ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2"
                 : "text-bumnslate-6",
             ].join(" ")}
           >
@@ -90,7 +90,7 @@ export default function Pricing({ items, texts }: Props) {
               ].join(" ")}
             >
               {plan.popular && (
-                <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-7 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
+                <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
                   {texts.popularBadge}
                 </div>
               )}
@@ -137,7 +137,7 @@ export default function Pricing({ items, texts }: Props) {
                       .toLowerCase()
                       .replace(/\s+/g, "-")
                   )}`}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-7 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
                 >
                   {texts.cta}
                 </a>

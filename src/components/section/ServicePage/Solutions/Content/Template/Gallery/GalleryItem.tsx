@@ -23,7 +23,7 @@ export default function GalleryItem({
   if (mode === "mobile") {
     return (
       <div className="w-full h-[430px]">
-        <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
+        <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-11">
           <div className="relative w-full h-full p-6">
             <Image
               src={item.src}
@@ -40,7 +40,7 @@ export default function GalleryItem({
   if (mode === "tablet") {
     return (
       <div className="w-full h-[430px]">
-        <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
+        <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-11">
           <div className="relative w-full h-full p-6">
             <Image
               src={item.src}
@@ -80,7 +80,7 @@ export default function GalleryItem({
         !isCurrent && !grow && "basis-[15%]"
       )}
     >
-      <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-7">
+      <div className="h-full rounded-2xl overflow-hidden shadow bg-bumn-gradient-primary-11">
         <div className="relative w-full h-full p-6">
           <Image
             src={item.src}

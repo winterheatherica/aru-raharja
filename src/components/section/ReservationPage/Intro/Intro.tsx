@@ -24,7 +24,7 @@ export default function Intro({ dict }: Props) {
         <div className="mt-8">
           <Link
             href="/reservation/schedule"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-bumnblue-2 hover:bg-bumnblue-3 text-white font-semibold shadow transition"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-bumn-gradient-primary-11 hover:opacity-95 text-white font-semibold shadow transition"
           >
             {t.ctaLabel ?? "View Booking Schedule"}
           </Link>

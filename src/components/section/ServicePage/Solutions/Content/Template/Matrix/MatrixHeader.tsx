@@ -13,7 +13,7 @@ export default function MatrixHeader({ columns }: Props) {
             className={`px-4 py-3 text-sm font-semibold text-center rounded-xl
               ${
                 col.popular
-                  ? "bg-bumn-gradient-primary-7 text-white shadow-bumn-2"
+                  ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2"
                   : "bg-bumnwhite-3 text-bumnslate-6"
               }`}
           >

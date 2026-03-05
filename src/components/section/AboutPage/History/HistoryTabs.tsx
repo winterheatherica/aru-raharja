@@ -27,7 +27,7 @@ export default function HistoryTabs({
           Track Record
         </div>
         <div className="flex w-full p-2">
-          <div className="w-[7px] bg-bumn-gradient-primary-4 mt-14" />
+          <div className="w-[7px] bg-bumn-gradient-primary-11 mt-14" />
           <div className="flex flex-col w-full px-2">
             <div className="pb-3 mb-3 text-sm font-medium border-b text-bumngreen-1">
               Year
@@ -41,7 +41,7 @@ export default function HistoryTabs({
                     onClick={() => setActive(it.year)}
                     className={`inline-flex items-center justify-start whitespace-nowrap rounded-md px-3 py-2 text-base transition-all
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
-                      ${isActive ? "bg-bumn-gradient-primary-18 text-bumngray-1 shadow" : "text-bumnslate-3"}
+                      ${isActive ? "bg-bumn-gradient-primary-11 text-bumngray-1 shadow" : "text-bumnslate-3"}
                     `}
                   >
                     {it.year}
