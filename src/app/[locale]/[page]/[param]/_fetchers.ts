@@ -5,7 +5,7 @@ export async function fetchArticleById(id: string, locale: Locale) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/article/${id}?lang=${lang}`,
-    { cache: "no-store" }
+    { cache: "force-cache", next: { revalidate: 3600 } }
   );
 
   if (!res.ok) return null;
@@ -17,7 +17,7 @@ export async function fetchRoomById(id: string, locale: Locale) {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/room/${id}?lang=${lang}`,
-    { cache: "no-store" }
+    { cache: "force-cache", next: { revalidate: 3600 } }
   );
 
   if (!res.ok) return null;
