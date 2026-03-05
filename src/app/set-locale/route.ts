@@ -8,6 +8,19 @@ function safeInternalPath(p: string) {
   return "/";
 }
 
+function getOrigin(req: NextRequest) {
+  const proto =
+    req.headers.get("x-forwarded-proto") ??
+    req.nextUrl.protocol.replace(":", "") ??
+    "http";
+  const host =
+    req.headers.get("x-forwarded-host") ??
+    req.headers.get("host") ??
+    req.nextUrl.host;
+
+  return `${proto}://${host}`;
+}
+
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const raw = url.searchParams.get("value");
@@ -26,11 +39,8 @@ export async function GET(req: NextRequest) {
     nextPath = `/${value}/${routeSlugByLocale[value].home}`;
   }
 
-  const redirectUrl = req.nextUrl.clone();
-  redirectUrl.pathname = nextPath;
-  redirectUrl.search = "";
-
-  const res = NextResponse.redirect(redirectUrl);
+  const target = new URL(nextPath, getOrigin(req));
+  const res = NextResponse.redirect(target);
 
   res.cookies.set(COOKIE_NAME, value, {
     ...cookieOpts,
