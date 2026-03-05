@@ -32,7 +32,7 @@ export default function Map({ dict }: Props) {
         />
       </div>
 
-      <div className="max-w-4xl mx-auto bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
+      <div className="max-w-4xl mx-auto border border-bumnslate-10 bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4">
         <h4 className="text-sm font-semibold text-bumnblue-1">
           {t.locationTitle}
         </h4>
@@ -40,7 +40,7 @@ export default function Map({ dict }: Props) {
         {t.paragraphs?.map((text: string, idx: number) => (
           <p
             key={idx}
-            className="text-sm text-bumnslate-8 leading-relaxed"
+            className="text-sm text-bumnblue-1 leading-relaxed"
           >
             {text}
           </p>

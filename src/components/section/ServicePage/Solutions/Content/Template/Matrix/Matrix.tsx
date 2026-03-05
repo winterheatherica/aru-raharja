@@ -25,10 +25,10 @@ export default function Matrix({ data }: Props) {
         )}
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border-separate border-spacing-y-2">
+      <div className="overflow-x-auto rounded-2xl bg-bumn-gradient-white-4 border border-bumnslate-10 shadow-bumn-2">
+        <table className="w-full border-collapse">
           <MatrixHeader columns={columns} />
-          <tbody>
+          <tbody className="text-center bg-bumn-gradient-white-4 rounded-2xl">
             {rows.map((row: any) => (
               <MatrixRow
                 key={row.id}

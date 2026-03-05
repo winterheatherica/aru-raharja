@@ -11,7 +11,7 @@ export default function ArticleHero({ article }: any) {
 
   return (
     <div className="mb-8">
-      <div className="rounded-xl overflow-hidden border border-bumngray-8 shadow-bumn-2">
+      <div className="rounded-xl overflow-hidden border border-bumnslate-10 shadow-bumn-2">
         <Image
           src={img}
           alt={title}

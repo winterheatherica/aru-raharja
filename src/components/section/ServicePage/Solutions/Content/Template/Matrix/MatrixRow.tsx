@@ -7,9 +7,11 @@ type Props = {
 
 export default function MatrixRow({ row, columns }: Props) {
   return (
-    <tr className="bg-bumn-gradient-white-4 rounded-xl shadow-bumn-2">
-      <td className="px-4 py-3 text-sm font-medium text-bumnslate-6 rounded-l-xl">
-        {row.feature}
+    <tr>
+      <td className="px-2 py-3">
+        <div className="px-4 py-3 text-sm font-medium text-bumnslate-6 bg-white rounded-2xl shadow-bumn-2 flex items-center">
+          {row.feature}
+        </div>
       </td>
 
       {columns.map((col) => {
@@ -18,15 +20,15 @@ export default function MatrixRow({ row, columns }: Props) {
         );
 
         return (
-          <MatrixCell
-            key={col.id}
-            valueBoolean={cell?.value_boolean}
-            valueText={cell?.value_text}
-            highlight={col.popular}
-          />
+          <td key={col.id} className="px-2">
+            <MatrixCell
+              valueBoolean={cell?.value_boolean}
+              valueText={cell?.value_text}
+              highlight={col.popular}
+            />
+          </td>
         );
       })}
     </tr>
   );
 }
-

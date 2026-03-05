@@ -12,23 +12,21 @@ export default function MatrixCell({
   const isText = typeof valueText === "string" && valueText.length > 0;
 
   return (
-    <td
-      className={`px-4 py-3 text-center text-sm font-medium align-middle
-        ${
-          highlight
-            ? "text-bumnblue-4"
-            : "text-bumnslate-7"
-        }`}
+    <div
+      className={`px-4 py-3 text-sm font-medium text-center rounded-2xl shadow-bumn-2 flex items-center justify-center
+      ${
+        highlight
+          ? "text-bumnblue-4 bg-white"
+          : "text-bumnslate-7 bg-white"
+      }`}
     >
       {isText ? (
-        <span className="block leading-snug">
-          {valueText}
-        </span>
+        <span className="leading-snug">{valueText}</span>
       ) : valueBoolean === true ? (
-        <span className="text-lg font-semibold">✓</span>
+        <span className="text-md font-semibold">✓</span>
       ) : (
-        <span className="text-lg">–</span>
+        <span className="text-md">–</span>
       )}
-    </td>
+    </div>
   );
 }

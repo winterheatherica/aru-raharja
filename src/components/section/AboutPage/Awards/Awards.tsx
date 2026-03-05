@@ -47,11 +47,11 @@ export default function Awards({ dict, awards = [] }: Props) {
             <div className="flex w-full p-2">
               <div className="flex flex-col w-full px-2">
                 <div>
-                  <div className="pb-3 mb-3 text-sm font-medium border-b text-bumngreen-1 font-inter">
+                  <div className="text-xl font-medium text-bumngreen-1 font-inter text-center">
                     {t?.yearLabel ?? "Year"}
                   </div>
 
-                  <div className="flex flex-col items-center justify-start h-full p-1 space-y-2 bg-bumn-gradient-white-4 rounded-lg shadow-bumn-2 text-bumnslate-3">
+                  <div className="mt-3 flex border border-bumnslate-10 flex-col items-center justify-start h-full p-1 space-y-2 bg-bumn-gradient-white-4 rounded-lg shadow-bumn-2 text-bumnslate-3">
                     <button
                       aria-current={active === "all" ? "page" : undefined}
                       onClick={() => setActive("all")}
@@ -91,7 +91,7 @@ export default function Awards({ dict, awards = [] }: Props) {
               {filtered.map((a) => (
                 <div
                   key={a.id}
-                  className="relative p-4 overflow-hidden border rounded-lg bg-bumn-gradient-white-4 flex flex-col h-full"
+                  className="relative p-4 overflow-hidden rounded-xl border border-bumnslate-10 bg-bumn-gradient-white-4 flex flex-col h-full"
                 >
                   <div className="absolute inset-0 pointer-events-none bg-white/10 card-blur" />
 

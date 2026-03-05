@@ -35,7 +35,7 @@ export default function HeaderClient({ locale, dict }: HeaderClientProps) {
       <div className="mx-auto flex h-[104px] max-w-screen-1440 items-center justify-between px-2 py-1 lg:px-10">
         <div className="pl-4 sm:pl-0">
           {/* <Brand locale={locale} /> */}
-          <CompanyLogo className="me-4 lg:me-0" />
+          <CompanyLogo locale={locale} className="me-4 lg:me-0" />
         </div>
 
         <nav className="flex flex-row-reverse items-center gap-2 lg:flex-row">

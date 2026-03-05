@@ -53,7 +53,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
           {rooms.map((r) => (
             <article
               key={r.id}
-              className="flex flex-col sm:flex-row items-stretch gap-4 bg-bumn-gradient-white-4 border border-bumngray-8 rounded-xl p-4 shadow-bumn-2 transition-shadow"
+              className="flex flex-col sm:flex-row items-stretch gap-4 bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-xl p-4 shadow-bumn-2 transition-shadow"
             >
               <div className="w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
                 <img
