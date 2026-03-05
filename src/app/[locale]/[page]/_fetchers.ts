@@ -1,11 +1,15 @@
 import type { Locale } from "@/i18n/get_dictionary";
 
-async function fetchFromAPI(endpoint: string, locale: Locale) {
+async function fetchFromAPI(
+  endpoint: string,
+  locale: Locale,
+  init: RequestInit = { cache: "no-store" }
+) {
   const lang = locale.toUpperCase();
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
-    { cache: "no-store", }
+    init
   );
 
     if (!res.ok) {
@@ -31,4 +35,7 @@ export const fetchCareer = (l: Locale) =>
   fetchFromAPI("/api/career", l);
 
 export const fetchService = (l: Locale) =>
-  fetchFromAPI("/api/service", l);
+  fetchFromAPI("/api/service", l, {
+    cache: "force-cache",
+    next: { revalidate: 3600 },
+  });

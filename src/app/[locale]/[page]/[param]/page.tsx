@@ -15,8 +15,7 @@ import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { fetchService } from "../_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 600;
+export const revalidate = 3600;
 
 type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
 
