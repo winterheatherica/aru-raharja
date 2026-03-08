@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { getEmploymentLabel } from "./type";
 import type { Dictionary } from "@/i18n/get_dictionary";
 import { buildJobApplicationGmail } from "./emailTemplate";
 
@@ -51,7 +51,7 @@ export default function Results({ dict, vacancies }: Props) {
               </h3>
 
               <p className="text-sm text-bumnslate-8 mb-2">
-                {job.employment} • {job.location}
+                {getEmploymentLabel(job.employment as any, dict)} • {job.location}
               </p>
 
               <p className="text-base text-bumnslate-6 mb-4">

@@ -12,6 +12,12 @@ const career = {
     altIllustration: "Ilustrasi Karier",
   },
   registration: {
+    employment: {
+      FULL_TIME: "Penuh Waktu",
+      PART_TIME: "Paruh Waktu",
+      INTERNSHIP: "Magang",
+      CONTRACT: "Kontrak",
+    },
     filters: {
       searchPlaceholder: "Cari Posisi",
       positionLabel: "Semua Posisi",

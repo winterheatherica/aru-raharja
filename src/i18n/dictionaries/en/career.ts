@@ -12,6 +12,12 @@ const career = {
     altIllustration: "Career Illustration",
   },
   registration: {
+    employment: {
+      FULL_TIME: "Full Time",
+      PART_TIME: "Part Time",
+      INTERNSHIP: "Internship",
+      CONTRACT: "Contract",
+    },
     filters: {
       searchPlaceholder: "Search Position",
       positionLabel: "All Positions",
