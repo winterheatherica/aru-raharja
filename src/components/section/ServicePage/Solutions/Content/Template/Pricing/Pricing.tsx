@@ -132,11 +132,8 @@ export default function Pricing({ items, texts }: Props) {
 
               <div className="mt-auto pt-1">
                 <a
-                  href={`/contact?plan=${encodeURIComponent(
-                    plan.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")
-                  )}`}
+                  href="https://wa.me/6281227008100"
+                  target="_blank"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
                 >
                   {texts.cta}

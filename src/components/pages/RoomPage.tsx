@@ -33,7 +33,7 @@ export default function RoomPage({ dict, locale, room }: Props) {
       <main className="relative px-4 py-10 mx-auto max-w-screen-1440 text-bumnslate-6">
         <p className="text-sm">
           {locale === "id"
-           ? "Ruangan tidak ditemukan."
+            ? "Ruangan tidak ditemukan."
             : "Room not found."}
         </p>
       </main>
@@ -42,6 +42,7 @@ export default function RoomPage({ dict, locale, room }: Props) {
 
   const t = (dict as any)?.room?.detail;
   const backLabel = t?.backButton ?? (locale === "id" ? "Kembali" : "Back");
+  const ctaLabel = t?.cta ?? (locale === "id" ? "Pesan Sekarang" : "Book Now");
   const fallbackPath = locale === "id" ? `/${locale}/reservasi` : `/${locale}/reservation`;
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
@@ -60,7 +61,7 @@ export default function RoomPage({ dict, locale, room }: Props) {
     <main className="relative text-bumnslate-6">
       <div className="px-4 lg:px-2 py-2 mx-auto max-w-screen-1440">
         <div className="w-[90%] mx-auto mt-8 lg:mt-12 space-y-12">
-          <div className="pl-5">
+          <div className="flex items-center justify-between px-0 sm:px-3 lg:px-5">
             <button
               onClick={handleBack}
               className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-5 py-2.5 text-sm font-semibold text-white shadow-bumn-2 hover:opacity-95 transition"
@@ -80,6 +81,13 @@ export default function RoomPage({ dict, locale, room }: Props) {
 
               <span>{backLabel}</span>
             </button>
+            <a
+              href="https://wa.me/6281227008100"
+              target="_blank"
+              className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-5 py-2.5 text-sm font-semibold text-white shadow-bumn-2 hover:opacity-95 transition"
+            >
+              {ctaLabel}
+            </a>
           </div>
 
           {galleryItems.length > 0 && <Gallery items={galleryItems} />}
