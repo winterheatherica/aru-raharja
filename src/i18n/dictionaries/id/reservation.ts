@@ -3,6 +3,8 @@ const reservation = {
     title: "Reservasi – PT Aru Raharja",
     description:
       "Layanan reservasi PT Aru Raharja untuk mendukung kebutuhan operasional dan layanan perusahaan secara efisien.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "reservasi ruang, ruang meeting, aru space, PT Aru Raharja",
   },
   hero: {
     titleHtml: "Reservasi",

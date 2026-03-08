@@ -1,4 +1,11 @@
 const service = {
+  meta: {
+    title: "Layanan – PT Aru Raharja",
+    description:
+      "Layanan ARU untuk mendukung transformasi digital, operasional, kesehatan, dan kebutuhan bisnis perusahaan.",
+    image: "https://aruraharja.co.id/images/services/service-bg.png",
+    keywords: "layanan aru, arudigital, arusolution, aruhealthcare",
+  },
   hero: {
     titleHtml: 'Layanan Prima <br class="hidden lg:block"> Kami',
     description:

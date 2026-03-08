@@ -20,7 +20,6 @@ const home = {
     descPrefix:
       "Produk digital terintegrasi dari ARU untuk mendukung efisiensi, produktivitas, dan pertumbuhan bisnis perusahaan.",
     laws: [""],
-
     cards: [
       {
         title: "Manajemen Klaim",

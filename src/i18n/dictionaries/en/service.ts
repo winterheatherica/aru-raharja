@@ -1,4 +1,11 @@
 const service = {
+  meta: {
+    title: "Services – PT Aru Raharja",
+    description:
+      "ARU services to support digital transformation, operations, healthcare, and core business needs.",
+    image: "https://aruraharja.co.id/images/services/service-bg.png",
+    keywords: "aru services, arudigital, arusolution, aruhealthcare",
+  },
   hero: {
     titleHtml: 'Our Excellent <br class="hidden lg:block"> Service',
     description:

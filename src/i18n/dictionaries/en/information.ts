@@ -3,6 +3,8 @@ const information = {
     title: "Information – PT Aru Raharja",
     description:
       "Latest information, announcements, and official updates from PT Aru Raharja.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "aru raharja news, company updates, official announcements",
   },
   hero: {
     titleHtml: "Information",

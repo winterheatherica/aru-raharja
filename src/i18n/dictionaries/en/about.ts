@@ -3,6 +3,8 @@ const about = {
     title: "About Us – PT Aru Raharja",
     description:
       "Learn more about PT Aru Raharja, our vision, mission, and commitment to delivering trusted digital services and solutions.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "about aru raharja, company profile, vision and mission",
   },
   hero: {
     smallTitle: "About Aru Raharja",

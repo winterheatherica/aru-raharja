@@ -3,6 +3,8 @@ const career = {
     title: "Karier – PT Aru Raharja",
     description:
       "Bergabunglah bersama PT Aru Raharja dan kembangkan karier Anda di lingkungan profesional dan inovatif.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "lowongan kerja, karier PT Aru Raharja, rekrutmen aru",
   },
   hero: {
     titleHtml: "Karier",

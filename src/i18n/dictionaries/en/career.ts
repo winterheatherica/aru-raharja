@@ -3,6 +3,8 @@ const career = {
     title: "Career – PT Aru Raharja",
     description:
       "Join PT Aru Raharja and grow your career in a professional and innovative environment.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "career opportunities, jobs at aru raharja, recruitment",
   },
   hero: {
     titleHtml: "Career",

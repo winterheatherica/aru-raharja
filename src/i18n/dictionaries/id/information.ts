@@ -3,6 +3,8 @@ const information = {
     title: "Informasi – PT Aru Raharja",
     description:
       "Informasi terbaru, pengumuman, dan berita resmi dari PT Aru Raharja.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "berita aru raharja, informasi perusahaan, pengumuman resmi",
   },
   hero: {
     titleHtml: "Informasi",

@@ -1,31 +1,11 @@
 const home = {
-  seo: {
+  meta: {
     title: "Home – PT Aru Raharja",
     description:
       "PT Aru Raharja provides integrated digital products and services to support efficiency, productivity, and business growth.",
-    canonical: "https://aruraharja.co.id/en",
-    robots: "index, follow",
-  },
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "PT Aru Raharja",
-    title: "PT Aru Raharja",
-    description:
-      "Integrated digital services and solutions from PT Aru Raharja to support business growth and efficiency.",
-    url: "https://aruraharja.co.id/en",
-    image: {
-      url: "https://aruraharja.co.id/images/general/logo/aru.png",
-      alt: "PT Aru Raharja – Integrated Digital Services",
-      type: "image/png",
-    },
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PT Aru Raharja",
-    description:
-      "Integrated digital services and solutions from PT Aru Raharja.",
     image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords:
+      "PT Aru Raharja, digital solutions, IT services, digital transformation",
   },
   hero: {
     faqTitle: "Frequently Asked Questions",
@@ -40,7 +20,6 @@ const home = {
     descPrefix:
       "Integrated digital products from ARU to support efficiency, productivity, and business growth.",
     laws: [""],
-
     cards: [
       {
         title: "Claim Management",
@@ -59,17 +38,6 @@ const home = {
         subtitle:
           "Hospital assistance and support services to ensure optimal healthcare delivery.",
         alt: "Hospital help desk service",
-      },
-    ],
-
-    slides: [
-      {
-        title: "Twibbon #HUTAruRaharja",
-        alt: "Twibbon celebration of ARU Raharja anniversary",
-      },
-      {
-        title: "Our Announcement",
-        alt: "Official announcement from ARU Raharja",
       },
     ],
   },

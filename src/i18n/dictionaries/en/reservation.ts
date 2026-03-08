@@ -3,6 +3,8 @@ const reservation = {
     title: "Reservation – PT Aru Raharja",
     description:
       "PT Aru Raharja reservation services designed to support operational and service needs efficiently.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "room reservation, meeting room booking, aru space",
   },
   hero: {
     titleHtml: "Reservation",

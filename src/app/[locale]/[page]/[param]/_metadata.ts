@@ -1,8 +1,17 @@
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
-import { resolveArticleId } from "./_resolvers";
-import { fetchArticleById } from "./_fetchers";
+import { resolveArticleId, resolveRoomId } from "./_resolvers";
+import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { BRAND, SERVICE_SOLUTIONS } from "./_constants";
+import { buildSocialMeta } from "../_metadata";
+
+const SITE_URL = "https://aruraharja.co.id";
+
+function toAbsoluteUrl(url?: string) {
+  if (!url) return undefined;
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `${SITE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
 
 export async function generateParamMetadata(
   locale: Locale,
@@ -23,49 +32,36 @@ export async function generateParamMetadata(
       const articleId = await resolveArticleId(param);
       if (!articleId) return {};
 
-      const article = await fetchArticleById(
-        String(articleId),
-        locale
-      );
+      const article = await fetchArticleById(String(articleId), locale);
       if (!article) return {};
 
-      return {
-        title: `${article.title ?? "Article"} - ${BRAND}`,
-        description: article.meta?.description ?? undefined,
-      };
+      const title = `${article.title ?? "Article"} - ${BRAND}`;
+      const description = article.meta?.description ?? article.excerpt ?? undefined;
+      const image = toAbsoluteUrl(article.image_url) ?? `${SITE_URL}/images/general/logo/aru.png`;
+      const keywords = article.category ?? article.categories?.map((c: any) => c?.name).filter(Boolean).join(", ");
+
+      return buildSocialMeta({ title, description, image, keywords });
     } catch {
       return {};
     }
   }
 
   if (page === roomBase) {
-    const detailed = (dict as any)?.room;
+    try {
+      const roomId = await resolveRoomId(param);
+      if (!roomId) return {};
 
-    if (detailed?.meta?.id === param) {
-      const title = detailed.meta?.title ?? `Room ${param}`;
-      const desc = detailed.meta?.subtitle ?? undefined;
+      const room = await fetchRoomById(String(roomId), locale);
+      if (!room) return {};
 
-      return {
-        title: `${title} - ${BRAND}`,
-        description: desc,
-      };
+      const title = `${room.title ?? `Room ${param}`} - ${BRAND}`;
+      const description = room.description ?? undefined;
+      const image = toAbsoluteUrl(room.images?.[0]?.url) ?? `${SITE_URL}/images/general/logo/aru.png`;
+
+      return buildSocialMeta({ title, description, image });
+    } catch {
+      return {};
     }
-
-    const listRooms: any[] =
-      (dict as any)?.reservation?.roomlist?.list ?? [];
-
-    const found = listRooms.find(
-      (r) => String(r.id) === String(param)
-    );
-
-    if (found) {
-      return {
-        title: `${found.title ?? `Room ${param}`} - ${BRAND}`,
-        description: found.subtitle ?? undefined,
-      };
-    }
-
-    return {};
   }
 
   if (
@@ -73,11 +69,14 @@ export async function generateParamMetadata(
     SERVICE_SOLUTIONS.includes(param as (typeof SERVICE_SOLUTIONS)[number])
   ) {
     const serviceMeta = (dict as any)?.service?.solutions?.descriptions?.[param];
+    const defaultMeta = (dict as any)?.service?.meta;
 
-    return {
+    return buildSocialMeta({
       title: `${serviceMeta?.title ?? param} - ${BRAND}`,
-      description: serviceMeta?.description ?? undefined,
-    };
+      description: serviceMeta?.description ?? defaultMeta?.description ?? undefined,
+      image: toAbsoluteUrl(defaultMeta?.image) ?? `${SITE_URL}/images/services/service-bg.png`,
+      keywords: defaultMeta?.keywords,
+    });
   }
 
   return {};

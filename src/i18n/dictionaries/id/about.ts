@@ -3,6 +3,8 @@ const about = {
     title: "Tentang Kami – PT Aru Raharja",
     description:
       "Mengenal PT Aru Raharja, visi, misi, dan komitmen kami dalam menyediakan layanan dan solusi digital yang terpercaya.",
+    image: "https://aruraharja.co.id/images/general/logo/aru.png",
+    keywords: "tentang aru raharja, visi misi, profil perusahaan, PT Aru Raharja",
   },
   hero: {
     smallTitle: "Tentang Aru Raharja",
