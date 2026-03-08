@@ -1,4 +1,6 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PageTopBanner from "@/components/section/ArticlePage/PageTopBanner/PageTopBanner";
 import ArticleHero from "@/components/section/ArticlePage/ArticleHero/ArticleHero";
@@ -33,6 +35,7 @@ type Props = {
 };
 
 export default function ArticlePage({ dict, locale, article }: Props) {
+  const router = useRouter();
   if (!article) {
     return (
       <main className="relative px-4 py-10 mx-auto max-w-screen-1440 text-bumnslate-6">
@@ -44,9 +47,15 @@ export default function ArticlePage({ dict, locale, article }: Props) {
   }
 
   const t = (dict as any)?.article?.detail;
-  const backLabel =
-    t?.backButton ?? (locale === "id" ? "Kembali ke Informasi" : "Back to Information");
-  const articleListPath = locale === "id" ? `/${locale}/informasi` : `/${locale}/information`;
+  const backLabel = t?.backButton ?? (locale === "id" ? "Kembali" : "Back");
+  const fallbackPath = locale === "id" ? `/${locale}/informasi` : `/${locale}/information`;
+  const handleBack = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.back();
+    } else {
+      router.push(fallbackPath);
+    }
+  };
 
   const categoryChips =
     article.categories?.filter((c) => c?.name?.trim()) ??
@@ -65,8 +74,8 @@ export default function ArticlePage({ dict, locale, article }: Props) {
       <div className="relative z-10 px-4 pt-8 pb-16 mx-auto max-w-screen-1440">
         <div className="mx-auto w-full max-w-5xl bg-white p-8 lg:p-10 rounded-2xl shadow-bumn-2">
           <div className="mb-6">
-            <Link
-              href={articleListPath}
+            <button
+              onClick={handleBack}
               className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-5 py-2.5 text-sm font-semibold text-white shadow-bumn-2 hover:opacity-95 transition"
             >
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="w-4 h-4">
@@ -76,7 +85,7 @@ export default function ArticlePage({ dict, locale, article }: Props) {
                 />
               </svg>
               <span>{backLabel}</span>
-            </Link>
+            </button>
           </div>
 
           <h1 className="mb-6 text-3xl lg:text-4xl font-extrabold text-bumnblue-2 leading-tight">

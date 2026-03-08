@@ -1,6 +1,6 @@
 const article = {
   detail: {
-    backButton: "Back to Information",
+    backButton: "Back",
   },
 } as const;
 
