@@ -11,7 +11,6 @@ const information = {
     altMask: "Decorative background",
     altIllustration: "Information Illustration",
   },
-
   reports: {
     nav: [
       { id: "news", label: "News" },
@@ -21,7 +20,6 @@ const information = {
       { id: "sustainabilityreport", label: "<b>Sustainability</b> Report" },
       { id: "monthlyreport", label: "<b>Monthly</b> Report" },
     ] as const,
-
     sectionTitle: {
       news: {
         titleHtml: "Latest News",
@@ -54,6 +52,7 @@ const information = {
           "A collection of Aru Raharja’s monthly financial reports from various time periods.",
       },
     },
+    readMore: "Read More",
   },
 } as const;
 

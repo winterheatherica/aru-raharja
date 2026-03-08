@@ -11,7 +11,6 @@ const information = {
     altMask: "Hiasan latar belakang",
     altIllustration: "Ilustrasi Informasi",
   },
-
   reports: {
     nav: [
       { id: "news", label: "Berita" },
@@ -21,7 +20,6 @@ const information = {
       { id: "sustainabilityreport", label: "Laporan <b>Keberlanjutan</b>" },
       { id: "monthlyreport", label: "Laporan <b>Bulanan</b>" },
     ] as const,
-
     sectionTitle: {
       news: {
         titleHtml: "Berita Terkini",
@@ -54,6 +52,7 @@ const information = {
           "Kumpulan laporan keuangan bulanan Aru Raharja dari berbagai periode waktu.",
       },
     },
+    readMore: "Baca Selengkapnya",
   },
 } as const;
 

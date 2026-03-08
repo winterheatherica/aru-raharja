@@ -14,10 +14,10 @@ export type NewsItem = {
 
 export default function Landscape3({
   item,
-  readMoreLabel = "Read More",
+  readMoreLabel,
 }: {
   item: NewsItem;
-  readMoreLabel?: string;
+  readMoreLabel: string;
 }) {
   const imageSrc = item?.imageUrl || "/images/home/news/news-4.jpg";
   const formatDate = (dateStr: string) => {

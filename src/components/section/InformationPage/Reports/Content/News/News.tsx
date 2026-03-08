@@ -35,6 +35,7 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
   const sortedYears = React.useMemo(() => [...years].sort((a, b) => b - a), [years]);
   const defaultYear = sortedYears.length ? String(sortedYears[0]) : "";
   const [selectedYear, setSelectedYear] = React.useState<string>(defaultYear);
+  const readMoreLabel = dict?.information?.reports?.readMore;
 
   React.useEffect(() => {
     if (defaultYear) setSelectedYear(defaultYear);
@@ -77,7 +78,7 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
                 style={{ gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 360px), 1fr))" }}
               >
                 {displayItems.map((item) => (
-                  <Landscape3 key={item.id} item={item} />
+                  <Landscape3 key={item.id} item={item} readMoreLabel={readMoreLabel} />
                 ))}
                 {displayItems.length === 0 && (
                   <div className="text-bumnslate-4">No news found for this year.</div>
