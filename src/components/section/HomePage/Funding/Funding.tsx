@@ -6,26 +6,26 @@ import LeftStatement from "./LeftStatement";
 import MaskOverlay from "./MaskOverlay";
 import type { Dictionary } from "@/i18n/get_dictionary";
 
-const STATIC_ITEMS: Pick<FundingItem, "code" | "iconSrc">[] = [
-  { code: "Web Development", iconSrc: "/images/home/duties-promo/icon-1.png" },
-  { code: "Mobile Apps", iconSrc: "/images/home/duties-promo/icon-2.png" },
-  { code: "UI/UX Design", iconSrc: "/images/home/duties-promo/icon-3.png" },
+const STATIC_ITEMS = [
+  { iconSrc: "/images/home/duties-promo/icon-1.png" },
+  { iconSrc: "/images/home/duties-promo/icon-2.png" },
+  { iconSrc: "/images/home/duties-promo/icon-3.png" },
 
-  { code: "ARUdigital", iconSrc: "/images/home/duties-promo/aru-digital.png" },
-  { code: "ARUsolution", iconSrc: "/images/home/duties-promo/aru-solution.png" },
-  { code: "ARUhealthcare", iconSrc: "/images/home/duties-promo/aru-healthcare.png" },
-  { code: "ARUlog", iconSrc: "/images/home/duties-promo/aru-log.png" },
-  { code: "ARUcontractor", iconSrc: "/images/home/duties-promo/aru-contractor.png" },
-  { code: "ARUtrans", iconSrc: "/images/home/duties-promo/aru-trans.png" },
-  { code: "ARUsource", iconSrc: "/images/home/duties-promo/aru-source.png" },
-  { code: "ARUspace", iconSrc: "/images/home/duties-promo/aru-space.png" },
+  { iconSrc: "/images/home/duties-promo/aru-digital.png" },
+  { iconSrc: "/images/home/duties-promo/aru-solution.png" },
+  { iconSrc: "/images/home/duties-promo/aru-healthcare.png" },
+  { iconSrc: "/images/home/duties-promo/aru-log.png" },
+  { iconSrc: "/images/home/duties-promo/aru-contractor.png" },
+  { iconSrc: "/images/home/duties-promo/aru-trans.png" },
+  { iconSrc: "/images/home/duties-promo/aru-source.png" },
+  { iconSrc: "/images/home/duties-promo/aru-space.png" },
 ];
 
 function FundingComponent({ dict }: { dict: Dictionary }) {
   const t = dict.home.funding;
 
   const items: FundingItem[] = STATIC_ITEMS.map((it, idx) => ({
-    code: it.code,
+    title: t.items[idx]?.title ?? "",
     iconSrc: it.iconSrc,
     description: t.items[idx]?.description ?? "",
   }));

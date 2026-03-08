@@ -42,23 +42,55 @@ const home = {
       },
     ],
   },
-
   funding: {
     leftTitleHtmlDesktop: `<br><b>Keunggulan<br>Solusi Digital<br>Terintegrasi untuk<br>Kebutuhan Bisnis Kami</b>`,
     leftTitleHtmlMobile: `<b>Keunggulan Solusi Digital<br>Terintegrasi untuk Kebutuhan Bisnis Kami</b>`,
     items: [
-      { description: "Pengembangan website modern, responsif, dan scalable sesuai kebutuhan bisnis." },
-      { description: "Pembuatan aplikasi mobile native maupun cross-platform yang andal dan user-friendly." },
-      { description: "Perancangan UI/UX yang intuitif dan berfokus pada kenyamanan serta pengalaman pengguna." },
+      {
+        title: "Pengembangan Web",
+        description: "Pengembangan website modern, responsif, dan scalable sesuai kebutuhan bisnis."
+      },
+      {
+        title: "Aplikasi Mobile",
+        description: "Pembuatan aplikasi mobile native maupun cross-platform yang andal dan user-friendly."
+      },
+      {
+        title: "Desain UI/UX",
+        description: "Perancangan UI/UX yang intuitif dan berfokus pada kenyamanan serta pengalaman pengguna."
+      },
 
-      { description: "Sistem digital berbasis cloud untuk mendukung efisiensi dan transformasi bisnis." },
-      { description: "Solusi teknologi terintegrasi yang dapat disesuaikan dengan kebutuhan perusahaan." },
-      { description: "Layanan digital preventif untuk mendukung produktivitas dan kesehatan karyawan." },
-      { description: "Layanan pengadaan dan distribusi barang untuk mendukung operasional bisnis." },
-      { description: "Jasa konstruksi profesional dengan standar kualitas dan ketepatan waktu." },
-      { description: "Layanan transportasi dan sewa kendaraan yang fleksibel dan terpercaya." },
-      { description: "Penyediaan tenaga kerja profesional dan kompeten sesuai kebutuhan perusahaan." },
-      { description: "Penyediaan working space, virtual office, dan event space di lokasi strategis." },
+      {
+        title: "ARUdigital",
+        description: "Sistem digital berbasis cloud untuk mendukung efisiensi dan transformasi bisnis."
+      },
+      {
+        title: "ARUsolution",
+        description: "Solusi teknologi terintegrasi yang dapat disesuaikan dengan kebutuhan perusahaan."
+      },
+      {
+        title: "ARUhealthcare",
+        description: "Layanan digital preventif untuk mendukung produktivitas dan kesehatan karyawan."
+      },
+      {
+        title: "ARUlog",
+        description: "Layanan pengadaan dan distribusi barang untuk mendukung operasional bisnis."
+      },
+      {
+        title: "ARUcontractor",
+        description: "Jasa konstruksi profesional dengan standar kualitas dan ketepatan waktu."
+      },
+      {
+        title: "ARUtrans",
+        description: "Layanan transportasi dan sewa kendaraan yang fleksibel dan terpercaya."
+      },
+      {
+        title: "ARUsource",
+        description: "Penyediaan tenaga kerja profesional dan kompeten sesuai kebutuhan perusahaan."
+      },
+      {
+        title: "ARUspace",
+        description: "Penyediaan working space, virtual office, dan event space di lokasi strategis."
+      },
     ],
   },
   statsCtaMap: {

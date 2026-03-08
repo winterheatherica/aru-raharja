@@ -6,7 +6,7 @@ import { useCallback, useEffect, useRef } from "react";
 import FundingCard from "./FundingCard";
 
 export type FundingItem = {
-  code: string;
+  title: string;
   description: string;
   iconSrc: string;
   iconAlt?: string;
@@ -58,12 +58,12 @@ export default function Carousel({ items }: { items: FundingItem[] }) {
       >
         <div className="flex gap-4 pr-6 md:pr-8 lg:pr-8">
           {items.map((it) => (
-            <div key={it.code} className="flex-none w-[355px]">
+            <div key={it.title} className="flex-none w-[355px]">
               <FundingCard
-                code={it.code}
+                title={it.title}
                 description={it.description}
                 iconSrc={it.iconSrc}
-                alt={it.iconAlt ?? `${it.code}-icon`}
+                alt={it.iconAlt ?? `${it.title}-icon`}
               />
             </div>
           ))}

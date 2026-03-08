@@ -39,7 +39,7 @@ export default function Results({ dict, vacancies }: Props) {
             className="
               p-6 rounded-2xl
               bg-bumn-gradient-white-4
-              border border-bumngray-7
+              border border-bumnslate-10
               shadow-bumn-2
               text-bumnslate-6
               flex flex-col justify-between

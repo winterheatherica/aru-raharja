@@ -77,18 +77,51 @@ const home = {
     leftTitleHtmlDesktop: `<br><b>Our<br>Digital Solutions<br>Integrated for<br>Business Needs</b>`,
     leftTitleHtmlMobile: `<b>Our Digital Solutions<br>Integrated for Business Needs</b>`,
     items: [
-      { description: "Development of modern, responsive, and scalable websites tailored to business needs." },
-      { description: "Development of reliable and user-friendly native and cross-platform mobile applications." },
-      { description: "Design of intuitive UI/UX focused on usability and user experience." },
-      
-      { description: "Cloud-based digital systems to support business efficiency and digital transformation." },
-      { description: "Integrated technology solutions that can be customized to meet company requirements." },
-      { description: "Preventive digital services to support employee productivity and well-being." },
-      { description: "Procurement and distribution services to support business operations." },
-      { description: "Professional construction services with a strong commitment to quality and timeliness." },
-      { description: "Flexible and reliable transportation and vehicle rental services." },
-      { description: "Provision of professional and qualified workforce to support company operations." },
-      { description: "Provision of working space, virtual office, and event space in strategic locations." },
+      {
+        title: "Web Development",
+        description: "Development of modern, responsive, and scalable websites tailored to business needs."
+      },
+      {
+        title: "Mobile Apps",
+        description: "Development of reliable and user-friendly native and cross-platform mobile applications."
+      },
+      {
+        title: "UI/UX Design",
+        description: "Design of intuitive UI/UX focused on usability and user experience."
+      },
+
+      {
+        title: "ARUdigital",
+        description: "Cloud-based digital systems to support business efficiency and digital transformation."
+      },
+      {
+        title: "ARUsolution",
+        description: "Integrated technology solutions that can be customized to meet company requirements."
+      },
+      {
+        title: "ARUhealthcare",
+        description: "Preventive digital services to support employee productivity and well-being."
+      },
+      {
+        title: "ARUlog",
+        description: "Procurement and distribution services to support business operations."
+      },
+      {
+        title: "ARUcontractor",
+        description: "Professional construction services with a strong commitment to quality and timeliness."
+      },
+      {
+        title: "ARUtrans",
+        description: "Flexible and reliable transportation and vehicle rental services."
+      },
+      {
+        title: "ARUsource",
+        description: "Provision of professional and qualified workforce to support company operations."
+      },
+      {
+        title: "ARUspace",
+        description: "Provision of working space, virtual office, and event space in strategic locations."
+      },
     ],
   },
   statsCtaMap: {

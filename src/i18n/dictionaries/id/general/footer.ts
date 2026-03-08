@@ -13,6 +13,7 @@ const footer = {
     contactUs: "Hubungi Kami",
     eProcurement: "E-Procurement",
     wbs: "Sistem Pelaporan Pelanggaran (WBS)",
+    followUs: "Ikuti Kami",
   },
   bottom: {
     legalTerms: "Syarat Hukum",

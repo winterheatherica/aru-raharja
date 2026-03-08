@@ -24,7 +24,7 @@ export default function QuickLinks({ dict, locale }: { dict: Dictionary; locale:
             <span>{t.contactUs}</span>
           </Link>
         </li>
-        <Socials />
+        <Socials dict={dict} />
         {/* <li>
           <Link href={`/${locale}/service`} className="flex items-center gap-2">
             <span className="relative w-[20px] h-[20px]">

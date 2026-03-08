@@ -13,6 +13,7 @@ const footer = {
     contactUs: "Contact Us",
     eProcurement: "E-Procurement",
     wbs: "Whistle Blowing System (WBS)",
+    followUs: "Follow Us",
   },
   bottom: {
     legalTerms: "Legal Terms",

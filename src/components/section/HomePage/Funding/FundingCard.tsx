@@ -3,14 +3,14 @@
 import Image from "next/image";
 
 type Props = {
-  code: string;
+  title: string;
   description: string;
   iconSrc: string;
   alt?: string;
   className?: string;
 };
 
-export default function FundingCard({ code, description, iconSrc, alt, className }: Props) {
+export default function FundingCard({ title, description, iconSrc, alt, className }: Props) {
   return (
     <div
       className={`
@@ -25,7 +25,7 @@ export default function FundingCard({ code, description, iconSrc, alt, className
           <Image src={iconSrc} alt={alt || "icon"} fill className="object-contain" sizes="78px" />
         </div>
         <div className="space-y-1 text-center">
-          <p className="text-xl font-bold text-white">{code}</p>
+          <p className="text-xl font-bold text-white">{title}</p>
           <p className="text-base font-normal leading-6 font-sans text-white/90 max-w-[310px]">
             {description}
           </p>

@@ -8,8 +8,8 @@ type Props = {
 export default function MatrixRow({ row, columns }: Props) {
   return (
     <tr>
-      <td className="px-2 py-3">
-        <div className="px-4 py-3 text-sm font-medium text-bumnslate-6 bg-white rounded-2xl shadow-bumn-2 flex items-center">
+      <td className="px-2 py-4">
+        <div className="px-4 py-3 text-sm font-medium text-bumnblue-1 bg-white rounded-2xl shadow-bumn-2 flex items-center border border-bumnblue-5">
           {row.feature}
         </div>
       </td>

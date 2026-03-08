@@ -13,7 +13,7 @@ export default function MatrixCell({
 
   return (
     <div
-      className={`px-4 py-3 text-sm font-medium text-center rounded-2xl shadow-bumn-2 flex items-center justify-center
+      className={`px-4 py-3 text-sm font-medium text-center rounded-2xl shadow-bumn-2 flex items-center justify-center border border-bumnslate-10
       ${
         highlight
           ? "text-bumnblue-4 bg-white"
