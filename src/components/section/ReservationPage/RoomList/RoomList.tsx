@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import { roomHref } from "@/i18n/param_routes";
 
 type RoomAPI = {
@@ -51,7 +50,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
               key={r.id}
               className="flex flex-col sm:flex-row items-stretch gap-4 bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-xl p-4 shadow-bumn-2 transition-shadow"
             >
-              <div className="w-full sm:w-36 h-36 sm:h-28 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
+              <div className="w-full sm:w-48 aspect-4/3 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
                 <img
                   src={r.main_image_url || ""}
                   alt={r.main_image_alt || r.title}
@@ -67,7 +66,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                 <div>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                     <div className="flex-1">
-                      <h4 className="text-md lg:text-lg font-semibold text-bumnblue-2">
+                      <h4 className="text-md lg:text-lg font-semibold text-bumnblue-2 pt-3 sm:pt-0 pb-2 sm:pb-0">
                         {r.title}
                       </h4>
                       {r.description && (
@@ -77,7 +76,7 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                       )}
                     </div>
 
-                    <div className="hidden sm:flex flex-col items-end">
+                    <div className="hidden sm:flex flex-col items-end pr-3">
                       {r.floor !== undefined && (
                         <div className="text-xs text-bumngray-5 mt-1">
                           Floor {r.floor}
@@ -110,10 +109,22 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                 </div>
 
                 <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-3">
+                  <div className="flex items-center gap-2 text-sm text-bumngray-6">
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 block" />
+                      <span className="text-sm">
+                        {roomlist.availableLabel}
+                      </span>
+                    </span>
+                  </div>
+
                   <div className="mt-0 sm:ml-auto sm:mt-0 w-full sm:w-auto">
                     <Link
                       href={roomHref(locale, r.slug)}
-                      className="flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition bg-bumn-gradient-primary-11 text-white hover:opacity-95 shadow-bumn-2"
+                      className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
+                        "bg-bumn-gradient-primary-11 text-white hover:opacity-95 shadow-bumn-2"
+                      }`}
+                      aria-disabled={false}
                     >
                       {roomlist.ctaLabel}
                     </Link>
@@ -127,5 +138,3 @@ export default function RoomList({ dict, locale, rooms }: Props) {
     </section>
   );
 }
-
-

@@ -29,7 +29,7 @@ const reservation = {
     ctaUnavailable: "Tidak Tersedia",
     amenitiesTitle: "Fasilitas",
     ratingLabel: "Penilaian",
-    },
+  },
 } as const;
 
 export default reservation;

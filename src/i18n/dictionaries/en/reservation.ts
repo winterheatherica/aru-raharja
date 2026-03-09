@@ -29,7 +29,7 @@ const reservation = {
     ctaUnavailable: "Unavailable",
     amenitiesTitle: "Facilities",
     ratingLabel: "Rating",
-    },
+  },
 } as const;
 
 export default reservation;
