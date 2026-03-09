@@ -14,10 +14,6 @@ type RoomAPI = {
   capacity?: number;
   floor?: number;
   facilities: string[];
-  is_available: boolean;
-  status_text: string;
-  action_label: string;
-  action_state: string;
 };
 
 type Props = {
@@ -114,37 +110,12 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                 </div>
 
                 <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-3">
-                  <div className="flex items-center gap-2 text-sm text-bumngray-6">
-                    {r.is_available ? (
-                      <span className="inline-flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 block" />
-                        <span className="text-sm">
-                          {roomlist.availableLabel}
-                        </span>
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-rose-400 block" />
-                        <span className="text-sm">
-                          {roomlist.unavailableLabel}
-                        </span>
-                      </span>
-                    )}
-                  </div>
-
                   <div className="mt-0 sm:ml-auto sm:mt-0 w-full sm:w-auto">
                     <Link
                       href={roomHref(locale, r.slug)}
-                      className={`flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition ${
-                        r.is_available
-                          ? "bg-bumn-gradient-primary-11 text-white hover:opacity-95 shadow-bumn-2"
-                          : "bg-bumngray-3 text-bumngray-6 cursor-not-allowed"
-                      }`}
-                      aria-disabled={!r.is_available}
+                      className="flex w-full sm:inline-flex justify-center items-center px-4 py-2 rounded-md text-sm font-medium shadow transition bg-bumn-gradient-primary-11 text-white hover:opacity-95 shadow-bumn-2"
                     >
-                      {r.is_available
-                        ? roomlist.ctaLabel
-                        : roomlist.ctaUnavailable}
+                      {roomlist.ctaLabel}
                     </Link>
                   </div>
                 </div>
