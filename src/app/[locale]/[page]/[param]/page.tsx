@@ -1,4 +1,6 @@
 import { notFound, redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import type { ComponentType } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { getDictionary } from "@/i18n/get_dictionary";
 
@@ -6,8 +8,26 @@ import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
 import ServicePage from "@/components/pages/ServicePage";
 
+import MePage from "@/components/pages/Admin/MePage";
+import AwardPage from "@/components/pages/Admin/AwardPage";
+import CareerVacancyPage from "@/components/pages/Admin/CareerVacancyPage";
+import ClientPage from "@/components/pages/Admin/ClientPage";
+import HeroListPage from "@/components/pages/Admin/HeroPage/HeroListPage";
+import HistoryPage from "@/components/pages/Admin/HistoryPage";
+import NewsArticlePage from "@/components/pages/Admin/NewsArticlePage";
+import NewsCategoryPage from "@/components/pages/Admin/NewsCategoryPage";
+import PartnerPage from "@/components/pages/Admin/PartnerPage";
+import PromoSlidePage from "@/components/pages/Admin/PromoSlidePage";
+import ServiceCertificationPage from "@/components/pages/Admin/ServiceCertificationPage";
+import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
+import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage";
+import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
+import SessionPage from "@/components/pages/Admin/SessionPage";
+import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage";
+import UserPage from "@/components/pages/Admin/UserPage";
+
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
-import { locales } from "@/i18n/routes";
+import { locales, routeSlugByLocale } from "@/i18n/routes";
 
 import { SERVICE_SOLUTIONS } from "./_constants";
 import { resolveArticleId, resolveRoomId } from "./_resolvers";
@@ -15,9 +35,12 @@ import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { fetchService } from "../_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
+
+export const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
+export const ME_URL = `${API_BASE}/api/me`;
 
 type Params = {
   locale: Locale;
@@ -40,6 +63,7 @@ export default async function PageWithParam({
   const articleBase = localeMap?.article;
   const roomBase = localeMap?.room;
   const serviceBase = localeMap?.service;
+  const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
   if (page === articleBase) {
     const articleId = await resolveArticleId(param);
@@ -102,6 +126,49 @@ export default async function PageWithParam({
         site={site}
       />
     );
+  }
+
+  if (page === adminBase) {
+    const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
+    const session = (await cookies()).get("session")?.value;
+
+    if (!session) {
+      redirect(loginHref);
+    }
+
+    const meRes = await fetch(ME_URL, {
+      headers: { Cookie: `session=${session}` },
+      cache: "no-store",
+    });
+
+    if (!meRes.ok) {
+      redirect(loginHref);
+    }
+
+    const adminPageByParam: Record<string, ComponentType<{ dict?: Dictionary; locale: Locale }>> = {
+      "me": MePage,
+      "award": AwardPage,
+      "career-vacancy": CareerVacancyPage,
+      "client": ClientPage,
+      "hero": HeroListPage,
+      "history": HistoryPage,
+      "news-article": NewsArticlePage,
+      "news-category": NewsCategoryPage,
+      "partner": PartnerPage,
+      "promo-slide": PromoSlidePage,
+      "service-certification": ServiceCertificationPage,
+      "service-gallery": ServiceGalleryPage,
+      "service-matrix": ServiceMatrixPage,
+      "service-pricing-tier": ServicePricingTierPage,
+      "session": SessionPage,
+      "space-room": SpaceRoomPage,
+      "user": UserPage,
+    };
+
+    const AdminComponent = adminPageByParam[param];
+    if (!AdminComponent) notFound();
+
+    return <AdminComponent dict={dict} locale={locale} />;
   }
 
   notFound();

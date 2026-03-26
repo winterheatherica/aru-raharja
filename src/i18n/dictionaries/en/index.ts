@@ -9,6 +9,8 @@ import career from "./career";
 import reservation from "./reservation";
 import article from "./article";
 import room from "./room";
+import admin from "./admin";
+import login from "./login";
 
 const en = {
   header,
@@ -22,6 +24,8 @@ const en = {
   reservation,
   article,
   room,
+  admin,
+  login,
 } as const;
 
 export default en;

@@ -3,6 +3,7 @@ import Header from "@/components/general/Header/Header";
 import Footer from "@/components/general/Footer/Footer";
 import Whatsapp from "@/components/general/Whatsapp/Whatsapp";
 import Background from "@/components/general/Background/Background";
+import Sidebar from "@/components/general/Sidebar/Sidebar";
 import { getDictionary, type Locale } from "@/i18n/get_dictionary";
 
 export default async function LocaleLayout({
@@ -19,6 +20,7 @@ export default async function LocaleLayout({
   return (
     <div className="flex min-h-screen flex-col">
       <div className="md:hidden flex min-h-screen flex-col">
+        <Sidebar dict={dict} locale={typedLocale} />
         <Header dict={dict} locale={typedLocale} />
         <div className="flex-grow">{children}</div>
         <Whatsapp />
@@ -27,6 +29,7 @@ export default async function LocaleLayout({
 
       <div className="hidden md:block">
         <Background>
+          <Sidebar dict={dict} locale={typedLocale} />
           <Header dict={dict} locale={typedLocale} />
           <div className="flex-grow">{children}</div>
           <Whatsapp />

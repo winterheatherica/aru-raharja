@@ -24,7 +24,7 @@ export default function Hero({
   const mapped = slides.map((s) => ({
     ...s,
     title: s.title ?? undefined,
-    ctaLabel: s.ctaLabel ?? undefined,
+    description: s.description ?? undefined,
     ctaHref: undefined,
   }));
 

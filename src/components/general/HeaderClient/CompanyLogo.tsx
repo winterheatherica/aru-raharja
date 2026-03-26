@@ -14,8 +14,8 @@ export default function CompanyLogo({ className, locale }: Props) {
   const href = `/${locale}/${label}`;
 
   return (
-    <Link href={href} aria-label={label} className={`shrink-0 ${className ?? ""}`}>
-      <div className="relative h-[56px] w-[65px] lg:h-[96px] lg:w-[105px]">
+    <Link href={href} aria-label={label} className={`flex justify-center items-center shrink-0 ${className ?? ""}`}>
+      <div className="relative h-[72px] w-[85px] lg:h-[96px] lg:w-[105px]">
         <Image
           src="/images/general/logo/aru.svg"
           alt="Aru Logo"

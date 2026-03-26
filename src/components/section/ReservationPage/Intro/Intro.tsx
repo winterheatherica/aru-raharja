@@ -21,14 +21,14 @@ export default function Intro({ dict }: Props) {
             "Choose the room that best fits your needs and adjust your booking schedule."}
         </p>
 
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <Link
             href="/reservation/schedule"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-md bg-bumn-gradient-primary-11 hover:opacity-95 text-white font-semibold shadow transition"
           >
             {t.ctaLabel ?? "View Booking Schedule"}
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,8 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function Whatsapp() {
+  const pathname = usePathname() ?? "";
+  const segments = pathname.split("/").filter(Boolean);
+  const isAdminPage = (segments[1] ?? "") === "admin";
+
+  if (isAdminPage) return null;
+
   return (
     <a
       href="https://wa.me/6281227008100"

@@ -8,6 +8,8 @@ import appeal from "./appeal";
 import career from "./career";
 import reservation from "./reservation";
 import article from "./article";
+import admin from "./admin";
+import login from "./login";
 
 const id = {
   header,
@@ -20,6 +22,8 @@ const id = {
   career,
   reservation,
   article,
+  admin,
+  login,
 } as const;
 
 export default id;

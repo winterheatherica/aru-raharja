@@ -13,7 +13,7 @@ export async function resolveArticleId(slug: string) {
 export async function resolveRoomId(slug: string) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}/api/room/resolve?slug=${slug}`,
-    { cache: "force-cache", next: { revalidate: 360 } }
+    { cache: "force-cache", next: { revalidate: 3600 } }
   );
 
   if (!res.ok) return null;

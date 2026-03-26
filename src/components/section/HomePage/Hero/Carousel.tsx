@@ -11,7 +11,7 @@ export type HeroSlide = {
   src: string;
   alt: string;
   title: string;
-  ctaLabel?: string | null;
+  description?: string | null;
   ctaHref?: string | null;
   banner: string;
 };
@@ -102,6 +102,7 @@ export default function Carousel({
     >
       <div
         className="relative h-auto w-full overflow-hidden aspect-[1920/900] md:aspect-[1920/820]"
+        style={{ containerType: "inline-size" }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -111,7 +112,7 @@ export default function Carousel({
         <div className="flex h-full w-full flex-col will-change-transform" style={trackStyle}>
           {slides.map((s, idx) => {
             const alt = s.alt || `slide-${idx + 1}`;
-            const hasCta = Boolean(s.ctaLabel && s.ctaHref);
+            const hasCta = Boolean(s.description && s.ctaHref);
             const layout =
               s.banner === "POLISH"
                 ? "POLISH"
@@ -148,14 +149,14 @@ export default function Carousel({
                     <HeroSlideOverlay
                       layout={layout}
                       title={s.title}
-                      ctaLabel={s.ctaLabel ?? undefined}
+                      description={s.description ?? undefined}
                       ctaHref={s.ctaHref ?? undefined}
                     />
                   )}
 
                   {!s.title && hasCta ? (
                     <Link
-                      aria-label={`Open ${s.ctaLabel}`}
+                      aria-label={`Open ${s.description}`}
                       href={s.ctaHref!}
                       className="absolute inset-0"
                     />

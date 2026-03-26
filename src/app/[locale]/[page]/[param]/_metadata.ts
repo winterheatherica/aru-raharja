@@ -2,6 +2,7 @@ import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 import { resolveArticleId, resolveRoomId } from "./_resolvers";
 import { fetchArticleById, fetchRoomById } from "./_fetchers";
+import { fetchService } from "../_fetchers";
 import { BRAND, SERVICE_SOLUTIONS } from "./_constants";
 import { buildSocialMeta } from "../_metadata";
 
@@ -11,6 +12,18 @@ function toAbsoluteUrl(url?: string) {
   if (!url) return undefined;
   if (url.startsWith("http://") || url.startsWith("https://")) return url;
   return `${SITE_URL}${url.startsWith("/") ? "" : "/"}${url}`;
+}
+
+function pickServiceImage(serviceData: any) {
+  const gallery = (serviceData?.gallery ?? [])
+    .filter((item: any) => item?.media_type === "IMAGE" && item?.src)
+    .sort(
+      (a: any, b: any) =>
+        (Number(b?.order ?? b?.sort ?? b?.priority ?? 0) || 0) -
+        (Number(a?.order ?? a?.sort ?? a?.priority ?? 0) || 0)
+    );
+
+  return gallery?.[0]?.src;
 }
 
 export async function generateParamMetadata(
@@ -71,10 +84,21 @@ export async function generateParamMetadata(
     const serviceMeta = (dict as any)?.service?.solutions?.descriptions?.[param];
     const defaultMeta = (dict as any)?.service?.meta;
 
+    let image: string | undefined;
+
+    try {
+      const service = await fetchService(locale);
+      const serviceData = service?.service ?? service;
+      const serviceCode = String(param).toUpperCase();
+      image = toAbsoluteUrl(pickServiceImage(serviceData?.[serviceCode]));
+    } catch {
+      image = undefined;
+    }
+
     return buildSocialMeta({
       title: `${serviceMeta?.title ?? param} - ${BRAND}`,
       description: serviceMeta?.description ?? defaultMeta?.description ?? undefined,
-      image: toAbsoluteUrl(defaultMeta?.image) ?? `${SITE_URL}/images/services/service-bg.png`,
+      image,
       keywords: defaultMeta?.keywords,
     });
   }

@@ -3,7 +3,7 @@ export type HeroSlideAPI = {
   src: string;
   alt: string;
   title: string;
-  ctaLabel?: string | null;
+  description?: string | null;
   banner: "POLISH" | "TEXT" | "FAQ" | "SERVICE" | "COMPLAINT" | "NEWS";
   order: number;
 };

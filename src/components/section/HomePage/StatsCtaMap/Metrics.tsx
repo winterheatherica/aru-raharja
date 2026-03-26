@@ -2,13 +2,13 @@
 
 import MetricItem from "./MetricItem";
 
-type Metric = { value: string; label: string };
+type Metric = { value: number; suffix?: string; label: string };
 
 export default function Metrics({ items }: { items: Metric[] }) {
   return (
     <div className="flex flex-col gap-8 md:items-center md:flex-row md:gap-12 lg:gap-24">
       {items.map((m, i) => (
-        <MetricItem key={i} value={m.value} label={m.label} />
+        <MetricItem key={i} value={m.value} suffix={m.suffix} label={m.label} />
       ))}
     </div>
   );
