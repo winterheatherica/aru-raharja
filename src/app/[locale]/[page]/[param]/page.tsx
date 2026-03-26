@@ -11,7 +11,7 @@ import ServicePage from "@/components/pages/ServicePage";
 import MePage from "@/components/pages/Admin/MePage";
 import AwardListPage from "@/components/pages/Admin/AwardPage/AwardListPage";
 import CareerVacancyListPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyListPage";
-import ClientPage from "@/components/pages/Admin/ClientPage";
+import ClientListPage from "@/components/pages/Admin/ClientPage/ClientListPage";
 import HeroListPage from "@/components/pages/Admin/HeroPage/HeroListPage";
 import HistoryPage from "@/components/pages/Admin/HistoryPage";
 import NewsArticlePage from "@/components/pages/Admin/NewsArticlePage";
@@ -149,7 +149,7 @@ export default async function PageWithParam({
       "me": MePage,
       "award": AwardListPage,
       "career-vacancy": CareerVacancyListPage,
-      "client": ClientPage,
+      "client": ClientListPage,
       "hero": HeroListPage,
       "history": HistoryPage,
       "news-article": NewsArticlePage,
