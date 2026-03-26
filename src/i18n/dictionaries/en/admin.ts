@@ -105,6 +105,59 @@ const admin = {
       },
     },
   },
+  careerVacancy: {
+    list: {
+      title: "Admin • Career Vacancy",
+      createButton: "Create Vacancy",
+      loading: "Loading...",
+      deleteConfirm: "Hard delete this vacancy?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        id: "ID",
+        title: "Position",
+        employment: "Employment",
+        location: "Location",
+        active: "Active",
+        language: "Lang",
+      },
+    },
+    create: {
+      title: "Create Vacancy",
+      backToList: "Back to list",
+      defaultLanguageHint: "Default language: ID (EN auto-translate by backend)",
+      submitIdle: "Create Vacancy",
+      submitSaving: "Saving...",
+      previewTitle: "Preview",
+      placeholders: {
+        title: "title",
+        location: "location",
+        description: "description (ID)",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Vacancy Detail",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      updatedLanguage: "Updated language",
+      addLanguageButton: "+ Add Language",
+      addLanguagePrompt: "Add language (example: EN)",
+      previewTitle: "Preview",
+      placeholders: {
+        title: "title",
+        location: "location",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   hero: {
     list: {
       title: "Admin • Hero",

@@ -105,6 +105,59 @@ const admin = {
       },
     },
   },
+  careerVacancy: {
+    list: {
+      title: "Admin • Career Vacancy",
+      createButton: "Buat Lowongan",
+      loading: "Memuat...",
+      deleteConfirm: "Hard delete lowongan ini?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        id: "ID",
+        title: "Posisi",
+        employment: "Jenis",
+        location: "Lokasi",
+        active: "Aktif",
+        language: "Bahasa",
+      },
+    },
+    create: {
+      title: "Buat Lowongan",
+      backToList: "Kembali ke daftar",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      submitIdle: "Buat Lowongan",
+      submitSaving: "Menyimpan...",
+      previewTitle: "Preview",
+      placeholders: {
+        title: "title",
+        location: "location",
+        description: "description (ID)",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail Lowongan",
+      backToList: "Kembali ke daftar",
+      loading: "Memuat...",
+      savePrefix: "Simpan",
+      saveSaving: "Menyimpan...",
+      updatedLanguage: "Berhasil update bahasa",
+      addLanguageButton: "+ Tambah Bahasa",
+      addLanguagePrompt: "Tambah bahasa (contoh: EN)",
+      previewTitle: "Preview",
+      placeholders: {
+        title: "title",
+        location: "location",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   hero: {
     list: {
       title: "Admin • Hero",

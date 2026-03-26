@@ -9,8 +9,8 @@ import RoomPage from "@/components/pages/RoomPage";
 import ServicePage from "@/components/pages/ServicePage";
 
 import MePage from "@/components/pages/Admin/MePage";
-import AwardPage from "@/components/pages/Admin/AwardPage";
-import CareerVacancyPage from "@/components/pages/Admin/CareerVacancyPage";
+import AwardListPage from "@/components/pages/Admin/AwardPage/AwardListPage";
+import CareerVacancyListPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyListPage";
 import ClientPage from "@/components/pages/Admin/ClientPage";
 import HeroListPage from "@/components/pages/Admin/HeroPage/HeroListPage";
 import HistoryPage from "@/components/pages/Admin/HistoryPage";
@@ -147,8 +147,8 @@ export default async function PageWithParam({
 
     const adminPageByParam: Record<string, ComponentType<{ dict?: Dictionary; locale: Locale }>> = {
       "me": MePage,
-      "award": AwardPage,
-      "career-vacancy": CareerVacancyPage,
+      "award": AwardListPage,
+      "career-vacancy": CareerVacancyListPage,
       "client": ClientPage,
       "hero": HeroListPage,
       "history": HistoryPage,
