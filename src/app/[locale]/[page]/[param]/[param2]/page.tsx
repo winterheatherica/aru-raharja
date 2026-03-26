@@ -12,6 +12,8 @@ import CareerVacancyCreatePage from "@/components/pages/Admin/CareerVacancyPage/
 import CareerVacancyDetailPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyDetailPage";
 import ClientCreatePage from "@/components/pages/Admin/ClientPage/ClientCreatePage";
 import ClientDetailPage from "@/components/pages/Admin/ClientPage/ClientDetailPage";
+import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreatePage";
+import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
 const ME_URL = `${API_BASE}/api/me`;
@@ -28,7 +30,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "history")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -63,9 +65,16 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
     return <CareerVacancyDetailPage dict={dict} locale={locale} vacancyId={param2} />;
   }
 
-  if (param2 === "create") {
-    return <ClientCreatePage dict={dict} locale={locale} />;
+  if (param === "client") {
+    if (param2 === "create") {
+      return <ClientCreatePage dict={dict} locale={locale} />;
+    }
+    return <ClientDetailPage dict={dict} locale={locale} clientId={param2} />;
   }
 
-  return <ClientDetailPage dict={dict} locale={locale} clientId={param2} />;
+  if (param2 === "create") {
+    return <HistoryCreatePage dict={dict} locale={locale} />;
+  }
+
+  return <HistoryDetailPage dict={dict} locale={locale} historyId={param2} />;
 }

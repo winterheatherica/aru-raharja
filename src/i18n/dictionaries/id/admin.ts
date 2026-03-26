@@ -216,6 +216,54 @@ const admin = {
       },
     },
   },
+  history: {
+    list: {
+      title: "Admin • History",
+      createButton: "Buat History",
+      loading: "Memuat...",
+      deleteConfirm: "Hard delete history ini?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        language: "Bahasa",
+        active: "Aktif",
+      },
+    },
+    create: {
+      title: "Buat History",
+      backToList: "Kembali ke daftar",
+      submitIdle: "Buat History",
+      submitSaving: "Menyimpan...",
+      placeholders: {
+        year: "year",
+        title: "title",
+        description: "description",
+        tableHeaders: "header1 | header2 | header3",
+        tableRows: "row1col1 | row1col2\\nrow2col1 | row2col2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail History",
+      backToList: "Kembali ke daftar",
+      loading: "Memuat...",
+      savePrefix: "Simpan",
+      saveSaving: "Menyimpan...",
+      saved: "Berhasil disimpan",
+      placeholders: {
+        year: "year",
+        title: "title",
+        description: "description",
+        tableHeaders: "header1 | header2 | header3",
+        tableRows: "row1col1 | row1col2\\nrow2col1 | row2col2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   hero: {
     list: {
       title: "Admin • Hero",

@@ -216,6 +216,54 @@ const admin = {
       },
     },
   },
+  history: {
+    list: {
+      title: "Admin • History",
+      createButton: "Create History",
+      loading: "Loading...",
+      deleteConfirm: "Hard delete this history?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        language: "Lang",
+        active: "Active",
+      },
+    },
+    create: {
+      title: "Create History",
+      backToList: "Back to list",
+      submitIdle: "Create History",
+      submitSaving: "Saving...",
+      placeholders: {
+        year: "year",
+        title: "title",
+        description: "description",
+        tableHeaders: "header1 | header2 | header3",
+        tableRows: "row1col1 | row1col2\\nrow2col1 | row2col2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "History Detail",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      saved: "Saved",
+      placeholders: {
+        year: "year",
+        title: "title",
+        description: "description",
+        tableHeaders: "header1 | header2 | header3",
+        tableRows: "row1col1 | row1col2\\nrow2col1 | row2col2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   hero: {
     list: {
       title: "Admin • Hero",
