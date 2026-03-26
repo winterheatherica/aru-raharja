@@ -232,6 +232,7 @@ const admin = {
     create: {
       title: "Create History",
       backToList: "Back to list",
+      defaultLanguageHint: "Default language: ID (EN auto-translate by backend)",
       submitIdle: "Create History",
       submitSaving: "Saving...",
       placeholders: {

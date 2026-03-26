@@ -232,6 +232,7 @@ const admin = {
     create: {
       title: "Buat History",
       backToList: "Kembali ke daftar",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
       submitIdle: "Buat History",
       submitSaving: "Menyimpan...",
       placeholders: {

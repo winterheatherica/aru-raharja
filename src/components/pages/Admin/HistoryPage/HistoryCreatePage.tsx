@@ -10,7 +10,7 @@ export default function HistoryCreatePage({ locale, dict }: { locale: Locale; di
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [language, setLanguage] = useState(locale.toUpperCase());
+  const language = "ID";
   const [year, setYear] = useState<number | "">("");
   const [isActive, setIsActive] = useState(true);
   const [title, setTitle] = useState("");
@@ -69,10 +69,7 @@ export default function HistoryCreatePage({ locale, dict }: { locale: Locale; di
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onCreate} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={language} onChange={(e) => setLanguage(e.target.value.toUpperCase())}>
-          <option value="ID">ID</option>
-          <option value="EN">EN</option>
-        </select>
+        <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Bahasa default: ID (EN auto-translate oleh backend)"}</p>
         <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={year} onChange={(e) => setYear(e.target.value === "" ? "" : Number(e.target.value))} placeholder={t?.placeholders?.year ?? "year"} />
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
 
