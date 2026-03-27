@@ -268,6 +268,67 @@ const admin = {
       },
     },
   },
+  partner: {
+    list: {
+      title: "Admin • Partner",
+      createButton: "Create Partner",
+      loading: "Loading...",
+      deleteConfirm: "Hard delete this partner?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      previewEmpty: "No image",
+      fields: {
+        id: "ID",
+        order: "Order",
+        activeGrid: "Active Grid",
+        activeScroller: "Active Scroller",
+        language: "Lang",
+        title: "Title",
+      },
+    },
+    create: {
+      title: "Create Partner",
+      backToList: "Back to list",
+      defaultLanguageHint: "Default language: ID (EN auto-translate by backend)",
+      imageRequired: "Image is required when creating",
+      submitIdle: "Create Partner",
+      submitSaving: "Saving...",
+      previewTitle: "Preview",
+      previewEmpty: "Select an image to preview",
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt (ID)",
+        title: "title (ID)",
+        description: "description (ID)",
+      },
+      labels: {
+        isActiveGrid: "is_active_partner_grid",
+        isActiveScroller: "is_active_partner_scroller",
+      },
+    },
+    detail: {
+      titlePrefix: "Partner Detail",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      updatedLanguage: "Updated language",
+      addLanguageButton: "+ Add Language",
+      addLanguagePrompt: "Add language (example: EN)",
+      previewTitle: "Preview",
+      previewEmpty: "No image available",
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt",
+        title: "title",
+        description: "description",
+      },
+      labels: {
+        isActiveGrid: "is_active_partner_grid",
+        isActiveScroller: "is_active_partner_scroller",
+      },
+    },
+  },
   history: {
     list: {
       title: "Admin • History",
@@ -422,3 +483,5 @@ const admin = {
 } as const;
 
 export default admin;
+
+

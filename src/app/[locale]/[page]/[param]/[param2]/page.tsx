@@ -12,6 +12,8 @@ import CareerVacancyCreatePage from "@/components/pages/Admin/CareerVacancyPage/
 import CareerVacancyDetailPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyDetailPage";
 import ClientCreatePage from "@/components/pages/Admin/ClientPage/ClientCreatePage";
 import ClientDetailPage from "@/components/pages/Admin/ClientPage/ClientDetailPage";
+import PartnerCreatePage from "@/components/pages/Admin/PartnerPage/PartnerCreatePage";
+import PartnerDetailPage from "@/components/pages/Admin/PartnerPage/PartnerDetailPage";
 import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreatePage";
 import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
 import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryCreatePage";
@@ -32,7 +34,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "history" && param !== "news-category")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "history" && param !== "news-category")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -79,6 +81,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <NewsCategoryCreatePage dict={dict} locale={locale} />;
     }
     return <NewsCategoryDetailPage dict={dict} locale={locale} categoryId={param2} />;
+  }
+
+  if (param === "partner") {
+    if (param2 === "create") {
+      return <PartnerCreatePage dict={dict} locale={locale} />;
+    }
+    return <PartnerDetailPage dict={dict} locale={locale} partnerId={param2} />;
   }
 
   if (param2 === "create") {

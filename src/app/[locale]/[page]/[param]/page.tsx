@@ -16,7 +16,7 @@ import HeroListPage from "@/components/pages/Admin/HeroPage/HeroListPage";
 import HistoryListPage from "@/components/pages/Admin/HistoryPage/HistoryListPage";
 import NewsArticlePage from "@/components/pages/Admin/NewsArticlePage";
 import NewsCategoryListPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryListPage";
-import PartnerPage from "@/components/pages/Admin/PartnerPage";
+import PartnerListPage from "@/components/pages/Admin/PartnerPage/PartnerListPage";
 import PromoSlidePage from "@/components/pages/Admin/PromoSlidePage";
 import ServiceCertificationPage from "@/components/pages/Admin/ServiceCertificationPage";
 import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
@@ -154,7 +154,7 @@ export default async function PageWithParam({
       "history": HistoryListPage,
       "news-article": NewsArticlePage,
       "news-category": NewsCategoryListPage,
-      "partner": PartnerPage,
+      "partner": PartnerListPage,
       "promo-slide": PromoSlidePage,
       "service-certification": ServiceCertificationPage,
       "service-gallery": ServiceGalleryPage,
