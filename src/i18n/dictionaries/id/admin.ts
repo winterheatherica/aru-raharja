@@ -158,6 +158,58 @@ const admin = {
       },
     },
   },
+  newsCategory: {
+    list: {
+      title: "Admin • News Category",
+      createButton: "Buat Kategori",
+      loading: "Memuat...",
+      empty: "Belum ada kategori berita",
+      deleteConfirm: "Hard delete kategori berita ini?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        id: "ID",
+        language: "Bahasa",
+        name: "Nama",
+      },
+    },
+    create: {
+      title: "Buat Kategori Berita",
+      backToList: "Kembali ke daftar",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      submitIdle: "Buat Kategori Berita",
+      submitSaving: "Menyimpan...",
+      placeholders: {
+        name: "name",
+        slug: "slug",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+      validation: {
+        idRequired: "Isi Name & Slug untuk bahasa ID dulu.",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail News Category",
+      backToList: "Kembali ke daftar",
+      loading: "Memuat...",
+      savePrefix: "Simpan",
+      saveSaving: "Menyimpan...",
+      updatedLanguage: "Berhasil update bahasa",
+      addLanguageButton: "+ Tambah Bahasa",
+      addLanguagePrompt: "Tambah bahasa (contoh: EN)",
+      placeholders: {
+        name: "name",
+        slug: "slug",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   client: {
     list: {
       title: "Admin • Client",

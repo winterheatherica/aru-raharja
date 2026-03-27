@@ -14,6 +14,8 @@ import ClientCreatePage from "@/components/pages/Admin/ClientPage/ClientCreatePa
 import ClientDetailPage from "@/components/pages/Admin/ClientPage/ClientDetailPage";
 import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreatePage";
 import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
+import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryCreatePage";
+import NewsCategoryDetailPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryDetailPage";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
 const ME_URL = `${API_BASE}/api/me`;
@@ -30,7 +32,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "history")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "history" && param !== "news-category")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -70,6 +72,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <ClientCreatePage dict={dict} locale={locale} />;
     }
     return <ClientDetailPage dict={dict} locale={locale} clientId={param2} />;
+  }
+
+  if (param === "news-category") {
+    if (param2 === "create") {
+      return <NewsCategoryCreatePage dict={dict} locale={locale} />;
+    }
+    return <NewsCategoryDetailPage dict={dict} locale={locale} categoryId={param2} />;
   }
 
   if (param2 === "create") {

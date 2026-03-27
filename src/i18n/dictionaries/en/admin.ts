@@ -158,6 +158,58 @@ const admin = {
       },
     },
   },
+  newsCategory: {
+    list: {
+      title: "Admin • News Category",
+      createButton: "Create Category",
+      loading: "Loading...",
+      empty: "No news category yet",
+      deleteConfirm: "Hard delete this news category?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      fields: {
+        id: "ID",
+        language: "Lang",
+        name: "Name",
+      },
+    },
+    create: {
+      title: "Create News Category",
+      backToList: "Back to list",
+      defaultLanguageHint: "Default language: ID (EN auto-translate by backend)",
+      submitIdle: "Create News Category",
+      submitSaving: "Saving...",
+      placeholders: {
+        name: "name",
+        slug: "slug",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+      validation: {
+        idRequired: "Please fill Name & Slug for ID language first.",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail News Category",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      updatedLanguage: "Updated language",
+      addLanguageButton: "+ Add Language",
+      addLanguagePrompt: "Add language (example: EN)",
+      placeholders: {
+        name: "name",
+        slug: "slug",
+        description: "description",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   client: {
     list: {
       title: "Admin • Client",
