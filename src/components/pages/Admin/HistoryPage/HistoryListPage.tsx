@@ -115,7 +115,7 @@ export default function HistoryListPage({ locale, dict }: { locale: Locale; dict
 
                   <div className="pt-2 grid gap-2">
                     {activeItems.map((item) => (
-                      <div key={item.id} className="rounded-xl border border-bumnslate-10 bg-white p-3">
+                      <div key={item.id} className={["rounded-xl border border-bumnslate-10 bg-white p-3", item.is_active ? "ring-2 ring-bumnblue-5" : ""].join(" ")}>
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="text-sm text-bumnslate-6">
                             <b>{t?.fields?.language ?? "Lang"}:</b> {item.language} • <b>{t?.fields?.active ?? "Active"}:</b> {String(item.is_active)}
