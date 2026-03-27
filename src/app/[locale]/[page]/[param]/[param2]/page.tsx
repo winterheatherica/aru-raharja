@@ -20,6 +20,8 @@ import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreat
 import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
 import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryCreatePage";
 import NewsCategoryDetailPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryDetailPage";
+import UserCreatePage from "@/components/pages/Admin/UserPage/UserCreatePage";
+import UserDetailPage from "@/components/pages/Admin/UserPage/UserDetailPage";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
 const ME_URL = `${API_BASE}/api/me`;
@@ -36,7 +38,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "user")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -97,6 +99,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <PromoSlideCreatePage dict={dict} locale={locale} />;
     }
     return <PromoSlideDetailPage dict={dict} locale={locale} slideId={param2} />;
+  }
+
+  if (param === "user") {
+    if (param2 === "create") {
+      return <UserCreatePage dict={dict} locale={locale} />;
+    }
+    return <UserDetailPage dict={dict} locale={locale} userId={param2} />;
   }
 
   if (param2 === "create") {

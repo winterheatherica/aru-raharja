@@ -1,6 +1,6 @@
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
-import TemplatePage from "./_TemplatePage";
+import UserListPage from "./UserPage/UserListPage";
 
 export default function UserPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
-  return <TemplatePage locale={locale} dict={dict} title="Admin User" text="ini page user" />;
+  return <UserListPage locale={locale} dict={dict} />;
 }
