@@ -73,7 +73,10 @@ export default function NewsCategoryListPage({ locale, dict }: { locale: Locale;
               return (
                 <article
                   key={item.id}
-                  className="w-full rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 px-4 py-3 shadow-bumn-2"
+                  className={[
+                    "w-full rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 px-4 py-3 shadow-bumn-2",
+                    item.is_active ? "ring-2 ring-bumnblue-5" : "",
+                  ].join(" ")}
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <p className="text-base font-medium text-bumnblue-8">{displayName}</p>
