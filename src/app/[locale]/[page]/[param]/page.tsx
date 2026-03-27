@@ -22,7 +22,6 @@ import ServiceCertificationPage from "@/components/pages/Admin/ServiceCertificat
 import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
 import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage";
 import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
-import SessionPage from "@/components/pages/Admin/SessionPage";
 import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage";
 import UserPage from "@/components/pages/Admin/UserPage";
 
@@ -160,7 +159,6 @@ export default async function PageWithParam({
       "service-gallery": ServiceGalleryPage,
       "service-matrix": ServiceMatrixPage,
       "service-pricing-tier": ServicePricingTierPage,
-      "session": SessionPage,
       "space-room": SpaceRoomPage,
       "user": UserPage,
     };

@@ -42,7 +42,6 @@ export default function SidebarAdmin({ locale, dict }: Props) {
     { label: "Service Gallery", slug: "service-gallery" },
     { label: "Service Matrix", slug: "service-matrix" },
     { label: "Service Pricing Tier", slug: "service-pricing-tier" },
-    { label: "Session", slug: "session" },
     { label: "Space Room", slug: "space-room" },
     { label: "User", slug: "user" },
   ] as const;
