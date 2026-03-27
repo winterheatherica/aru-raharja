@@ -329,6 +329,67 @@ const admin = {
       },
     },
   },
+  promoSlide: {
+    list: {
+      title: "Admin • Promo Slide",
+      createButton: "Buat Promo Slide",
+      loading: "Memuat...",
+      deleteConfirm: "Hard delete promo slide ini?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      previewEmpty: "Belum ada gambar",
+      fields: {
+        id: "ID",
+        order: "Urutan",
+        active: "Aktif",
+        language: "Bahasa",
+        title: "Judul",
+      },
+    },
+    create: {
+      title: "Buat Promo Slide",
+      backToList: "Kembali ke daftar",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      imageRequired: "Image wajib saat create",
+      submitIdle: "Buat Promo Slide",
+      submitSaving: "Menyimpan...",
+      previewTitle: "Preview",
+      previewEmpty: "Pilih gambar untuk preview",
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt (ID)",
+        title: "title (ID)",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail Promo Slide",
+      backToList: "Kembali ke daftar",
+      loading: "Memuat...",
+      savePrefix: "Simpan",
+      saveSaving: "Menyimpan...",
+      updatedLanguage: "Berhasil update bahasa",
+      addLanguageButton: "+ Tambah Bahasa",
+      addLanguagePrompt: "Tambah bahasa (contoh: EN)",
+      previewTitle: "Preview",
+      previewEmpty: "Belum ada gambar",
+      previewModes: {
+        landscape: "16:9",
+        square: "1:1",
+        portrait: "9:16",
+      },
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt",
+        title: "title",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   history: {
     list: {
       title: "Admin • History",

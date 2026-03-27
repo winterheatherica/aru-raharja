@@ -14,6 +14,8 @@ import ClientCreatePage from "@/components/pages/Admin/ClientPage/ClientCreatePa
 import ClientDetailPage from "@/components/pages/Admin/ClientPage/ClientDetailPage";
 import PartnerCreatePage from "@/components/pages/Admin/PartnerPage/PartnerCreatePage";
 import PartnerDetailPage from "@/components/pages/Admin/PartnerPage/PartnerDetailPage";
+import PromoSlideCreatePage from "@/components/pages/Admin/PromoSlidePage/PromoSlideCreatePage";
+import PromoSlideDetailPage from "@/components/pages/Admin/PromoSlidePage/PromoSlideDetailPage";
 import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreatePage";
 import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
 import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryCreatePage";
@@ -34,7 +36,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "history" && param !== "news-category")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -88,6 +90,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <PartnerCreatePage dict={dict} locale={locale} />;
     }
     return <PartnerDetailPage dict={dict} locale={locale} partnerId={param2} />;
+  }
+
+  if (param === "promo-slide") {
+    if (param2 === "create") {
+      return <PromoSlideCreatePage dict={dict} locale={locale} />;
+    }
+    return <PromoSlideDetailPage dict={dict} locale={locale} slideId={param2} />;
   }
 
   if (param2 === "create") {

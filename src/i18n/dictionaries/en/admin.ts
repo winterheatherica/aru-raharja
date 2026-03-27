@@ -329,6 +329,67 @@ const admin = {
       },
     },
   },
+  promoSlide: {
+    list: {
+      title: "Admin • Promo Slide",
+      createButton: "Create Promo Slide",
+      loading: "Loading...",
+      deleteConfirm: "Hard delete this promo slide?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      previewEmpty: "No image",
+      fields: {
+        id: "ID",
+        order: "Order",
+        active: "Active",
+        language: "Lang",
+        title: "Title",
+      },
+    },
+    create: {
+      title: "Create Promo Slide",
+      backToList: "Back to list",
+      defaultLanguageHint: "Default language: ID (EN auto-translate by backend)",
+      imageRequired: "Image is required when creating",
+      submitIdle: "Create Promo Slide",
+      submitSaving: "Saving...",
+      previewTitle: "Preview",
+      previewEmpty: "Select an image to preview",
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt (ID)",
+        title: "title (ID)",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Promo Slide Detail",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      updatedLanguage: "Updated language",
+      addLanguageButton: "+ Add Language",
+      addLanguagePrompt: "Add language (example: EN)",
+      previewTitle: "Preview",
+      previewEmpty: "No image available",
+      previewModes: {
+        landscape: "16:9",
+        square: "1:1",
+        portrait: "9:16",
+      },
+      placeholders: {
+        orderIndex: "order_index",
+        alt: "alt",
+        title: "title",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   history: {
     list: {
       title: "Admin • History",
