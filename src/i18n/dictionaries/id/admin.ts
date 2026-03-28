@@ -10,7 +10,18 @@ const admin = {
     fields: {
       name: "Nama",
       email: "Email",
+      username: "Username",
+      password: "Password (opsional)",
       role: "Peran",
+      active: "Active",
+      createdAt: "Created",
+      updatedAt: "Updated",
+    },
+    buttons: {
+      edit: "Edit",
+      cancel: "Batal",
+      save: "Simpan",
+      saving: "Menyimpan...",
     },
   },
   sidebar: {

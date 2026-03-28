@@ -8,7 +8,7 @@ import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
 import ServicePage from "@/components/pages/ServicePage";
 
-import MePage from "@/components/pages/Admin/MePage";
+import MePage from "@/components/pages/Admin/MePage/DetailPage";
 import AwardListPage from "@/components/pages/Admin/AwardPage/AwardListPage";
 import CareerVacancyListPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyListPage";
 import ClientListPage from "@/components/pages/Admin/ClientPage/ClientListPage";
