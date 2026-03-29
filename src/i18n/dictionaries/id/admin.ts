@@ -221,6 +221,60 @@ const admin = {
       },
     },
   },
+  newsArticle: {
+    list: {
+      title: "Admin • News Article",
+      createButton: "Buat Artikel",
+      loading: "Memuat...",
+      deleteConfirm: "Hard delete artikel ini?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+      previewEmpty: "Deskripsi belum tersedia.",
+    },
+    create: {
+      title: "Buat News Article",
+      backToList: "Kembali ke daftar",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate + slug EN digenerate backend)",
+      submitIdle: "Buat Artikel",
+      submitSaving: "Menyimpan...",
+      placeholders: {
+        title: "title",
+        slug: "slug",
+        content: "Tulis konten dengan editor (tanpa HTML manual)",
+        metaTitle: "meta_title",
+        metaDescription: "meta_description",
+        metaKeywords: "keyword1, keyword2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+      fields: {
+        content: "Konten",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail News Article",
+      backToList: "Kembali ke daftar",
+      loading: "Memuat...",
+      savePrefix: "Simpan",
+      saveSaving: "Menyimpan...",
+      updatedLanguage: "Berhasil update bahasa",
+      placeholders: {
+        title: "title",
+        slug: "slug",
+        content: "Tulis konten dengan editor (tanpa HTML manual)",
+        metaTitle: "meta_title",
+        metaDescription: "meta_description",
+        metaKeywords: "keyword1, keyword2",
+      },
+      labels: {
+        isActive: "is_active",
+      },
+      fields: {
+        content: "Konten",
+      },
+    },
+  },
   client: {
     list: {
       title: "Admin • Client",

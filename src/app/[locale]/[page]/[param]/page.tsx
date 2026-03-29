@@ -8,13 +8,13 @@ import ArticlePage from "@/components/pages/ArticlePage";
 import RoomPage from "@/components/pages/RoomPage";
 import ServicePage from "@/components/pages/ServicePage";
 
-import MePage from "@/components/pages/Admin/MePage/DetailPage";
+import MePage from "@/components/pages/Admin/MePage/MeDetailPage";
 import AwardListPage from "@/components/pages/Admin/AwardPage/AwardListPage";
 import CareerVacancyListPage from "@/components/pages/Admin/CareerVacancyPage/CareerVacancyListPage";
 import ClientListPage from "@/components/pages/Admin/ClientPage/ClientListPage";
 import HeroListPage from "@/components/pages/Admin/HeroPage/HeroListPage";
 import HistoryListPage from "@/components/pages/Admin/HistoryPage/HistoryListPage";
-import NewsArticlePage from "@/components/pages/Admin/NewsArticlePage";
+import NewsArticlePage from "@/components/pages/Admin/NewsArticlePage/NewsArticleListPage";
 import NewsCategoryListPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryListPage";
 import PartnerListPage from "@/components/pages/Admin/PartnerPage/PartnerListPage";
 import PromoSlideListPage from "@/components/pages/Admin/PromoSlidePage/PromoSlideListPage";
@@ -23,7 +23,7 @@ import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
 import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage";
 import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
 import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage";
-import UserPage from "@/components/pages/Admin/UserPage";
+import UserPage from "@/components/pages/Admin/UserPage/UserListPage";
 
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";
 import { locales, routeSlugByLocale } from "@/i18n/routes";

@@ -20,6 +20,8 @@ import HistoryCreatePage from "@/components/pages/Admin/HistoryPage/HistoryCreat
 import HistoryDetailPage from "@/components/pages/Admin/HistoryPage/HistoryDetailPage";
 import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryCreatePage";
 import NewsCategoryDetailPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryDetailPage";
+import NewsArticleCreatePage from "@/components/pages/Admin/NewsArticlePage/NewsArticleCreatePage";
+import NewsArticleDetailPage from "@/components/pages/Admin/NewsArticlePage/NewsArticleDetailPage";
 import UserCreatePage from "@/components/pages/Admin/UserPage/UserCreatePage";
 import UserDetailPage from "@/components/pages/Admin/UserPage/UserDetailPage";
 
@@ -38,7 +40,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "user")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "news-article" && param !== "user")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -85,6 +87,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <NewsCategoryCreatePage dict={dict} locale={locale} />;
     }
     return <NewsCategoryDetailPage dict={dict} locale={locale} categoryId={param2} />;
+  }
+
+  if (param === "news-article") {
+    if (param2 === "create") {
+      return <NewsArticleCreatePage dict={dict} locale={locale} />;
+    }
+    return <NewsArticleDetailPage dict={dict} locale={locale} articleId={param2} />;
   }
 
   if (param === "partner") {
