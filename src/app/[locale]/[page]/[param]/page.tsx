@@ -22,7 +22,7 @@ import ServiceCertificationPage from "@/components/pages/Admin/ServiceCertificat
 import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
 import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage";
 import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
-import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage";
+import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomListPage";
 import UserPage from "@/components/pages/Admin/UserPage/UserListPage";
 
 import { dynamicSegmentByLocale } from "@/i18n/param_routes";

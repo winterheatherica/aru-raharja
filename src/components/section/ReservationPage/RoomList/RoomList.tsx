@@ -50,11 +50,11 @@ export default function RoomList({ dict, locale, rooms }: Props) {
               key={r.id}
               className="flex flex-col sm:flex-row items-stretch gap-4 bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-xl p-4 shadow-bumn-2 transition-shadow"
             >
-              <div className="w-full sm:w-48 aspect-4/3 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
+              <div className="h-44 w-full sm:h-36 sm:w-48 rounded-lg overflow-hidden flex-shrink-0 bg-bumnwhite-1">
                 <img
                   src={r.main_image_url || ""}
                   alt={r.main_image_alt || r.title}
-                  className="w-full h-full object-cover"
+                  className="block h-full w-full object-cover"
                   onError={(e) =>
                     (e.currentTarget.src =
                       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='240'%3E%3Crect width='100%' height='100%' fill='%23F8F8F8'/%3E%3Ctext x='50%' y='50%' fill='%239CA7C4' font-size='14' dominant-baseline='middle' text-anchor='middle'%3ENo image%3C/text%3E%3C/svg%3E")
@@ -70,9 +70,10 @@ export default function RoomList({ dict, locale, rooms }: Props) {
                         {r.title}
                       </h4>
                       {r.description && (
-                        <p className="text-sm text-bumngray-6">
-                          {r.description}
-                        </p>
+                        <div
+                          className="text-sm text-bumngray-6 [&_p]:m-0 [&_ul]:my-1 [&_ol]:my-1"
+                          dangerouslySetInnerHTML={{ __html: r.description }}
+                        />
                       )}
                     </div>
 

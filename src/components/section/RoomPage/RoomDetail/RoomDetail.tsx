@@ -22,9 +22,10 @@ export default function RoomDetail({
           {title}
         </h3>
 
-        <p className="text-sm text-bumnslate-8 leading-relaxed">
-          {description}
-        </p>
+        <div
+          className="text-sm text-bumnslate-8 leading-relaxed [&_p]:my-2 [&_ul]:my-2 [&_ol]:my-2"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
 
         <div className="flex flex-wrap gap-6 pt-2">
           <div className="space-y-1">

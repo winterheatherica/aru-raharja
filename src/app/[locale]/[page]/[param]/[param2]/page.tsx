@@ -22,6 +22,8 @@ import NewsCategoryCreatePage from "@/components/pages/Admin/NewsCategoryPage/Ne
 import NewsCategoryDetailPage from "@/components/pages/Admin/NewsCategoryPage/NewsCategoryDetailPage";
 import NewsArticleCreatePage from "@/components/pages/Admin/NewsArticlePage/NewsArticleCreatePage";
 import NewsArticleDetailPage from "@/components/pages/Admin/NewsArticlePage/NewsArticleDetailPage";
+import SpaceRoomCreatePage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomCreatePage";
+import SpaceRoomDetailPage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomDetailPage";
 import UserCreatePage from "@/components/pages/Admin/UserPage/UserCreatePage";
 import UserDetailPage from "@/components/pages/Admin/UserPage/UserDetailPage";
 
@@ -40,7 +42,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "news-article" && param !== "user")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "news-article" && param !== "space-room" && param !== "user")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -94,6 +96,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <NewsArticleCreatePage dict={dict} locale={locale} />;
     }
     return <NewsArticleDetailPage dict={dict} locale={locale} articleId={param2} />;
+  }
+
+  if (param === "space-room") {
+    if (param2 === "create") {
+      return <SpaceRoomCreatePage dict={dict} locale={locale} />;
+    }
+    return <SpaceRoomDetailPage dict={dict} locale={locale} roomId={param2} />;
   }
 
   if (param === "partner") {

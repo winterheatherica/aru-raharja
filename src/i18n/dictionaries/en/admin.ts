@@ -275,6 +275,36 @@ const admin = {
       },
     },
   },
+  spaceRoom: {
+    list: {
+      title: "Admin • Space Room",
+      createButton: "Create Room",
+      loading: "Loading...",
+      deleteConfirm: "Hard delete this room?",
+      deleteButton: "Hard Delete",
+      detailButton: "Detail / Edit",
+    },
+    create: {
+      title: "Create Space Room",
+      backToList: "Back to list",
+      submitIdle: "Create Space Room",
+      submitSaving: "Saving...",
+      labels: {
+        isActive: "is_active",
+      },
+    },
+    detail: {
+      titlePrefix: "Detail Space Room",
+      backToList: "Back to list",
+      loading: "Loading...",
+      savePrefix: "Save",
+      saveSaving: "Saving...",
+      updatedLanguage: "Updated language",
+      labels: {
+        isActive: "is_active",
+      },
+    },
+  },
   client: {
     list: {
       title: "Admin • Client",
