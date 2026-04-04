@@ -275,6 +275,15 @@ const admin = {
       },
     },
   },
+  serviceCertification: {
+    list: {
+      title: "Admin • Service Certification",
+      subtitle: "Choose a service to manage certifications.",
+    },
+    detail: {
+      titlePrefix: "Service Certification",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

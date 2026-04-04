@@ -34,7 +34,7 @@ export default function SpaceRoomListPage({ locale, dict }: { locale: Locale; di
     <main className="mx-auto max-w-7xl p-6 grid gap-4 md:pl-72">
       <section className="rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2 flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-bumnblue-2">{t?.title ?? "Admin • Space Room"}</h1>
-        <Link href={`/${locale}/admin/space-room/create`} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-sm text-white">{t?.createButton ?? "Create Room"}</Link>
+        <Link href={`/${locale}/admin/space-room/create`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">{t?.createButton ?? "Create Room"}</Link>
       </section>
       {error && <p className="text-sm text-red-600">{error}</p>}
       {loading ? <p>Loading...</p> : (
@@ -58,9 +58,9 @@ export default function SpaceRoomListPage({ locale, dict }: { locale: Locale; di
                   className="line-clamp-2 text-sm text-bumnslate-6 [&_p]:m-0 [&_ul]:m-0 [&_ol]:m-0"
                   dangerouslySetInnerHTML={{ __html: tr?.description || "-" }}
                 />
-                <div className="flex gap-2">
-                  <Link href={`/${locale}/admin/space-room/${it.id}`} className="rounded-xl bg-bumn-gradient-primary-11 px-3 py-2 text-sm text-white">Detail / Edit</Link>
-                  <button onClick={() => onDelete(it.id)} className="rounded-xl border border-red-300 px-3 py-2 text-sm text-red-600">Hard Delete</button>
+                <div className="pt-1 flex gap-2">
+                  <Link href={`/${locale}/admin/space-room/${it.id}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-3 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">Detail / Edit</Link>
+                  <button type="button" onClick={() => onDelete(it.id)} className="inline-flex items-center justify-center rounded-xl border border-red-300 bg-white px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50">Hard Delete</button>
                 </div>
               </article>
             );

@@ -275,6 +275,15 @@ const admin = {
       },
     },
   },
+  serviceCertification: {
+    list: {
+      title: "Admin • Service Certification",
+      subtitle: "Pilih service untuk kelola certification.",
+    },
+    detail: {
+      titlePrefix: "Service Certification",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",
