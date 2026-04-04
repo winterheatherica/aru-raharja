@@ -46,7 +46,7 @@ export default function ServiceCertificationListPage({ locale, dict }: { locale:
   const selectedLabel = useMemo(() => (selected ? serviceLabel[selected] : "-"), [selected]);
 
   async function onDelete(id: string) {
-    if (!confirm("Hard delete certification ini?")) return;
+    if (!confirm(t?.deleteConfirm ?? "Hard delete certification ini?")) return;
     try {
       const res = await fetch(`${ADMIN_SERVICE_CERTIFICATION_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
@@ -83,7 +83,7 @@ export default function ServiceCertificationListPage({ locale, dict }: { locale:
         <section className="grid gap-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-bumnblue-2">{selectedLabel}</h2>
-            <Link href={`/${locale}/admin/service-certification/create?service=${selected}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">Create Certification</Link>
+            <Link href={`/${locale}/admin/service-certification/create?service=${selected}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">{t?.createButton ?? "Create Certification"}</Link>
           </div>
 
           {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
@@ -92,17 +92,17 @@ export default function ServiceCertificationListPage({ locale, dict }: { locale:
               {items.map((it) => (
                 <article key={it.id} className={["rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2 grid gap-3", it.is_active ? "ring-2 ring-bumnblue-5" : ""].join(" ")}>
                   <div className="text-sm grid gap-1 text-bumnslate-6">
-                    <p><b>ID:</b> {it.id}</p>
-                    <p><b>Order:</b> {it.order_index}</p>
-                    <p><b>Active:</b> {String(it.is_active)}</p>
-                    <p><b>Title:</b> {it.title || "-"}</p>
-                    {it.alt && <p><b>Alt:</b> {it.alt}</p>}
-                    {it.caption && <p><b>Caption:</b> {it.caption}</p>}
+                    <p><b>{t?.fields?.id ?? "ID"}:</b> {it.id}</p>
+                    <p><b>{t?.fields?.order ?? "Order"}:</b> {it.order_index}</p>
+                    <p><b>{t?.fields?.active ?? "Active"}:</b> {String(it.is_active)}</p>
+                    <p><b>{t?.fields?.title ?? "Title"}:</b> {it.title || "-"}</p>
+                    {it.alt && <p><b>{t?.fields?.alt ?? "Alt"}:</b> {it.alt}</p>}
+                    {it.caption && <p><b>{t?.fields?.caption ?? "Caption"}:</b> {it.caption}</p>}
                   </div>
 
                   <div className="pt-1 flex gap-2">
-                    <Link href={`/${locale}/admin/service-certification/${it.id}?service=${selected}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-3 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">Detail / Edit</Link>
-                    <button type="button" onClick={() => onDelete(it.id)} className="inline-flex items-center justify-center rounded-xl border border-red-300 bg-white px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50">Hard Delete</button>
+                    <Link href={`/${locale}/admin/service-certification/${it.id}?service=${selected}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-3 py-2 text-sm font-medium text-white shadow-bumn-2 transition hover:opacity-95">{t?.detailButton ?? "Detail / Edit"}</Link>
+                    <button type="button" onClick={() => onDelete(it.id)} className="inline-flex items-center justify-center rounded-xl border border-red-300 bg-white px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50">{t?.deleteButton ?? "Hard Delete"}</button>
                   </div>
                 </article>
               ))}
