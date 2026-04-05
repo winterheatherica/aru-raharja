@@ -354,6 +354,32 @@ const admin = {
       deleteConfirm: "Hard delete matrix ini?",
     },
   },
+  serviceGallery: {
+    list: {
+      title: "Admin • Service Gallery",
+      subtitle: "Pilih service untuk kelola gallery.",
+      loading: "Memuat...",
+      createButton: "Buat Gallery",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete gallery ini?",
+    },
+    create: {
+      titlePrefix: "Buat Service Gallery",
+      backToList: "Kembali",
+      languageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      serviceRequired: "Pilih service dulu di list page.",
+    },
+    detail: {
+      titlePrefix: "Detail Service Gallery",
+      backToList: "Kembali",
+      loading: "Memuat...",
+      saved: "Berhasil disimpan",
+      deleteConfirm: "Hard delete gallery ini?",
+      addLanguageButton: "+ Tambah Bahasa",
+      addLanguagePrompt: "Tambah bahasa (contoh: EN)",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

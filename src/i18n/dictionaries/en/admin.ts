@@ -354,6 +354,32 @@ const admin = {
       deleteConfirm: "Hard delete this matrix?",
     },
   },
+  serviceGallery: {
+    list: {
+      title: "Admin • Service Gallery",
+      subtitle: "Choose a service to manage gallery.",
+      loading: "Loading...",
+      createButton: "Create Gallery",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete this gallery?",
+    },
+    create: {
+      titlePrefix: "Create Service Gallery",
+      backToList: "Back",
+      languageHint: "Default language: ID (EN auto-translate by backend)",
+      serviceRequired: "Please pick a service from list page first.",
+    },
+    detail: {
+      titlePrefix: "Detail Service Gallery",
+      backToList: "Back",
+      loading: "Loading...",
+      saved: "Saved",
+      deleteConfirm: "Hard delete this gallery?",
+      addLanguageButton: "+ Add Language",
+      addLanguagePrompt: "Add language (example: EN)",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

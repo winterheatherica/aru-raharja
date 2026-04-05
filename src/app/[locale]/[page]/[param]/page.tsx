@@ -19,9 +19,9 @@ import NewsCategoryListPage from "@/components/pages/Admin/NewsCategoryPage/News
 import PartnerListPage from "@/components/pages/Admin/PartnerPage/PartnerListPage";
 import PromoSlideListPage from "@/components/pages/Admin/PromoSlidePage/PromoSlideListPage";
 import ServiceCertificationListPage from "@/components/pages/Admin/ServiceCertificationPage/ServiceCertificationListPage";
-import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
+import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage/ServiceGalleryListPage";
 import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage/ServiceMatrixListPage";
-import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
+import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage/ServicePricingTierListPage";
 import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomListPage";
 import UserPage from "@/components/pages/Admin/UserPage/UserListPage";
 

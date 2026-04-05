@@ -1,5 +1,5 @@
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
-import TemplatePage from "./_TemplatePage";
+import TemplatePage from "../_TemplatePage";
 
 export default function ServicePricingTierPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   return <TemplatePage locale={locale} dict={dict} title="Admin Service Pricing Tier" text="ini page service pricing tier" />;
