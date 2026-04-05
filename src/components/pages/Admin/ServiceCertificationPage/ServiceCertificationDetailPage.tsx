@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_CERTIFICATION_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
 
+type Translation = { language?: string; title?: string; alt?: string; caption?: string };
 type Item = {
   id: string;
   service: string;
@@ -14,6 +15,7 @@ type Item = {
   title?: string;
   alt?: string;
   caption?: string;
+  translations?: Translation[];
 };
 
 export default function ServiceCertificationDetailPage({ locale, dict, certificationId }: { locale: Locale; dict?: Dictionary; certificationId: string }) {
@@ -31,32 +33,42 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
   const [caption, setCaption] = useState("");
   const [isActive, setIsActive] = useState(true);
   const [serviceCode, setServiceCode] = useState("");
+  const [activeLang, setActiveLang] = useState(locale.toUpperCase());
+  const [langOptions, setLangOptions] = useState<string[]>(["ID"]);
 
   const t = (dict as any)?.admin?.serviceCertification?.detail;
 
+  async function loadByLang(lang: string) {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(`${ADMIN_SERVICE_CERTIFICATION_URL}/${certificationId}?lang=${lang}`, { credentials: "include" });
+      if (!res.ok) throw new Error(await res.text());
+      const item: Item = await res.json();
+      setServiceCode(item.service);
+      setOrderIndex(String(item.order_index || 1));
+      setTitle(item.title || "");
+      setAlt(item.alt || "");
+      setCaption(item.caption || "");
+      setIsActive(Boolean(item.is_active));
+
+      const langs = Array.from(new Set(["ID", ...(item.translations || []).map((x) => (x.language || "ID").toUpperCase())]));
+      setLangOptions(langs);
+    } catch (e: any) {
+      setError(e?.message || "Failed to load certification detail");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    (async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch(`${ADMIN_SERVICE_CERTIFICATION_URL}/${certificationId}?lang=ID`, { credentials: "include" });
-        if (!res.ok) throw new Error(await res.text());
-        const item: Item = await res.json();
-        setServiceCode(item.service);
-        setOrderIndex(String(item.order_index || 1));
-        setTitle(item.title || "");
-        setAlt(item.alt || "");
-        setCaption(item.caption || "");
-        setIsActive(Boolean(item.is_active));
-      } catch (e: any) {
-        setError(e?.message || "Failed to load certification detail");
-      } finally { setLoading(false); }
-    })();
-  }, [certificationId, locale]);
+    loadByLang(activeLang);
+  }, [certificationId, activeLang]);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    setSaving(true); setError(null);
+    setSaving(true);
+    setError(null);
     try {
       const res = await fetch(`${ADMIN_SERVICE_CERTIFICATION_URL}/${certificationId}`, {
         method: "PUT",
@@ -64,7 +76,7 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           service: serviceCode,
-          language: "ID",
+          language: activeLang,
           order_index: Number(orderIndex) || 1,
           is_active: isActive,
           title,
@@ -73,10 +85,13 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
         }),
       });
       if (!res.ok) throw new Error(await res.text());
-      alert(t?.saved ?? "Saved");
+      alert(`${t?.saved ?? "Saved"} (${activeLang})`);
+      await loadByLang(activeLang);
     } catch (e: any) {
       setError(e?.message || "Save failed");
-    } finally { setSaving(false); }
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function onDelete() {
@@ -100,14 +115,31 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
       </section>
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
       <form onSubmit={onSubmit} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-white p-5 shadow-bumn-2">
-        <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.languageHint ?? "Edit konten pakai ID dulu (EN akan ikut auto-update)"}</p>
+        <div className="flex flex-wrap gap-2">
+          {langOptions.map((lang) => (
+            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+          ))}
+          <button
+            type="button"
+            className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
+            onClick={() => {
+              const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+              if (!next) return;
+              if (!langOptions.includes(next)) setLangOptions((prev) => [...prev, next]);
+              setActiveLang(next);
+            }}
+          >
+            {t?.addLanguageButton ?? "+ Tambah Bahasa"}
+          </button>
+        </div>
+
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
         <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={orderIndex} onChange={(e) => setOrderIndex(e.target.value)} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} required />
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={alt} onChange={(e) => setAlt(e.target.value)} placeholder={t?.placeholders?.alt ?? "alt"} />
-        <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder={t?.placeholders?.caption ?? "caption"} rows={3} />
+        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} required />
+        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={alt} onChange={(e) => setAlt(e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
+        <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder={`${t?.placeholders?.caption ?? "caption"} (${activeLang})`} rows={3} />
         <div className="flex gap-2">
-          <button type="submit" disabled={saving} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-white w-fit">{saving ? (t?.saveSaving ?? "Saving...") : (t?.saveIdle ?? "Save")}</button>
+          <button type="submit" disabled={saving} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-white w-fit">{saving ? (t?.saveSaving ?? "Saving...") : `${t?.saveIdle ?? "Save"} ${activeLang}`}</button>
           <button type="button" onClick={onDelete} className="rounded-xl border border-red-300 px-4 py-2 text-red-600 w-fit">{t?.deleteButton ?? "Hard Delete"}</button>
         </div>
       </form>

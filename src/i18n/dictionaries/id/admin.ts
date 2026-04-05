@@ -331,6 +331,29 @@ const admin = {
       },
     },
   },
+  serviceMatrix: {
+    list: {
+      title: "Admin • Service Matrix",
+      subtitle: "Pilih service untuk kelola matrix.",
+      loading: "Memuat...",
+      createButton: "Buat Matrix",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete matrix ini?",
+    },
+    create: {
+      titlePrefix: "Buat Service Matrix",
+      backToList: "Kembali",
+      serviceRequired: "Pilih service dulu di list page.",
+    },
+    detail: {
+      titlePrefix: "Detail Service Matrix",
+      backToList: "Kembali",
+      loading: "Memuat...",
+      saved: "Berhasil disimpan",
+      deleteConfirm: "Hard delete matrix ini?",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

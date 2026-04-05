@@ -331,6 +331,29 @@ const admin = {
       },
     },
   },
+  serviceMatrix: {
+    list: {
+      title: "Admin • Service Matrix",
+      subtitle: "Choose a service to manage matrix.",
+      loading: "Loading...",
+      createButton: "Create Matrix",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete this matrix?",
+    },
+    create: {
+      titlePrefix: "Create Service Matrix",
+      backToList: "Back",
+      serviceRequired: "Please pick a service from list page first.",
+    },
+    detail: {
+      titlePrefix: "Detail Service Matrix",
+      backToList: "Back",
+      loading: "Loading...",
+      saved: "Saved",
+      deleteConfirm: "Hard delete this matrix?",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

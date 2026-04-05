@@ -24,6 +24,8 @@ import NewsArticleCreatePage from "@/components/pages/Admin/NewsArticlePage/News
 import NewsArticleDetailPage from "@/components/pages/Admin/NewsArticlePage/NewsArticleDetailPage";
 import ServiceCertificationCreatePage from "@/components/pages/Admin/ServiceCertificationPage/ServiceCertificationCreatePage";
 import ServiceCertificationDetailPage from "@/components/pages/Admin/ServiceCertificationPage/ServiceCertificationDetailPage";
+import ServiceMatrixCreatePage from "@/components/pages/Admin/ServiceMatrixPage/ServiceMatrixCreatePage";
+import ServiceMatrixDetailPage from "@/components/pages/Admin/ServiceMatrixPage/ServiceMatrixDetailPage";
 import SpaceRoomCreatePage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomCreatePage";
 import SpaceRoomDetailPage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomDetailPage";
 import UserCreatePage from "@/components/pages/Admin/UserPage/UserCreatePage";
@@ -44,7 +46,7 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
   const dict: Dictionary = await getDictionary(locale);
   const adminBase = routeSlugByLocale[locale]?.admin ?? "admin";
 
-  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "news-article" && param !== "service-certification" && param !== "space-room" && param !== "user")) notFound();
+  if (page !== adminBase || (param !== "hero" && param !== "award" && param !== "career-vacancy" && param !== "client" && param !== "partner" && param !== "promo-slide" && param !== "history" && param !== "news-category" && param !== "news-article" && param !== "service-certification" && param !== "service-matrix" && param !== "space-room" && param !== "user")) notFound();
 
   const loginHref = `/${locale}/${routeSlugByLocale[locale]?.login ?? "login"}`;
   const session = (await cookies()).get("session")?.value;
@@ -105,6 +107,13 @@ export default async function PageWithParam2({ params }: { params: Promise<Param
       return <ServiceCertificationCreatePage dict={dict} locale={locale} />;
     }
     return <ServiceCertificationDetailPage dict={dict} locale={locale} certificationId={param2} />;
+  }
+
+  if (param === "service-matrix") {
+    if (param2 === "create") {
+      return <ServiceMatrixCreatePage dict={dict} locale={locale} />;
+    }
+    return <ServiceMatrixDetailPage dict={dict} locale={locale} matrixId={param2} />;
   }
 
   if (param === "space-room") {

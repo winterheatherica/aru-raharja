@@ -20,7 +20,7 @@ import PartnerListPage from "@/components/pages/Admin/PartnerPage/PartnerListPag
 import PromoSlideListPage from "@/components/pages/Admin/PromoSlidePage/PromoSlideListPage";
 import ServiceCertificationListPage from "@/components/pages/Admin/ServiceCertificationPage/ServiceCertificationListPage";
 import ServiceGalleryPage from "@/components/pages/Admin/ServiceGalleryPage";
-import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage";
+import ServiceMatrixPage from "@/components/pages/Admin/ServiceMatrixPage/ServiceMatrixListPage";
 import ServicePricingTierPage from "@/components/pages/Admin/ServicePricingTierPage";
 import SpaceRoomPage from "@/components/pages/Admin/SpaceRoomPage/SpaceRoomListPage";
 import UserPage from "@/components/pages/Admin/UserPage/UserListPage";
