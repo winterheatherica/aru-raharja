@@ -380,6 +380,17 @@ const admin = {
       addLanguagePrompt: "Add language (example: EN)",
     },
   },
+  servicePricingTier: {
+    list: {
+      title: "Admin • Service Pricing Tier",
+      subtitle: "Choose a service to manage pricing tier.",
+      loading: "Loading...",
+      createButton: "Create Pricing Tier",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete this pricing tier?",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",

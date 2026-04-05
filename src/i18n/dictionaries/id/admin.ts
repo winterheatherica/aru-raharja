@@ -380,6 +380,17 @@ const admin = {
       addLanguagePrompt: "Tambah bahasa (contoh: EN)",
     },
   },
+  servicePricingTier: {
+    list: {
+      title: "Admin • Service Pricing Tier",
+      subtitle: "Pilih service untuk kelola pricing tier.",
+      loading: "Memuat...",
+      createButton: "Buat Pricing Tier",
+      detailButton: "Detail / Edit",
+      deleteButton: "Hard Delete",
+      deleteConfirm: "Hard delete pricing tier ini?",
+    },
+  },
   spaceRoom: {
     list: {
       title: "Admin • Space Room",
