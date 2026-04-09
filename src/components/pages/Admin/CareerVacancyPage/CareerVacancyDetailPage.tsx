@@ -22,6 +22,7 @@ export default function CareerVacancyDetailPage({ locale, dict, vacancyId }: { l
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.careerVacancy?.detail;
+  const h = t?.helpers;
   const applyText = (dict as any)?.career?.registration?.results?.applyButton;
 
   useEffect(() => {
@@ -115,25 +116,49 @@ export default function CareerVacancyDetailPage({ locale, dict, vacancyId }: { l
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
         <div className="grid gap-3 md:grid-cols-2">
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={location} onChange={(e) => setLocation(e.target.value)} placeholder={t?.placeholders?.location ?? "location"} />
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.title ?? "Title"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.title ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.location ?? "Location"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.location ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={location} onChange={(e) => setLocation(e.target.value)} placeholder={t?.placeholders?.location ?? "location"} />
+          </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2">
-          <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={employment} onChange={(e) => setEmployment(e.target.value)}>
-            <option value="FULL_TIME">FULL_TIME</option>
-            <option value="PART_TIME">PART_TIME</option>
-            <option value="INTERNSHIP">INTERNSHIP</option>
-            <option value="CONTRACT">CONTRACT</option>
-          </select>
-          <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-          </label>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.employment ?? "Employment"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.employment ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={employment} onChange={(e) => setEmployment(e.target.value)}>
+              <option value="FULL_TIME">FULL_TIME</option>
+              <option value="PART_TIME">PART_TIME</option>
+              <option value="INTERNSHIP">INTERNSHIP</option>
+              <option value="CONTRACT">CONTRACT</option>
+            </select>
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.status ?? "Status"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.status ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+            </label>
+          </div>
         </div>
 
         <div className="grid gap-3 md:grid-cols-2">
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="date" value={openedAt} onChange={(e) => setOpenedAt(e.target.value)} />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="date" value={closedAt} onChange={(e) => setClosedAt(e.target.value)} />
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.openedAt ?? "Opened At"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.openedAt ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="date" value={openedAt} onChange={(e) => setOpenedAt(e.target.value)} />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.closedAt ?? "Closed At"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.closedAt ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="date" value={closedAt} onChange={(e) => setClosedAt(e.target.value)} />
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -148,7 +173,11 @@ export default function CareerVacancyDetailPage({ locale, dict, vacancyId }: { l
           }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
         </div>
 
-        <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateDescription(e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateDescription(e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        </div>
 
         <div className="grid gap-2">
           <p className="text-sm font-medium text-bumnslate-6">{t?.previewTitle ?? "Preview"}</p>
