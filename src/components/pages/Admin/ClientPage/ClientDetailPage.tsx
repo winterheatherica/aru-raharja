@@ -19,6 +19,7 @@ export default function ClientDetailPage({ locale, dict, clientId }: { locale: L
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.client?.detail;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -105,11 +106,23 @@ export default function ClientDetailPage({ locale, dict, clientId }: { locale: L
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.orderIndex ?? "Order Index"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.orderIndex ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
+        </div>
 
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active_client_scroller"}</label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active_client_scroller"}</label>
+        </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.image ?? "Image"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.image ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        </div>
 
         <div className="flex flex-wrap gap-2">
           {langOptions.map((lang) => (
@@ -123,9 +136,23 @@ export default function ClientDetailPage({ locale, dict, clientId }: { locale: L
           }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
-        <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.altText ?? "Alt Text"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.altText ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? (dict as any)?.admin?.common?.formFieldHelper ?? "Use this field according to its label and function."}</p>
+          <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        </div>
 
         <div className="grid gap-2">
           <p className="text-sm font-medium text-bumnslate-6">{t?.previewTitle ?? "Preview"}</p>
