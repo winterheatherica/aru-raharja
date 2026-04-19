@@ -20,6 +20,8 @@ export default function PartnerDetailPage({ locale, dict, partnerId }: { locale:
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.partner?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -108,28 +110,63 @@ export default function PartnerDetailPage({ locale, dict, partnerId }: { locale:
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
-
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveGrid} onChange={(e) => setIsActiveGrid(e.target.checked)} /> {t?.labels?.isActiveGrid ?? "is_active_partner_grid"}</label>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveScroller} onChange={(e) => setIsActiveScroller(e.target.checked)} /> {t?.labels?.isActiveScroller ?? "is_active_partner_scroller"}</label>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
-
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button type="button" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6" onClick={() => {
-            const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-            if (!next) return;
-            setTranslations((prev) => ({ ...prev, [next]: prev[next] || { alt: "", title: "", description: "" } }));
-            setActiveLang(next);
-          }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.orderIndex ?? "Order Index"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.orderIndex ?? "Urutan tampil partner. Angka lebih kecil akan muncul lebih dulu."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
-        <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.statusGrid ?? "Grid Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.statusGrid ?? "Aktifkan jika partner ini mau tampil di mode partner grid."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveGrid} onChange={(e) => setIsActiveGrid(e.target.checked)} /> {t?.labels?.isActiveGrid ?? "is_active_partner_grid"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.statusScroller ?? "Scroller Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.statusScroller ?? "Aktifkan jika partner ini mau tampil di partner scroller/carousel."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveScroller} onChange={(e) => setIsActiveScroller(e.target.checked)} /> {t?.labels?.isActiveScroller ?? "is_active_partner_scroller"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.image ?? "Image"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.image ?? "Upload gambar baru hanya jika ingin mengganti logo partner saat ini."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan partner yang ingin kamu edit."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button type="button" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6" onClick={() => {
+              const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+              if (!next) return;
+              setTranslations((prev) => ({ ...prev, [next]: prev[next] || { alt: "", title: "", description: "" } }));
+              setActiveLang(next);
+            }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.altText ?? "Alt Text"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.altText ?? "Teks alternatif untuk aksesibilitas dan fallback jika gambar gagal dimuat."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Nama partner atau judul singkat untuk identifikasi konten."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi/catatan tambahan partner (opsional)."}</p>
+          <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        </div>
 
         <div className="grid gap-2">
           <p className="text-sm font-medium text-bumnslate-6">{t?.previewTitle ?? "Preview"}</p>

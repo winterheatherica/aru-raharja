@@ -18,6 +18,8 @@ export default function PartnerCreatePage({ locale, dict }: { locale: Locale; di
   const [idDescription, setIdDescription] = useState("");
 
   const t = (dict as any)?.admin?.partner?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
   const imagePreview = useMemo(() => (image ? URL.createObjectURL(image) : ""), [image]);
 
   async function onCreate(e: FormEvent) {
@@ -62,15 +64,47 @@ export default function PartnerCreatePage({ locale, dict }: { locale: Locale; di
       <form onSubmit={onCreate} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
         <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Bahasa default: ID (EN auto-translate oleh backend)"}</p>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.orderIndex ?? "Order Index"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.orderIndex ?? "Urutan tampil partner. Angka lebih kecil akan muncul lebih dulu."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
+        </div>
 
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveGrid} onChange={(e) => setIsActiveGrid(e.target.checked)} /> {t?.labels?.isActiveGrid ?? "is_active_partner_grid"}</label>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveScroller} onChange={(e) => setIsActiveScroller(e.target.checked)} /> {t?.labels?.isActiveScroller ?? "is_active_partner_scroller"}</label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.statusGrid ?? "Grid Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.statusGrid ?? "Aktifkan jika partner ini mau tampil di mode partner grid."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveGrid} onChange={(e) => setIsActiveGrid(e.target.checked)} /> {t?.labels?.isActiveGrid ?? "is_active_partner_grid"}</label>
+        </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idAlt} onChange={(e) => setIdAlt(e.target.value)} placeholder={t?.placeholders?.alt ?? "alt (ID)"} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idTitle} onChange={(e) => setIdTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title (ID)"} />
-        <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idDescription} onChange={(e) => setIdDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description (ID)"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.statusScroller ?? "Scroller Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.statusScroller ?? "Aktifkan jika partner ini mau tampil di partner scroller/carousel."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActiveScroller} onChange={(e) => setIsActiveScroller(e.target.checked)} /> {t?.labels?.isActiveScroller ?? "is_active_partner_scroller"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.image ?? "Image"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.image ?? "Logo/gambar partner yang akan ditampilkan."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.altText ?? "Alt Text"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.altText ?? "Teks alternatif untuk aksesibilitas dan fallback jika gambar gagal dimuat."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idAlt} onChange={(e) => setIdAlt(e.target.value)} placeholder={t?.placeholders?.alt ?? "alt (ID)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Nama partner atau judul singkat untuk identifikasi konten."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idTitle} onChange={(e) => setIdTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title (ID)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi/catatan tambahan partner (opsional)."}</p>
+          <textarea className="min-h-24 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={idDescription} onChange={(e) => setIdDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description (ID)"} />
+        </div>
 
         <div className="grid gap-2">
           <p className="text-sm font-medium text-bumnslate-6">{t?.previewTitle ?? "Preview"}</p>
