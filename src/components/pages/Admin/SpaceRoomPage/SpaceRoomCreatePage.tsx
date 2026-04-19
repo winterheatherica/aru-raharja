@@ -40,6 +40,8 @@ export default function SpaceRoomCreatePage({ locale, dict }: { locale: Locale; 
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const t = (dict as any)?.admin?.spaceRoom?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
   const generatedSlug = useMemo(() => slugify(title), [title]);
 
   useEffect(() => {
@@ -107,56 +109,106 @@ export default function SpaceRoomCreatePage({ locale, dict }: { locale: Locale; 
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSubmit} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">Master dulu (ID), lalu EN auto-translate dari backend</p>
-
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-        </label>
-
-        <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
-          Penulis: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
-        </div>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Code" required />
-        <div className="grid gap-3 sm:grid-cols-2">
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder="Capacity (angka)" />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={floor} onChange={(e) => setFloor(e.target.value)} placeholder="Floor (angka)" />
-        </div>
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title (ID)" required />
-        <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={generatedSlug} readOnly placeholder="Slug (auto)" />
+        <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Master dulu (ID), lalu EN auto-translate dari backend"}</p>
 
         <div className="grid gap-1">
-          <label className="text-sm font-semibold text-bumnslate-7">Description</label>
-          <RichTextEditor value={description} onChange={setDescription} placeholder="Description (ID)" />
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika room ini ingin ditampilkan di website."}</p>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+          </label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.author ?? "Author"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.author ?? "Penulis data room dari akun admin yang sedang login."}</p>
+          <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
+            {t?.authorLabel ?? "Penulis"}: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.code ?? "Code"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.code ?? "Kode unik untuk identitas room (internal/admin)."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={code} onChange={(e) => setCode(e.target.value)} placeholder={t?.placeholders?.code ?? "Code"} required />
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.capacity ?? "Capacity"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.capacity ?? "Kapasitas maksimal orang dalam room."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder={t?.placeholders?.capacity ?? "Capacity (angka)"} />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.floor ?? "Floor"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.floor ?? "Lokasi lantai tempat room berada."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={floor} onChange={(e) => setFloor(e.target.value)} placeholder={t?.placeholders?.floor ?? "Floor (angka)"} />
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.address ?? "Address"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.address ?? "Alamat/lokasi lengkap room."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={address} onChange={(e) => setAddress(e.target.value)} placeholder={t?.placeholders?.address ?? "Address"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul room yang dilihat pengunjung."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "Title (ID)"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.slug ?? "Slug"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.slug ?? "Slug URL otomatis dari title."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={generatedSlug} readOnly placeholder={t?.placeholders?.slug ?? "Slug (auto)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi detail room untuk halaman publik."}</p>
+          <RichTextEditor value={description} onChange={setDescription} placeholder={t?.placeholders?.description ?? "Description (ID)"} />
         </div>
 
         <div className="grid gap-1 rounded-xl border border-bumnslate-10 bg-white p-3">
-          <p className="text-sm font-semibold text-bumnslate-7">Meta (auto-generated)</p>
-          <p className="text-xs text-bumnslate-6">Meta title & meta description otomatis dari title + ringkasan description.</p>
+          <p className="text-sm font-semibold text-bumnslate-7">{f?.metaAuto ?? "Meta (auto-generated)"}</p>
+          <p className="text-xs text-bumnslate-6">{h?.metaAuto ?? "Meta title & meta description otomatis dari title + ringkasan description."}</p>
           <p className="text-xs"><span className="font-semibold">Meta title:</span> {deriveMetaTitle(title) || "-"}</p>
           <p className="text-xs"><span className="font-semibold">Meta description:</span> {deriveMetaDescription(description) || "-"}</p>
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={facilities} onChange={(e) => setFacilities(e.target.value)} placeholder="Facilities (pisahkan dengan koma ,)" />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={metaKeywords} onChange={(e) => setMetaKeywords(e.target.value)} placeholder="Meta keyword (pisahkan dengan koma ,)" />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.facilities ?? "Facilities"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.facilities ?? "Daftar fasilitas room, pisahkan dengan koma."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={facilities} onChange={(e) => setFacilities(e.target.value)} placeholder={t?.placeholders?.facilities ?? "Facilities (pisahkan dengan koma ,)"} />
+        </div>
 
-        <input type="file" multiple accept="image/*" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" onChange={(e) => onPickFiles(e.target.files)} required />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.metaKeywords ?? "Meta Keywords"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.metaKeywords ?? "Keyword SEO, pisahkan dengan koma."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={metaKeywords} onChange={(e) => setMetaKeywords(e.target.value)} placeholder={t?.placeholders?.metaKeywords ?? "Meta keyword (pisahkan dengan koma ,)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.images ?? "Images"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.images ?? "Upload satu atau beberapa gambar room dan pilih thumbnail utama."}</p>
+          <input type="file" multiple accept="image/*" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" onChange={(e) => onPickFiles(e.target.files)} required />
+        </div>
+
         {images.length > 0 && (
           <div className="grid gap-3 md:grid-cols-2">
             {images.map((img, i) => (
               <div key={i} className={`grid gap-2 rounded-xl border p-3 ${thumbnail === i ? "border-bumnblue-5 bg-blue-50" : "border-bumnslate-10 bg-white"}`}>
-                <label className="text-xs font-medium"><input type="radio" checked={thumbnail === i} onChange={() => setThumbnail(i)} /> Thumbnail</label>
+                <label className="text-xs font-medium"><input type="radio" checked={thumbnail === i} onChange={() => setThumbnail(i)} /> {t?.thumbnailLabel ?? "Thumbnail"}</label>
                 <img src={URL.createObjectURL(img)} alt="preview" className="h-36 w-full rounded-lg object-cover" />
-                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={alts[i] || ""} onChange={(e) => setAlts((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder="Alt" />
-                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={titles[i] || ""} onChange={(e) => setTitles((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder="Title" />
+                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={alts[i] || ""} onChange={(e) => setAlts((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder={t?.placeholders?.alt ?? "Alt"} />
+                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={titles[i] || ""} onChange={(e) => setTitles((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder={t?.placeholders?.imageTitle ?? "Title"} />
               </div>
             ))}
           </div>
         )}
 
-        <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? "Menyimpan..." : "Buat Space Room"}</button>
+        <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? (t?.submitSaving ?? "Menyimpan...") : (t?.submitIdle ?? "Buat Space Room")}</button>
       </form>
     </main>
   );

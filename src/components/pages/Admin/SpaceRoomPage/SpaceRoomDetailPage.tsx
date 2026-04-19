@@ -62,6 +62,8 @@ export default function SpaceRoomDetailPage({ locale, dict, roomId }: { locale: 
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
 
   const t = (dict as any)?.admin?.spaceRoom?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -192,65 +194,112 @@ export default function SpaceRoomDetailPage({ locale, dict, roomId }: { locale: 
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-        </label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika room ini ingin ditampilkan di website."}</p>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+          </label>
+        </div>
 
-        <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
-          Penulis: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.author ?? "Author"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.author ?? "Penulis data room dari akun admin yang sedang login."}</p>
+          <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
+            {t?.authorLabel ?? "Penulis"}: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
+          </div>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Code" required />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder="Capacity (angka)" />
-          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={floor} onChange={(e) => setFloor(e.target.value)} placeholder="Floor (angka)" />
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.code ?? "Code"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.code ?? "Kode unik untuk identitas room (internal/admin)."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={code} onChange={(e) => setCode(e.target.value)} placeholder={t?.placeholders?.code ?? "Code"} required />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.address ?? "Address"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.address ?? "Alamat/lokasi lengkap room."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={address} onChange={(e) => setAddress(e.target.value)} placeholder={t?.placeholders?.address ?? "Address"} />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.capacity ?? "Capacity"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.capacity ?? "Kapasitas maksimal orang dalam room."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={capacity} onChange={(e) => setCapacity(e.target.value)} placeholder={t?.placeholders?.capacity ?? "Capacity (angka)"} />
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.floor ?? "Floor"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.floor ?? "Lokasi lantai tempat room berada."}</p>
+            <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={floor} onChange={(e) => setFloor(e.target.value)} placeholder={t?.placeholders?.floor ?? "Floor (angka)"} />
+          </div>
         </div>
-
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button
-            type="button"
-            className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
-            onClick={() => {
-              const next = prompt("Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-              if (!next) return;
-              setTranslations((prev) => ({ ...prev, [next]: prev[next] || { title: "", description: "", facilities: "", metaKeywords: "", slug: "" } }));
-              setActiveLang(next);
-            }}
-          >+ Tambah Bahasa</button>
-        </div>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`Title (${activeLang})`} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={slugify(current.title)} readOnly placeholder="Slug (auto)" />
 
         <div className="grid gap-1">
-          <label className="text-sm font-semibold text-bumnslate-7">Description</label>
-          <RichTextEditor value={current.description} onChange={(v) => updateField("description", v)} placeholder={`Description (${activeLang})`} />
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan room yang ingin kamu edit."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button
+              type="button"
+              className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
+              onClick={() => {
+                const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+                if (!next) return;
+                setTranslations((prev) => ({ ...prev, [next]: prev[next] || { title: "", description: "", facilities: "", metaKeywords: "", slug: "" } }));
+                setActiveLang(next);
+              }}
+            >{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul room yang dilihat pengunjung."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "Title"} (${activeLang})`} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.slug ?? "Slug"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.slug ?? "Slug URL otomatis dari title."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={slugify(current.title)} readOnly placeholder={t?.placeholders?.slug ?? "Slug (auto)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi detail room untuk halaman publik."}</p>
+          <RichTextEditor value={current.description} onChange={(v) => updateField("description", v)} placeholder={`${t?.placeholders?.description ?? "Description"} (${activeLang})`} />
         </div>
 
         <div className="grid gap-1 rounded-xl border border-bumnslate-10 bg-white p-3">
-          <p className="text-sm font-semibold text-bumnslate-7">Meta (auto-generated)</p>
-          <p className="text-xs text-bumnslate-6">Meta title & meta description otomatis dari title + ringkasan description.</p>
+          <p className="text-sm font-semibold text-bumnslate-7">{f?.metaAuto ?? "Meta (auto-generated)"}</p>
+          <p className="text-xs text-bumnslate-6">{h?.metaAuto ?? "Meta title & meta description otomatis dari title + ringkasan description."}</p>
           <p className="text-xs"><span className="font-semibold">Meta title:</span> {deriveMetaTitle(current.title) || "-"}</p>
           <p className="text-xs"><span className="font-semibold">Meta description:</span> {deriveMetaDescription(current.description) || "-"}</p>
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.facilities} onChange={(e) => updateField("facilities", e.target.value)} placeholder="Facilities (pisahkan dengan koma ,)" />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.metaKeywords} onChange={(e) => updateField("metaKeywords", e.target.value)} placeholder="Meta keyword (pisahkan dengan koma ,)" />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.facilities ?? "Facilities"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.facilities ?? "Daftar fasilitas room, pisahkan dengan koma."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.facilities} onChange={(e) => updateField("facilities", e.target.value)} placeholder={t?.placeholders?.facilities ?? "Facilities (pisahkan dengan koma ,)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.metaKeywords ?? "Meta Keywords"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.metaKeywords ?? "Keyword SEO, pisahkan dengan koma."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.metaKeywords} onChange={(e) => updateField("metaKeywords", e.target.value)} placeholder={t?.placeholders?.metaKeywords ?? "Meta keyword (pisahkan dengan koma ,)"} />
+        </div>
 
         <div className="grid gap-2 rounded-xl border border-bumnslate-10 bg-white p-3">
-          <p className="text-sm font-semibold text-bumnslate-7">Current Images</p>
+          <p className="text-sm font-semibold text-bumnslate-7">{f?.currentImages ?? "Current Images"}</p>
           {existingImages.length === 0 ? (
-            <p className="text-xs text-bumnslate-6">Belum ada image.</p>
+            <p className="text-xs text-bumnslate-6">{t?.noImagesText ?? "Belum ada image."}</p>
           ) : (
             <div className="grid gap-3 md:grid-cols-2">
               {existingImages.map((img) => (
                 <div key={img.id} className="grid gap-2 rounded-xl border border-bumnslate-10 p-2">
                   <img src={img.image_url} alt={img.alt || "room"} className="h-32 w-full rounded-lg object-cover" />
-                  <p className="text-xs text-bumnslate-6">{img.title || "-"} {img.is_thumbnail ? "• THUMBNAIL" : ""}</p>
+                  <p className="text-xs text-bumnslate-6">{img.title || "-"} {img.is_thumbnail ? `• ${t?.thumbnailBadge ?? "THUMBNAIL"}` : ""}</p>
                 </div>
               ))}
             </div>
@@ -258,8 +307,8 @@ export default function SpaceRoomDetailPage({ locale, dict, roomId }: { locale: 
         </div>
 
         <div className="grid gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3">
-          <p className="text-sm font-semibold text-amber-800">Replace Images (optional)</p>
-          <p className="text-xs text-amber-700">Kalau upload image baru saat update, image lama akan diganti semua.</p>
+          <p className="text-sm font-semibold text-amber-800">{f?.replaceImages ?? "Replace Images (optional)"}</p>
+          <p className="text-xs text-amber-700">{h?.replaceImages ?? "Kalau upload image baru saat update, image lama akan diganti semua."}</p>
           <input type="file" multiple accept="image/*" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" onChange={(e) => onPickFiles(e.target.files)} />
         </div>
 
@@ -267,18 +316,18 @@ export default function SpaceRoomDetailPage({ locale, dict, roomId }: { locale: 
           <div className="grid gap-3 md:grid-cols-2">
             {newImages.map((img, i) => (
               <div key={i} className={`grid gap-2 rounded-xl border p-3 ${newThumbnail === i ? "border-bumnblue-5 bg-blue-50" : "border-bumnslate-10 bg-white"}`}>
-                <label className="text-xs font-medium"><input type="radio" checked={newThumbnail === i} onChange={() => setNewThumbnail(i)} /> Thumbnail</label>
+                <label className="text-xs font-medium"><input type="radio" checked={newThumbnail === i} onChange={() => setNewThumbnail(i)} /> {t?.thumbnailLabel ?? "Thumbnail"}</label>
                 <img src={URL.createObjectURL(img)} alt="preview" className="h-36 w-full rounded-lg object-cover" />
-                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={newAlts[i] || ""} onChange={(e) => setNewAlts((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder="Alt" />
-                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={newTitles[i] || ""} onChange={(e) => setNewTitles((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder="Title" />
+                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={newAlts[i] || ""} onChange={(e) => setNewAlts((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder={t?.placeholders?.alt ?? "Alt"} />
+                <input className="rounded-lg border border-bumnslate-10 px-2 py-1 text-sm" value={newTitles[i] || ""} onChange={(e) => setNewTitles((p) => p.map((v, idx) => idx === i ? e.target.value : v))} placeholder={t?.placeholders?.imageTitle ?? "Title"} />
               </div>
             ))}
           </div>
         )}
 
         <div className="grid gap-1 rounded-xl border border-bumnslate-10 bg-bumnslate-1 p-3 text-xs text-bumnslate-7">
-          <p>Created: {toLocalDateTime(createdAt)}</p>
-          <p>Updated: {toLocalDateTime(updatedAt)}</p>
+          <p>{t?.createdLabel ?? "Created"}: {toLocalDateTime(createdAt)}</p>
+          <p>{t?.updatedLabel ?? "Updated"}: {toLocalDateTime(updatedAt)}</p>
         </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? (t?.saveSaving ?? "Menyimpan...") : `${t?.savePrefix ?? "Simpan"} ${activeLang}`}</button>
