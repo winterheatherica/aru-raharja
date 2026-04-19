@@ -54,6 +54,8 @@ export default function NewsArticleDetailPage({ locale, dict, articleId }: { loc
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.newsArticle?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
   const activeLocaleLang = locale.toUpperCase();
 
   useEffect(() => {
@@ -181,52 +183,86 @@ export default function NewsArticleDetailPage({ locale, dict, articleId }: { loc
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-        </label>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="datetime-local" value={publishedAt} onChange={(e) => setPublishedAt(e.target.value)} />
-        <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
-          Penulis: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika artikel ini ingin tampil di website."}</p>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+          </label>
         </div>
-
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button
-            type="button"
-            className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
-            onClick={() => {
-              const next = prompt("Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-              if (!next) return;
-              setTranslations((prev) => ({ ...prev, [next]: prev[next] || { title: "", slug: "", content: "" } }));
-              setActiveLang(next);
-            }}
-          >+ Tambah Bahasa</button>
-        </div>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={slugify(current.title)} readOnly placeholder={`${t?.placeholders?.slug ?? "slug"} (auto)`} />
 
         <div className="grid gap-1">
-          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.content ?? "Content"}</label>
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.publishedAt ?? "Published At"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.publishedAt ?? "Tanggal dan jam artikel dipublikasikan."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="datetime-local" value={publishedAt} onChange={(e) => setPublishedAt(e.target.value)} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.author ?? "Author"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.author ?? "Penulis artikel dari akun admin yang sedang login."}</p>
+          <div className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-sm text-bumnslate-7">
+            {t?.authorLabel ?? "Penulis"}: <span className="font-semibold">{me?.full_name || me?.username || me?.email || "-"}</span>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa yang ingin diedit untuk judul dan konten artikel."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button
+              type="button"
+              className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
+              onClick={() => {
+                const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+                if (!next) return;
+                setTranslations((prev) => ({ ...prev, [next]: prev[next] || { title: "", slug: "", content: "" } }));
+                setActiveLang(next);
+              }}
+            >{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul utama artikel berita."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.slug ?? "Slug"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.slug ?? "Slug URL otomatis dari title, dipakai untuk permalink artikel."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-bumnslate-1 px-3 py-2 text-bumnslate-7" value={slugify(current.title)} readOnly placeholder={`${t?.placeholders?.slug ?? "slug"} (auto)`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.content ?? "Content"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.content ?? "Isi lengkap artikel berita menggunakan rich text editor."}</p>
           <RichTextEditor value={current.content} onChange={(v) => updateField("content", v)} placeholder={`${t?.placeholders?.content ?? "content"} (${activeLang})`} />
         </div>
 
         <div className="grid gap-1 rounded-xl border border-bumnslate-10 bg-white p-3">
-          <p className="text-sm font-semibold text-bumnslate-7">Meta (auto-generated)</p>
-          <p className="text-xs text-bumnslate-6">Meta title & meta description otomatis dari Title + ringkasan Content.</p>
+          <p className="text-sm font-semibold text-bumnslate-7">{f?.metaAuto ?? "Meta (auto-generated)"}</p>
+          <p className="text-xs text-bumnslate-6">{h?.metaAuto ?? "Meta title & meta description otomatis dari Title + ringkasan Content."}</p>
           <p className="text-xs"><span className="font-semibold">Meta title:</span> {deriveMetaTitle(current.title) || "-"}</p>
           <p className="text-xs"><span className="font-semibold">Meta description:</span> {deriveMetaDescription(current.content) || "-"}</p>
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.image ?? "Image"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.image ?? "Upload gambar baru hanya jika ingin mengganti thumbnail artikel saat ini."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        </div>
 
         <div className="grid gap-2">
           <div className="flex items-center justify-between gap-2">
-            <p className="text-sm font-semibold text-bumnslate-7">News Category</p>
-            <span className="text-xs text-bumnslate-6">Terpilih: {selectedCategoryIds.length}</span>
+            <div className="grid gap-0.5">
+              <p className="text-sm font-semibold text-bumnslate-7">{f?.categories ?? "News Category"}</p>
+              <p className="text-xs text-bumnslate-5">{h?.categories ?? "Pilih satu atau lebih kategori yang relevan untuk artikel ini."}</p>
+            </div>
+            <span className="text-xs text-bumnslate-6">{t?.selectedLabel ?? "Terpilih"}: {selectedCategoryIds.length}</span>
           </div>
           <div className="grid gap-2 sm:grid-cols-2">
             {categories.map((cat) => {
