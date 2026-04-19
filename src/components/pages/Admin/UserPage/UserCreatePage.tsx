@@ -16,6 +16,8 @@ export default function UserCreatePage({ locale, dict }: { locale: Locale; dict?
   const [role, setRole] = useState<UserRole>("MEMBER");
 
   const t = (dict as any)?.admin?.user?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   async function onCreate(e: FormEvent) {
     e.preventDefault();
@@ -62,16 +64,39 @@ export default function UserCreatePage({ locale, dict }: { locale: Locale; dict?
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onCreate} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t?.placeholders?.email ?? "email"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={t?.placeholders?.username ?? "username"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={t?.placeholders?.fullName ?? "full_name"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t?.placeholders?.password ?? "password"} required />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.email ?? "Email"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.email ?? "Email utama user untuk login dan komunikasi akun."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t?.placeholders?.email ?? "email"} required />
+        </div>
 
-        <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={role} onChange={(e) => setRole(e.target.value as UserRole)}>
-          {USER_ROLES.map((r) => (
-            <option key={r} value={r}>{r}</option>
-          ))}
-        </select>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.username ?? "Username"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.username ?? "Username unik sebagai identitas akun user."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={t?.placeholders?.username ?? "username"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.fullName ?? "Full Name"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.fullName ?? "Nama lengkap user untuk tampilan profil dan data internal."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={t?.placeholders?.fullName ?? "full_name"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.password ?? "Password"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.password ?? "Password awal untuk akun user baru."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t?.placeholders?.password ?? "password"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.role ?? "Role"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.role ?? "Hak akses user di sistem berdasarkan role yang dipilih."}</p>
+          <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={role} onChange={(e) => setRole(e.target.value as UserRole)}>
+            {USER_ROLES.map((r) => (
+              <option key={r} value={r}>{r}</option>
+            ))}
+          </select>
+        </div>
 
         <p className="text-xs text-bumnslate-6">{t?.defaultsHint ?? "Default: active=true, email_verified=true"}</p>
 

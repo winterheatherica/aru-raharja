@@ -21,6 +21,8 @@ export default function UserDetailPage({ locale, dict, userId }: { locale: Local
   const [updatedAt, setUpdatedAt] = useState("");
 
   const t = (dict as any)?.admin?.user?.detail;
+  const h = t?.helpers;
+  const f = t?.fields;
 
   useEffect(() => {
     (async () => {
@@ -101,23 +103,55 @@ export default function UserDetailPage({ locale, dict, userId }: { locale: Local
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t?.placeholders?.email ?? "email"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={t?.placeholders?.username ?? "username"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={t?.placeholders?.fullName ?? "full_name"} required />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t?.placeholders?.password ?? "password (leave empty if unchanged)"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.email ?? "Email"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.email ?? "Email utama user untuk login dan komunikasi akun."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t?.placeholders?.email ?? "email"} required />
+        </div>
 
-        <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={role} onChange={(e) => setRole(e.target.value as UserRole)}>
-          {USER_ROLES.map((r) => (
-            <option key={r} value={r}>{r}</option>
-          ))}
-        </select>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.username ?? "Username"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.username ?? "Username unik sebagai identitas akun user."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={username} onChange={(e) => setUsername(e.target.value)} placeholder={t?.placeholders?.username ?? "username"} required />
+        </div>
 
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} /> {t?.labels?.active ?? "active"}</label>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={emailVerified} onChange={(e) => setEmailVerified(e.target.checked)} /> {t?.labels?.emailVerified ?? "email_verified"}</label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.fullName ?? "Full Name"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.fullName ?? "Nama lengkap user untuk tampilan profil dan data internal."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder={t?.placeholders?.fullName ?? "full_name"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.password ?? "Password"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.password ?? "Isi hanya kalau mau ganti password. Kosongkan jika tidak ingin mengubah password."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t?.placeholders?.password ?? "password (leave empty if unchanged)"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.role ?? "Role"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.role ?? "Hak akses user di sistem berdasarkan role yang dipilih."}</p>
+          <select className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={role} onChange={(e) => setRole(e.target.value as UserRole)}>
+            {USER_ROLES.map((r) => (
+              <option key={r} value={r}>{r}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.active ?? "Active"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.active ?? "Aktifkan jika akun user boleh login dan menggunakan sistem."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={active} onChange={(e) => setActive(e.target.checked)} /> {t?.labels?.active ?? "active"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.emailVerified ?? "Email Verified"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.emailVerified ?? "Tandai apakah email user sudah terverifikasi."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={emailVerified} onChange={(e) => setEmailVerified(e.target.checked)} /> {t?.labels?.emailVerified ?? "email_verified"}</label>
+        </div>
 
         <div className="grid gap-1 rounded-xl border border-bumnslate-10 bg-white p-3 text-sm text-bumnslate-6">
-          <p><b>{t?.fields?.createdAt ?? "Created"}:</b> {createdAt ? new Date(createdAt).toLocaleString() : "-"}</p>
-          <p><b>{t?.fields?.updatedAt ?? "Updated"}:</b> {updatedAt ? new Date(updatedAt).toLocaleString() : "-"}</p>
+          <p><b>{f?.createdAt ?? "Created"}:</b> {createdAt ? new Date(createdAt).toLocaleString() : "-"}</p>
+          <p><b>{f?.updatedAt ?? "Updated"}:</b> {updatedAt ? new Date(updatedAt).toLocaleString() : "-"}</p>
         </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? (t?.submitSaving ?? "Saving...") : (t?.submitIdle ?? "Save")}</button>
