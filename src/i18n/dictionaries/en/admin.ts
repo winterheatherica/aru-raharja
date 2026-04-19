@@ -779,6 +779,20 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        orderIndex: "Order Index",
+        status: "Status",
+        image: "Image",
+        altText: "Alt Text",
+        title: "Title",
+      },
+      helpers: {
+        orderIndex: "Display order for promo slides. Smaller value appears first.",
+        status: "Enable if this promo slide should be visible on the website.",
+        image: "Main image for promo slide.",
+        altText: "Alternative text for accessibility and image fallback.",
+        title: "Short promo title for content identification.",
+      },
     },
     detail: {
       titlePrefix: "Promo Slide Detail",
@@ -803,6 +817,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        orderIndex: "Order Index",
+        status: "Status",
+        image: "Image",
+        languageTabs: "Language",
+        altText: "Alt Text",
+        title: "Title",
+      },
+      helpers: {
+        orderIndex: "Display order for promo slides. Smaller value appears first.",
+        status: "Enable if this promo slide should be visible on the website.",
+        image: "Upload a new image only when replacing current promo slide.",
+        languageTabs: "Choose which promo slide translation language you want to edit.",
+        altText: "Alternative text for accessibility and image fallback.",
+        title: "Short promo title for content identification.",
       },
     },
   },

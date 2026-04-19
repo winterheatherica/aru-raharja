@@ -19,6 +19,8 @@ export default function PromoSlideDetailPage({ locale, dict, slideId }: { locale
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.promoSlide?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -105,38 +107,63 @@ export default function PromoSlideDetailPage({ locale, dict, slideId }: { locale
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
-
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
-
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
-
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button type="button" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6" onClick={() => {
-            const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-            if (!next) return;
-            setTranslations((prev) => ({ ...prev, [next]: prev[next] || { alt: "", title: "" } }));
-            setActiveLang(next);
-          }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.orderIndex ?? "Order Index"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.orderIndex ?? "Urutan tampil promo slide. Angka lebih kecil akan muncul lebih dulu."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={orderIndex} onChange={(e) => setOrderIndex(Number(e.target.value || 0))} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika promo slide ini ingin tampil di website."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.image ?? "Image"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.image ?? "Upload gambar baru hanya jika ingin mengganti promo slide saat ini."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="file" accept="image/*" onChange={(e) => setImage(e.target.files?.[0] ?? null)} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan promo slide yang ingin kamu edit."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button type="button" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6" onClick={() => {
+              const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+              if (!next) return;
+              setTranslations((prev) => ({ ...prev, [next]: prev[next] || { alt: "", title: "" } }));
+              setActiveLang(next);
+            }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.altText ?? "Alt Text"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.altText ?? "Teks alternatif untuk aksesibilitas dan fallback jika gambar gagal dimuat."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.alt} onChange={(e) => updateField("alt", e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul singkat promo untuk kebutuhan konten/identifikasi."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.title} onChange={(e) => updateField("title", e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} />
+        </div>
 
         <div className="grid gap-3 md:grid-cols-3">
           <div className="grid gap-1">
-            <p className="text-sm font-medium text-bumnslate-6">16:9</p>
+            <p className="text-sm font-medium text-bumnslate-6">{t?.previewModes?.landscape ?? "16:9"}</p>
             <PromoSlidePreviewCard ratio="16:9" imageSrc={previewImage} alt={current.alt} emptyText={t?.previewEmpty ?? "Belum ada gambar"} />
           </div>
           <div className="grid gap-1">
-            <p className="text-sm font-medium text-bumnslate-6">1:1</p>
+            <p className="text-sm font-medium text-bumnslate-6">{t?.previewModes?.square ?? "1:1"}</p>
             <PromoSlidePreviewCard ratio="1:1" imageSrc={previewImage} alt={current.alt} emptyText={t?.previewEmpty ?? "Belum ada gambar"} />
           </div>
           <div className="grid gap-1">
-            <p className="text-sm font-medium text-bumnslate-6">9:16</p>
+            <p className="text-sm font-medium text-bumnslate-6">{t?.previewModes?.portrait ?? "9:16"}</p>
             <PromoSlidePreviewCard ratio="9:16" imageSrc={previewImage} alt={current.alt} emptyText={t?.previewEmpty ?? "Belum ada gambar"} />
           </div>
         </div>

@@ -779,6 +779,20 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        orderIndex: "Urutan",
+        status: "Status",
+        image: "Gambar",
+        altText: "Alt Text",
+        title: "Judul",
+      },
+      helpers: {
+        orderIndex: "Urutan tampil promo slide. Angka lebih kecil akan muncul lebih dulu.",
+        status: "Aktifkan jika promo slide ini ingin tampil di website.",
+        image: "Gambar utama promo slide.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback jika gambar gagal dimuat.",
+        title: "Judul singkat promo untuk kebutuhan konten/identifikasi.",
+      },
     },
     detail: {
       titlePrefix: "Detail Promo Slide",
@@ -803,6 +817,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        orderIndex: "Urutan",
+        status: "Status",
+        image: "Gambar",
+        languageTabs: "Bahasa",
+        altText: "Alt Text",
+        title: "Judul",
+      },
+      helpers: {
+        orderIndex: "Urutan tampil promo slide. Angka lebih kecil akan muncul lebih dulu.",
+        status: "Aktifkan jika promo slide ini ingin tampil di website.",
+        image: "Upload gambar baru hanya jika ingin mengganti promo slide saat ini.",
+        languageTabs: "Pilih bahasa terjemahan promo slide yang ingin kamu edit.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback jika gambar gagal dimuat.",
+        title: "Judul singkat promo untuk kebutuhan konten/identifikasi.",
       },
     },
   },
