@@ -25,6 +25,8 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
   const [rows, setRows] = useState<Row[]>([{ key: "fitur_1", feature: "Strategi Produk Digital", order_index: 1, cells: { aru_digital: "Pendekatan berbasis riset" } }]);
 
   const t = (dict as any)?.admin?.serviceMatrix?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   function addColumn() {
     const n = columns.length + 1;
@@ -94,46 +96,75 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSubmit} className="grid gap-4 rounded-2xl border border-bumnslate-10 bg-white p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="title" required />
-        <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="description" rows={2} />
-        <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={footnote} onChange={(e) => setFootnote(e.target.value)} placeholder="footnote" rows={2} />
-        <div className="flex gap-4 text-sm">
-          <label className="flex items-center gap-2"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> is_active</label>
-          <label className="flex items-center gap-2"><input type="checkbox" checked={compact} onChange={(e) => setCompact(e.target.checked)} /> compact</label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul utama tabel perbandingan matrix."}</p>
+          <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi singkat yang menjelaskan konteks matrix."}</p>
+          <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description"} rows={2} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.footnote ?? "Footnote"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.footnote ?? "Catatan kecil di bawah matrix (opsional)."}</p>
+          <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={footnote} onChange={(e) => setFootnote(e.target.value)} placeholder={t?.placeholders?.footnote ?? "footnote"} rows={2} />
+        </div>
+
+        <div className="grid gap-2 text-sm">
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika matrix ini ingin ditampilkan di halaman service."}</p>
+            <label className="flex items-center gap-2"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+          </div>
+          <div className="grid gap-1">
+            <label className="text-sm font-semibold text-bumnslate-7">{f?.compact ?? "Compact"}</label>
+            <p className="text-xs text-bumnslate-5">{h?.compact ?? "Aktifkan mode compact jika tabel ingin tampilan lebih rapat."}</p>
+            <label className="flex items-center gap-2"><input type="checkbox" checked={compact} onChange={(e) => setCompact(e.target.checked)} /> compact</label>
+          </div>
         </div>
 
         <div className="grid gap-2">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold">Columns</h3>
-            <button type="button" onClick={addColumn} className="rounded-lg border px-3 py-1 text-sm">+ Add Column</button>
+            <div className="grid gap-0.5">
+              <h3 className="font-semibold">{f?.columns ?? "Columns"}</h3>
+              <p className="text-xs text-bumnslate-5">{h?.columns ?? "Daftar kolom paket/opsi yang dibandingkan di matrix."}</p>
+            </div>
+            <button type="button" onClick={addColumn} className="rounded-lg border px-3 py-1 text-sm">{t?.addColumnButton ?? "+ Add Column"}</button>
           </div>
           {columns.map((c, i) => (
             <div key={i} className="grid grid-cols-4 gap-2">
-              <input className="rounded border px-2 py-1" value={c.key} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, key: e.target.value } : x))} placeholder="key" />
-              <input className="rounded border px-2 py-1" value={c.label} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, label: e.target.value } : x))} placeholder="label" />
-              <input className="rounded border px-2 py-1" value={c.order_index} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, order_index: Number(e.target.value) || 1 } : x))} placeholder="order" />
-              <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={c.popular} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, popular: e.target.checked } : x))} /> popular</label>
+              <input className="rounded border px-2 py-1" value={c.key} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, key: e.target.value } : x))} placeholder={t?.placeholders?.columnKey ?? "key"} />
+              <input className="rounded border px-2 py-1" value={c.label} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, label: e.target.value } : x))} placeholder={t?.placeholders?.columnLabel ?? "label"} />
+              <input className="rounded border px-2 py-1" value={c.order_index} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, order_index: Number(e.target.value) || 1 } : x))} placeholder={t?.placeholders?.columnOrder ?? "order"} />
+              <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={c.popular} onChange={(e) => setColumns((prev) => prev.map((x, idx) => idx === i ? { ...x, popular: e.target.checked } : x))} /> {t?.labels?.popular ?? "popular"}</label>
             </div>
           ))}
         </div>
 
         <div className="grid gap-2">
           <div className="flex justify-between items-center">
-            <h3 className="font-semibold">Rows + Cells</h3>
-            <button type="button" onClick={addRow} className="rounded-lg border px-3 py-1 text-sm">+ Add Row</button>
+            <div className="grid gap-0.5">
+              <h3 className="font-semibold">{f?.rowsCells ?? "Rows + Cells"}</h3>
+              <p className="text-xs text-bumnslate-5">{h?.rowsCells ?? "Baris fitur beserta isi nilai pada tiap kolom."}</p>
+            </div>
+            <button type="button" onClick={addRow} className="rounded-lg border px-3 py-1 text-sm">{t?.addRowButton ?? "+ Add Row"}</button>
           </div>
           {rows.map((r, ri) => (
             <div key={ri} className="rounded-xl border p-3 grid gap-2">
               <div className="grid grid-cols-3 gap-2">
-                <input className="rounded border px-2 py-1" value={r.key} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, key: e.target.value } : x))} placeholder="row key" />
-                <input className="rounded border px-2 py-1" value={r.feature} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, feature: e.target.value } : x))} placeholder="feature" />
-                <input className="rounded border px-2 py-1" value={r.order_index} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, order_index: Number(e.target.value) || 1 } : x))} placeholder="order" />
+                <input className="rounded border px-2 py-1" value={r.key} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, key: e.target.value } : x))} placeholder={t?.placeholders?.rowKey ?? "row key"} />
+                <input className="rounded border px-2 py-1" value={r.feature} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, feature: e.target.value } : x))} placeholder={t?.placeholders?.feature ?? "feature"} />
+                <input className="rounded border px-2 py-1" value={r.order_index} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, order_index: Number(e.target.value) || 1 } : x))} placeholder={t?.placeholders?.rowOrder ?? "order"} />
               </div>
               <div className="grid gap-2">
                 {columns.map((c, ci) => (
                   <div key={ci} className="grid grid-cols-[220px_1fr] gap-2 items-center">
                     <span className="text-sm text-bumnslate-7">{c.label || c.key}</span>
-                    <input className="rounded border px-2 py-1" value={r.cells[c.key] || ""} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, cells: { ...x.cells, [c.key]: e.target.value } } : x))} placeholder="cell value" />
+                    <input className="rounded border px-2 py-1" value={r.cells[c.key] || ""} onChange={(e) => setRows((prev) => prev.map((x, idx) => idx === ri ? { ...x, cells: { ...x.cells, [c.key]: e.target.value } } : x))} placeholder={t?.placeholders?.cellValue ?? "cell value"} />
                   </div>
                 ))}
               </div>
@@ -142,13 +173,13 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
         </div>
 
         <section className="grid gap-2">
-          <h3 className="font-semibold">Preview Matrix</h3>
-          <p className="text-xs text-bumnslate-6">Kalau tabel kesempitan, geser horizontal ke kanan/kiri.</p>
+          <h3 className="font-semibold">{t?.previewTitle ?? "Preview Matrix"}</h3>
+          <p className="text-xs text-bumnslate-6">{t?.previewHint ?? "Kalau tabel kesempitan, geser horizontal ke kanan/kiri."}</p>
           <div className="overflow-x-auto rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-3">
             <table className="min-w-[900px] w-full border-separate border-spacing-2 text-sm">
               <thead>
                 <tr>
-                  <th className="rounded-xl border border-bumnblue-4 bg-white px-3 py-2 text-left">Feature</th>
+                  <th className="rounded-xl border border-bumnblue-4 bg-white px-3 py-2 text-left">{t?.featureHeader ?? "Feature"}</th>
                   {columns.map((c, ci) => (
                     <th key={ci} className="rounded-xl border border-bumnblue-4 bg-white px-3 py-2 text-center">{c.label || c.key}</th>
                   ))}
@@ -168,7 +199,7 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
           </div>
         </section>
 
-        <button type="submit" disabled={saving} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-white w-fit">{saving ? "Saving..." : "Create"}</button>
+        <button type="submit" disabled={saving} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-white w-fit">{saving ? (t?.submitSaving ?? "Saving...") : (t?.submitIdle ?? "Create")}</button>
       </form>
     </main>
   );
