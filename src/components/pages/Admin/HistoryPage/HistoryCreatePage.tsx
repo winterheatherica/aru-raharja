@@ -19,6 +19,8 @@ export default function HistoryCreatePage({ locale, dict }: { locale: Locale; di
   const [tableRows, setTableRows] = useState<string[][]>([["", "", ""]]);
 
   const t = (dict as any)?.admin?.history?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   async function onCreate(e: FormEvent) {
     e.preventDefault();
@@ -70,13 +72,36 @@ export default function HistoryCreatePage({ locale, dict }: { locale: Locale; di
 
       <form onSubmit={onCreate} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
         <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Bahasa default: ID (EN auto-translate oleh backend)"}</p>
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={year} onChange={(e) => setYear(e.target.value === "" ? "" : Number(e.target.value))} placeholder={t?.placeholders?.year ?? "year"} />
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
-        <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.year ?? "Year"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.year ?? "Year penanda periode sejarah yang ditampilkan di timeline/section history."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={year} onChange={(e) => setYear(e.target.value === "" ? "" : Number(e.target.value))} placeholder={t?.placeholders?.year ?? "year"} />
+        </div>
 
-        <HistoryTableEditor headers={tableHeaders} rows={tableRows} setHeaders={setTableHeaders} setRows={setTableRows} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika entry history ini ingin ditampilkan di website."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul utama untuk momen/peristiwa sejarah pada tahun tersebut."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Penjelasan detail tentang peristiwa sejarah. Bisa lebih dari satu kalimat."}</p>
+          <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.tableData ?? "Table Data"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.tableData ?? "Gunakan tabel untuk detail terstruktur (misalnya milestone, capaian, atau data pendukung per tahun)."}</p>
+          <HistoryTableEditor headers={tableHeaders} rows={tableRows} setHeaders={setTableHeaders} setRows={setTableRows} />
+        </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2">{saving ? (t?.submitSaving ?? "Saving...") : (t?.submitIdle ?? "Create History")}</button>
       </form>

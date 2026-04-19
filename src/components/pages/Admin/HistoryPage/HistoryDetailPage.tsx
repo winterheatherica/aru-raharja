@@ -20,6 +20,8 @@ export default function HistoryDetailPage({ locale, dict, historyId }: { locale:
   const [tableRows, setTableRows] = useState<string[][]>([["", "", ""]]);
 
   const t = (dict as any)?.admin?.history?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -94,14 +96,41 @@ export default function HistoryDetailPage({ locale, dict, historyId }: { locale:
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <p className="text-sm text-bumnslate-6"><b>Language:</b> {language}</p>
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={year} onChange={(e) => setYear(e.target.value === "" ? "" : Number(e.target.value))} placeholder={t?.placeholders?.year ?? "year"} />
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.language ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.language ?? "Bahasa konten history yang sedang kamu edit saat ini."}</p>
+          <p className="text-sm text-bumnslate-6"><b>{t?.languageValueLabel ?? "Value"}:</b> {language}</p>
+        </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
-        <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.year ?? "Year"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.year ?? "Year penanda periode sejarah yang ditampilkan di timeline/section history."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" type="number" value={year} onChange={(e) => setYear(e.target.value === "" ? "" : Number(e.target.value))} placeholder={t?.placeholders?.year ?? "year"} />
+        </div>
 
-        <HistoryTableEditor headers={tableHeaders} rows={tableRows} setHeaders={setTableHeaders} setRows={setTableRows} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika entry history ini ingin ditampilkan di website."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul utama untuk momen/peristiwa sejarah pada tahun tersebut."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t?.placeholders?.title ?? "title"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Penjelasan detail tentang peristiwa sejarah. Bisa lebih dari satu kalimat."}</p>
+          <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={t?.placeholders?.description ?? "description"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.tableData ?? "Table Data"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.tableData ?? "Gunakan tabel untuk detail terstruktur (misalnya milestone, capaian, atau data pendukung per tahun)."}</p>
+          <HistoryTableEditor headers={tableHeaders} rows={tableRows} setHeaders={setTableHeaders} setRows={setTableRows} />
+        </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2">{saving ? (t?.saveSaving ?? "Saving...") : (t?.savePrefix ?? "Save")}</button>
       </form>
