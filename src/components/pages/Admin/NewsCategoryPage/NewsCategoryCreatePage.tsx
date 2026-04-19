@@ -15,6 +15,8 @@ export default function NewsCategoryCreatePage({ locale, dict }: { locale: Local
   const [description, setDescription] = useState("");
 
   const t = (dict as any)?.admin?.newsCategory?.create;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   async function onCreate(e: FormEvent) {
     e.preventDefault();
@@ -63,13 +65,31 @@ export default function NewsCategoryCreatePage({ locale, dict }: { locale: Local
       <form onSubmit={onCreate} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
         <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Bahasa default: ID (EN auto-translate oleh backend)"}</p>
 
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-        </label>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika kategori ini ingin dipakai dan tampil pada artikel berita."}</p>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+          </label>
+        </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={name} onChange={(e) => setName(e.target.value)} placeholder={`${t?.placeholders?.name ?? "name"} (ID)`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder={`${t?.placeholders?.slug ?? "slug"} (ID)`} />
-        <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (ID)`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.name ?? "Name"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.name ?? "Nama kategori yang akan tampil ke user (contoh: Teknologi, Event, Pengumuman)."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={name} onChange={(e) => setName(e.target.value)} placeholder={`${t?.placeholders?.name ?? "name"} (ID)`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.slug ?? "Slug"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.slug ?? "Identifier URL kategori (huruf kecil & dash), dipakai untuk routing/filtering."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={slug} onChange={(e) => setSlug(e.target.value)} placeholder={`${t?.placeholders?.slug ?? "slug"} (ID)`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi singkat kategori untuk konteks internal atau tampilan tambahan (opsional)."}</p>
+          <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={description} onChange={(e) => setDescription(e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (ID)`} />
+        </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? (t?.submitSaving ?? "Menyimpan...") : (t?.submitIdle ?? "Buat News Category")}</button>
       </form>

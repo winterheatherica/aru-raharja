@@ -17,6 +17,8 @@ export default function NewsCategoryDetailPage({ locale, dict, categoryId }: { l
   const [activeLang, setActiveLang] = useState("ID");
 
   const t = (dict as any)?.admin?.newsCategory?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   useEffect(() => {
     (async () => {
@@ -116,29 +118,51 @@ export default function NewsCategoryDetailPage({ locale, dict, categoryId }: { l
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSave} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
-        </label>
-
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button
-            type="button"
-            className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
-            onClick={() => {
-              const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-              if (!next) return;
-              setTranslations((prev) => ({ ...prev, [next]: prev[next] || { name: "", slug: "", description: "" } }));
-              setActiveLang(next);
-            }}
-          >{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika kategori ini ingin dipakai dan tampil pada artikel berita."}</p>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}
+          </label>
         </div>
 
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.name} onChange={(e) => updateField("name", e.target.value)} placeholder={`${t?.placeholders?.name ?? "name"} (${activeLang})`} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.slug} onChange={(e) => updateField("slug", e.target.value)} placeholder={`${t?.placeholders?.slug ?? "slug"} (${activeLang})`} />
-        <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan kategori yang ingin kamu edit."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button
+              type="button"
+              className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
+              onClick={() => {
+                const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+                if (!next) return;
+                setTranslations((prev) => ({ ...prev, [next]: prev[next] || { name: "", slug: "", description: "" } }));
+                setActiveLang(next);
+              }}
+            >{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
+          </div>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.name ?? "Name"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.name ?? "Nama kategori yang akan tampil ke user (contoh: Teknologi, Event, Pengumuman)."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.name} onChange={(e) => updateField("name", e.target.value)} placeholder={`${t?.placeholders?.name ?? "name"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.slug ?? "Slug"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.slug ?? "Identifier URL kategori (huruf kecil & dash), dipakai untuk routing/filtering."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.slug} onChange={(e) => updateField("slug", e.target.value)} placeholder={`${t?.placeholders?.slug ?? "slug"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.description ?? "Description"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.description ?? "Deskripsi singkat kategori untuk konteks internal atau tampilan tambahan (opsional)."}</p>
+          <textarea className="min-h-28 rounded-xl border border-bumnslate-10 bg-white px-3 py-2" value={current.description} onChange={(e) => updateField("description", e.target.value)} placeholder={`${t?.placeholders?.description ?? "description"} (${activeLang})`} />
+        </div>
 
         <button type="submit" disabled={saving} className="inline-flex w-fit items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-white shadow-bumn-2 transition hover:opacity-95">{saving ? (t?.saveSaving ?? "Menyimpan...") : `${t?.savePrefix ?? "Simpan"} ${activeLang}`}</button>
       </form>

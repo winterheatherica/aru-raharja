@@ -261,6 +261,18 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        status: "Status",
+        name: "Nama",
+        slug: "Slug",
+        description: "Deskripsi",
+      },
+      helpers: {
+        status: "Aktifkan jika kategori ini ingin dipakai dan tampil pada artikel berita.",
+        name: "Nama kategori yang akan tampil ke user (contoh: Teknologi, Event, Pengumuman).",
+        slug: "Identifier URL kategori (huruf kecil & dash), dipakai untuk routing/filtering.",
+        description: "Deskripsi singkat kategori untuk konteks internal atau tampilan tambahan (opsional).",
+      },
       validation: {
         idRequired: "Isi Name & Slug untuk bahasa ID dulu.",
       },
@@ -281,6 +293,20 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        status: "Status",
+        languageTabs: "Bahasa",
+        name: "Nama",
+        slug: "Slug",
+        description: "Deskripsi",
+      },
+      helpers: {
+        status: "Aktifkan jika kategori ini ingin dipakai dan tampil pada artikel berita.",
+        languageTabs: "Pilih bahasa terjemahan kategori yang ingin kamu edit.",
+        name: "Nama kategori yang akan tampil ke user (contoh: Teknologi, Event, Pengumuman).",
+        slug: "Identifier URL kategori (huruf kecil & dash), dipakai untuk routing/filtering.",
+        description: "Deskripsi singkat kategori untuk konteks internal atau tampilan tambahan (opsional).",
       },
     },
   },

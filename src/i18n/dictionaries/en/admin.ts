@@ -261,6 +261,18 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        status: "Status",
+        name: "Name",
+        slug: "Slug",
+        description: "Description",
+      },
+      helpers: {
+        status: "Enable if this category should be available and visible on news articles.",
+        name: "Category name shown to users (for example: Technology, Event, Announcement).",
+        slug: "Category URL identifier (lowercase + dash), used for routing/filtering.",
+        description: "Short description for internal context or optional display text.",
+      },
       validation: {
         idRequired: "Please fill Name & Slug for ID language first.",
       },
@@ -281,6 +293,20 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        status: "Status",
+        languageTabs: "Language",
+        name: "Name",
+        slug: "Slug",
+        description: "Description",
+      },
+      helpers: {
+        status: "Enable if this category should be available and visible on news articles.",
+        languageTabs: "Choose which category translation language you want to edit.",
+        name: "Category name shown to users (for example: Technology, Event, Announcement).",
+        slug: "Category URL identifier (lowercase + dash), used for routing/filtering.",
+        description: "Short description for internal context or optional display text.",
       },
     },
   },
