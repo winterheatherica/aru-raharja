@@ -37,6 +37,8 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
   const [langOptions, setLangOptions] = useState<string[]>(["ID"]);
 
   const t = (dict as any)?.admin?.serviceCertification?.detail;
+  const f = t?.fields;
+  const h = t?.helpers;
 
   async function loadByLang(lang: string) {
     setLoading(true);
@@ -115,29 +117,58 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
       </section>
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
       <form onSubmit={onSubmit} className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-white p-5 shadow-bumn-2">
-        <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
-            <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
-          ))}
-          <button
-            type="button"
-            className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
-            onClick={() => {
-              const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-              if (!next) return;
-              if (!langOptions.includes(next)) setLangOptions((prev) => [...prev, next]);
-              setActiveLang(next);
-            }}
-          >
-            {t?.addLanguageButton ?? "+ Tambah Bahasa"}
-          </button>
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan certification yang ingin kamu edit."}</p>
+          <div className="flex flex-wrap gap-2">
+            {langOptions.map((lang) => (
+              <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
+            ))}
+            <button
+              type="button"
+              className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6"
+              onClick={() => {
+                const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
+                if (!next) return;
+                if (!langOptions.includes(next)) setLangOptions((prev) => [...prev, next]);
+                setActiveLang(next);
+              }}
+            >
+              {t?.addLanguageButton ?? "+ Tambah Bahasa"}
+            </button>
+          </div>
         </div>
 
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={orderIndex} onChange={(e) => setOrderIndex(e.target.value)} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} required />
-        <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={alt} onChange={(e) => setAlt(e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
-        <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder={`${t?.placeholders?.caption ?? "caption"} (${activeLang})`} rows={3} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.status ?? "Status"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.status ?? "Aktifkan jika item certification ini ingin tampil di halaman service."}</p>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={isActive} onChange={(e) => setIsActive(e.target.checked)} /> {t?.labels?.isActive ?? "is_active"}</label>
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.orderIndex ?? "Order Index"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.orderIndex ?? "Urutan tampil certification pada service. Angka lebih kecil muncul lebih dulu."}</p>
+          <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={orderIndex} onChange={(e) => setOrderIndex(e.target.value)} placeholder={t?.placeholders?.orderIndex ?? "order_index"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul certification yang ditampilkan ke user."}</p>
+          <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} placeholder={`${t?.placeholders?.title ?? "title"} (${activeLang})`} required />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.altText ?? "Alt Text"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.altText ?? "Teks alternatif untuk aksesibilitas dan fallback gambar certification."}</p>
+          <input className="rounded-xl border border-bumnslate-10 px-3 py-2" value={alt} onChange={(e) => setAlt(e.target.value)} placeholder={`${t?.placeholders?.alt ?? "alt"} (${activeLang})`} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{f?.caption ?? "Caption"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.caption ?? "Keterangan tambahan singkat untuk certification (opsional)."}</p>
+          <textarea className="rounded-xl border border-bumnslate-10 px-3 py-2" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder={`${t?.placeholders?.caption ?? "caption"} (${activeLang})`} rows={3} />
+        </div>
+
         <div className="flex gap-2">
           <button type="submit" disabled={saving} className="rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 text-white w-fit">{saving ? (t?.saveSaving ?? "Saving...") : `${t?.saveIdle ?? "Save"} ${activeLang}`}</button>
           <button type="button" onClick={onDelete} className="rounded-xl border border-red-300 px-4 py-2 text-red-600 w-fit">{t?.deleteButton ?? "Hard Delete"}</button>
