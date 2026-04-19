@@ -1,6 +1,7 @@
 const admin = {
   common: {
     redirecting: "Redirecting...",
+    formFieldHelper: "Use this field according to its label and function.",
   },
   me: {
     title: "Admin • Me",
@@ -16,6 +17,12 @@ const admin = {
       active: "Active",
       createdAt: "Created",
       updatedAt: "Updated",
+    },
+    helpers: {
+      email: "Primary account email used for login and account communication.",
+      username: "Unique username/handle for admin identity.",
+      name: "Display name shown in admin profile and internal references.",
+      password: "Fill only if you want to change password. Leave empty to keep current password.",
     },
     buttons: {
       edit: "Edit",
@@ -80,6 +87,16 @@ const admin = {
         label: "Label",
         description: "Description",
       },
+      helpers: {
+        year: "Award year shown on card/listing (for example: 2024).",
+        orderIndex: "Display order in award section. Smaller value appears first.",
+        status: "Enable if this award should appear publicly on the website.",
+        image: "Main award image/certificate used in cards and detail pages.",
+        altText: "Alternative text for accessibility and fallback when image fails.",
+        title: "Main award title shown to visitors.",
+        label: "Short badge/tag text, usually organization or category.",
+        description: "Additional explanation about this award (optional but recommended).",
+      },
     },
     detail: {
       titlePrefix: "Award Detail",
@@ -113,6 +130,16 @@ const admin = {
         title: "Title",
         label: "Label",
         description: "Description",
+      },
+      helpers: {
+        year: "Award year shown on card/listing (for example: 2024).",
+        orderIndex: "Display order in award section. Smaller value appears first.",
+        status: "Enable if this award should appear publicly on the website.",
+        image: "Upload new image only when you want to replace current award image.",
+        altText: "Alternative text for accessibility and fallback when image fails.",
+        title: "Main award title shown to visitors.",
+        label: "Short badge/tag text, usually organization or category.",
+        description: "Additional explanation about this award (optional but recommended).",
       },
     },
   },
@@ -148,6 +175,24 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        title: "Title",
+        location: "Location",
+        employment: "Employment",
+        status: "Status",
+        openedAt: "Opened At",
+        closedAt: "Closed At",
+        description: "Description",
+      },
+      helpers: {
+        title: "Job position title shown on career listing and detail pages.",
+        location: "Work location shown to applicants (city, area, or remote).",
+        employment: "Contract type for this vacancy (full-time, part-time, internship, contract).",
+        status: "Enable if this vacancy should be visible and open for applicants.",
+        openedAt: "Start date when this vacancy becomes available.",
+        closedAt: "Optional closing date; leave empty if vacancy is still open.",
+        description: "Main job description and requirements for applicants.",
+      },
     },
     detail: {
       titlePrefix: "Vacancy Detail",
@@ -166,6 +211,24 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        title: "Title",
+        location: "Location",
+        employment: "Employment",
+        status: "Status",
+        openedAt: "Opened At",
+        closedAt: "Closed At",
+        description: "Description",
+      },
+      helpers: {
+        title: "Job position title shown on career listing and detail pages.",
+        location: "Work location shown to applicants (city, area, or remote).",
+        employment: "Contract type for this vacancy (full-time, part-time, internship, contract).",
+        status: "Enable if this vacancy should be visible and open for applicants.",
+        openedAt: "Start date when this vacancy becomes available.",
+        closedAt: "Optional closing date; leave empty if vacancy is still open.",
+        description: "Main job description and requirements for applicants.",
       },
     },
   },
@@ -456,6 +519,22 @@ const admin = {
       labels: {
         isActive: "is_active_client_scroller",
       },
+      fields: {
+        orderIndex: "Order Index",
+        status: "Status",
+        image: "Image",
+        altText: "Alt Text",
+        title: "Title",
+        description: "Description",
+      },
+      helpers: {
+        orderIndex: "Display order in client section. Smaller value appears first.",
+        status: "Enable if this client logo should appear in client scroller.",
+        image: "Client logo/image shown on client section cards.",
+        altText: "Alternative text for accessibility and image fallback.",
+        title: "Client name or short title used for internal/admin reference.",
+        description: "Optional short note/description for this client item.",
+      },
     },
     detail: {
       titlePrefix: "Client Detail",
@@ -476,6 +555,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active_client_scroller",
+      },
+      fields: {
+        orderIndex: "Order Index",
+        status: "Status",
+        image: "Image",
+        altText: "Alt Text",
+        title: "Title",
+        description: "Description",
+      },
+      helpers: {
+        orderIndex: "Display order in client section. Smaller value appears first.",
+        status: "Enable if this client logo should appear in client scroller.",
+        image: "Upload a new image only when you want to replace current client logo.",
+        altText: "Alternative text for accessibility and image fallback.",
+        title: "Client name or short title used for internal/admin reference.",
+        description: "Optional short note/description for this client item.",
       },
     },
   },
@@ -630,6 +725,20 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        year: "Year",
+        status: "Status",
+        title: "Title",
+        description: "Description",
+        tableData: "Table Data",
+      },
+      helpers: {
+        year: "Year marker for the history period shown on timeline/history section.",
+        status: "Enable if this history entry should be visible on the website.",
+        title: "Main title for the historical moment/event in that year.",
+        description: "Detailed explanation of the historical event. Can be more than one sentence.",
+        tableData: "Use this table for structured details (e.g. milestones, achievements, or supporting data per year).",
+      },
     },
     detail: {
       titlePrefix: "History Detail",
@@ -638,6 +747,7 @@ const admin = {
       savePrefix: "Save",
       saveSaving: "Saving...",
       saved: "Saved",
+      languageValueLabel: "Value",
       placeholders: {
         year: "year",
         title: "title",
@@ -647,6 +757,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        language: "Language",
+        year: "Year",
+        status: "Status",
+        title: "Title",
+        description: "Description",
+        tableData: "Table Data",
+      },
+      helpers: {
+        language: "Current content language for this history entry.",
+        year: "Year marker for the history period shown on timeline/history section.",
+        status: "Enable if this history entry should be visible on the website.",
+        title: "Main title for the historical moment/event in that year.",
+        description: "Detailed explanation of the historical event. Can be more than one sentence.",
+        tableData: "Use this table for structured details (e.g. milestones, achievements, or supporting data per year).",
       },
     },
   },

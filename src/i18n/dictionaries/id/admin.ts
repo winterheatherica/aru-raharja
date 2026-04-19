@@ -1,6 +1,7 @@
 const admin = {
   common: {
     redirecting: "Mengalihkan...",
+    formFieldHelper: "Isi field ini sesuai label dan fungsi datanya.",
   },
   me: {
     title: "Admin • Saya",
@@ -16,6 +17,12 @@ const admin = {
       active: "Active",
       createdAt: "Created",
       updatedAt: "Updated",
+    },
+    helpers: {
+      email: "Email akun utama yang dipakai untuk login dan komunikasi akun.",
+      username: "Username unik sebagai identitas admin.",
+      name: "Nama tampilan yang muncul di profil admin dan referensi internal.",
+      password: "Isi hanya kalau mau ganti password. Kosongkan kalau tidak ingin mengubah password saat ini.",
     },
     buttons: {
       edit: "Edit",
@@ -80,6 +87,16 @@ const admin = {
         label: "Label",
         description: "Deskripsi",
       },
+      helpers: {
+        year: "Tahun award yang akan tampil di kartu/daftar (contoh: 2024).",
+        orderIndex: "Urutan tampil di section award. Angka lebih kecil muncul lebih dulu.",
+        status: "Aktifkan jika award ini ingin ditampilkan ke publik di website.",
+        image: "Gambar utama award/sertifikat yang dipakai di kartu dan halaman detail.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback saat gambar gagal dimuat.",
+        title: "Judul utama award yang dilihat pengunjung.",
+        label: "Teks tag pendek, biasanya nama institusi atau kategori penghargaan.",
+        description: "Penjelasan tambahan tentang award ini (opsional tapi disarankan).",
+      },
     },
     detail: {
       titlePrefix: "Detail Award",
@@ -113,6 +130,16 @@ const admin = {
         title: "Judul",
         label: "Label",
         description: "Deskripsi",
+      },
+      helpers: {
+        year: "Tahun award yang akan tampil di kartu/daftar (contoh: 2024).",
+        orderIndex: "Urutan tampil di section award. Angka lebih kecil muncul lebih dulu.",
+        status: "Aktifkan jika award ini ingin ditampilkan ke publik di website.",
+        image: "Upload gambar baru hanya jika mau mengganti gambar award saat ini.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback saat gambar gagal dimuat.",
+        title: "Judul utama award yang dilihat pengunjung.",
+        label: "Teks tag pendek, biasanya nama institusi atau kategori penghargaan.",
+        description: "Penjelasan tambahan tentang award ini (opsional tapi disarankan).",
       },
     },
   },
@@ -148,6 +175,24 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        title: "Judul Posisi",
+        location: "Lokasi",
+        employment: "Jenis Kerja",
+        status: "Status",
+        openedAt: "Tanggal Buka",
+        closedAt: "Tanggal Tutup",
+        description: "Deskripsi",
+      },
+      helpers: {
+        title: "Nama posisi pekerjaan yang tampil di daftar dan detail lowongan.",
+        location: "Lokasi kerja untuk pelamar (kota, area, atau remote).",
+        employment: "Tipe kontrak lowongan ini (full-time, part-time, internship, contract).",
+        status: "Aktifkan jika lowongan ini ingin ditampilkan dan bisa dilamar.",
+        openedAt: "Tanggal mulai lowongan dibuka.",
+        closedAt: "Opsional. Kosongkan jika lowongan masih dibuka tanpa batas tanggal.",
+        description: "Isi deskripsi pekerjaan, tanggung jawab, dan kualifikasi pelamar.",
+      },
     },
     detail: {
       titlePrefix: "Detail Lowongan",
@@ -166,6 +211,24 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        title: "Judul Posisi",
+        location: "Lokasi",
+        employment: "Jenis Kerja",
+        status: "Status",
+        openedAt: "Tanggal Buka",
+        closedAt: "Tanggal Tutup",
+        description: "Deskripsi",
+      },
+      helpers: {
+        title: "Nama posisi pekerjaan yang tampil di daftar dan detail lowongan.",
+        location: "Lokasi kerja untuk pelamar (kota, area, atau remote).",
+        employment: "Tipe kontrak lowongan ini (full-time, part-time, internship, contract).",
+        status: "Aktifkan jika lowongan ini ingin ditampilkan dan bisa dilamar.",
+        openedAt: "Tanggal mulai lowongan dibuka.",
+        closedAt: "Opsional. Kosongkan jika lowongan masih dibuka tanpa batas tanggal.",
+        description: "Isi deskripsi pekerjaan, tanggung jawab, dan kualifikasi pelamar.",
       },
     },
   },
@@ -456,6 +519,22 @@ const admin = {
       labels: {
         isActive: "is_active_client_scroller",
       },
+      fields: {
+        orderIndex: "Urutan",
+        status: "Status",
+        image: "Gambar",
+        altText: "Alt Text",
+        title: "Judul",
+        description: "Deskripsi",
+      },
+      helpers: {
+        orderIndex: "Urutan tampil di section client. Angka lebih kecil muncul lebih dulu.",
+        status: "Aktifkan jika logo client ini ingin tampil di client scroller.",
+        image: "Logo/gambar client yang akan ditampilkan pada section client.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback saat gambar gagal dimuat.",
+        title: "Nama client atau judul singkat untuk referensi admin.",
+        description: "Catatan/deskripsi singkat client (opsional).",
+      },
     },
     detail: {
       titlePrefix: "Detail Client",
@@ -476,6 +555,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active_client_scroller",
+      },
+      fields: {
+        orderIndex: "Urutan",
+        status: "Status",
+        image: "Gambar",
+        altText: "Alt Text",
+        title: "Judul",
+        description: "Deskripsi",
+      },
+      helpers: {
+        orderIndex: "Urutan tampil di section client. Angka lebih kecil muncul lebih dulu.",
+        status: "Aktifkan jika logo client ini ingin tampil di client scroller.",
+        image: "Upload gambar baru hanya jika mau mengganti logo client saat ini.",
+        altText: "Teks alternatif untuk aksesibilitas dan fallback saat gambar gagal dimuat.",
+        title: "Nama client atau judul singkat untuk referensi admin.",
+        description: "Catatan/deskripsi singkat client (opsional).",
       },
     },
   },
@@ -630,6 +725,20 @@ const admin = {
       labels: {
         isActive: "is_active",
       },
+      fields: {
+        year: "Tahun",
+        status: "Status",
+        title: "Judul",
+        description: "Deskripsi",
+        tableData: "Data Tabel",
+      },
+      helpers: {
+        year: "Tahun penanda periode sejarah yang ditampilkan di timeline/section history.",
+        status: "Aktifkan jika entry history ini ingin ditampilkan di website.",
+        title: "Judul utama untuk momen/peristiwa sejarah pada tahun tersebut.",
+        description: "Penjelasan detail tentang peristiwa sejarah. Bisa lebih dari satu kalimat.",
+        tableData: "Gunakan tabel untuk detail terstruktur (misalnya milestone, capaian, atau data pendukung per tahun).",
+      },
     },
     detail: {
       titlePrefix: "Detail History",
@@ -638,6 +747,7 @@ const admin = {
       savePrefix: "Simpan",
       saveSaving: "Menyimpan...",
       saved: "Berhasil disimpan",
+      languageValueLabel: "Nilai",
       placeholders: {
         year: "year",
         title: "title",
@@ -647,6 +757,22 @@ const admin = {
       },
       labels: {
         isActive: "is_active",
+      },
+      fields: {
+        language: "Bahasa",
+        year: "Tahun",
+        status: "Status",
+        title: "Judul",
+        description: "Deskripsi",
+        tableData: "Data Tabel",
+      },
+      helpers: {
+        language: "Bahasa konten history yang sedang kamu edit saat ini.",
+        year: "Tahun penanda periode sejarah yang ditampilkan di timeline/section history.",
+        status: "Aktifkan jika entry history ini ingin ditampilkan di website.",
+        title: "Judul utama untuk momen/peristiwa sejarah pada tahun tersebut.",
+        description: "Penjelasan detail tentang peristiwa sejarah. Bisa lebih dari satu kalimat.",
+        tableData: "Gunakan tabel untuk detail terstruktur (misalnya milestone, capaian, atau data pendukung per tahun).",
       },
     },
   },

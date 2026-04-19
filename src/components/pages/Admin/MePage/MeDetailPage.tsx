@@ -30,6 +30,7 @@ export default function MePage({ dict, locale }: { dict?: Dictionary; locale: Lo
   const [password, setPassword] = useState("");
 
   const t = (dict as any)?.admin?.me;
+  const h = t?.helpers;
 
   async function loadMe() {
     setLoading(true);
@@ -124,10 +125,29 @@ export default function MePage({ dict, locale }: { dict?: Dictionary; locale: Lo
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <section className="grid gap-3 rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2">
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" type="email" value={email} disabled={!editing} onChange={(e) => setEmail(e.target.value)} placeholder={t?.fields?.email ?? "Email"} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" value={username} disabled={!editing} onChange={(e) => setUsername(e.target.value)} placeholder={t?.fields?.username ?? "Username"} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" value={fullName} disabled={!editing} onChange={(e) => setFullName(e.target.value)} placeholder={t?.fields?.name ?? "Full Name"} />
-        <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" type="password" value={password} disabled={!editing} onChange={(e) => setPassword(e.target.value)} placeholder={t?.fields?.password ?? "Password (optional)"} />
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.email ?? "Email"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.email ?? "Primary account email used for login and account communication."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" type="email" value={email} disabled={!editing} onChange={(e) => setEmail(e.target.value)} placeholder={t?.fields?.email ?? "Email"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.username ?? "Username"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.username ?? "Unique username/handle for admin identity."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" value={username} disabled={!editing} onChange={(e) => setUsername(e.target.value)} placeholder={t?.fields?.username ?? "Username"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.name ?? "Full Name"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.name ?? "Display name shown in admin profile and internal references."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" value={fullName} disabled={!editing} onChange={(e) => setFullName(e.target.value)} placeholder={t?.fields?.name ?? "Full Name"} />
+        </div>
+
+        <div className="grid gap-1">
+          <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.password ?? "Password (optional)"}</label>
+          <p className="text-xs text-bumnslate-5">{h?.password ?? "Fill only if you want to change password. Leave empty to keep current password."}</p>
+          <input className="rounded-xl border border-bumnslate-10 bg-white px-3 py-2 disabled:bg-bumnslate-2" type="password" value={password} disabled={!editing} onChange={(e) => setPassword(e.target.value)} placeholder={t?.fields?.password ?? "Password (optional)"} />
+        </div>
 
         <div className="rounded-xl border border-bumnslate-10 bg-white p-3 text-sm text-bumnslate-6 grid gap-1">
           <p><span className="font-medium">{t?.fields?.role ?? "Role"}:</span> {me.role || "-"}</p>
