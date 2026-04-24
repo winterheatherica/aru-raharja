@@ -323,7 +323,7 @@ const admin = {
     create: {
       title: "Buat News Article",
       backToList: "Kembali ke daftar",
-      defaultLanguageHint: "Bahasa default: ID (EN auto-translate + slug EN digenerate backend)",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
       submitIdle: "Buat Artikel",
       submitSaving: "Menyimpan...",
       authorLabel: "Penulis",
@@ -433,7 +433,7 @@ const admin = {
       backToList: "Kembali",
       languageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
       serviceRequired: "Pilih service dulu di list page.",
-      submitIdle: "Buat",
+      submitIdle: "Buat Service Certification",
       submitSaving: "Menyimpan...",
       labels: {
         isActive: "is_active",
@@ -510,7 +510,8 @@ const admin = {
       titlePrefix: "Buat Service Matrix",
       backToList: "Kembali",
       serviceRequired: "Pilih service dulu di list page.",
-      submitIdle: "Buat",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      submitIdle: "Buat Service Matrix",
       submitSaving: "Menyimpan...",
       addColumnButton: "+ Add Column",
       addRowButton: "+ Add Row",
@@ -622,7 +623,7 @@ const admin = {
       languageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
       serviceRequired: "Pilih service dulu di list page.",
       imageRequired: "Image wajib",
-      submitIdle: "Buat",
+      submitIdle: "Buat Service Gallery",
       submitSaving: "Menyimpan...",
       labels: {
         isActive: "is_active",
@@ -698,7 +699,8 @@ const admin = {
       titlePrefix: "Buat Service Pricing Tier",
       backToList: "Kembali",
       serviceRequired: "Pilih service dulu di list page.",
-      submitIdle: "Buat",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
+      submitIdle: "Buat Service Pricing Tier",
       submitSaving: "Menyimpan...",
       labels: {
         popular: "popular",
@@ -790,7 +792,7 @@ const admin = {
     create: {
       title: "Buat Space Room",
       backToList: "Kembali ke daftar",
-      defaultLanguageHint: "Master dulu (ID), lalu EN auto-translate dari backend",
+      defaultLanguageHint: "Bahasa default: ID (EN auto-translate oleh backend)",
       submitIdle: "Buat Space Room",
       submitSaving: "Menyimpan...",
       authorLabel: "Penulis",

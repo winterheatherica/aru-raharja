@@ -96,6 +96,7 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
       {error && <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>}
 
       <form onSubmit={onSubmit} className="grid gap-4 rounded-2xl border border-bumnslate-10 bg-white p-5 shadow-bumn-2">
+        <p className="inline-flex w-fit rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">{t?.defaultLanguageHint ?? "Bahasa default: ID (EN auto-translate oleh backend)"}</p>
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-bumnslate-7">{f?.title ?? "Title"}</label>
           <p className="text-xs text-bumnslate-5">{h?.title ?? "Judul utama tabel perbandingan matrix."}</p>
