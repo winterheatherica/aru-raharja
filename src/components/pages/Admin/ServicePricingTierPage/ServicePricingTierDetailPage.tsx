@@ -122,7 +122,7 @@ export default function ServicePricingTierDetailPage({ locale, dict, tierId }: {
           <label className="text-sm font-semibold text-bumnslate-7">{f?.languageTabs ?? "Language"}</label>
           <p className="text-xs text-bumnslate-5">{h?.languageTabs ?? "Pilih bahasa terjemahan pricing tier yang ingin kamu edit."}</p>
           <div className="flex flex-wrap gap-2">
-            {langOptions.map((lang) => (
+            {[...langOptions].sort((a, b) => { const ra = a === "EN" ? 0 : a === "ID" ? 1 : 2; const rb = b === "EN" ? 0 : b === "ID" ? 1 : 2; return ra - rb || a.localeCompare(b); }).map((lang) => (
               <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
             ))}
           </div>

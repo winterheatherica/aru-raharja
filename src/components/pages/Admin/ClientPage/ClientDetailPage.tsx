@@ -125,16 +125,10 @@ export default function ClientDetailPage({ locale, dict, clientId }: { locale: L
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {langOptions.map((lang) => (
+          {[...langOptions].sort((a, b) => { const ra = a === "EN" ? 0 : a === "ID" ? 1 : 2; const rb = b === "EN" ? 0 : b === "ID" ? 1 : 2; return ra - rb || a.localeCompare(b); }).map((lang) => (
             <button key={lang} type="button" onClick={() => setActiveLang(lang)} className={`rounded-xl px-3 py-1.5 text-sm transition ${activeLang === lang ? "bg-bumn-gradient-primary-11 text-white shadow-bumn-2" : "border border-bumnslate-10 bg-white text-bumnslate-6"}`}>{lang}</button>
           ))}
-          <button type="button" className="rounded-xl border border-bumnslate-10 bg-white px-3 py-1.5 text-sm text-bumnslate-6" onClick={() => {
-            const next = prompt(t?.addLanguagePrompt ?? "Tambah bahasa (contoh: EN)")?.trim().toUpperCase();
-            if (!next) return;
-            setTranslations((prev) => ({ ...prev, [next]: prev[next] || { alt: "", title: "", description: "" } }));
-            setActiveLang(next);
-          }}>{t?.addLanguageButton ?? "+ Tambah Bahasa"}</button>
-        </div>
+</div>
 
         <div className="grid gap-1">
           <label className="text-sm font-semibold text-bumnslate-7">{t?.fields?.altText ?? "Alt Text"}</label>
