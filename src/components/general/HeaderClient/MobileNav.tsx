@@ -118,9 +118,9 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
           <LangSwitcher locale={locale} />
         </div>
 
-        <div className="mt-3 pt-2 pl-1">
+        {/* <div className="mt-3 pt-2 pl-1">
           <UserIcon />
-        </div>
+        </div> */}
       </div>
     </>
   );

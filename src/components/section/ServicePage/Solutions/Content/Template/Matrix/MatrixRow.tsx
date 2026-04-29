@@ -3,13 +3,14 @@ import MatrixCell from "./MatrixCell";
 type Props = {
   row: any;
   columns: any[];
+  compact?: boolean;
 };
 
-export default function MatrixRow({ row, columns }: Props) {
+export default function MatrixRow({ row, columns, compact = false }: Props) {
   return (
     <tr>
-      <td className="px-2 py-4">
-        <div className="px-4 py-3 text-sm font-medium text-bumnblue-1 bg-white rounded-2xl shadow-bumn-2 flex items-center border border-bumnblue-5">
+      <td className={compact ? "px-0 py-0" : "px-2 py-4"}>
+        <div className={`${compact ? "px-2 py-1.5 text-xs" : "px-4 py-3 text-sm"} font-medium text-bumnblue-1 bg-white ${compact ? "rounded-none" : "rounded-2xl"} shadow-bumn-2 flex items-center border border-bumnblue-5`}>
           {row.feature}
         </div>
       </td>
@@ -20,11 +21,12 @@ export default function MatrixRow({ row, columns }: Props) {
         );
 
         return (
-          <td key={col.id} className="px-2">
+          <td key={col.id} className={compact ? "px-0" : "px-2"}>
             <MatrixCell
               valueBoolean={cell?.value_boolean}
               valueText={cell?.value_text}
               highlight={col.popular}
+              compact={compact}
             />
           </td>
         );
