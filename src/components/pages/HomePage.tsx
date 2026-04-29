@@ -62,13 +62,13 @@ export default function HomePage({ dict, locale, site }: Props) {
 
   return (
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
-      <Hero slides={heroSlides} locale={locale} />
-      <DutiesPromo dict={dict} locale={locale} promo={promoSlides} />
+      {heroSlides.length > 0 && <Hero slides={heroSlides} locale={locale} />}
+      {promoSlides.length > 0 && <DutiesPromo dict={dict} locale={locale} promo={promoSlides} />}
       <Funding dict={dict} />
       <StatsCtaMap dict={dict} locale={locale} />
       <Service dict={dict} locale={locale} />
-      <News dict={dict} locale={locale} items={news} />
-      <PartnerScroller locale={locale} partners={partners} clients={clients} />
+      {news.length > 0 && <News dict={dict} locale={locale} items={news} />}
+      {(partners.length > 0 || clients.length > 0) && <PartnerScroller locale={locale} partners={partners} clients={clients} />}
       <QuickLinks dict={dict} />
     </main>
   );

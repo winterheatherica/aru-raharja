@@ -17,7 +17,7 @@ export default function ReservationPage({ dict, locale, site }: Props) {
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <SmallHero hero={dict.reservation?.hero} illustrationSrc="/images/services/service-bg.png"/>
       <Intro dict={dict} locale={locale} />
-      <RoomList dict={dict} locale={locale} rooms={rooms} />
+      {rooms.length > 0 && <RoomList dict={dict} locale={locale} rooms={rooms} />}
     </main>
   );
 }

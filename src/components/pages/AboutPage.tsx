@@ -32,13 +32,13 @@ export default function AboutPage({ dict, locale, site }: Props) {
       <Hero dict={dict} />
       <div className="max-w-[1014px] mx-auto">
         <VisionMission dict={dict} />
-        <History dict={dict} histories={histories} />
+        {histories.length > 0 && <History dict={dict} histories={histories} />}
         <Business dict={dict} />
         <Culture dict={dict} />
       </div>
-      <Partner dict={dict} partners={partners} />
+      {partners.length > 0 && <Partner dict={dict} partners={partners} />}
       <div className="max-w-[1014px] mx-auto">
-        <Awards dict={dict} awards={awards} />
+        {awards.length > 0 && <Awards dict={dict} awards={awards} />}
       </div>
     </main>
   );

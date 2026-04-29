@@ -11,10 +11,12 @@ type Props = {
 };
 
 export default function ServicePage({ dict, locale, activeSolution = "arudigital", site }: Props) {
+  const hasServiceData = Boolean(site && (site?.service || Object.keys(site || {}).length > 0));
+
   return (
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <SmallHero hero={dict.service?.hero} illustrationSrc="/images/services/service-bg.png" />
-      <Solutions dict={dict} locale={locale} value={activeSolution} site={site} />
+      {hasServiceData && <Solutions dict={dict} locale={locale} value={activeSolution} site={site} />}
     </main>
   );
 }

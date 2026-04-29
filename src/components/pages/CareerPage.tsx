@@ -15,10 +15,12 @@ type Props = {
 };
 
 export default function CareerPage({ dict, locale, site }: Props) {
+  const vacancies = site ?? [];
+
   return (
     <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
       <SmallHero hero={dict.career?.hero} illustrationSrc="/images/career/career-bg.png"/>
-      <Registration dict={dict} vacancies={site ?? []} />
+      {vacancies.length > 0 && <Registration dict={dict} vacancies={vacancies} />}
     </main>
   );
 }

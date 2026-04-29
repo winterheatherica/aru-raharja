@@ -7,16 +7,19 @@ async function fetchFromAPI(
 ) {
   const lang = locale.toUpperCase();
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
-    init
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE}${endpoint}?lang=${lang}`,
+      init
+    );
 
-    if (!res.ok) {
-    throw new Error(`Failed to fetch ${endpoint}`);
+    if (!res.ok) return null;
+
+    const json = await res.json();
+    return json ?? null;
+  } catch {
+    return null;
   }
-
-  return res.json();
 }
 
 export const fetchHome = (l: Locale) =>
