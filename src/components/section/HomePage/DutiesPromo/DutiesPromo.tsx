@@ -3,6 +3,7 @@
 import LeftStatement from "./BottomScroller/LeftStatement";
 import PromoCarousel from "./PromoCarousel/PromoCarousel";
 import type { Dictionary, Locale } from "@/i18n/get_dictionary";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type PromoSlide = {
   id: string;
@@ -26,6 +27,7 @@ const cardsMeta = [
 
 export default function DutiesPromo({ dict, promo }: Props) {
   const t = dict.home.dutiesPromo;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   const cards = cardsMeta.map((meta, idx) => ({
     iconSrc: meta.iconSrc,
@@ -46,7 +48,10 @@ export default function DutiesPromo({ dict, promo }: Props) {
   if (!slides.length) return null;
 
   return (
-    <section className="relative animate-fade-down">
+    <section
+      ref={ref}
+      className={`relative transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div className="relative grid gap-6 mt-6 lg:grid-cols-5">
         <LeftStatement
           title={t.heading}

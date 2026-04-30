@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import type { Locale } from "@/i18n/get_dictionary";
 
 type ScrollerItem = {
@@ -22,6 +23,7 @@ export default function PartnerScroller({
   partners,
   clients,
 }: Props) {
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
   const loopClients = [...clients, ...clients, ...clients];
   const loopPartners = [...partners, ...partners];
 
@@ -33,7 +35,10 @@ export default function PartnerScroller({
   }
 
   return (
-    <section className="mt-16 space-y-20">
+    <section
+      ref={ref}
+      className={`mt-16 space-y-20 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       {!!clients.length && (
         <div className="space-y-8">
           <h2 className="text-center text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-inter lg:leading-[54px]">

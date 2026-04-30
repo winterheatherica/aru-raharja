@@ -1,13 +1,20 @@
+"use client";
+
 import QuickLinkItem from "./QuickLinkItem";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import type { Dictionary } from "@/i18n/get_dictionary";
 
 type Props = { dict: Dictionary };
 
 export default function QuickLinks({ dict }: Props) {
   const links = dict.home.quicklink;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   return (
-    <section className="grid gap-4 pt-20 mt-6 lg:grid-cols-2">
+    <section
+      ref={ref}
+      className={`grid gap-4 pt-20 mt-6 lg:grid-cols-2 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <QuickLinkItem
         title={links.instagram.title}
         buttonLabel={links.instagram.button}

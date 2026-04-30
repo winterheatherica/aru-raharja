@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import Carousel, { FundingItem } from "./Carousel";
 import LeftStatement from "./LeftStatement";
 import MaskOverlay from "./MaskOverlay";
@@ -24,6 +25,8 @@ const STATIC_ITEMS = [
 function FundingComponent({ dict }: { dict: Dictionary }) {
   const t = dict.home.funding;
 
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
+
   const items: FundingItem[] = STATIC_ITEMS.map((it, idx) => ({
     title: t.items[idx]?.title ?? "",
     iconSrc: it.iconSrc,
@@ -31,7 +34,10 @@ function FundingComponent({ dict }: { dict: Dictionary }) {
   }));
 
   return (
-    <section className="mt-6">
+    <section
+      ref={ref}
+      className={`mt-6 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div
         className="
           relative w-full rounded-2xl flex overflow-hidden bg-bumn-gradient-primary-11

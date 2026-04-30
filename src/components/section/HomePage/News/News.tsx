@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 import Carousel from "./Carousel";
 import type { NewsItem } from "./types";
@@ -50,13 +51,17 @@ function News({
   items: NewsAPIItem[];
 }) {
   const t = dict.home.news;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   const newsItems = mapNews(items, locale);
 
   if (!newsItems.length) return null;
 
   return (
-    <section className="relative h-[470px] md:h-[520px] lg:h-[590px] mt-12">
+    <section
+      ref={ref}
+      className={`relative h-[470px] md:h-[520px] lg:h-[590px] mt-12 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div className="absolute inset-x-0 top-0">
         <h2 className="pl-4 mb-4 text-2xl font-semibold lg:text-4xl lg:font-bold text-black">
           {t.heading}

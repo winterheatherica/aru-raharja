@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import type { Dictionary, Locale } from "@/i18n/get_dictionary";
 import Metrics from "./Metrics";
 import CtaButton from "./CtaButton";
@@ -9,6 +10,7 @@ import MapImage from "./MapImage";
 
 function StatsCtaMap({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const s = dict.home.statsCtaMap;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   const metrics = [
     { value: 200, suffix: "+", label: s.metricLabels.regionalOffices },
@@ -20,7 +22,10 @@ function StatsCtaMap({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const mapSrc = "/images/home/stats-cta-map/indonesia.png";
 
   return (
-    <section className="mt-6">
+    <section
+      ref={ref}
+      className={`mt-6 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div className="rounded-xl border text-card-foreground w-full mt-6 border-none shadow-none">
         <div className="relative flex flex-col w-full px-4 pt-4 pb-4 md:flex-row md:px-8 md:pt-12 md:pb-12">
           <div className="z-10 space-y-8">

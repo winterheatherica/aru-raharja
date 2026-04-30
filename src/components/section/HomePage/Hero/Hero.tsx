@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import type { Locale } from "@/i18n/get_dictionary";
 import type { HeroSlideAPI } from "@/components/section/HomePage/Hero/types";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 const LazyCarousel = dynamic(() => import("./Carousel"), {
   ssr: false,
@@ -21,6 +22,8 @@ export default function Hero({
   slides: HeroSlideAPI[];
   locale: Locale;
 }) {
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
+
   const mapped = slides.map((s) => ({
     ...s,
     title: s.title ?? undefined,
@@ -30,8 +33,9 @@ export default function Hero({
 
   return (
     <section
+      ref={ref}
       aria-label="Hero Carousel"
-      className="relative mx-auto w-full max-w-screen-1920 overflow-hidden animate-fade-down"
+      className={`relative mx-auto w-full max-w-screen-1920 overflow-hidden transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
     >
       <LazyCarousel slides={mapped} autoplayMs={5000} />
     </section>
