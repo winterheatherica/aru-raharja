@@ -2,6 +2,7 @@
 
 import HistoryTabs, { type HistoryItem } from "./HistoryTabs";
 import type { Dictionary } from "@/i18n/get_dictionary";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type ApiHistory = {
   year: number;
@@ -23,6 +24,7 @@ type Props = {
 
 export default function History({ dict, histories }: Props) {
   const t = dict?.about?.history as HistoryDict | undefined;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
   if (!t || !histories?.length) return null;
 
   const items: HistoryItem[] = histories.map((h) => ({
@@ -69,7 +71,10 @@ export default function History({ dict, histories }: Props) {
   items.sort((a, b) => Number(b.year) - Number(a.year));
 
   return (
-    <section className="mt-8 lg:mt-14">
+    <section
+      ref={ref}
+      className={`mt-8 lg:mt-14 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div className="mt-10 space-y-6 font-semibold font-lato text-[18px] leading-[30px]">
         <h3 className="text-2xl font-bold font-helvetica text-bumngreen-1">
           {t.title}

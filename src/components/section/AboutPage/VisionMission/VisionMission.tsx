@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Props = {
   dict?: any;
@@ -8,9 +9,13 @@ type Props = {
 
 export default function VisionMission({ dict }: Props) {
   const t = dict?.about;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   return (
-    <section className="mt-8 lg:mt-14">
+    <section
+      ref={ref}
+      className={`mt-8 lg:mt-14 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       {/* <div className="relative h-[126px] lg:h-[352px]">
         <Image
           src="/images/about/aru-raharja-visi.png"

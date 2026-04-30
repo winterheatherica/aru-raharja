@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Award = {
   id: string;
@@ -21,6 +22,7 @@ type Props = {
 
 export default function Awards({ dict, awards = [] }: Props) {
   const t = dict?.about?.awards ?? {};
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   const years = useMemo(() => {
     const set = new Set<number>();
@@ -36,7 +38,10 @@ export default function Awards({ dict, awards = [] }: Props) {
   }, [active, awards]);
 
   return (
-    <section className="mt-8 lg:mt-14">
+    <section
+      ref={ref}
+      className={`mt-8 lg:mt-14 transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <div className="space-y-6 font-semibold lg:space-y-8">
         <h3 className="text-2xl font-bold font-helvetica text-bumngreen-1">
           {t?.title ?? "Awards"}

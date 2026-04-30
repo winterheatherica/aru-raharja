@@ -3,6 +3,7 @@
 import { memo } from "react";
 import Image from "next/image";
 import type { Dictionary } from "@/i18n/get_dictionary";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 import PartnersGrid from "./PartnersGrid";
 import PartnersCarousel from "./PartnersCarousel";
 
@@ -21,6 +22,7 @@ type Props = {
 
 function Partners({ dict, partners }: Props) {
   const t = (dict as any).about.partners;
+  const { ref, visible } = useRevealOnScroll<HTMLElement>();
 
   const items = [...partners].sort(
     (a, b) => (a.order ?? 0) - (b.order ?? 0)
@@ -29,7 +31,10 @@ function Partners({ dict, partners }: Props) {
   if (!items.length) return null;
 
   return (
-    <section className="relative flex flex-col items-center justify-center gap-6 px-4 py-8 lg:gap-8 lg:px-24 lg:py-16 bg-bumn-radial-1 rounded-2xl shadow-sm overflow-hidden">
+    <section
+      ref={ref}
+      className={`relative flex flex-col items-center justify-center gap-6 px-4 py-8 lg:gap-8 lg:px-24 lg:py-16 bg-bumn-radial-1 rounded-2xl shadow-sm overflow-hidden transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+    >
       <Image
         src="/images/general/masking/aru-mask-1-white.png"
         alt=""
