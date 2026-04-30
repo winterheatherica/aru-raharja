@@ -2,11 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import PromoSlide from "./PromoSlide";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Slide = { title: string; src: string; alt: string };
 type Props = { slides: Slide[]; autoplayMs?: number };
 
 export default function PromoCarousel({ slides, autoplayMs = 0 }: Props) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
   const [active, setActive] = useState(0);
   const count = slides.length;
 
@@ -23,10 +25,13 @@ export default function PromoCarousel({ slides, autoplayMs = 0 }: Props) {
 
   return (
     <div
-      className="
+      ref={ref}
+      className={`
         relative text-white lg:col-span-2
         h-[600px] sm:h-[580px] md:h-[540px] lg:h-[680px] xl:h-[640px]
-      "
+        transition-transform duration-700 ease-out
+        ${visible ? "translate-x-0" : "translate-x-10"}
+      `}
     >
       <div className="relative w-full h-full" role="region" aria-roledescription="carousel">
         <div className="overflow-hidden h-full">

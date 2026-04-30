@@ -2,6 +2,7 @@
 
 import MaskOverlay from "./MaskOverlay";
 import BottomScroller from "./BottomScroller";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Card = { title: string; subtitle: string; iconSrc: string; alt?: string };
 
@@ -13,15 +14,19 @@ type Props = {
 };
 
 export default function LeftStatement({ title, descPrefix, laws, cards }: Props) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+
   return (
     <div
-      className="
+      ref={ref}
+      className={`
         lg:col-span-3 relative rounded-xl
         px-6 sm:px-12 pt-2 sm:pt-3 lg:pt-4
         text-white bg-bumn-radial-1
         h-[600px] sm:h-[580px] md:h-[540px] lg:h-[680px] xl:h-[640px]
-        overflow-hidden
-      "
+        overflow-hidden transition-transform duration-700 ease-out
+        ${visible ? "translate-x-0" : "-translate-x-10"}
+      `}
     >
       <div
         className="
