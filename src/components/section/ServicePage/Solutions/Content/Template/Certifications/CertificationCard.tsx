@@ -1,10 +1,27 @@
+"use client";
+
 type Props = {
   item: any;
+  index?: number;
+  visible?: boolean;
 };
 
-export default function CertificationCard({ item }: Props) {
+export default function CertificationCard({
+  item,
+  index = 0,
+  visible = false,
+}: Props) {
   return (
-    <div className="bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-xl shadow-bumn-2 p-6 space-y-3">
+    <div
+      style={{ transitionDelay: `${index * 100}ms` }}
+      className={`bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-xl shadow-bumn-2 p-6 space-y-3
+      transition-all duration-[800ms] ease-out
+      ${
+        visible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10"
+      }`}
+    >
       <h4 className="text-sm font-semibold text-bumnblue-1">
         {item.title}
       </h4>
@@ -23,5 +40,3 @@ export default function CertificationCard({ item }: Props) {
     </div>
   );
 }
-
-

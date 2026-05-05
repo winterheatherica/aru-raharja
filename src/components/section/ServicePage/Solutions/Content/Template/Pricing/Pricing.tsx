@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type PricingItem = {
   id: string;
@@ -28,6 +29,86 @@ type Props = {
   items: PricingItem[];
   texts: PricingTexts;
 };
+
+function PricingCard({
+  plan,
+  i,
+  mode,
+  texts,
+}: {
+  plan: PricingItem;
+  i: number;
+  mode: "monthly" | "yearly";
+  texts: PricingTexts;
+}) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+
+  const price =
+    mode === "monthly"
+      ? plan.price_monthly
+      : plan.price_yearly;
+
+  return (
+    <article
+      ref={ref}
+      className={`relative flex h-full flex-col rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2 transition-all duration-[1000ms] ease-out will-change-transform will-change-opacity ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      } ${plan.popular ? "ring-2 ring-bumnblue-5" : ""}`}
+      style={{ transitionDelay: `${i * 100}ms` }}
+    >
+      {plan.popular && (
+        <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
+          {texts.popularBadge}
+        </div>
+      )}
+
+      <header className="mb-3">
+        <h3 className="text-lg font-semibold text-bumnblue-2">
+          {plan.name}
+        </h3>
+        {plan.description && (
+          <p className="mt-1 text-sm text-bumnslate-5">
+            {plan.description}
+          </p>
+        )}
+      </header>
+
+      <div className="mb-4 flex items-baseline gap-2">
+        <span className="text-3xl font-bold text-bumnblue-2">
+          {fmtIDR(price)}
+        </span>
+        <span className="text-sm text-bumnslate-5">
+          /
+          {mode === "monthly"
+            ? texts.periodMonthly
+            : texts.periodYearly}
+        </span>
+      </div>
+
+      <ul className="mb-5 space-y-2">
+        {plan.features?.map((f, idx) => (
+          <li
+            key={idx}
+            className="flex items-start gap-2 text-sm text-bumnslate-6"
+          >
+            <CheckIcon />
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-auto pt-1">
+        <a
+          href="https://wa.me/6281227008100"
+          target="_blank"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
+        >
+          {texts.cta}
+        </a>
+      </div>
+    </article>
+  );
+}
 
 export default function Pricing({ items, texts }: Props) {
   const [mode, setMode] =
@@ -73,75 +154,15 @@ export default function Pricing({ items, texts }: Props) {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {sorted.map((plan) => {
-          const price =
-            mode === "monthly"
-              ? plan.price_monthly
-              : plan.price_yearly;
-
-          return (
-            <article
-              key={plan.id}
-              className={[
-                "relative flex h-full flex-col rounded-2xl border border-bumnslate-10 bg-bumn-gradient-white-4 p-5 shadow-bumn-2",
-                plan.popular
-                  ? "ring-2 ring-bumnblue-5"
-                  : "",
-              ].join(" ")}
-            >
-              {plan.popular && (
-                <div className="absolute -top-3 right-4 select-none rounded-full bg-bumn-gradient-primary-11 px-3 py-1 text-xs font-semibold text-white shadow-bumn-5">
-                  {texts.popularBadge}
-                </div>
-              )}
-
-              <header className="mb-3">
-                <h3 className="text-lg font-semibold text-bumnblue-2">
-                  {plan.name}
-                </h3>
-                {plan.description && (
-                  <p className="mt-1 text-sm text-bumnslate-5">
-                    {plan.description}
-                  </p>
-                )}
-              </header>
-
-              <div className="mb-4 flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-bumnblue-2">
-                  {fmtIDR(price)}
-                </span>
-                <span className="text-sm text-bumnslate-5">
-                  /
-                  {mode === "monthly"
-                    ? texts.periodMonthly
-                    : texts.periodYearly}
-                </span>
-              </div>
-
-              <ul className="mb-5 space-y-2">
-                {plan.features?.map((f, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-sm text-bumnslate-6"
-                  >
-                    <CheckIcon />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-auto pt-1">
-                <a
-                  href="https://wa.me/6281227008100"
-                  target="_blank"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-4 py-2 font-medium text-bumngray-1 transition hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-bumnblue-5"
-                >
-                  {texts.cta}
-                </a>
-              </div>
-            </article>
-          );
-        })}
+        {sorted.map((plan, i) => (
+          <PricingCard
+            key={plan.id}
+            plan={plan}
+            i={i}
+            mode={mode}
+            texts={texts}
+          />
+        ))}
       </div>
     </section>
   );

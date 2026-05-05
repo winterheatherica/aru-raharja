@@ -35,7 +35,7 @@ export default function Hero({
     <section
       ref={ref}
       aria-label="Hero Carousel"
-      className={`relative mx-auto w-full max-w-screen-1920 overflow-hidden transition-all duration-700 ease-out ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+      className={`relative mx-auto w-full max-w-screen-1920 overflow-hidden transition-all duration-[700ms] ease-out ${visible ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"}`}
     >
       <LazyCarousel slides={mapped} autoplayMs={5000} />
     </section>

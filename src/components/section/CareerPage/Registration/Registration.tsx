@@ -13,7 +13,7 @@ type Props = {
 export default function Registration({ dict, vacancies }: Props) {
   return (
     <section aria-label="Career Registration" className="mt-10 lg:px-10">
-      <Filters dict={dict} />
+      {/* <Filters dict={dict} /> */}
       <Results dict={dict} vacancies={vacancies} />
     </section>
   );

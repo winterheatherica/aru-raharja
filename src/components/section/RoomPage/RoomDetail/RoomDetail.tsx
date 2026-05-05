@@ -1,5 +1,8 @@
 "use client";
 
+import * as React from "react";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
+
 type Props = {
   title: string;
   description: string;
@@ -15,9 +18,22 @@ export default function RoomDetail({
   floor,
   facilities,
 }: Props) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+  const [hasShown, setHasShown] = React.useState(false);
+
+  React.useEffect(() => {
+    if (visible) setHasShown(true);
+  }, [visible]);
+
+  const anim = hasShown
+    ? "opacity-100 translate-y-0"
+    : "opacity-0 translate-y-10";
+
   return (
-    <section className="space-y-8">
-      <div className="bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-6">
+    <section ref={ref} className="space-y-8">
+      <div
+        className={`bg-bumn-gradient-white-4 border border-bumnslate-10 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-6 transition-all duration-[800ms] ease-out ${anim}`}
+      >
         <h3 className="text-lg font-semibold text-bumnblue-1">
           {title}
         </h3>
@@ -49,7 +65,10 @@ export default function RoomDetail({
       </div>
 
       {facilities.length > 0 && (
-        <div className="bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4 border border-bumnslate-10">
+        <div
+          style={{ transitionDelay: "120ms" }}
+          className={`bg-bumn-gradient-white-4 rounded-2xl shadow-bumn-2 p-6 md:p-8 space-y-4 border border-bumnslate-10 transition-all duration-[800ms] ease-out ${anim}`}
+        >
           <h4 className="text-sm font-semibold text-bumnblue-1">
             Facilities
           </h4>
@@ -58,13 +77,7 @@ export default function RoomDetail({
             {facilities.map((item) => (
               <li
                 key={item}
-                className="
-                  inline-block
-                  text-xs font-medium
-                  px-3 py-1
-                  rounded-full
-                  bg-bumncyan-1 text-bumnblue-2
-                "
+                className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-bumncyan-1 text-bumnblue-2"
               >
                 {item}
               </li>
@@ -75,5 +88,3 @@ export default function RoomDetail({
     </section>
   );
 }
-
-

@@ -1,4 +1,8 @@
+"use client";
+
+import * as React from "react";
 import Link from "next/link";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Props = {
   href: string;
@@ -6,8 +10,22 @@ type Props = {
 };
 
 export default function BackNavigation({ href, label }: Props) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+  const [hasShown, setHasShown] = React.useState(false);
+
+  React.useEffect(() => {
+    if (visible) setHasShown(true);
+  }, [visible]);
+
+  const anim = hasShown
+    ? "opacity-100 translate-x-0"
+    : "opacity-0 -translate-x-10";
+
   return (
-    <div className="mb-6">
+    <div
+      ref={ref}
+      className={`mb-6 transition-all duration-[800ms] ease-out ${anim}`}
+    >
       <Link
         href={href}
         className="inline-flex items-center gap-2 rounded-xl bg-bumn-gradient-primary-11 px-5 py-2.5 text-sm font-semibold text-white shadow-bumn-2 transition hover:opacity-95"

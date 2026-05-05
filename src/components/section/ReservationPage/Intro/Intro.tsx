@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Props = {
   dict: Dictionary;
@@ -11,12 +12,16 @@ type Props = {
 
 export default function Intro({ dict }: Props) {
   const t = dict?.reservation?.desc;
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
   if (!t) return null;
 
   return (
     <section className="px-2 md:px-16 lg:px-24 space-y-8 lg:space-y-12">
-      <div className="max-w-3xl mx-auto text-center mt-8 text-xl font-lato">
-        <p className="leading-relaxed text-bumnslate-6">
+      <div ref={ref} className="max-w-3xl mx-auto text-center mt-8 text-xl font-lato">
+        <p
+          className={`leading-relaxed text-bumnslate-6 transition-all duration-[1200ms] ease-out
+                      ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20"}`}
+        >
           {t.paragraph ??
             "Choose the room that best fits your needs and adjust your booking schedule."}
         </p>

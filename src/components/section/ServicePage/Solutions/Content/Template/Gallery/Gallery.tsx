@@ -6,6 +6,7 @@ import type { EmblaOptionsType } from "embla-carousel";
 import GalleryTrack from "./GalleryTrack";
 import GalleryItem from "./GalleryItem";
 import { useBreakpoint } from "./useBreakpoint";
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type Item = {
   id: string;
@@ -40,7 +41,21 @@ export default function Gallery({ items }: Props) {
   const [prevDisabled, setPrevDisabled] = React.useState(true);
   const [nextDisabled, setNextDisabled] = React.useState(true);
 
-  const visible = React.useMemo(() => {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+  const [hasShown, setHasShown] = React.useState(false);
+
+  React.useEffect(() => {
+    if (visible) setHasShown(true);
+  }, [visible]);
+
+  const { ref: btnRef, visible: btnVisible } = useRevealOnScroll<HTMLDivElement>();
+  const [btnShown, setBtnShown] = React.useState(false);
+
+  React.useEffect(() => {
+    if (btnVisible) setBtnShown(true);
+  }, [btnVisible]);
+
+  const visibleItems = React.useMemo(() => {
     if (!total || !isDesktop) return [];
 
     return Array.from({ length: 7 }, (_, i) => {
@@ -90,9 +105,20 @@ export default function Gallery({ items }: Props) {
     else emblaApi.scrollPrev();
   };
 
+  const animClass = hasShown
+    ? "opacity-100 translate-y-0"
+    : "opacity-0 translate-y-10";
+
+  const btnAnim = btnShown
+    ? "opacity-100 translate-x-0"
+    : "opacity-0 translate-x-10";
+
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="flex justify-end gap-3 pr-6">
+      <div
+        ref={btnRef}
+        className={`flex justify-end gap-3 pr-6 transition-all duration-[800ms] ease-out ${btnAnim}`}
+      >
         <button
           onClick={() => run("prev")}
           disabled={!isDesktop && prevDisabled}
@@ -100,10 +126,7 @@ export default function Gallery({ items }: Props) {
           aria-label="Previous slide"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="w-4 h-4">
-            <path
-              d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z"
-              fill="currentColor"
-            />
+            <path d="M6.85355 3.14645C7.04882 3.34171 7.04882 3.65829 6.85355 3.85355L3.70711 7H12.5C12.7761 7 13 7.22386 13 7.5C13 7.77614 12.7761 8 12.5 8H3.70711L6.85355 11.1464C7.04882 11.3417 7.04882 11.6583 6.85355 11.8536C6.65829 12.0488 6.34171 12.0488 6.14645 11.8536L2.14645 7.85355C1.95118 7.65829 1.95118 7.34171 2.14645 7.14645L6.14645 3.14645C6.34171 2.95118 6.65829 2.95118 6.85355 3.14645Z" fill="currentColor"/>
           </svg>
         </button>
 
@@ -114,18 +137,18 @@ export default function Gallery({ items }: Props) {
           aria-label="Next slide"
         >
           <svg width="15" height="15" viewBox="0 0 15 15" fill="none" className="w-4 h-4">
-            <path
-              d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-              fill="currentColor"
-            />
+            <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor"/>
           </svg>
         </button>
       </div>
 
       {isDesktop ? (
-        <div className="overflow-hidden">
+        <div
+          ref={ref}
+          className={`overflow-hidden transition-all duration-[800ms] ease-out ${animClass}`}
+        >
           <GalleryTrack
-            items={visible}
+            items={visibleItems}
             phase={phase}
             direction={direction}
             offset={offset}
@@ -133,22 +156,27 @@ export default function Gallery({ items }: Props) {
           />
         </div>
       ) : (
-        <div ref={emblaRef} className="overflow-hidden">
-          <div className="flex -ml-4 h-full">
-            {items.map((item, i) => (
-              <div
-                key={`${item.id}-${i}`}
-                className="min-w-0 shrink-0 grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3"
-              >
-                <GalleryItem
-                  item={item}
-                  index={i}
-                  phase="idle"
-                  direction={null}
-                  mode={mode}
-                />
-              </div>
-            ))}
+        <div
+          ref={ref}
+          className={`overflow-hidden transition-all duration-[800ms] ease-out ${animClass}`}
+        >
+          <div ref={emblaRef} className="overflow-hidden">
+            <div className="flex -ml-4 h-full">
+              {items.map((item, i) => (
+                <div
+                  key={`${item.id}-${i}`}
+                  className="min-w-0 shrink-0 grow-0 basis-full pl-4 md:basis-1/2 lg:basis-1/3"
+                >
+                  <GalleryItem
+                    item={item}
+                    index={i}
+                    phase="idle"
+                    direction={null}
+                    mode={mode}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}

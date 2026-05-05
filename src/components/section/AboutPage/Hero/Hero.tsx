@@ -44,7 +44,7 @@ export default function Hero({ dict }: Props) {
       </div>
 
       <div
-        className={`max-w-[1014px] mx-auto font-semibold text-[18px] leading-[30px] font-lato mt-8 lg:mt-14 transition-all duration-700 ease-out ${visible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
+        className={`max-w-[1014px] mx-auto font-semibold text-[18px] leading-[30px] font-lato mt-8 lg:mt-14 transition-all duration-[800ms] ease-out ${visible ? "translate-y-0 opacity-100 delay-[1200ms]" : "translate-y-20 opacity-0"}`}
       >
         <p>{t.intro}</p>
         <ul className="ml-12 list-disc">

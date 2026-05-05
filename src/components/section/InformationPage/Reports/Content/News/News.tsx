@@ -4,7 +4,7 @@ import * as React from "react";
 import Landscape3 from "../Template/Landscape-3/Landscape-3";
 import YearSelector from "../Template/YearSelector/YearSelector";
 import { articleHref } from "@/i18n/param_routes";
-
+import useRevealOnScroll from "@/components/general/Motion/useRevealOnScroll";
 
 type ApiNewsCard = {
   id: string;
@@ -15,7 +15,7 @@ type ApiNewsCard = {
   published_at: string;
 };
 
-type NewsItem = {
+type NewsItemType = {
   id: string;
   title: string;
   date: string;
@@ -30,6 +30,30 @@ type Props = {
   items?: ApiNewsCard[];
   years?: number[];
 };
+
+function NewsItem({
+  item,
+  i,
+  readMoreLabel,
+}: {
+  item: NewsItemType;
+  i: number;
+  readMoreLabel: string;
+}) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-[1000ms] ease-out will-change-transform will-change-opacity ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      style={{ transitionDelay: `${i * 100}ms` }}
+    >
+      <Landscape3 item={item} readMoreLabel={readMoreLabel} />
+    </div>
+  );
+}
 
 export default function News({ dict, locale, items = [], years = [] }: Props) {
   const sortedYears = React.useMemo(() => [...years].sort((a, b) => b - a), [years]);
@@ -50,7 +74,7 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
     setPage(1);
   }, [selectedYear]);
 
-  const mappedItems: NewsItem[] = React.useMemo(
+  const mappedItems: NewsItemType[] = React.useMemo(
     () =>
       items.map((it) => ({
         id: it.id,
@@ -93,14 +117,19 @@ export default function News({ dict, locale, items = [], years = [] }: Props) {
 
           <div className="col-span-12 lg:col-span-10">
             <div className="mx-auto w-full max-w-[1112px]">
-              <div
-                className="grid grid-cols-1 justify-items-stretch gap-x-4 gap-y-8 sm:grid-cols-2 xl:grid-cols-3"
-              >
-                {displayItems.map((item) => (
-                  <Landscape3 key={item.id} item={item} readMoreLabel={readMoreLabel} />
+              <div className="grid grid-cols-1 justify-items-stretch gap-x-4 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+                {displayItems.map((item, i) => (
+                  <NewsItem
+                    key={item.id}
+                    item={item}
+                    i={i}
+                    readMoreLabel={readMoreLabel}
+                  />
                 ))}
                 {displayItems.length === 0 && (
-                  <div className="text-bumnslate-4">No news found for this year.</div>
+                  <div className="text-bumnslate-4">
+                    No news found for this year.
+                  </div>
                 )}
               </div>
 
