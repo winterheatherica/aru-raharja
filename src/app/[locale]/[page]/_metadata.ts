@@ -1,5 +1,39 @@
 import type { Metadata } from "next";
 
+type ImageType =
+  | "image/jpeg"
+  | "image/png"
+  | "image/webp"
+  | "image/gif"
+  | "image/avif"
+  | "image/svg+xml"
+  | "image/bmp"
+  | "image/tiff"
+  | "image/x-icon";
+
+const IMAGE_TYPE_MAP: Record<string, ImageType> = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".avif": "image/avif",
+  ".svg": "image/svg+xml",
+  ".bmp": "image/bmp",
+  ".tiff": "image/tiff",
+  ".ico": "image/x-icon",
+};
+
+function getImageType(url: string): ImageType {
+  const cleanUrl = url.split("?")[0].toLowerCase();
+
+  const ext = Object.keys(IMAGE_TYPE_MAP).find((ext) =>
+    cleanUrl.endsWith(ext)
+  );
+
+  return ext ? IMAGE_TYPE_MAP[ext] : "image/jpeg";
+}
+
 export function buildSocialMeta(meta: {
   title: string;
   description?: string;
@@ -22,7 +56,7 @@ export function buildSocialMeta(meta: {
             {
               url: meta.image,
               alt: meta.title,
-              type: "image/png",
+              type: getImageType(meta.image),
             },
           ]
         : [],
@@ -32,7 +66,14 @@ export function buildSocialMeta(meta: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
-      images: meta.image ? [meta.image] : [],
+      images: meta.image
+        ? [
+            {
+              url: meta.image,
+              alt: meta.title,
+            },
+          ]
+        : [],
     },
   };
 }
