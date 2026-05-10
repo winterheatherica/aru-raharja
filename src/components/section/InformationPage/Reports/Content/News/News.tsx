@@ -50,7 +50,7 @@ function NewsItem({
       }`}
       style={{ transitionDelay: `${i * 100}ms` }}
     >
-      <Landscape3 item={item} readMoreLabel={readMoreLabel} />
+      <Landscape3 item={item} readMoreLabel={readMoreLabel} priority={i < 6} />
     </div>
   );
 }

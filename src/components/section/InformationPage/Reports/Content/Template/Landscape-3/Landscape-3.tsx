@@ -15,11 +15,16 @@ export type NewsItem = {
 export default function Landscape3({
   item,
   readMoreLabel,
+  priority = false,
 }: {
   item: NewsItem;
   readMoreLabel: string;
+  priority?: boolean;
 }) {
   const imageSrc = item?.imageUrl || "/images/home/news/news-4.jpg";
+  const imageLoadingProps = priority
+    ? ({ priority: true } as const)
+    : ({ loading: "eager" } as const);
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
     if (isNaN(d.getTime())) return dateStr;
@@ -42,7 +47,7 @@ export default function Landscape3({
             fill
             sizes="(max-width: 1024px) 100vw, 33vw"
             className="object-cover rounded-lg"
-            priority={false}
+            {...imageLoadingProps}
           />
         </Link>
 

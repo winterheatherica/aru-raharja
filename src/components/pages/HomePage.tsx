@@ -61,7 +61,7 @@ export default function HomePage({ dict, locale, site }: Props) {
   const clients = home.client_scroller ?? [];
 
   return (
-    <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6">
+    <main className="relative px-4 lg:px-2 py-2 mx-auto max-w-screen-1440 text-bumnslate-6 overflow-x-clip">
       {heroSlides.length > 0 && <Hero slides={heroSlides} locale={locale} />}
       {promoSlides.length > 0 && <DutiesPromo dict={dict} locale={locale} promo={promoSlides} />}
       <Funding dict={dict} />

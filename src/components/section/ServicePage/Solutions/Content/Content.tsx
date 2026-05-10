@@ -36,7 +36,7 @@ export default function Content({ activeId, dict, site }: Props) {
   };
 
   return (
-    <div className="space-y-10 pb-10">
+    <div className="space-y-10 pb-10 overflow-x-clip">
       <Description title={desc.title} description={desc.description} />
       <Pricing items={pricing} texts={pricingTexts} />
       {gallery.length > 0 && <Gallery items={gallery} /> }

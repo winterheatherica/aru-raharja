@@ -79,7 +79,7 @@ export default function ServiceCard({
           group-hover:filter group-hover:brightness-[50%] group-hover:grayscale
           ${imgClassName}
         `}
-        priority={false}
+        priority
       />
 
       <div

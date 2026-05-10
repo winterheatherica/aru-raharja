@@ -60,7 +60,7 @@ export default function Gallery({ items }: Props) {
 
     return Array.from({ length: 7 }, (_, i) => {
       const relative = i - 3;
-      const index = (start + relative + total) % total;
+      const index = ((start + relative) % total + total) % total;
       return items[index];
     });
   }, [start, items, total, isDesktop]);
