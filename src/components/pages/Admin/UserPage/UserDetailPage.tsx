@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_USER_URL, UserItem, USER_ROLES, UserRole } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function UserDetailPage({ locale, dict, userId }: { locale: Locale; dict?: Dictionary; userId: string }) {
   const [loading, setLoading] = useState(true);
@@ -74,6 +75,7 @@ export default function UserDetailPage({ locale, dict, userId }: { locale: Local
       });
 
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       alert(t?.saved ?? "Saved");
       setPassword("");
 

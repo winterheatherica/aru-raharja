@@ -25,6 +25,8 @@ import {
   fetchCareer,
 } from "./_fetchers";
 
+export const revalidate = 3600;
+
 import { buildSocialMeta } from "./_metadata";
 import { SERVICE_SOLUTIONS } from "./[param]/_constants";
 

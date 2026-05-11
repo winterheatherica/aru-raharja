@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_NEWS_ARTICLE_URL, NewsArticleItem } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import RichTextEditor from "./RichTextEditor";
 
 type NewsCategoryOption = { id: string; name?: string | null; translations?: Array<{ language?: string | null; name?: string | null }> };
@@ -159,6 +160,7 @@ export default function NewsArticleDetailPage({ locale, dict, articleId }: { loc
       });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       alert(`${t?.updatedLanguage ?? "Berhasil update bahasa"} ${activeLang}`);
     } catch (e: any) {
       setError(e?.message || "Update failed");

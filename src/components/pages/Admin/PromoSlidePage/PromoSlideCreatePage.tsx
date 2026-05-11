@@ -5,6 +5,7 @@ import { FormEvent, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PromoSlidePreviewCard from "./PromoSlidePreviewCard";
 import { ADMIN_PROMO_SLIDE_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function PromoSlideCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [saving, setSaving] = useState(false);
@@ -38,6 +39,7 @@ export default function PromoSlideCreatePage({ locale, dict }: { locale: Locale;
       const res = await fetch(ADMIN_PROMO_SLIDE_URL, { method: "POST", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/promo-slide`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

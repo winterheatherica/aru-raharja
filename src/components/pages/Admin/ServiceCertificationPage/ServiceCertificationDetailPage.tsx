@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_CERTIFICATION_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Translation = { language?: string; title?: string; alt?: string; caption?: string };
 type Item = {
@@ -87,6 +88,7 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
         }),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       alert(`${t?.saved ?? "Saved"} (${activeLang})`);
       await loadByLang(activeLang);
     } catch (e: any) {
@@ -100,6 +102,7 @@ export default function ServiceCertificationDetailPage({ locale, dict, certifica
     if (!confirm(t?.deleteConfirm ?? "Hard delete certification ini?")) return;
     const res = await fetch(`${ADMIN_SERVICE_CERTIFICATION_URL}/${certificationId}`, { method: "DELETE", credentials: "include" });
     if (res.ok) {
+      await revalidatePublic();
       const svc = selected || serviceCode.toLowerCase();
       window.location.href = `/${locale}/admin/service-certification?service=${svc}`;
     }

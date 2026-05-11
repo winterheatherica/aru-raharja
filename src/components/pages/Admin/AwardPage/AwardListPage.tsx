@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import AwardPreviewCard from "./AwardPreviewCard";
 import { ADMIN_AWARD_URL, AwardItem, awardImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function AwardListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<AwardItem[]>([]);
@@ -37,6 +38,7 @@ export default function AwardListPage({ locale, dict }: { locale: Locale; dict?:
     try {
       const res = await fetch(`${ADMIN_AWARD_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

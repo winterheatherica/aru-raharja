@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_MATRIX_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Column = { key: string; label: string; popular: boolean; order_index: number };
 type Row = { key: string; feature: string; order_index: number; cells: Record<string, string> };
@@ -132,6 +133,7 @@ export default function ServiceMatrixDetailPage({ locale, dict, matrixId }: { lo
         }),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       alert(`${t?.saved ?? "Saved"} (${activeLang})`);
       await loadByLang(activeLang);
     } catch (e: any) {
@@ -145,6 +147,7 @@ export default function ServiceMatrixDetailPage({ locale, dict, matrixId }: { lo
     if (!confirm(t?.deleteConfirm ?? "Hard delete this matrix?")) return;
     const res = await fetch(`${ADMIN_SERVICE_MATRIX_URL}/${matrixId}`, { method: "DELETE", credentials: "include" });
     if (res.ok) {
+      await revalidatePublic();
       const svc = selected || serviceCode.toLowerCase();
       window.location.href = `/${locale}/admin/service-matrix?service=${svc}`;
     }

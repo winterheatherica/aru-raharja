@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_USER_URL, UserPayload, USER_ROLES, UserRole } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function UserCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [saving, setSaving] = useState(false);
@@ -44,6 +45,7 @@ export default function UserCreatePage({ locale, dict }: { locale: Locale; dict?
 
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/user`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

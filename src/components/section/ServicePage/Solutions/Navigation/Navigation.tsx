@@ -62,7 +62,11 @@ export default function Navigation({
             data-orientation={orientation}
             data-radix-collection-item=""
             onClick={(e) => {
-              if (!hrefFor || isActive) e.preventDefault();
+              e.preventDefault();
+              if (isActive) return;
+              if (hrefFor && typeof window !== "undefined") {
+                window.history.replaceState(null, "", hrefFor(tab.id));
+              }
               onChange(tab.id);
             }}
             className={[

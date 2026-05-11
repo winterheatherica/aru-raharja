@@ -92,6 +92,7 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
         <ul className="mb-2 flex w-full flex-col space-y-2">
           {NAV_ORDER.map((seg) => {
             const href = navHref(locale, seg);
+            const linkHref = seg === "service" ? `${href}/arudigital` : href;
             const isActive =
               pathname === href ||
               (seg === "service" &&
@@ -99,7 +100,7 @@ export default function MobileNav({ open, onRequestClose, locale, dict }: Props)
             return (
               <li key={seg}>
                 <Link
-                  href={href}
+                  href={linkHref}
                   className={`flex h-10 items-center rounded-lg px-3 text-sm font-medium
                     ${
                       isActive

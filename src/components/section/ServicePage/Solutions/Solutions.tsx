@@ -32,11 +32,23 @@ export default function Solutions({ dict, locale, value, site }: Props) {
     setActive(value);
   }, [value]);
 
-  if (!items.length) return null;
-
   const base =
     (dynamicSegmentByLocale as any)[locale]?.service ??
     (dynamicSegmentByLocale as any)["id"]?.service;
+
+  React.useEffect(() => {
+    const syncFromUrl = () => {
+      const segments = window.location.pathname.split("/").filter(Boolean);
+      const last = segments[segments.length - 1];
+      if (last && items.some((i) => i.id === last)) {
+        setActive(last);
+      }
+    };
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, [items]);
+
+  if (!items.length) return null;
 
   const handleChange = (id: string) => {
     if (id === active) return;

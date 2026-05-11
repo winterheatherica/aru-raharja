@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import CareerVacancyPreviewCard from "./CareerVacancyPreviewCard";
 import { ADMIN_CAREER_URL, CareerVacancyItem } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function CareerVacancyListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<CareerVacancyItem[]>([]);
@@ -38,6 +39,7 @@ export default function CareerVacancyListPage({ locale, dict }: { locale: Locale
     try {
       const res = await fetch(`${ADMIN_CAREER_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_NEWS_CATEGORY_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function NewsCategoryCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [saving, setSaving] = useState(false);
@@ -43,6 +44,7 @@ export default function NewsCategoryCreatePage({ locale, dict }: { locale: Local
 
       if (!createRes.ok) throw new Error(await createRes.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/news-category`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

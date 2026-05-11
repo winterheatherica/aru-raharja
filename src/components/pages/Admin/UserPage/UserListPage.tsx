@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_USER_URL, UserItem, USER_ROLES } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function UserListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<UserItem[]>([]);
@@ -35,6 +36,7 @@ export default function UserListPage({ locale, dict }: { locale: Locale; dict?: 
     try {
       const res = await fetch(`${ADMIN_USER_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

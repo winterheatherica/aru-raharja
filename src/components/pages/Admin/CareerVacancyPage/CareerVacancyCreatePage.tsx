@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import CareerVacancyPreviewCard from "./CareerVacancyPreviewCard";
 import { ADMIN_CAREER_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function CareerVacancyCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [saving, setSaving] = useState(false);
@@ -47,6 +48,7 @@ export default function CareerVacancyCreatePage({ locale, dict }: { locale: Loca
       });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/career-vacancy`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SPACE_ROOM_URL, SpaceRoomItem } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function SpaceRoomListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<SpaceRoomItem[]>([]);
@@ -27,7 +28,10 @@ export default function SpaceRoomListPage({ locale, dict }: { locale: Locale; di
   async function onDelete(id: string) {
     if (!confirm("Hard delete room ini?")) return;
     const res = await fetch(`${ADMIN_SPACE_ROOM_URL}/${id}`, { method: "DELETE", credentials: "include" });
-    if (res.ok) load();
+    if (res.ok) {
+      await revalidatePublic();
+      load();
+    }
   }
 
   return (

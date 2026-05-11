@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
 export const ME_URL = `${API_BASE}/api/me`;
@@ -73,6 +74,7 @@ export default function MePage({ dict, locale }: { dict?: Dictionary; locale: Lo
 
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       setEditing(false);
       setPassword("");
       await loadMe();

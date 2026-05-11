@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PartnerPreviewCard from "./PartnerPreviewCard";
 import { ADMIN_PARTNER_URL, PartnerItem, partnerImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function PartnerDetailPage({ locale, dict, partnerId }: { locale: Locale; dict?: Dictionary; partnerId: string }) {
   const [loading, setLoading] = useState(true);
@@ -82,6 +83,7 @@ export default function PartnerDetailPage({ locale, dict, partnerId }: { locale:
 
       const res = await fetch(`${ADMIN_PARTNER_URL}/${partnerId}`, { method: "PUT", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       if (image) {
         setImage(null);
         setPreviewSrc(pickedImagePreview || previewSrc);

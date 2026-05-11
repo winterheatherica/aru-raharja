@@ -34,7 +34,7 @@ import { fetchArticleById, fetchRoomById } from "./_fetchers";
 import { fetchService } from "../_fetchers";
 import { generateParamMetadata } from "./_metadata";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 type ServiceSolution = typeof SERVICE_SOLUTIONS[number];
 

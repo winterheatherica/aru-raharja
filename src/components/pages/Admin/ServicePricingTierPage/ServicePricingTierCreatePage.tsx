@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_PRICING_TIER_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function ServicePricingTierCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const search = useSearchParams();
@@ -49,6 +50,7 @@ export default function ServicePricingTierCreatePage({ locale, dict }: { locale:
         }),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/service-pricing-tier?service=${selected}`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

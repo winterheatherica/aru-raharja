@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_PRICING_TIER_URL, SERVICE_SOLUTIONS, ServiceCode, serviceLabel } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Item = {
   id: string;
@@ -51,6 +52,7 @@ export default function ServicePricingTierListPage({ locale, dict }: { locale: L
     try {
       const res = await fetch(`${ADMIN_SERVICE_PRICING_TIER_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       setItems((prev) => prev.filter((x) => x.id !== id));
     } catch (e: any) {
       setError(e?.message || "Delete failed");

@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PromoSlidePreviewCard from "./PromoSlidePreviewCard";
 import { ADMIN_PROMO_SLIDE_URL, PromoSlideItem, promoSlideImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function PromoSlideDetailPage({ locale, dict, slideId }: { locale: Locale; dict?: Dictionary; slideId: string }) {
   const [loading, setLoading] = useState(true);
@@ -78,6 +79,7 @@ export default function PromoSlideDetailPage({ locale, dict, slideId }: { locale
 
       const res = await fetch(`${ADMIN_PROMO_SLIDE_URL}/${slideId}`, { method: "PUT", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       if (image) {
         setImage(null);
         setPreviewSrc(pickedImagePreview || previewSrc);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_HISTORY_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import HistoryTableEditor from "./HistoryTableEditor";
 
 export default function HistoryCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
@@ -51,6 +52,7 @@ export default function HistoryCreatePage({ locale, dict }: { locale: Locale; di
       });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/history`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

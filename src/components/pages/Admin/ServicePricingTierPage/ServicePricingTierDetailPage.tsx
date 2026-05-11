@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_PRICING_TIER_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Item = {
   id: string;
@@ -91,6 +92,7 @@ export default function ServicePricingTierDetailPage({ locale, dict, tierId }: {
         }),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       alert(`${t?.saved ?? "Saved"} (${activeLang})`);
       await loadByLang(activeLang);
     } catch (e: any) {
@@ -102,6 +104,7 @@ export default function ServicePricingTierDetailPage({ locale, dict, tierId }: {
     if (!confirm(t?.deleteConfirm ?? "Hard delete pricing tier ini?")) return;
     const res = await fetch(`${ADMIN_SERVICE_PRICING_TIER_URL}/${tierId}`, { method: "DELETE", credentials: "include" });
     if (res.ok) {
+      await revalidatePublic();
       const svc = selected || serviceCode.toLowerCase();
       window.location.href = `/${locale}/admin/service-pricing-tier?service=${svc}`;
     }

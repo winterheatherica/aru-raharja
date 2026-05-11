@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import RichTextEditor from "../NewsArticlePage/RichTextEditor";
 import { ADMIN_SPACE_ROOM_URL, SpaceRoomItem, slugify } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type MeInfo = { id: string; full_name?: string; username?: string; email?: string };
 
@@ -171,6 +172,7 @@ export default function SpaceRoomDetailPage({ locale, dict, roomId }: { locale: 
       });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       alert(`${t?.updatedLanguage ?? "Berhasil update bahasa"} ${activeLang}`);
       window.location.reload();
     } catch (e: any) {

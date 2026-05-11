@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/get_dictionary";
 async function fetchFromAPI(
   endpoint: string,
   locale: Locale,
-  init: RequestInit = { cache: "no-store" }
+  init: RequestInit = { next: { revalidate: 3600 } }
 ) {
   const lang = locale.toUpperCase();
 
@@ -38,7 +38,4 @@ export const fetchCareer = (l: Locale) =>
   fetchFromAPI("/api/career", l);
 
 export const fetchService = (l: Locale) =>
-  fetchFromAPI("/api/service", l, {
-    cache: "force-cache",
-    next: { revalidate: 3600 },
-  });
+  fetchFromAPI("/api/service", l);

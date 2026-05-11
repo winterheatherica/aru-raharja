@@ -68,6 +68,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
       <ul className="flex items-center space-x-1 whitespace-nowrap">
         {NAV_ORDER.map((seg) => {
           const href = navHref(safe, seg);
+          const linkHref = seg === "service" ? `${href}/arudigital` : href;
 
           const isActive =
             pathname === href ||
@@ -76,7 +77,7 @@ export default function DesktopNav({ open, onRequestClose, attachTo, locale, dic
           return (
             <li key={seg}>
               <Link
-                href={href}
+                href={linkHref}
                 className={`rounded-lg p-3 text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
                   ${
                     isActive

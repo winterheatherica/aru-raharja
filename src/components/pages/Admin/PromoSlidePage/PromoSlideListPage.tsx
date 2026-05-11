@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PromoSlidePreviewCard from "./PromoSlidePreviewCard";
 import { ADMIN_PROMO_SLIDE_URL, PromoSlideItem, promoSlideImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function PromoSlideListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<PromoSlideItem[]>([]);
@@ -37,6 +38,7 @@ export default function PromoSlideListPage({ locale, dict }: { locale: Locale; d
     try {
       const res = await fetch(`${ADMIN_PROMO_SLIDE_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_HERO_URL, HeroItem, heroImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import HeroBannerPreview from "./HeroBannerPreview";
 
 export default function HeroDetailPage({ locale, heroId, dict }: { locale: Locale; dict?: Dictionary; heroId: string }) {
@@ -82,6 +83,7 @@ export default function HeroDetailPage({ locale, heroId, dict }: { locale: Local
 
       const res = await fetch(`${ADMIN_HERO_URL}/${heroId}`, { method: "PUT", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       if (image) {
         setImage(null);
         setPreviewSrc(pickedImagePreview || previewSrc);

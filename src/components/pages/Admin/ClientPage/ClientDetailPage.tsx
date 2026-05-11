@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import ClientPreviewCard from "./ClientPreviewCard";
 import { ADMIN_CLIENT_URL, ClientItem, clientImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function ClientDetailPage({ locale, dict, clientId }: { locale: Locale; dict?: Dictionary; clientId: string }) {
   const [loading, setLoading] = useState(true);
@@ -78,6 +79,7 @@ export default function ClientDetailPage({ locale, dict, clientId }: { locale: L
 
       const res = await fetch(`${ADMIN_CLIENT_URL}/${clientId}`, { method: "PUT", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       if (image) {
         setImage(null);
         setPreviewSrc(pickedImagePreview || previewSrc);

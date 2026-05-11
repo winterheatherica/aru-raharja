@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_HERO_URL, HeroItem, heroImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import HeroBannerPreview from "./HeroBannerPreview";
 
 export default function HeroListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
@@ -37,6 +38,7 @@ export default function HeroListPage({ locale, dict }: { locale: Locale; dict?: 
     try {
       const res = await fetch(`${ADMIN_HERO_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

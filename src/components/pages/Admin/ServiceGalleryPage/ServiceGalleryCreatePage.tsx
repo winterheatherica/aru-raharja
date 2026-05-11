@@ -5,6 +5,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_GALLERY_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function ServiceGalleryCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const search = useSearchParams();
@@ -46,6 +47,7 @@ export default function ServiceGalleryCreatePage({ locale, dict }: { locale: Loc
 
       const res = await fetch(ADMIN_SERVICE_GALLERY_URL, { method: "POST", credentials: "include", body: form });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/service-gallery?service=${selected}`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

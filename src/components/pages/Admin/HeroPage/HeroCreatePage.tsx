@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_HERO_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import HeroBannerPreview from "./HeroBannerPreview";
 
 export default function HeroCreatePage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
@@ -42,6 +43,7 @@ export default function HeroCreatePage({ locale, dict }: { locale: Locale; dict?
       const res = await fetch(ADMIN_HERO_URL, { method: "POST", body: form, credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
 
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/hero`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

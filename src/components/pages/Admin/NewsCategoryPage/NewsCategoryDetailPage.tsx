@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_NEWS_CATEGORY_URL, NewsCategoryItem } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type TranslationForm = { name: string; slug: string; description: string };
 
@@ -94,6 +95,7 @@ export default function NewsCategoryDetailPage({ locale, dict, categoryId }: { l
         body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       alert(`${t?.updatedLanguage ?? "Berhasil update bahasa"} ${activeLang}`);
     } catch (e: any) {
       setError(e?.message || "Update failed");

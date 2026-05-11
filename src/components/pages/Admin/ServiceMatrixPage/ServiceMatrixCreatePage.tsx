@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_MATRIX_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Column = { key: string; label: string; popular: boolean; order_index: number };
 type Row = { key: string; feature: string; order_index: number; cells: Record<string, string> };
@@ -74,6 +75,7 @@ export default function ServiceMatrixCreatePage({ locale, dict }: { locale: Loca
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/service-matrix?service=${selected}`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

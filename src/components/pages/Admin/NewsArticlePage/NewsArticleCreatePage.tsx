@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_NEWS_ARTICLE_URL } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 import RichTextEditor from "./RichTextEditor";
 
 type NewsCategoryOption = { id: string; name?: string | null; translations?: Array<{ language?: string | null; name?: string | null }> };
@@ -93,6 +94,7 @@ export default function NewsArticleCreatePage({ locale, dict }: { locale: Locale
       });
 
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       window.location.href = `/${locale}/admin/news-article`;
     } catch (e: any) {
       setError(e?.message || "Create failed");

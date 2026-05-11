@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import PartnerPreviewCard from "./PartnerPreviewCard";
 import { ADMIN_PARTNER_URL, PartnerItem, partnerImageSrc } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 export default function PartnerListPage({ locale, dict }: { locale: Locale; dict?: Dictionary }) {
   const [items, setItems] = useState<PartnerItem[]>([]);
@@ -37,6 +38,7 @@ export default function PartnerListPage({ locale, dict }: { locale: Locale; dict
     try {
       const res = await fetch(`${ADMIN_PARTNER_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

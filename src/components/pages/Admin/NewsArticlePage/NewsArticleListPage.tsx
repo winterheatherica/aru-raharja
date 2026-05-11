@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_NEWS_ARTICLE_URL, NewsArticleItem, newsArticleImageSrc, stripHtml } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 function formatDate(value?: string) {
   if (!value) return "-";
@@ -44,6 +45,7 @@ export default function NewsArticleListPage({ locale, dict }: { locale: Locale; 
     try {
       const res = await fetch(`${ADMIN_NEWS_ARTICLE_URL}/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       await load();
     } catch (e: any) {
       setError(e?.message || "Delete failed");

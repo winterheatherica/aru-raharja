@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Locale, Dictionary } from "@/i18n/get_dictionary";
 import { ADMIN_SERVICE_GALLERY_URL, SERVICE_SOLUTIONS, ServiceCode } from "./_shared";
+import { revalidatePublic } from "@/app/actions/revalidate";
 
 type Translation = { language?: string; title?: string; alt?: string; caption?: string };
 type Item = {
@@ -86,6 +87,7 @@ export default function ServiceGalleryDetailPage({ locale, dict, galleryId }: { 
 
       const res = await fetch(`${ADMIN_SERVICE_GALLERY_URL}/${galleryId}`, { method: "PUT", credentials: "include", body: form });
       if (!res.ok) throw new Error(await res.text());
+      await revalidatePublic();
       setImage(null);
       alert(`${t?.saved ?? "Saved"} (${activeLang})`);
       await loadByLang(activeLang);
@@ -100,6 +102,7 @@ export default function ServiceGalleryDetailPage({ locale, dict, galleryId }: { 
     if (!confirm(t?.deleteConfirm ?? "Hard delete gallery ini?")) return;
     const res = await fetch(`${ADMIN_SERVICE_GALLERY_URL}/${galleryId}`, { method: "DELETE", credentials: "include" });
     if (res.ok) {
+      await revalidatePublic();
       const svc = selected || serviceCode.toLowerCase();
       window.location.href = `/${locale}/admin/service-gallery?service=${svc}`;
     }
