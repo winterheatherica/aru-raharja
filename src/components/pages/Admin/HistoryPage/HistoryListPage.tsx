@@ -121,6 +121,11 @@ export default function HistoryListPage({ locale, dict }: { locale: Locale; dict
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="text-sm text-bumnslate-6">
                             <b>{t?.fields?.language ?? "Lang"}:</b> {item.language} • <b>{t?.fields?.active ?? "Active"}:</b> {String(item.is_active)}
+                            {item.is_machine_fallback && (
+                              <span className="ml-2 inline-flex items-center rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-xs font-semibold text-amber-700" title={t?.fields?.fallbackHint ?? "Auto-translate gagal — isi masih dari versi ID. Edit untuk konfirmasi."}>
+                                {t?.fields?.fallbackBadge ?? "Needs retranslate"}
+                              </span>
+                            )}
                           </div>
                           <div className="flex gap-2">
                             <Link href={`/${locale}/admin/history/${item.id}`} className="inline-flex items-center justify-center rounded-xl bg-bumn-gradient-primary-11 px-3 py-2 text-sm font-medium text-white shadow-bumn-2">{t?.detailButton ?? "Detail / Edit"}</Link>

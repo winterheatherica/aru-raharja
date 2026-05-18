@@ -7,6 +7,7 @@ export type HistoryItem = {
   table_headers?: string[];
   table_rows?: string[][];
   is_active: boolean;
+  is_machine_fallback?: boolean;
 };
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE!.replace(/\/$/, "");
